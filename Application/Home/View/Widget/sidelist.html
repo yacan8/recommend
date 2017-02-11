@@ -1,0 +1,18 @@
+
+<div class="bg-white p-md m-b-sm overflow-hidden" id="side-list">
+    <h4 class="side_list_header">热门资讯</h4>
+    <div class="side-list">
+        <volist name="List" id="vo">
+            <div class="side-list-item m-t-md">
+                <a class="side-item-img" target="_blank" href="{:U('/n/'.$vo['id'])}" style="background-image: url('{:C('__DATA__')}/news_thumb/{$vo.image_thumb}')"></a>
+                <div class="side-item-right text-over-3">
+                    <a target="_blank" href="{:U('/n/'.$vo['id'])}">
+                        【{$vo.type.type}】{$vo.title}
+                    </a>
+                </div>
+            </div>
+        </volist>
+
+    </div>
+
+</div>

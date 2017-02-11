@@ -1,0 +1,87 @@
+<div class="bg-white u-main">
+  <div class="u_title">
+    个人资料
+  </div>
+  <div class="main_c">
+    <div class="m-t-md over-h">
+      <div class="pull-left m-r-sm tc-gray9">
+        昵称：
+      </div>
+      <div class="pull-left">
+        {$userinfo.nickname}
+      </div>
+    </div>
+
+    <div class="m-t-md over-h">
+      <div class="pull-left m-r-sm tc-gray9">
+        Q Q：
+      </div>
+      <div class="pull-left">
+        {$userinfo.userinfo.qq|default="主人没有填QQ哦"}
+      </div>
+    </div>
+    <div class="m-t-md over-h">
+      <div class="pull-left m-r-sm tc-gray9">
+        性别：
+      </div>
+      <div class="pull-left">
+        <if condition = "$userinfo['userinfo']['sex'] eq '1'">男<elseif condition="$userinfo['userinfo']['sex'] eq '0'"/>女<else/>主人未填性别，未知哦</if>
+      </div>
+    </div>
+    <div class="m-t-md over-h">
+      <div class="pull-left m-r-sm tc-gray9">
+        生日：
+      </div>
+      <div class="pull-left">
+        <if condition ="$userinfo['userinfo']['birthdate'] neq '0000-00-00'">
+          {$userinfo.userinfo.birthdate|default="主人很懒，没有填生日"}
+          <else/>
+          主人很懒，没有填生日
+        </if>
+      </div>
+    </div>
+    <div class="m-t-md over-h">
+      <div class="pull-left m-r-sm tc-gray9">
+        学校：
+      </div>
+      <div class="pull-left">
+        {$userinfo.userinfo.schoolname|default="主人不想告诉你"}
+      </div>
+    </div>
+    <div class="m-t-md over-h">
+      <div class="pull-left m-r-sm tc-gray9">
+        专业：
+      </div>
+      <div class="pull-left">
+        {$userinfo.userinfo.profession|default="主人还是不想告诉你"}
+      </div>
+    </div>
+
+    <div class="m-t-md over-h">
+      <div class="pull-left m-r-sm tc-gray9">
+        邮箱：
+      </div>
+      <div class="pull-left">
+        {$userinfo.userinfo.email|default="主人不想告诉你"}
+      </div>
+    </div>
+    
+    <div class="m-t-md over-h">
+      <div class="pull-left m-r-sm tc-gray9">
+        地区：
+      </div>
+      <div class="pull-left">
+        {$userinfo.userinfo.province|default="^_^ 你猜"} {$userinfo.userinfo.city} {$userinfo.userinfo.area} 
+      </div>
+    </div>
+    <div class="m-t-md over-h">
+      <div class="pull-left m-r-sm tc-gray9">
+        签名：
+      </div>
+      <div class="pull-left">
+        {$userinfo.userinfo.shelfintroduction|default="因为主人很懒，没有填签名，所以显示了这样一段文字。。。"}
+      </div>
+    </div>
+
+  </div>
+</div>

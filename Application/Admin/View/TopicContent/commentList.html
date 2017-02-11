@@ -1,0 +1,35 @@
+
+
+<volist name="List" id="vo">
+	<div class="topic-item">
+		<div class="media">
+	      <div class="media-left">
+	        <a href="{:U('TopicComment/index',array('user_id'=>$vo['userinfo']['id']))}">
+	          <img class="media-object" src="{$vo.userinfo.icon}" style="width: 36px; height: 36px;">
+	        </a>
+	      </div>
+	      <div class="media-body">
+	        <div>
+	        	在话题<a href="{:U('/t/'.$vo['topic']['id'])}" target="_blank">{$vo.topic.title}</a>发表：
+	        	<br>{$vo.content}
+
+	        </div>
+	        <div class="m-t-xs font-12">
+	        	
+	        	<a href="{:U('TopicComment/index',array('user_id'=>$vo['userinfo']['id']))}">{$vo.userinfo.nickname}</a> 
+	        	· 
+	        	{$vo.time}
+	        </div>
+	        {:W('Admin/TopicImg/TopicImg',array('type'=>'2','id'=>$vo['id']))} 
+	      	<div class="m-t-xs">
+				<a href="{:U('TopicComment/view',array('id'=>$vo['id']))}" target="_blank" class="btn btn-xs btn-info m-r-sm">查看</a>
+				<a href="{:U('Topic/delete',array('id'=>$vo['id'],'type'=>$select))}" class="btn btn-xs btn-danger m-r-sm" onclick="return confirm('确认删除吗？')">删除</a>
+			</div>
+
+	      </div>
+
+
+
+	    </div>
+	</div>
+</volist>

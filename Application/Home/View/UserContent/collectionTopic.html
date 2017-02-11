@@ -1,0 +1,46 @@
+
+<div class="m-b-md">
+    <ul class="c-sections over-h">
+        <li <if condition="ACTION_NAME eq 'collection_news'">class="active"</if>><a href="{:U('User/collection_news')}">资讯</a></li>
+        <li <if condition="ACTION_NAME eq 'collection_topic'">class="active"</if>><a href="{:U('User/collection_topic')}">话题</a></li>
+    </ul>
+</div>
+
+<if condition="count($List) eq 0">
+    <div class="text-center bg-white" style="height:300px;line-height:300px">亲，您还没有话题收藏哦~</div>
+
+<else/>
+<div class="bg-white p-md mr_-25">
+<volist name ='List' id="vo">
+  <div class="p-b-sm border-b m-b-sm">
+  <div class="media media-container list">
+    <a class="pull-left">
+      <img class="media-object u_icon" src="{:C('__DATA__')}/login_thumb/{$vo.user_icon|default='default.jpg'}" alt="..." >
+    </a>
+    <div class="media-body">
+      <a href="{:U('/t/'.$vo['t_id'])}" class="media-heading" target="_blank">{$vo.t_title}</a>
+      <div class="media-content tc-gray9">
+          <a href="{:U('Topic/index',array('t'=>$vo['type_id']))}" class="topic-type" target="_blank">{$vo.type}</a>
+          ·
+          {$vo.discuss_count}个人在讨论
+          ·
+          <if condition="$vo['top_user_nickname'] neq ''">
+          <a href="{:U('/u/'.$vo['top_user_id'],'',false,false)}">{$vo.top_user_nickname}</a>
+          ·
+          {$vo.update_time}发表了新评论
+          <else />
+          {$vo.update_time}
+          </if>
+          ·
+          {$vo.t_browse}次浏览
+      </div>
+    </div>
+  </div>
+  </div>
+</volist>
+</div>
+</if>
+
+<ul class="pagination pagination-sm">
+    {$page}
+</ul>

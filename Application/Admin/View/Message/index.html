@@ -1,0 +1,49 @@
+
+	<div class="row margin-bottom">
+		<div class="col-xs-12">
+	        <h3 class="page-header">评论管理</h3>
+	    </div>
+		<!-- / .col-xs-12 -->
+		
+	</div>
+
+	<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>新闻</th>
+          <th>发送者</th>
+          <th>接收者</th>
+          <th>内容</th>
+          <th>时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <volist name="List" id="vo">
+          <tr>
+          <td>
+            <if condition="$vo['News']['type'] neq ''">
+            <a href="{:U('News/view',array('id'=>$vo['News']['id']))}"  target="_blank">【{$vo.News.type}】{$vo.News.title}</a>
+            <else/>
+            该新闻已被删除
+            </if>
+          </td>
+        	<td><img src="{:C('__DATA__')}/login_thumb/{$vo.senderinfo.icon}" title='{$vo.senderinfo.tel}-{$vo.senderinfo.nickname}' style="width:30px;height:30px;"></td>
+          <if condition ="$vo['receiverinfo'] neq ''">
+          <td><img src="{:C('__DATA__')}/login_thumb/{$vo.receiverinfo.icon}" title='{$vo.receiverinfo.tel}-{$vo.receiverinfo.nickname}' style="width:30px;height:30px;"></td>
+          <else/>
+          <td> </td>
+          </if>
+        	<td>{$vo.content}</td>
+        	<td>{$vo.time}</td>
+          <td><a href="{:U('Message/delete',array('id'=>$vo['id']))}" class="btn btn-danger">删除</a></td>
+          </tr>
+        </volist>
+      </tbody>
+    </table>
+    <div class="text-right">
+      <ul class="pagination pagination-sm">
+      {$page}
+      </ul>
+    </div>
+	<!-- / .row -->

@@ -1,0 +1,24 @@
+.comment-area {
+    width: 100%;
+    background: #f3f7fb;
+    border: solid 1px #ebeff5;
+    padding: 10px;
+    resize: none;
+    height: 120px;
+    font-size: 14px;
+    border-radius: 3px;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+    -webkit-appearance: none;
+}
+.media.m-b-md {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f2f2f2;
+}
+.media-object.img-circle{
+	height: 30px;
+	width: 30px;
+}
+h5.media-heading{
+	margin-bottom: 2px;
+}

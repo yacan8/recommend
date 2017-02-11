@@ -1,0 +1,54 @@
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+    <div class="modal-dialog" role="document">
+      <form id="topic-publish" method="post" action='{:U("Topic/addTopic")}'>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">发表话题</h4>
+        </div>
+        <div class="modal-body">
+          <div class="alert-container">
+
+          </div>
+          <div>
+            <textarea name="title" class="form-control" placeholder="想一个可以吸引人的标题吧" rows="1" name="question_content" style="resize: none;"></textarea>
+            <textarea name="content" class="form-control m-t-sm to_input" rows="4" placeholder="输入你想表达的内容" style="resize: none;"></textarea>
+            <div class="m-t-sm comment-op">
+              <a class="btn btn-xs emoji-index" href="javascript:void(0)">: )</a>
+              
+            </div>
+            <div class="m-t-sm">
+              <span class="select-topic">选择类型</span>
+              <div class="m-t-sm over-h">
+                <volist name="TypeList" id="vo">
+                    <a class="publish-topic" href="javascript:void(0)" data-type="{$vo.id}">{$vo.type}</a>
+                </volist>
+                <input type="hidden" name="topic_type" value="" />
+              </div>
+              <div class="m-t-sm">
+                <span class="select-topic">上传图片</span>
+                <div class="comment-op" style="display:block">
+                  <div class="m-t-sm upload-img-container"><ul class="images media-picture over-h"><ul></div>
+                  <input name="img[]" class="input" type="file" hidden="ture" accept="image/jpg,image/png,image/gif,image/jpeg" multiple="multiple">
+                  <div class="m-t-sm">
+                    <button type="button" class="btn btn-sm btn-info img_uploap">添加图片</button>
+                    <span class="tc-gray9 font-12 m-l-sm">允许:jpg,jpeg,png,gif,最多添加9张</span>
+                  </div>
+
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="javascript:void(0)" class="btn" data-dismiss="modal">取消</a>
+          <button type="button" data-loading-text="提交中..."  class="btn bg-main publish-submit">发表</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

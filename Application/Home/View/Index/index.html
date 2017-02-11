@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <include file="Common/header" />
+    <meta name="KeyWord" content="Campus，Leader，campusleader，高校领袖，高校新闻，高校达人秀。为创业者提供一个展示舞台。">
+    <meta name="description" content="Campus Leader是最校园的发声体，带你了解最新鲜的校园资讯，走近不一样的高校领袖，发掘最有意义的大学生活，玩转高逼格广视野的校园生活！">
+
+    <link rel="stylesheet" href="__PUBLIC__/css/home/IndexFocus.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/List.css?v=20160323">
+    <php>session('Message',null);session('ErrorMessage',null);//去除注册完善信息时的session</php>
+    <script>
+    var DATAPATH = "{:C('__DATA__')}";
+    var url = '{:U('News/load')}';
+    var PUBLIC = '__PUBLIC__';
+    var page = 1;
+    var sections = '';
+    </script>
+
+    <title>CampusLeader-最校园的发声体</title>
+</head>
+
+<body>
+    
+    <include file="Common/navbar" />
+    <!-- 头条焦点图 -->
+    <include file="IndexContent/Focus" />
+    <!-- /头条焦点图 -->
+    <div class="container m-t-sm">
+        <div class="row">
+            <div class="col-sm-12 col-md-9">
+                <include file="IndexContent/SelectList" />
+                <!-- 列表 -->
+                
+                <include file="IndexContent/List" />
+                <!-- /列表 -->
+                <button type="button" id="load" class="btn bg-main btn-sm btn-block m-b-md m-t-md">加载更多</button>
+            </div>
+
+            <div class="col-sm-12 col-md-3">
+                {:W('Sidelist/side')}
+            </div>
+        </div>
+    </div>
+    
+    <include file="Common/footer" />
+</body>
+<script src="__PUBLIC__/js/home/focus.js"></script>
+<script src="__PUBLIC__/js/home/sidefixed.js"></script>
+<script src="__PUBLIC__/js/home/load_f.js?v=20160323"></script>
+<script src="__PUBLIC__/js/home/load.js"></script>
+</html>

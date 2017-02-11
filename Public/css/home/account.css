@@ -1,0 +1,63 @@
+.sidelist-group{
+
+}
+.progress {
+	border-radius: 0;
+    -webkit-box-shadow: none;
+	box-shadow: none;
+}
+.sidelist-group li{
+	border-left:2px solid transparent;
+	padding-left: 25px;
+	border-bottom: 1px solid #eee;
+}
+.sidelist-group li.active{
+	border-left-color: #F65A4A;
+	
+}
+.sidelist-group li.active a{
+	color: #F65A4A;
+}
+.sidelist-group li a{
+	display: block;
+	padding: 10px 0;
+}
+
+
+.user_icon{
+	width: 50px;
+	height: 50px;
+	position: relative;
+	overflow: hidden;
+}
+.user_icon input{
+	display: none;
+}
+.icon{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	border-radius: 100%;
+    padding: 1px;
+}
+.icon_btn{
+	text-align: center;
+	line-height: 50px;
+	color: #fff;
+	display: block;
+	z-index: 5;
+	background: rgba(0,0,0,.5);
+	opacity: 0;
+	border-radius: 100%;
+}
+.icon_btn:hover{
+	color: #fff;
+	opacity: 1;
+}
+@media (min-width: 992px){
+	.user_icon_label{
+		margin-top:8px;
+	}
+}

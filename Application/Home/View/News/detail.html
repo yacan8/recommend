@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <include file="Common/header" />
+    <link rel="stylesheet" href="__PUBLIC__/css/home/List.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/detail.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/comment.css">
+    <meta name="description" content="{$List.intro}">
+
+    <title>{$List.title}</title>
+</head>
+
+<body>
+
+    <div class="modal fade" id="reply" tabindex="-1" role="dialog" aria-labelledby="ModalTitle">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="ModalTitle">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            <textarea id="comment_content" class="comment-area" rows="4" placeholder="你要说点什么吗？"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">关闭</button>
+            <button type="button" class="comment_btn btn btn-primary btn-sm">提交</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <include file="Common/navbar" />
+
+    <div class="container m-t-sm">
+        <div class="row">
+            <div class="col-sm-12 col-md-9">
+                <div class="bg-white p-md m-b-sm">
+                    <div class="detail-title">{$List.title}</div>
+                    <span class="detail-time">
+                        <span title="发布时间" class="iconfont icon-fabushijian m-r-md"> {$List.publish_time}</span>
+                         
+                         <span title="浏览" class="iconfont icon-appliulanshu tc-gray6"> {$List.browse}
+                        </span>
+                    </span>
+
+                    <div class="detail-img"><img src="{:C('__DATA__')}/news/{$List.image}"></div>
+                    <div class="detail-content">
+                        {$List.content}
+                    </div>
+                    <div class="m-t-sm m-b-md">
+                        标签：
+                        <volist name="List.LabelName" id="vo">
+                            <span class="la-info">{$vo.label}</span>
+                        </volist>
+                    </div>
+                    <div class="operate">
+                        <span class="jiathis_txt">分享到：</span>
+                        <!-- JiaThis Button BEGIN -->
+                        <a class="jiathis_button_weixin share-btn btn-success">
+                            <i class="iconfont icon-weixin"></i>
+                        </a> 
+                        <a class="jiathis_button_cqq share-btn bg-qq">
+                            <i class="iconfont icon-qq"></i>
+                        </a> 
+                        <a class="jiathis_button_qzone share-btn bg-qq">
+                            <i class="iconfont icon-qzone"></i>
+                        </a> 
+                        <a class="jiathis_button_tsina share-btn bg-weibo">
+                            <i class="iconfont icon-weibo"></i>
+                        </a>
+                        <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1" charset="utf-8"></script>
+                        <a class="share-btn btn-info pull-right" title="收藏" id="concern">
+                            <i class="iconfont icon-shoucangyishoucang-copy-copy"></i>
+                        </a>
+                    </div>
+                    <div class="m-t-sm p-b-sm">
+                        <if condition="$PreAndNextTitle['pre']['id'] neq ''">
+                            <div class="to">
+                            <a href="{:U('News/detail',array('id'=>$PreAndNextTitle['pre']['id']))}" style="line-height:26px"><span class="glyphicon glyphicon-upload"></span> 上一篇：{$PreAndNextTitle.pre.title}
+                            </a>
+                            </div>
+                        </if>
+                        <if condition="$PreAndNextTitle['next']['id'] neq ''">
+                            <div class="to">
+                            <a href="{:U('News/detail',array('id'=>$PreAndNextTitle['next']['id']))}" style="line-height:26px"><span class="glyphicon glyphicon-download"></span> 下一篇：{$PreAndNextTitle.next.title}
+                            </a>
+                            </div>
+                        </if>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-md m-b-sm">
+                    <h4 class="m-l-xs">
+                        评价 ({$MessageCount})
+                    </h4>
+                    <if condition = "session('?login')">
+                    <textarea id="comment-area" class="comment-area" rows="4" placeholder="你要说点什么吗？"></textarea>
+                    <div class="m-t-sm">
+                        <a href="javascript:void(0)" id="comment" class="btn btn-info btn-md">提交评论</span></a>
+                    </div>
+                    <else/>
+                    <div class="comment-area text-center tc-gray9" style="height:200px;font-size:18px;line-height:173px;background:#fcfcfc;">
+                        <a class="tc-gray6" href="{:U('Login/index',array('NewsId'=>$id))}">登录</a> 后参与评论
+                    </div>
+                    </if>
+                    
+                    <hr>
+                    <div class="comment-containter">
+                        <volist name = 'List.comment' id="vo">
+                            <div class="media m-b-md">
+                                <div class="media-left">
+                                    <a href="#"><img class="media-object img-circle" alt="" src="{:C('__DATA__')}/login_thumb/{$vo.senderinfo.icon}" data-holder-rendered="true" ></a>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="media-heading">
+                                        <span class="sender_id">{$vo.senderinfo.nickname}</span>
+                                        <if condition="$vo.receiver neq ''"> 回复：{$vo.receiverinfo.nickname}</if>
+                                    </h5>
+                                    {$vo.content}
+                                    <div class="m-t-sm" style="font-size:12px;">
+                                        <a class="tc-gray9"><span class="m-r-sm">{$vo.time}</span></a> <a href="javascript:void(0)" class="fa"><span class="m-r-sm reply" data-sender="{$vo.sender}"><span class="glyphicon glyphicon-pencil"></span> 回复</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </volist>
+                        
+                    </div>
+                    <if condition = "count($List['comment']) neq 0">
+                        <a id="loading" href="javascript:void(0)" class="text-center btn-block btn-sm">加载更多 </a>
+                    </if>
+                </div>
+
+            </div>
+
+            <div class="col-sm-12 col-md-3">
+                {:W('Sidelist/side')}
+            </div>
+        </div>
+    </div>
+
+    <include file="Common/footer" />
+</body>
+    <script src="__PUBLIC__/js/home/sidefixed.js"></script>
+    <script type="text/javascript">
+    var pv = "{:U('Browse/pv')}";
+    var uv = "{:U('Visitor/uv')}";
+    var PUBLIC="__PUBLIC__";
+    var DATA = "{:C('__DATA__')}";
+    var page = 2;
+    var id = {$id};
+    var loading_url = "{:U('News/comment_load')}";
+    var comment_url = "{:U('News/comment')}";
+    var concern_url = "{:U('News/attention')}";
+    var login_url = "{:U('Login/index')}?NewsId={$List.id}";
+    $(function(){
+            <if condition="session('?news')">
+            <php>session('news',null);</php>
+            </if>
+        })
+    $(function(){
+        $('.audio_start').on('click',function(event) {
+            var _sel = $(this);
+            audio = _sel.siblings('audio').get(0);
+            if(audio.paused){
+                _sel.find('.audio_icon').removeClass('audio-play').addClass('audio-pause');
+                audio.play();
+            }else{
+                _sel.find('.audio_icon').removeClass('audio-pause').addClass('audio-play');
+                audio.pause();
+            }
+        });
+    })
+    </script>
+    <script src="__PUBLIC__/js/home/detail.js"></script>
+    <script src="__PUBLIC__/js/home/tj.js"></script>
+</html>

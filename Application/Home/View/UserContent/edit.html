@@ -1,0 +1,208 @@
+        <form class="form-horizontal" method="post" action="{:U('User/ChangeUserinfo')}" enctype="multipart/form-data">
+          <fieldset>
+            <legend class="p-b-md text-center">个人资料</legend>
+            <div class="form-group">
+              <label class="col-md-2 control-label user_icon_label">头像：</label>
+              <div class="col-md-6">
+                 <div class="user_icon">
+                  <img class="icon" src="{:C('__DATA__')}/login_thumb/{$userinfo.icon|default='default.jpg'}">
+                  <a href="javascript:void(0)" class="icon icon_btn transition-all-03">修改</a>
+                  <input type="file" id="file" name="file" accept="image/*" hidden/>
+                 </div>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="col-lg-2 control-label">昵称：</label>
+              <div class="col-lg-6">
+                <input type="text" class="form-control" name="nickname" placeholder="输入昵称" value="{$user_info.nickname}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">邮箱：</label>
+              <div class="col-lg-6">
+                <input type="text" class="form-control" name="email" placeholder="请输入邮箱" value="{$user_info.email}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">QQ：</label>
+              <div class="col-lg-6">
+                <input type="text" class="form-control" name="qq" placeholder="输入QQ号码" value="{$user_info.userinfo.qq}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">性别：</label>
+              <div class="col-lg-10">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="sex" value="1" <if condition = "$user_info['userinfo']['sex'] eq '1'">checked=""</if>>
+                    男
+                  </label>
+                </div>
+
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="sex" value="0" <if condition = "$user_info['userinfo']['sex'] eq '0'">checked=""</if>>
+                    女
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-lg-2 control-label">生日：</label>
+              <div class="col-sm-2">
+                <select class="form-control" name="year">
+                  <option value="0">请选择年份</option>
+                  <for start = "1980" end = "2015">
+                    <if condition = "$i eq $year">
+                    <option selected>{$i}</option>
+                      <else/>
+                      <option>{$i}</option>
+                    </if>
+                  </for>
+                </select>
+              </div>
+
+              <div class="col-sm-2">
+                <select class="form-control" name="month">
+                  <option value="0">请选择月份</option>
+                  <for start = "1" end = "13">
+                    <if condition = "$i eq $month">
+                      <option selected>{$i}</option>
+                      <else/>
+                      <option>{$i}</option>
+                    </if>
+                    
+                  </for>
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <select class="form-control" name="day">
+                  <option value="0">请选择日期</option>
+                  <for start = "1" end = "32">
+                    <if condition = "$i eq $day">
+                      <option selected>{$i}</option>
+                      <else/>
+                      <option>{$i}</option>
+                    </if>
+                    
+                  </for>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="col-lg-2 control-label">学校：</label>
+              <div class="col-sm-2">
+                <select class="form-control" name="schoolP">
+                  <option value="0">请选择省份</option>
+                  <volist name="schoolProvinces" id= 'vo'>
+
+                    <if condition = "$schoolProvince eq $vo['pr_province']">
+                      <option selected>{$vo.pr_province}</option>
+                      <else/>
+                      <option>{$vo.pr_province}</option>
+                    </if>
+                  </volist>
+
+
+                </select>
+              </div>
+
+              <div class="col-sm-2">
+                <select class="form-control" name="schoolC">
+                  <option value="0">请选择城市</option>
+                  <volist name="schoolCitys" id= 'vo'>
+                    <if condition = "$schoolCity eq $vo['ci_city']">
+                      <option selected>{$vo.ci_city}</option>
+                      <else/>
+                      <option>{$vo.ci_city}</option>
+                    </if>
+                  </volist>
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <select class="form-control" name="school">
+                  <option value="0">请选择学校</option>
+                  <volist name="schools" id= 'vo'>
+                    <if condition = "$school eq $vo['sh_shool']">
+                      <option selected>{$vo.sh_shool}</option>
+                      <else/>
+                      <option>{$vo.sh_shool}</option>
+                    </if>
+                  </volist>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-lg-2 control-label">专业：</label>
+              <div class="col-lg-6">
+                <input type="text" class="form-control" name="profession" placeholder="如：软件工程" value="{$user_info.userinfo.profession}">
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="col-lg-2 control-label">地区：</label>
+              <div class="col-sm-2">
+                <select class="form-control" name="province">
+                  <option value="0">请选择省份</option>
+                  <volist name="provinces" id= 'vo'>
+                    <if condition = "$user_info['userinfo']['province'] eq $vo['province']">
+                      <option selected>{$vo.province}</option>
+                      <else/>
+                      <option>{$vo.province}</option>
+                    </if>
+                  </volist>
+                </select>
+              </div>
+
+              <div class="col-sm-2">
+                <select class="form-control" name="city">
+                  <option value="0">请选择城市</option>
+                  <volist name="cities" id= 'vo'>
+                    <if condition = "$user_info['userinfo']['city'] eq $vo['city']">
+                      <option selected>{$vo.city}</option>
+                      <else/>
+                      <option>{$vo.city}</option>
+                    </if>
+                  </volist>
+                </select>
+              </div>
+
+
+
+              <div class="col-sm-2">
+                <select class="form-control" name="areas">
+                  <option value="0">请选择地区</option>
+                  <volist name="areas" id= 'vo'>
+                    <if condition = "$user_info['userinfo']['area'] eq $vo['area']">
+                      <option selected>{$vo.area}</option>
+                      <else/>
+                      <option>{$vo.area}</option>
+                    </if>
+                  </volist>
+
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="textArea" class="col-lg-2 control-label">签名：</label>
+              <div class="col-lg-8">
+                <textarea class="form-control" rows="3" name="shelfIntroduction" placeholder="输入你的个人简介或者签名">{$user_info.userinfo.shelfintroduction}</textarea>
+   
+              </div>
+            </div>
+        
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-success btn-sm" data-loading-text="提交中">提交</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>

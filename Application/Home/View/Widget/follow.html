@@ -1,0 +1,12 @@
+
+<if condition="session('login') neq $follow_id">
+	<if condition="!$bool and (CONTROLLER_NAME eq 'User')">
+		<a class="btn btn-success btn-sm pull-right m-t-xs f-theme follow"  data-id='{$follow_id}'>加关注</a>
+	<elseif condition="!$bool and (CONTROLLER_NAME neq 'User')"/>
+		<a id="follow" class="follow" data-id='{$follow_id}' href="javascript:void(0)" title="添加关注"><span class="glyphicon glyphicon-plus"></span> 关注</a>
+	<elseif condition="$bool and (CONTROLLER_NAME eq 'User')"/>
+		<a class="btn btn-success btn-sm m-t-xs pull-right follow active" data-id='{$follow_id}'>已关注</a>
+	<elseif condition="$bool and (CONTROLLER_NAME neq 'User')"/>
+	    <a id="follow" class="follow topic-type" data-id='{$follow_id}' href="javascript:void(0)" title="取消关注"> 取消关注</a>
+	</if>
+</if>

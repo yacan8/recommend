@@ -1,0 +1,54 @@
+
+
+	<div class="row margin-bottom">
+		<div class="col-xs-12">
+	        <h3 class="page-header">头条新闻</h3>
+	    </div>
+		<!-- / .col-xs-12 -->
+		<include file="NewsContent/upline" />
+		<!-- / .col-sm-6 .col-md-3 margin-bottom -->
+
+	</div>
+	<!-- / .row -->
+
+	<div class="row">
+		<div class="col-xs-12">
+	        <h3>
+	        	列表
+	        	<br class="visible-xs m-t-sm m-b-sm">
+				<div class="btn-group pull-right">
+				  <a href="#" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+				  	<if condition="$type eq '0' or $type eq ''">
+				  		类型
+				  	<else/>
+						<volist name="TypeList" id="vo">
+							<if condition="$vo['id'] eq $type">
+								{$vo.type}
+							</if>
+						</volist>
+					</if>
+				  	<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+				  	<li><a href="{:U('News/index')}">全部</a></li>
+				  	<volist name="TypeList" id="vo">
+				    <li><a href="{:U('News/index',array('type'=>$vo['id']))}">{$vo.type}</a></li>
+					</volist>
+				  </ul>
+				</div>
+
+				<div class="btn-group pull-right" style="margin-right:10px;">
+				  <a href="{:U('News/add')}" class="btn btn-info btn-sm">新闻发布</a>
+				</div>
+
+	        </h3><hr class="hidden-xs">
+	    </div>
+	    <div class="col-xs-12">
+	    	<include file="NewsContent/list" />
+	    	<div class="text-right">
+	    		<ul class="pagination pagination-sm">
+				  {$page}
+				</ul>
+	    	</div>
+	    </div>
+	</div>
+	

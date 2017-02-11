@@ -1,0 +1,37 @@
+.footer{
+    border-top: 5px solid #F65A4A;
+    padding: 25px 0;
+    padding-bottom: 0;
+    color: #f1f1f1;
+}
+.footer p{
+    font-size: 14px;
+}
+.footer a{
+    border-left: solid 2px #636363;
+    padding-left: 10px;
+    font-size: 12px;
+    line-height: 24px;
+    margin-right: 8px;
+    color: silver;
+    font-size: 14px;
+    font-weight: 700;
+}
+.footer h4{
+    margin-top: 20px;
+}
+.footer .rights{
+    font-size: 9pt;
+    color: #636363;
+    margin: 20px 0;
+}
+.footer-l{
+    padding-top: 25px;
+    height: 150px;
+}
+@media (max-width: 768px){
+    .footer-l{
+        padding-top: 10px;
+        height: 100px;
+    }
+}

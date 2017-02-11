@@ -1,0 +1,34 @@
+<div class="bg-white u-main">
+	<div class="u_title">
+	  {$self}的照片
+	</div>
+
+
+	<div class="pic-list">
+		<php>
+			echo "<h3>".$List['0']['time']."</h3>";
+		</php>
+		{:W('TopicImg/TopicImg',array('type'=>$List[0]['type'],'id'=>$List[0]['id']))} 
+
+
+		<volist name="List" id="vo" key="k" offset="1">
+			<php>
+				if($List[$k]['time'] != $List[$k-1]['time'])
+					echo "<h3>".$vo['time']."</h3>";
+			</php>
+			{:W('TopicImg/TopicImg',array('type'=>$vo['type'],'id'=>$vo['id']))} 
+
+		</volist>
+<ul class="pager p-l-sm p-r-sm">
+  <if condition="$p neq 1">
+    <li class="previous" title="下一页"><a href="{:U('User/picture',array('id'=>$user_id,'p'=>$p-1))}"><<</a></li>
+  </if>
+  <if condition ="($p+1) elt $TotalPage">
+
+	  <li class="next" title="下一页"><a href="{:U('User/picture',array('id'=>$user_id,'p'=>$p+1))}">>></a></li>
+  </if>
+</ul>
+
+
+	</div>
+</div>

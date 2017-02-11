@@ -1,0 +1,26 @@
+
+@font-face {font-family: "i-icon";
+  src: url('../fonts/usermenu.eot?t=1464509621'); /* IE9*/
+  src: url('../fonts/usermenu.eot?t=1464509621#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/usermenu.woff?t=1464509621') format('woff'), /* chrome, firefox */
+  url('../fonts/usermenu.ttf?t=1464509621') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../fonts/usermenu.svg?t=1464509621#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.i-icon{
+  font-family:"i-icon" !important;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-huati:before { content: "\e62f"; }
+.icon-gerenziliao:before { content: "\e61c"; }
+.icon-pinglun:before { content: "\e60f"; }
+.icon-tupian:before { content: "\e604"; }
+.icon-fans:before { content: "\e608"; }
+.icon-shoucang:before { content: "\e67f"; }
+.icon-wodefensi:before { content: "\e608"; }
+.icon-yiguanzhu:before { content: "\e65e"; }
+.icon-dengchu:before { content: "\e846"; }
+.icon-xiaoxi:before { content: "\e720"; }

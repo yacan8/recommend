@@ -1,0 +1,46 @@
+<ul class="list-group">
+<volist name="List" id="vo">
+	<li class="p-sm">
+		<div class="row">
+			<div class="col-sm-6 col-md-3">
+				<div class="list-item-img" style="background: url('{:C('__DATA__')}/news_thumb/{$vo.image_thumb}') no-repeat center center;background-size: cover;">
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-9">
+					<div class="overflow-ellipsis">
+						<a href="#"><img class="user-icon"  src="{:C('__DATA__')}/login_thumb/{$vo.user.icon}" alt="提交者" title="提交者"></a>
+						<a href="#" class="user-name">{$vo.user.nickname}</a>
+						<span class="user-name" style="margin-left:0">发布于{$vo.publish_time}</span>
+					</div>
+				<span class="list-item-title">
+					<div class="row">
+						<div class="col-sm-6 overflow-ellipsis">
+							<b>【{$vo.type}】{$vo.title}</b>
+						</div>
+						<div class="col-sm-6">
+							栏目：{$vo.sections.sections}
+						</div>
+					</div>
+
+				</span>
+				<span class="list-item-intro">
+					简介：{$vo.intro}
+				</span>
+				<a href="{:U('News/view',array('id'=>$vo['id']))}" target="_blank" class="btn btn-default btn-xs op">
+				<span class="glyphicon glyphicon-eye-open" aria-hidden="true" target="_blank"></span>查看</a>
+				<a href="{:U('News/change',array('id'=>$vo['id'],'p'=>$p))}" class="btn btn-default btn-xs op"><span class="glyphicon glyphicon-pushpin" aria-hidden="true" target="_blank"></span>修改</a>
+
+				<if condition="$vo['state'] eq '0'">
+					<a href="{:U('News/uplinetoggle',array('id'=>$vo['id']))}" class="btn btn-default btn-xs op"><span class="glyphicon glyphicon-upload" aria-hidden="true" target="_blank"></span>置顶</a>
+					<else/>
+					<a href="{:U('News/uplinetoggle',array('id'=>$vo['id']))}" class="btn btn-outline btn-warning btn-xs op"><span class="glyphicon glyphicon-download" aria-hidden="true" target="_blank"></span>取消置顶</a>
+				</if>
+				<a href="{:U('News/pv',array('id'=>$vo['id']))}" class="btn btn-default btn-xs op"><span class="glyphicon glyphicon-globe" aria-hidden="true" target="_blank"></span>pv</a>
+				<a href="{:U('News/delete',array('id'=>$vo['id']))}" onClick="return confirm('确认删除吗？')" class="btn btn-outline btn-danger btn-xs op"><span class="glyphicon glyphicon-trash" aria-hidden="true" target="_blank"></span>删除</a>
+			</div>
+			<!-- / .col-sm-6 .col-md-9 -->
+		</div>
+		<!-- / .row -->
+	</li>
+</volist>
+</ul>

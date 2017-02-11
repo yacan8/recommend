@@ -1,0 +1,52 @@
+/* 话题 */
+
+
+.fr-emoticon.fr-emoticon-img{
+	display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+.topic-sections{
+
+}
+.topic-sections li{
+	float: left;
+	border-bottom: 2px solid #eee;
+}
+.topic-sections .active{
+	border-color:#337ab7;
+}
+.topic-sections li a{
+	display: inline-block;
+	padding:  10px;
+	color: #999;
+}
+.topic-sections .active a{
+	color: #337ab7;
+}
+.topic-container{
+	border:1px solid #eee;
+	padding: 10px;
+
+}
+.topic-item{
+	padding:  15px 0;
+	border-bottom:1px solid #eee;
+}
+.topic-type {
+    padding: 2px 5px;
+    background-color: #eee;
+    border-radius: 2px;
+    color: #666;
+}
+
+.media-picture li{
+	width:100px;
+	height: 100px;
+	float: left;
+	margin:0 3px 3px 0;
+}
+.media-picture li img{
+	width: 100%;
+	height: 100%;
+}

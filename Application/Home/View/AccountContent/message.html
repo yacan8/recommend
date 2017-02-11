@@ -1,0 +1,64 @@
+<script type="text/javascript">
+
+    $(function() {
+       <if condition="session('?message')">
+          alert("<php>echo session('message')</php>");
+          <php>session('message',null);</php>
+          </if>
+         $(".reply").click(function(event) {
+             $(this).parents(".media").siblings('.form-group').slideToggle();
+         });
+         $(".comment-form").submit(function(event) {
+              var content = $(this).find('input.form-control').val();
+              if(content=='') return false;
+              else return true;
+         });
+    })
+</script>
+<if condition="count($List) eq 0">
+    <div class="text-center bg-white" style="height:300px;line-height:300px">亲，暂时没有消息哦~</div>
+    <else/>
+<volist name="List" id="vo" offset="$p" length="4">
+<div class="bg-white m-b-sm p-md overflow-auto box-shadow">
+    <div class="media">
+      <div class="media-left">
+        <a>
+          <img class="media-object img-circle" src="{:C('__DATA__')}/login_thumb/{$vo.senderinfo.icon}" style="width:30px;height:30px;">
+        </a>
+      </div>
+      <div class="media-body">
+        <h5 class="media-heading">{$vo.senderinfo.nickname} 回复了你：{$vo.content}</h5>
+        <div class="tc-gray6" style="font-size:12px;"><span>20分钟前<span>  <a class="reply">回复</a> <a class='pull-right' href="{:U('Account/read',array('id'=>$vo['id']))}">标记为已读</a></div>
+      </div>
+    </div>
+    <div class="form-group m-t-sm" style="display:none">
+      <form method="post" class="comment-form" action="{:U('Account/reply')}">
+      <div class="input-group">
+          <input type="hidden" name="other_id" value="{$vo.other_id}" />
+          <input type="hidden" name="receiver" value="{$vo.sender}" />
+          <input type="text" class="form-control" name="content" placeholder="你要回复些什么？" >
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">提交</button>
+          </span>
+      </div>
+      </form>
+    </div>
+    <hr>
+    <div class="to">
+      <if condition ="$vo['News']['type'] neq ''">
+        <a href="{:U('News/detail',array('id'=>$vo['other_id']))}">【{$vo.News.type}】{$vo.News.title}</a>
+        <else/>
+        <a>该新闻已被删除</a>
+      </if>
+    </div>
+</div>
+</volist>
+
+</if>
+
+
+<div class="text-center">
+    <ul class="pagination pagination-sm">
+        {$page}
+    </ul>
+</div>

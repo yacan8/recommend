@@ -1,0 +1,45 @@
+
+
+	<div class="row">
+		<div class="col-xs-12 m-t-md">
+			<ul class="topic-sections">
+				<li <if condition="$select eq 't'">class="active"</if>><a href="{:U('Topic/index')}">话题</a></li>
+				<li <if condition="$select eq 'c'">class="active"</if>><a href="{:U('TopicComment/index')}">评论及回复</a></li>
+			</ul>
+		</div>
+		<if condition ="$userinfo neq ''">
+			<div class="col-xs-12 m-t-md">
+				<a href="{:U('Topic/index')}" class='m-r-sm'>全部</a>
+				<a class='m-r-sm tc-gray6'>{$userinfo.nickname} </a>
+			</div>
+		</if>
+		<div class="col-xs-12 m-t-md">
+			<div class="topic-container">
+				
+				<if condition="$select eq 't'">
+					<include file = "TopicContent:list" />
+				<else />
+					<include file = "TopicContent:commentList" />
+				</if>
+
+
+
+				
+
+
+				<ul class="pagination pagination-sm m-t-lg">
+      				{$page}
+      			</ul>
+
+
+
+			</div>
+		</div>
+	
+
+
+		
+	</div>
+	
+		
+	

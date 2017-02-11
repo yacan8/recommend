@@ -1,0 +1,173 @@
+		<div class="col-lg-12 over-h">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <if condition="$id neq ''">文章浏览PV<else/>文章浏览PV及UV</if>
+					<div class="btn-group pull-right">
+					  <a href="javascript:void(0)" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="year_show"><php>echo date('Y');</php></span>年 <span class="caret"></span></a>
+					  <ul id="year" data-value="<php>echo date('y');</php>" class="dropdown-menu" style="z-index:9999">
+					  	<li><a href="javascript:void(0)" data-year="2015">2015年</a></li>
+					  	<li><a href="javascript:void(0)" data-year="2016">2016年</a></li>
+					  </ul>
+					</div>
+					
+                    <div class="btn-group pull-right m-r-sm">
+					  <a href="javascript:void(0)" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="mouth_show"><php>echo date('m');</php></span>月 <span class="caret"></span></a>
+					  <ul id="mouth" data-value="<php>echo date('m');</php>" class="dropdown-menu" style="z-index:9999">
+					  	<php>
+					  		for($i = 1 ; $i <= 12 ;$i++)
+					    		echo '<li><a data-mouth="'.$i.'" href="javascript:void(0)">'.$i.'月</a></li>'
+						</php>
+					  </ul>
+					</div>
+					
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="flot-chart">
+                        <div class="flot-chart-content" id="flot-line-chart"></div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <if condition = "CONTROLLER_NAME neq 'News'">
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        活跃用户
+                        
+                        <div class="btn-group pull-right">
+                          <a href="javascript:void(0)" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="active_mouth_show"><php>echo date('m');</php></span>月 <span class="caret"></span></a>
+                          <ul id="active_mouth" data-value="<php>echo date('m');</php>" class="dropdown-menu" style="z-index:9999">
+                            <php>
+                                for($i = 1 ; $i <= 12 ;$i++)
+                                    echo '<li><a data-mouth="'.$i.'" href="javascript:void(0)">'.$i.'月</a></li>'
+                            </php>
+                          </ul>
+                        </div>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="active-flot-line-chart"></div>
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span title="根据传入的时间间隔，计算该时间段内发出的文章的平均PV和UV">平均PV_UV</span>
+                        <div class="btn-group pull-right">
+                          <a href="javascript:void(0)" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="average_show">日</span> <span class="caret"></span></a>
+                          <ul id="average_interval" class="dropdown-menu" style="z-index:9999">
+                            <li><a data-interval="day" href="javascript:void(0)">日</a></li>
+                            <li><a data-interval="week" href="javascript:void(0)">周</a></li>
+                            <li><a data-interval="month" href="javascript:void(0)">月</a></li>
+                          </ul>
+                        </div>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="average-flot-line-chart"></div>
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+        </if>
+
+        
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    地区UV
+                    <!-- 地区时间参数 -->
+                    <div class="btn-group pull-right">
+                      <a href="javascript:void(0)" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="area_uv_pre_show">这个月</span> <span class="caret"></span></a>
+                      <ul id="area_uv_pre" data-value="<php>echo date('y');</php>" class="dropdown-menu" style="z-index:9999">
+                        <li><a href="javascript:void(0)" data-value="-1">当天</a></li>
+                        <li><a href="javascript:void(0)" data-value="0">本月</a></li>
+                        <li><a href="javascript:void(0)" data-value="3">近三个月</a></li>
+                        <li><a href="javascript:void(0)" data-value="12">一年以来</a></li>
+                      </ul>
+                    </div>
+                    <!-- end 地区时间参数 -->
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="flot-chart">
+                        <div class="flot-chart-content" id="uv-flot-pie-chart"></div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+
+
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    地区PV
+					<!-- 地区时间参数 -->
+                    <div class="btn-group pull-right">
+					  <a href="javascript:void(0)" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="area_pre_show">这个月</span> <span class="caret"></span></a>
+					  <ul id="area_pre" data-value="<php>echo date('y');</php>" class="dropdown-menu" style="z-index:9999">
+					  	<li><a href="javascript:void(0)" data-value="-1">当天</a></li>
+					  	<li><a href="javascript:void(0)" data-value="0">本月</a></li>
+					  	<li><a href="javascript:void(0)" data-value="3">近三个月</a></li>
+					  	<li><a href="javascript:void(0)" data-value="12">一年以来</a></li>
+					  </ul>
+					</div>
+					<!-- end 地区时间参数 -->
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="flot-chart">
+                        <div class="flot-chart-content" id="flot-pie-chart"></div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+
+
+
+        
+        <if condition = "CONTROLLER_NAME neq 'News'">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    浏览类型PV
+					<!-- 地区时间参数 -->
+                    <div class="btn-group pull-right">
+					  <a href="javascript:void(0)" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id="type_pre_show">这个月</span> <span class="caret"></span></a>
+					  <ul id="type_pre" data-value="<php>echo date('y');</php>" class="dropdown-menu" style="z-index:9999">
+					  	<li><a href="javascript:void(0)" data-value="-1">当天</a></li>
+                        <li><a href="javascript:void(0)" data-value="0">本月</a></li>
+                        <li><a href="javascript:void(0)" data-value="3">近三个月</a></li>
+                        <li><a href="javascript:void(0)" data-value="12">一年以来</a></li>
+					  </ul>
+					</div>
+					<!-- end 地区时间参数 -->
+                </div>
+
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="flot-chart">
+                        <div class="flot-chart-content" id="type-flot-pie-chart"></div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+            </if>
+        </div>

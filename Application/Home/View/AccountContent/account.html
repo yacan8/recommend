@@ -1,0 +1,81 @@
+
+				<div class="bg-white p-md">
+					<form class="form-horizontal" method="post" action="{:U('Account/ChangeUserinfo')}" enctype="multipart/form-data">
+					  <fieldset>
+					    <h4 class="text-center">账号信息</h4>
+					    <hr>
+					    <div class="form-group">
+					      <label class="col-md-2 control-label user_icon_label">头像</label>
+					      <div class="col-md-6">
+					       	 <div class="user_icon">
+					       	 	<img class="icon" src="{:C('__DATA__')}/login_thumb/{$userinfo.icon}">
+					       	 	<a href="javascript:void(0)" class="icon icon_btn transition-all-03">修改</a>
+					       	 	<input type="file" id="file" name="file" accept="image/*" hidden/>
+					       	 </div>
+					      </div>
+					    </div>
+					    <div class="form-group">
+					      <label for="username" class="col-md-2 control-label">昵称</label>
+					      <div class="col-md-6">
+					        <input type="text" class="form-control" name="nickname" id="nickname" placeholder="输入用户名" value="{$userinfo.nickname}">
+					      </div>
+					    </div>
+						
+					    <div class="form-group">
+					      <label for="tel" class="col-md-2 control-label">用户名</label>
+					      <div class="col-md-6">
+					        <input type="text" class="form-control" id="tel" placeholder="输入手机号码" value="{$userinfo.tel}" disabled>
+					      </div>
+					    </div>
+					    <div class="form-group">
+					      <label for="email" class="col-md-2 control-label">邮箱</label>
+					      <div class="col-md-6">
+					        <input type="text" class="form-control" name="email" id="email" placeholder="输入邮箱" value="{$userinfo.email}">
+					      </div>
+					    </div>
+					    <div class="form-group">
+					      <div class="col-lg-10 col-lg-offset-2">
+					        <button type="submit" class="btn btn-success btn-sm">提交修改</button>
+					      </div>
+					    </div>
+					  </fieldset>
+					</form>
+				</div>
+
+				<div class="bg-white p-md m-t-sm">
+					<form class="form-horizontal" action="{:U('Account/ChangePassword')}" method="post">
+					  <fieldset>
+					    <h4 class="text-center">修改密码</h4>
+					    <hr>
+
+					    <div class="form-group">
+					      <label for="inputPassword" class="col-md-2 control-label">原密码</label>
+					      <div class="col-md-6">
+					        <input type="password" class="form-control" name="o_password" placeholder="" >
+					      </div>
+					    </div>
+
+					    <div class="form-group">
+					      <label for="inputPassword" class="col-md-2 control-label">新密码</label>
+					      <div class="col-md-6">
+					        <input type="password" class="form-control" name="n_password" >
+					      </div>
+					    </div>
+
+					    <div class="form-group">
+					      <label for="inputPassword" class="col-md-2 control-label">确认新密码</label>
+					      <div class="col-md-6">
+					        <input type="password" class="form-control" name="re_password">
+					      </div>
+					    </div>
+						
+
+					    <div class="form-group">
+					      <div class="col-lg-10 col-lg-offset-2">
+					        <button type="submit" class="btn btn-success btn-sm">提交修改</button>
+					      </div>
+					    </div>
+					  </fieldset>
+					</form>
+				</div>
+		

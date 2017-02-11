@@ -1,0 +1,22 @@
+        <div class="panel panel-default">
+                <div class="panel-heading">
+                    24小时内热门文章
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                  <if condition="count($List) neq 0">
+                    <ul class="list-group m-no">
+                        <volist name="List" id="vo">
+                          <li class="list-group-item over-h">
+                            <a target="_blank" href="{:U('News/view',array('id'=>$vo['id']))}">【{$vo.type}】{$vo.title}</a>
+                            <span class="label label-info pull-right">Pv:{$vo.pv}</span>
+                            
+                          </li>
+                        </volist>
+                    </ul>
+                    <else />无数据
+                    </if>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->

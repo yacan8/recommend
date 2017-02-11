@@ -1,0 +1,36 @@
+
+
+<volist name="List" id="vo">
+				<div class="topic-item">
+					<div class="media">
+				      <div class="media-left">
+				        <a href="{:U('Topic/index',array('user_id'=>$vo['userinfo']['id']))}">
+				          <img class="media-object"  src="{$vo.userinfo.icon}" style="width: 36px; height: 36px;">
+				        </a>
+				      </div>
+				      <div class="media-body">
+				        <div>{$vo.title}</div>
+				        <div class="m-t-xs font-12">
+				        	<volist name="vo.type" id="tvo">
+				        	<span class="topic-type">{$tvo.type}</span> 
+				        	· 
+					        </volist>
+				        	<a href="{:U('Topic/index',array('user_id'=>$vo['userinfo']['id']))}">{$vo.userinfo.nickname}</a> 
+				        	· 
+				        	{$vo.time}
+				        	· 
+				        	{$vo.browse}次浏览
+				        </div>
+				        {:W('Admin/TopicImg/TopicImg',array('type'=>'1','id'=>$vo['id']))} 
+				      	<div class="m-t-xs">
+							<a href="{:U('/t/'.$vo['id'])}" target="_blank" class="btn btn-xs btn-info m-r-sm">查看</a>
+							<a href="{:U('Topic/delete',array('id'=>$vo['id'],'type'=>$select))}" class="btn btn-xs btn-danger m-r-sm" onclick="return confirm('确认删除吗？')">删除</a>
+						</div>
+
+				      </div>
+
+
+
+				    </div>
+				</div>
+				</volist>

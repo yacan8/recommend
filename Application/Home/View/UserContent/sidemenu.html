@@ -1,0 +1,24 @@
+
+
+<ul class="l-menu">
+  <li <if condition="$UserContent eq 'UserContent/userinfo'">class="active"</if>><a href="{:U('User/index',array('id'=>$user_id))}"><span class="m-r-xs i-icon icon-gerenziliao"></span> {$self}的资料</a></li>
+  <li <if condition="$UserContent eq 'UserContent/topic'">class="active"</if>><a href="{:U('User/topic',array('id'=>$user_id))}"><span class="m-r-xs i-icon icon-huati"></span> {$self}的话题</a></li>
+  <li <if condition="$UserContent eq 'UserContent/topicComment'">class="active"</if>><a href="{:U('User/comment',array('id'=>$user_id))}"><span class="m-r-xs i-icon icon-pinglun"></span> {$self}的评论</a></li>
+  <li <if condition="$UserContent eq 'UserContent/topicPicture'">class="active"</if>><a href="{:U('User/picture',array('id'=>$user_id))}"><span class="m-r-xs i-icon icon-tupian"></span> {$self}的图片 {$pic_count}</a></li>
+  <li <if condition="$UserContent eq 'UserContent/fans'">class="active"</if>><a href="{:U('User/fans',array('id'=>$user_id))}"><span class="m-r-xs i-icon icon-fans"></span> 粉丝 {$fans_count}</a></li>
+  <li <if condition="$UserContent eq 'UserContent/follow'">class="active"</if>><a href="{:U('User/follow',array('id'=>$user_id))}"><span class="m-r-xs i-icon icon-yiguanzhu"></span> 关注 {$follow_count}</a></li>
+</ul>
+<if condition ="session('login') eq $user_id">
+	<ul class="l-menu">
+	    <li <if condition="($UserContent eq 'UserContent/message')">class="active"</if>>
+	    	<a href="{:U('User/message')}"><span class="m-r-xs i-icon icon-xiaoxi"></span> 我的消息 
+	    	<if condition = "$message_count neq '0'">
+		    	<span class="m-l-xs badge">{$message_count}</span>
+		    </if>
+	    </a> 
+		
+	    </li>
+	    <li <if condition="($UserContent eq 'UserContent/collectionAttention') or ($UserContent eq 'UserContent/collectionTopic')">class="active"</if>><a href="{:U('User/collection_news')}"><span class="m-r-xs i-icon icon-shoucang"></span> 我的收藏</a></li>
+	    <li><a href="{:U('Login/outlogin')}"><span class="m-r-xs i-icon icon-dengchu"></span> 退出登录</a></li>
+	</ul>
+</if>

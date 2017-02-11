@@ -1,0 +1,22 @@
+		<volist name="UpList" id="vo">
+			<div class="col-sm-6 col-md-3 margin-bottom">
+				<div class="online-item">
+					<div class="online-item-img" style="background: url('{:C('__DATA__')}/news/{$vo.image}') no-repeat center center;background-size: cover;">
+						<div class="shade">
+							<div class="operate">
+								<a class="operate-item btn-default" href="{:U('News/view',array('id'=>$vo['id']))}" target="_blank">查看</a>
+								<a class="operate-item btn-info" href="{:U('News/change',array('id'=>$vo['id']))}" >修改</a>
+								<br>
+								<a class="operate-item btn-warning" href="{:U('News/pv',array('id'=>$vo['id']))}"  target="_blank">pv</a>
+								<a class="operate-item btn-danger" href="{:U('News/uplinetoggle',array('id'=>$vo['id']))}">消置顶</a>
+							</div>
+						</div>
+					</div>
+					<div class="online-item-content padding-5">
+						<a class="online-item-content-title">【{$vo.type}】{$vo.title}</a>
+						<a class="online-item-content-title">简介：{$vo.intro}
+						</a>
+					</div>
+				</div>
+			</div>
+		</volist>

@@ -1,0 +1,160 @@
+<script type="text/javascript">
+    var add_label_url = "{:U('Label/add')}";
+    var labelArray = [
+        <volist name="NewsLabelList" id="vo">
+            '{$vo.label_id}',
+        </volist>
+    ];
+    var AjaxAddSections_url = '{:U("Sections/AjaxAddSections")}';
+    var changeType_url = '{:U("Sections/AjaxChangeType")}';
+    $(function(){
+        for (var i = 0; i <labelArray.length; i++) {
+            $(".label_ku[data-label="+labelArray[i]+"]").hide();
+        };
+    })
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/admin/admin_type_sections.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/admin/admin.js"></script>
+<include file="Common:edhead" />
+
+
+
+<!-- add sections Modal -->
+<div class="modal fade" id="AddSections" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">添加二级分类</h4>
+      </div>
+      
+      <div class="modal-body">
+        <form class="form-horizontal"
+      <fieldset>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">分类名</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" name="sections" placeholder="输入二级分类名"  maxlength="4">
+          </div>
+        </div>
+      </fieldset>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" id="add_sections" class="btn btn-primary">提交</button>
+      </div>
+  
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">标签库</h4>
+      </div>
+     
+      <div class="modal-body flex-row">
+        <volist name="LabelList" id="vo">
+        <a class="la-info label_ku" data-label='{$vo.id}'>{$vo.label}</a>
+        </volist>
+        <span class="la-info label_ku_add"><a class="fa fa-plus"></a></span>
+        <input class="add-label" type="text" />
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+	<div class="row margin-bottom">
+		<div class="col-xs-12">
+	        <h3 class="page-header">发表新闻</h3>
+	    </div>
+
+
+	</div>
+	<!-- / .row -->
+
+	
+		<form class="form-horizontal" id='new-form' method="post" action="{:U('News/changeNews',array('id'=>$detail['id'],'p'=>$p))}" enctype="multipart/form-data">
+<div class="form-group">
+    <label class="col-sm-1 control-label">标题</label>
+    <div class="col-sm-11">
+        <input type="text" class="form-control" id="title" name="title" placeholder="输入标题" value="{$detail.title}" required />
+    </div>
+
+</div>
+
+<div class="form-group">
+    <label class="col-sm-1 control-label">简介</label>
+    <div class="col-sm-11">
+        <input type="text" class="form-control" id="intro" name="intro" placeholder="输入简介" value="{$detail.intro}" required/>
+    </div>
+
+</div>
+<div class="form-group">
+    <label class="col-sm-1 control-label">分类</label>
+    <div class="col-sm-5">
+        <select class="form-control" id="type" name="type">
+          <volist name="TypeList" id="vo">
+              <option value="{$vo.id}" <if condition="$vo['id'] eq $detail['type']"> selected</if>>{$vo.type}</option>
+          </volist>
+        </select>
+    </div>
+    <label class="col-sm-1 control-label">二级分类</label>
+    <div class="col-sm-5">
+        <select class="form-control" id="sections" name='sections'>
+          <volist name="SectionList" id="vo">
+              <option value="{$vo.id}" <if condition="$vo['id'] eq $detail['sections']"> selected</if>>{$vo.sections}</option>
+              
+          </volist>
+          <option value="add">添加+</option>
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-1 control-label">标签</label>
+    <div class="col-sm-11 label_container" style="padding-top:7px;">
+        <span id="label_span_container">
+            <volist name="NewsLabelList" id="vo">
+                <span class="la-info" data-label="{$vo.label_id}"> {$vo.label}<a class="fa fa-times"></a></span>
+            </volist>
+        </span>
+        <span class="la-info" data-toggle="modal" data-target="#myModal"><a class="fa fa-plus"></a></span>
+        <input type="hidden" id="input_label" name="label" required/>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-1 control-label">内容</label>
+    <div class="col-sm-11">
+        <textarea name="content" class="form-control">{$detail.content}</textarea>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-1 control-label">图片</label>
+    <div class="col-sm-11">
+        <img id="file-img" class="img-thumbnail" alt="" src="{:C('__DATA__')}/news/{$detail.image}" style="width: 200px; height: 150px;">
+        <input name="file" type="file" id="file" style="display:none" />
+        <button type="button" class="btn btn-default btn-sm btn-file">浏览</button>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-offset-1 col-sm-11">
+        <button type="submit" class="btn btn-success btn-sm">提交保存</button>
+    </div>
+</div>
+</form>
+

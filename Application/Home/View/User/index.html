@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <include file="Common/header" />
+    <meta name="KeyWord" content="topic，话题，Campus，Leader，campusleader，高校领袖，高校新闻，高校达人秀。为创业者提供一个展示舞台。">
+    <meta name="description" content="Campus Leader是最校园的发声体，带你了解最新鲜的校园资讯，走近不一样的高校领袖，发掘最有意义的大学生活，玩转高逼格广视野的校园生活！">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/u.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/u.icon.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/assets/lightbox.css">
+    <if condition="(CONTROLLER_NAME eq 'User') and (ACTION_NAME eq 'topic')">
+      <link rel="stylesheet" href="__PUBLIC__/css/home/topic.css">
+    </if>
+
+    <if condition="(CONTROLLER_NAME eq 'User') and (ACTION_NAME eq 'picture')">
+      <link rel="stylesheet" href="__PUBLIC__/css/home/topic-pic.css">
+      <link rel="stylesheet" href="__PUBLIC__/css/assets/viewer.min.css">
+    </if>
+
+
+
+    <if condition="(CONTROLLER_NAME eq 'User') and (ACTION_NAME eq 'collection_news')">
+      <link rel="stylesheet" href="__PUBLIC__/css/home/List.css">
+
+    </if>
+    
+
+    <if condition="(CONTROLLER_NAME eq 'User') and (ACTION_NAME eq 'collection_topic')">
+      <link rel="stylesheet" href="__PUBLIC__/css/home/topic.css">
+    </if>
+
+  <php>
+    if(session('login') == $user_id)//判断是自己还是他人
+      $self = '我';
+    else
+      $self = 'TA';
+  </php>
+
+
+  <title>{$userinfo.nickname}-CampusLeader</title>
+</head>
+
+<body>
+
+    <include file="Common/navbar" />
+  
+    <div class="container m-t-sm m-b-sm">
+      
+      <div class="uu-row">
+        <div class="bg-white p-sm over-h border-b5">
+          <div class="col-sm-2">
+            <a href="{:C('__DATA__')}/login_thumb/{$userinfo.icon|default="default.jpg"}" data-lightbox="image">
+              <img class="user_icon" src="{:C('__DATA__')}/login_thumb/{$userinfo.icon|default="default.jpg"}">
+            </a>
+          </div>
+          <div class="col-sm-8 p-t-sm">
+            <h3 class="u-nickname">{$userinfo.nickname}</h3>
+            <div class="autograph">
+              {$userinfo.userinfo.shelfintroduction|default="主人很懒，什么都没有写。。。。"}
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="f-mt">
+                {:W('Follow/follow',array('follow_id'=>$user_id,'UserView'=>true))}
+            </div>
+            <div class="row m-t-md">
+              <div class="col-xs-4 col-sm-6">
+                <a href="{:U('User/fans',array('id'=>$user_id))}">
+                  <span class="i_h3">{$fans_count}</span>
+                  <span class="i_text">粉丝</span>
+                </a>
+              </div>
+              <div class="col-xs-4 col-sm-6">
+                <a href="{:U('User/follow',array('id'=>$user_id))}">
+                  <span class="i_h3">{$follow_count}</span>
+                  <span class="i_text">关注</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="u-row">
+          <div class="col-sm-2">
+            <include file="UserContent/sidemenu" />
+            
+          </div>
+        </div>
+        
+        <div class="col-sm-10">
+          <include file="$UserContent" />
+        </div>
+       
+      </div>
+
+
+  
+    </div>
+    
+    <include file="Common/footer" />
+</body>
+
+<script type="text/javascript">
+  var DATAPATH = "{:C('__DATA__')}";
+  var login_state = <if condition="session('?login')">true<else/>false</if>;
+  var PUBLIC = "__PUBLIC__";
+  var this_url = window.location.href;
+  var zan_url = '{:U("TopicZan/AjaxZan",'',false,false)}';
+  var login_url = "{:U('Login/index')}";
+  var options = {
+
+    title:false,
+    maxZoomRatio:1,
+    url: 'data-original',
+  };
+</script>
+
+<script type="text/javascript" src="__PUBLIC__/js/assets/jquery.toaster.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/assets/jquery.scrollLoading.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/assets/lightbox.min.js"></script>
+<script type="text/javascript">
+    var follow_url = '{:U("Follow/AjaxFollow",'',false,false)}';
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/home/u.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/home/follow.js"></script>
+
+<if condition="(CONTROLLER_NAME eq 'User') and (ACTION_NAME eq 'picture')">
+  <script type="text/javascript" src="__PUBLIC__/js/assets/viewer.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+          
+  $('.images').viewer(options);
+  $('.pic_thumb').scrollLoading();
+    })
+  </script>
+</if>
+
+
+
+<script type="text/javascript">
+  $(function(){
+    <if condition="session('?message')">
+      <if condition='session("message") eq "200"'>
+      $.toaster({ priority : 'success', title : '<span class="glyphicon glyphicon-ok"> </span>', message : '发表成功'});
+      <else />
+      $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-remove"> </span>', message : '<php>echo session('message')</php>'});
+      </if>
+    <php>session('message',null);</php>
+    </if>
+
+    <if condition="session('?Message')">
+        $.toaster({ priority : 'success', title : '<span class="glyphicon glyphicon-ok"> </span>', message : '<php>echo session('Message')</php>'});
+    </if>
+    <if condition="session('?ErrorMessage')">
+      $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-remove"> </span>', message : '<php>echo session('ErrorMessage')</php>'});
+    </if>
+    <php>session('Message',null);session('ErrorMessage',null);</php>
+
+  })
+
+
+
+
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1" charset="utf-8"></script>
+</html>
