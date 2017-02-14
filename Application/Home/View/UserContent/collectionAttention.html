@@ -1,11 +1,4 @@
 
-<div class="m-b-md">
-    <ul class="c-sections over-h">
-        <li <if condition="ACTION_NAME eq 'collection_news'">class="active"</if>><a href="{:U('User/collection_news')}">资讯</a></li>
-        <li <if condition="ACTION_NAME eq 'collection_topic'">class="active"</if>><a href="{:U('User/collection_topic')}">话题</a></li>
-    </ul>
-</div>
-
 <if condition="count($List) eq 0">
     <div class="text-center bg-white" style="height:300px;line-height:300px">亲，您还没有资讯收藏哦~</div>
     <else/>
@@ -40,4 +33,3 @@
 </ul>
 
 </if>
-

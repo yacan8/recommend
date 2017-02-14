@@ -7,14 +7,6 @@
     <link rel="stylesheet" href="__PUBLIC__/css/home/u.css">
     <link rel="stylesheet" href="__PUBLIC__/css/home/u.icon.css">
     <link rel="stylesheet" href="__PUBLIC__/css/assets/lightbox.css">
-    <if condition="(CONTROLLER_NAME eq 'User') and (ACTION_NAME eq 'topic')">
-      <link rel="stylesheet" href="__PUBLIC__/css/home/topic.css">
-    </if>
-
-    <if condition="(CONTROLLER_NAME eq 'User') and (ACTION_NAME eq 'picture')">
-      <link rel="stylesheet" href="__PUBLIC__/css/home/topic-pic.css">
-      <link rel="stylesheet" href="__PUBLIC__/css/assets/viewer.min.css">
-    </if>
 
 
 
@@ -22,11 +14,7 @@
       <link rel="stylesheet" href="__PUBLIC__/css/home/List.css">
 
     </if>
-    
 
-    <if condition="(CONTROLLER_NAME eq 'User') and (ACTION_NAME eq 'collection_topic')">
-      <link rel="stylesheet" href="__PUBLIC__/css/home/topic.css">
-    </if>
 
   <php>
     if(session('login') == $user_id)//判断是自己还是他人
@@ -42,9 +30,9 @@
 <body>
 
     <include file="Common/navbar" />
-  
+
     <div class="container m-t-sm m-b-sm">
-      
+
       <div class="uu-row">
         <div class="bg-white p-sm over-h border-b5">
           <div class="col-sm-2">
@@ -78,25 +66,25 @@
             </div>
           </div>
         </div>
-        
+
 
         <div class="u-row">
           <div class="col-sm-2">
             <include file="UserContent/sidemenu" />
-            
+
           </div>
         </div>
-        
+
         <div class="col-sm-10">
           <include file="$UserContent" />
         </div>
-       
+
       </div>
 
 
-  
+
     </div>
-    
+
     <include file="Common/footer" />
 </body>
 
@@ -105,10 +93,8 @@
   var login_state = <if condition="session('?login')">true<else/>false</if>;
   var PUBLIC = "__PUBLIC__";
   var this_url = window.location.href;
-  var zan_url = '{:U("TopicZan/AjaxZan",'',false,false)}';
   var login_url = "{:U('Login/index')}";
   var options = {
-
     title:false,
     maxZoomRatio:1,
     url: 'data-original',
@@ -128,7 +114,7 @@
   <script type="text/javascript" src="__PUBLIC__/js/assets/viewer.min.js"></script>
   <script type="text/javascript">
     $(function(){
-          
+
   $('.images').viewer(options);
   $('.pic_thumb').scrollLoading();
     })

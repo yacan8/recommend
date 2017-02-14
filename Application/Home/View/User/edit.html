@@ -15,7 +15,7 @@
         $('button[type="submit"]').click(function(){
           $(this).button('loading');
         })
-      })      
+      })
     </script>
 
     <script type="text/javascript" src="__PUBLIC__/js/home/wait.js"></script>
@@ -28,12 +28,12 @@
 <body>
 
     <include file="Common/navbar" />
-  
+
     <div class="container" style="min-height:500px;">
       <div class="row">
 
         <div class="col-sm-12 col-md-2 m-t-sm">
-          <include file="AccountContent/menu" /> 
+          <include file="AccountContent/menu" />
         </div>
 
 
@@ -43,16 +43,16 @@
           <else/>
             <include file ="UserContent/safe" />
           </if>
-          
+
         </div>
       </div>
     </div>
 
-      
 
-  
-   
-    
+
+
+
+
     <include file="Common/footer" />
 </body>
 
@@ -61,7 +61,6 @@
   var login_state = <if condition="session('?login')">true<else/>false</if>;
   var PUBLIC = "__PUBLIC__";
   var this_url = window.location.href;
-  var zan_url = '{:U("TopicZan/AjaxZan",'',false,false)}';
   var login_url = "{:U('Login/index')}";
   var options = {
 

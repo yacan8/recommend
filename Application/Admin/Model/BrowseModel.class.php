@@ -18,7 +18,7 @@ class BrowseModel extends Model{
 		$DB_PREFIX = C('DB_PREFIX');//获取表前缀
 		$Model = M('');
 		if($id==0){
-			$field = "DATE_FORMAT(b.time,'%Y-%m-%d') 日期,count(*) 浏览数,(select count(*) from cl_visitor v where v.date = DATE_FORMAT(b.time,'%Y-%m-%d')) 访客";
+			$field = "DATE_FORMAT(b.time,'%Y-%m-%d') 日期,count(*) 浏览数,(select count(*) from re_visitor v where v.date = DATE_FORMAT(b.time,'%Y-%m-%d')) 访客";
 			$condition['news_id'] = array('neq','');
 		}else{
 			$condition['news_id'] = array('eq',$id);
@@ -32,7 +32,7 @@ class BrowseModel extends Model{
 					->group("DATE_FORMAT(time,'%Y-%m-%d')")
 					->order("DATE_FORMAT(time,'%Y-%m-%d')")
 					->select();
-					
+
 		if($id==0){
 			$condition['date']   = array('between',array($start,$end));
 			$Visitor = M('Visitor')
@@ -49,10 +49,10 @@ class BrowseModel extends Model{
 							->group('date')
 							->where($condition)
 							->select();
-							
+
 		}
 
-		for ($i=0; $i < count($browseList); $i++) { 
+		for ($i=0; $i < count($browseList); $i++) {
 			for ($j=0; $j < count($Visitor); $j++) {
 				if($browseList[$i]['日期'] == $Visitor[$j]['日期']){
 					$browseList[$i]['访客'] = $Visitor[$j]['访客'];
@@ -71,11 +71,11 @@ class BrowseModel extends Model{
 	public function area_browse($start,$end,$id=0){
 		if($id!=0)
 			$condition['news_id'] = array('eq',$id);
-		
+
 		$condition['time'] = array('between',array($start,$end));
 		$condition['_logic'] = 'AND';
 		$browseList = $this->field("area label, count(*) data")->where($condition)->group("area")->select();
-		
+
 		return $browseList;
 	}
 	/**
@@ -119,7 +119,7 @@ class BrowseModel extends Model{
 				->select();
 		return $List;
 	}
-	
+
 	/**
 	 * [average_pv_uv 根据时间间隔interval获取该时间间隔的pv和uv列表列表，interval为day、week、month]
 	 * @param  [string] $interval [时间间隔]
@@ -134,7 +134,7 @@ class BrowseModel extends Model{
         //计算sql语句的开始时间和结束时间
         if($interval == 'day' || $interval == 'week'){
             $t =($interval=='day')?-1:-8;
-            for ($i=1; $i <=30; $i++) { 
+            for ($i=1; $i <=30; $i++) {
                 // $data[] = date("Y-m-d",strtotime($begin." day"));
                 $date[$i-1]['end'] = date("Y-m-d H:i:s",mktime(23,59,59,$mouth,$day+$begin,$year));
                 $begin = $begin+$t;
@@ -154,16 +154,16 @@ class BrowseModel extends Model{
 		$result = array();
 		$model = M('');
 		$length = count($date);
-		for ($i=0; $i < $length; $i++) { 
+		for ($i=0; $i < $length; $i++) {
 			$begin = $date[$i]['begin'];
 			$end = $date[$i]['end'];
 			$beginArray = explode(' ',$begin);
 			$endArray = explode(' ',$end);
 			$timeBegin = $beginArray[0];
 			$timeEnd = $endArray[0];
-			$l = $model->query("select count(*) uv,(select count(*) from cl_browse where news_id in (select id from cl_news where publish_time between '$begin' and '$end')) pv,
-				(select count(*) from cl_news where publish_time between '$begin' and '$end') count
-from cl_visitor_news where news_id in (select id from cl_news where publish_time between '$begin' and '$end')");
+			$l = $model->query("select count(*) uv,(select count(*) from re_browse where news_id in (select id from re_news where publish_time between '$begin' and '$end')) pv,
+				(select count(*) from re_news where publish_time between '$begin' and '$end') count
+from re_visitor_news where news_id in (select id from re_news where publish_time between '$begin' and '$end')");
 			if($interval != 'day')
 				$result[$i]['时间'] = $timeBegin."~".$timeEnd;
 			else
@@ -175,11 +175,11 @@ from cl_visitor_news where news_id in (select id from cl_news where publish_time
 				$result[$i]['pv'] = 0;
 				$result[$i]['uv'] = 0;
 			}
-				
+
 		}
 		$f_result = array();
 		$resultlength= count($result);
-		for ($i=0; $i < $resultlength; $i++) { 
+		for ($i=0; $i < $resultlength; $i++) {
 			$f_result[] = $result[$resultlength-$i-1];
 		}
 		return $f_result;

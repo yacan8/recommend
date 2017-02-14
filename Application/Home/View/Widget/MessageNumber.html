@@ -1,8 +1,0 @@
-<if condition = 'session("?login")'>
-	<a href="{:U('User/message')}" type="button" class="navbar-toggle collapsed m-message-icon">
-	  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-	  <if condition="$count neq '0'">
-		  <span class="badge icon-message-count m-message">{$count}</span>
-	  </if>
-	</a>
-</if>

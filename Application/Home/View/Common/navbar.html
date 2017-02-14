@@ -3,7 +3,7 @@
   <!-- .navbar -->
   <nav class="navbar navbar-white">
     <div class="container transition-all-03" id="search-margin-top">
-      
+
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
           <span class="icon-bar"></span>
@@ -13,7 +13,6 @@
         <button type="button" class="navbar-toggle collapsed" id="search-toggle">
           <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
         </button>
-        {:W('MessageNumber/MessageNumber')}
         <a class="navbar-brand" href="{:U('Index/index')}">
             <img src="__PUBLIC__/img/logo.jpeg"><span class="logo-text">CampusLeader</span>
         </a>
@@ -42,7 +41,6 @@
             </a>
           </li>
           <li <if condition="CONTROLLER_NAME eq 'Index'">class="active"</if>><a href="{:U('Index/index')}">首页</a></li>
-          <li><a href="{:U('Topic/index')}">话题</a></li>
           <li class='dropdown'>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">app下载 <!-- <span class="caret"></span> --></a>
             <ul class="dropdown-menu crawler">
@@ -50,18 +48,12 @@
               <!-- <li><img src="/cl/index.php/Index/QRcode.html" style="width:100px;"></li> -->
             </ul>
           </li>
-          
+
 
 
 
           {:W('User/user')}
 
-  <!--         <li>
-            <a class="m_tg" href="#">
-              投稿
-            </a>
-
-          </li> -->
         </ul>
 
       </div><!-- /.navbar-collapse -->

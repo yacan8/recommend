@@ -11,9 +11,9 @@ class IndexController extends Controller {
         $List = $Model -> getTop10();
         $this->assign('TypeList',$TypeList);
         $this->assign('HeadLines',$HeadLines);
-        
+
         $this->assign('List',$List);
-    	$this->assign('title',"campusleader_´òÔì×îÇ¿¸ßĞ£ÁìĞä");
+    	$this->assign('title',"campusleader_æ‰“é€ æœ€å¼ºé«˜æ ¡é¢†è¢–");
         $this->display();
     }
     Public function verify(){
@@ -30,13 +30,13 @@ class IndexController extends Controller {
     public function QRcode(){
         $data = "http://".$_SERVER['HTTP_HOST'].U('Index/download','',false,false);
         vendor("phpqrcode.phpqrcode");
-        // ¾À´í¼¶±ğ£ºL¡¢M¡¢Q¡¢H
+        // çº é”™çº§åˆ«ï¼šLã€Mã€Qã€H
         $level = 'H';
-        // µãµÄ´óĞ¡£º1µ½10,ÓÃÓÚÊÖ»ú¶Ë4¾Í¿ÉÒÔÁË
+        // ç‚¹çš„å¤§å°ï¼š1åˆ°10,ç”¨äºæ‰‹æœºç«¯4å°±å¯ä»¥äº†
         $size = 10;
-        // ÏÂÃæ×¢ÊÍÁË°Ñ¶şÎ¬ÂëÍ¼Æ¬±£´æµ½±¾µØµÄ´úÂë,Èç¹ûÒª±£´æÍ¼Æ¬,ÓÃ$fileNameÌæ»»µÚ¶ş¸ö²ÎÊıfalse
+        // ä¸‹é¢æ³¨é‡Šäº†æŠŠäºŒç»´ç å›¾ç‰‡ä¿å­˜åˆ°æœ¬åœ°çš„ä»£ç ,å¦‚æœè¦ä¿å­˜å›¾ç‰‡,ç”¨$fileNameæ›¿æ¢ç¬¬äºŒä¸ªå‚æ•°false
         //$path = "images/";
-        // Éú³ÉµÄÎÄ¼şÃû
+        // ç”Ÿæˆçš„æ–‡ä»¶å
         //$fileName = $path.$size.'.png';
         $QRcode = new \QRcode();
         $QRcode->png($data, false, $level, $size);
@@ -44,15 +44,15 @@ class IndexController extends Controller {
     }
 
     public function download(){
-        
+
         $Agent = $_SERVER['HTTP_USER_AGENT'];
         preg_match('/android|iphone/i',$Agent,$matches);
         if(strtolower($matches[0])=='android'){
             if(!is_weixin())
                 header("Location: "."http://".$_SERVER['HTTP_HOST']."/Data/tuanzi.apk");
             else{
-                
-                echo '<h1>Î¢ĞÅÉ¨Ò»É¨Ôİ²»Ö§³ÖÏÂÔØ£¬ÇëÊ¹QQÉ¨Ò»É¨»òÕßÆäËû¶şÎ¬ÂëÉ¨Ãè¡£</h1>';
+
+                echo '<h1>å¾®ä¿¡æ‰«ä¸€æ‰«æš‚ä¸æ”¯æŒä¸‹è½½ï¼Œè¯·ä½¿QQæ‰«ä¸€æ‰«æˆ–è€…å…¶ä»–äºŒç»´ç æ‰«æã€‚</h1>';
             }
         }
         else if(strtolower($matches[0])=='iphone'){
@@ -62,8 +62,8 @@ class IndexController extends Controller {
                 echo "<img src ='http://".$_SERVER['HTTP_HOST']."/Public/img/weixindown1.jpg' style='width:100%'><img src ='http://".$_SERVER['HTTP_HOST']."/Public/img/weixindown2.jpg' style='width:100%'>";
             }
         }else{
-            header("Content-type: text/html; charset=utf-8"); 
-            echo '<h1>ÎŞ·¨Ê¶±ğÊÖ»ú²Ù×÷ÏµÍ³£¬ÇëÊ¹ÓÃqqÉ¨Ò»É¨»ñÈ¡ÆäËû¶şÎ¬ÂëÉ¨ÃèÆ÷¡£</h1>';
+            header("Content-type: text/html; charset=utf-8");
+            echo '<h1>æ— æ³•è¯†åˆ«æ‰‹æœºæ“ä½œç³»ç»Ÿï¼Œè¯·ä½¿ç”¨qqæ‰«ä¸€æ‰«è·å–å…¶ä»–äºŒç»´ç æ‰«æå™¨ã€‚</h1>';
         }
     }
 }

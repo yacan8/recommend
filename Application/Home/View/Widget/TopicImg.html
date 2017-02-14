@@ -1,7 +1,0 @@
-<if condition =" count($List) neq 0">
-<ul class="images media-picture m-t-sm over-h">
-	<volist name="List" id="vo">
-    <li><img class="pic_thumb" src="__PUBLIC__/img/tloading.jpg" data-url="{:U('Image/Timg',array('image'=>$vo['image_loading'].'!feature'),false,false)}" data-original="{:C('__DATA__')}/{$vo.image}" alt="Picture"></li>
-	</volist>
-</ul>
-</if>

@@ -5,7 +5,7 @@ use Think\Controller;
 class UserController extends Controller{
 	//构造函数
 	public function _initialize(){
-		$allowArray = array('collection_news','collection_topic','message','edit','ChangeUserinfo','safe','ChangePassword');//允许不输入Id的action
+		$allowArray = array('collection_news','message','edit','ChangeUserinfo','safe','ChangePassword');//允许不输入Id的action
 		if( in_array (ACTION_NAME,$allowArray))
 			$id = session('login');
 		else
@@ -14,14 +14,10 @@ class UserController extends Controller{
         $FollowModel =  M('Follow');
         $fans_count = $FollowModel->where(array('follow_id'=>$id,'delete_tag'=>(bool)0))->count();//粉丝数
         $follow_count = $FollowModel->where(array('user_id'=>$id,'delete_tag'=>(bool)0))->count();//关注数
-        $message_count = M('MessageManager')->where(array('user_id'=>$id,'read_tag'=>(bool)0,'delete_tag'=>(bool)0))->count();
-        $pic_count = D('TopicPicture')->getPicCount($id);
-        $this->assign('message_count',$message_count);
         $this->assign('fans_count',$fans_count);
         $this->assign('follow_count',$follow_count);
-        $this->assign('pic_count',$pic_count);
     }
-    
+
     // 公共函数 获取个人信息
 	public function userinfo($id){
 		if($id!=""){
@@ -31,11 +27,11 @@ class UserController extends Controller{
 				$this->assign('userinfo',$userinfo);
 				$this->assign('user_id',$id);
 			}else{
-				header("Content-type: text/html; charset=utf-8"); 
+				header("Content-type: text/html; charset=utf-8");
 				exit('参数错误');
 			}
 		}else{
-			header("Content-type: text/html; charset=utf-8"); 
+			header("Content-type: text/html; charset=utf-8");
 			exit('参数错误');
 		}
 	}
@@ -47,98 +43,17 @@ class UserController extends Controller{
 			$this->assign('UserContent','UserContent/userinfo');
 			$this->display();
 		}else{
-			header("Content-type: text/html; charset=utf-8"); 
+			header("Content-type: text/html; charset=utf-8");
 			exit('参数错误');
 		}
-			
-		
-	}
-
-	//话题view
-	public function topic(){
-		$id = I('get.id');
-		$p = I('get.p',1);
-		if($id!=""){
-			$showCount = 10;//每页显示个数
-			$TopicModel = D('Topic');
-			$count = $TopicModel->getAllCount(0,$id);
-			if($count%$showCount==0)
-				$TotalPage = intval($count/$showCount);
-			else
-				$TotalPage = intval($count/$showCount)+1;
-			$List = $TopicModel ->getList(0,$p,$showCount,$id);
 
 
-			$this->assign('p',$p);//分页
-			$this->assign('TotalPage',$TotalPage);//总页数
-			$this->assign('count',$count);//总数
-			$this->assign('user_id',$id);
-			$this->assign('List',$List);
-			$this->assign('UserContent','UserContent/topic');
-			$this->display('index');
-		}else{
-			header("Content-type: text/html; charset=utf-8"); 
-			exit('参数错误');
-		}
-		
 	}
 
 
-	//话题评论view
-	public function comment(){
-		$id = I('get.id');
-		$p = I('get.p',1);
-		if($id!=""){
-			$showCount = 10;//每页显示个数
-			$TopicCommentModel = D('TopicComment');
-			$count = $TopicCommentModel->where(array('sender'=>$id))->count();
-			if($count%$showCount==0)
-				$TotalPage = intval($count/$showCount);
-			else
-				$TotalPage = intval($count/$showCount)+1;
-			
-			$List = $TopicCommentModel->getCommentByUserId($id,$p,$showCount);
-			$this->assign('p',$p);//分页
-			$this->assign('TotalPage',$TotalPage);//总页数
-			$this->assign('count',$count);//总数
-			$this->assign('user_id',$id);
-			$this->assign('List',$List);
-			$this->assign('UserContent','UserContent/topicComment');
-			$this->display('index');
-		}else{
-			header("Content-type: text/html; charset=utf-8"); 
-			exit('参数错误');
-		}
-	}
 
 
-	//图片 view
-	public function picture(){
-		$id = I('get.id');
-		$p = I('get.p',1);
-		if($id!=""){
-			$showCount = 10;//每页显示个数
-			$TopicPictureModel = D('TopicPicture');
-			$count = $TopicPictureModel->getCount($id);
-			if($count%$showCount==0)
-				$TotalPage = intval($count/$showCount);
-			else
-				$TotalPage = intval($count/$showCount)+1;
-			
 
-			$List = $TopicPictureModel->getPicByUserId($id,$p,$showCount);
-			$this->assign('p',$p);//分页
-			$this->assign('TotalPage',$TotalPage);//总页数
-			$this->assign('List',$List);
-			$this->assign('user_id',$id);
-			$this->assign('UserContent','UserContent/topicPicture');
-			$this->display('index');
-		}else{
-			header("Content-type: text/html; charset=utf-8"); 
-			exit('参数错误');
-		}
-		
-	}
 
 
 	//编辑..完善资料view
@@ -161,9 +76,9 @@ class UserController extends Controller{
 				$schools = $SchoolModel->where(array('sh_city'=>$schoolCityId))->select();
 				$CityInfoModel = M('CityInfo');
 				$schoolCity = $CityInfoModel->where(array('ci_id'=>$schoolCityId))->find();
-				
-				
-				for ($i=0; $i < count($schoolProvinces) ; $i++) { 
+
+
+				for ($i=0; $i < count($schoolProvinces) ; $i++) {
 					if( $schoolProvinces[$i]['pr_id'] == $schoolCity['ci_province']){
 						$schoolProvince = $schoolProvinces[$i]['pr_province'];
 						$schoolProvinceId = $schoolProvinces[$i]['pr_id'];
@@ -171,12 +86,12 @@ class UserController extends Controller{
 				}
 				$schoolCitys = $CityInfoModel->where(array('ci_province='=>$schoolProvinceId))->select();
 			}
-			
+
 
 			$this->assign('schoolProvince',$schoolProvince);
 			$this->assign('schoolCity',$schoolCity['ci_city']);
 			$this->assign('school',$school);
-			
+
 			$this->assign('schoolCitys',$schoolCitys);
 			$this->assign('schools',$schools);
 		}
@@ -199,14 +114,14 @@ class UserController extends Controller{
 			$CitiesModel = M('AddressCities');
 
 
-			for ($i=0; $i < count($provinces); $i++) { 
+			for ($i=0; $i < count($provinces); $i++) {
 				if($provinces[$i]['province'] == $province)
 					$provinceId = $provinces[$i]['provinceid'];
 
 			}
 			//获取城市
 			$cities = $CitiesModel ->where(array('provinceid'=>$provinceId))->select();
-			for ($i=0; $i < count($cities); $i++) { 
+			for ($i=0; $i < count($cities); $i++) {
 				if($cities[$i]['city'] == $city)
 					$cityId = $cities[$i]['cityid'];
 			}
@@ -222,13 +137,13 @@ class UserController extends Controller{
 				$month = 0;
 				$day = 0;
 			}
-				
+
 
 
 			$this->assign('year',$year);
 			$this->assign('month',$month);
 			$this->assign('day',$day);
-			
+
 			$this->assign('cities',$cities);
 			$this->assign('areas',$areas);
 		}
@@ -268,7 +183,7 @@ class UserController extends Controller{
 			$data['area'] = trim(I('post.areas'));
 		}
 		$UserModel = M('User');
-		// code 个人简介字符长度大小判断 
+		// code 个人简介字符长度大小判断
 		$data['shelfIntroduction'] = trim(I('post.shelfIntroduction'));
 		if(is_numeric(trim(I('post.qq'))))
 			$data['qq'] = trim(I('post.qq'));
@@ -289,7 +204,7 @@ class UserController extends Controller{
 			$model->rollback();
 
 		}else{
-			
+
 
 			if(I('post.email')!=''){
 				$validate = array(
@@ -307,7 +222,7 @@ class UserController extends Controller{
 				$message = $LoginModel->getError();
 				$model->rollback();
 				session('ErrorMessage',$message);
-				
+
 			}else{
 				if($user_id == 0 || $user_id == ''){
 					$LoginModel->userId = $UserModel->getLastInsID();
@@ -381,10 +296,10 @@ class UserController extends Controller{
 			$this->assign('UserContent','UserContent/fans');
 			$this->display('index');
 		}else{
-			header("Content-type: text/html; charset=utf-8"); 
+			header("Content-type: text/html; charset=utf-8");
 			exit('参数错误');
 		}
-		
+
 	}
 
 	//关注view
@@ -408,7 +323,7 @@ class UserController extends Controller{
 			$this->assign('UserContent','UserContent/follow');
 			$this->display('index');
 		}else{
-			header("Content-type: text/html; charset=utf-8"); 
+			header("Content-type: text/html; charset=utf-8");
 			exit('参数错误');
 		}
 	}
@@ -444,64 +359,4 @@ class UserController extends Controller{
 		$this->assign('page',$show);
 		$this->display('index');
 	}
-
-
-	public function collection_topic(){
-		$this->login_check();
-		$id = session('login');
-		$DB_PREFIX = C('DB_PREFIX');
-		$p = I('get.p',1);
-		$ShowCount = 10;
-		$firstrow = ($p-1)*$ShowCount;
-		$Model = M('');
-		$CollectionModel = M('Collection');
-		$TopicModel = D('Topic');
-		$CollectionNewIdList = $Model->table($DB_PREFIX.'collection co') ->join($DB_PREFIX.'topic t on co.collected = t.id')->where(array('co.collecting'=>$id,'co.type'=>2,'co.delete_tag'=>(bool)0,'t.delete_tag'=>(bool)0))->field('collected')->limit("$firstrow,$ShowCount")->order('co.id desc')->select();
-		for ($i=0; $i < count($CollectionNewIdList); $i++) {
-			$List[$i] =  $TopicModel->getInfoById($CollectionNewIdList[$i]['collected']);
-		}
-
-		$count      = $CollectionModel->where(array('collecting'=>$id,'type'=>2,'delete_tag'=>(bool)0))->count();// 查询满足要求的总记录数
-		$Page       = new  \Think\Page($count,$ShowCount);// 实例化分页类 传入总记录数和每页显示的记录数
-		$show       = $Page->show();// 分页显示输出
-
-		$this->assign('user_id',$id);
-		$this->assign('UserContent','UserContent/collectionTopic');
-		$this->assign('List',$List);
-		$this->assign('page',$show);
-		$this->display('index');
-	}
-
-
-
-
-
-	public function message(){
-		$read = I('get.read','false');
-		if($read == 'false')
-			$read_tag = (bool)0;
-		else
-			$read_tag = (bool)1;
-		$p = I('get.p',1);//页数
-		$ShowCount = 10;//每页显示个数
-		$user_id = session('login');
-		$MessageManagerModel = D('MessageManager');
-		$List = $MessageManagerModel->getMessageByUserId($user_id,$p,$ShowCount,$read_tag);
-
-
-		$count      = $MessageManagerModel->where(array('user_id'=>$user_id,'read_tag'=>$read_tag,'delete_tag'=>(bool)0))->count();// 查询满足要求的总记录数
-		$Page       = new  \Think\Page($count,$ShowCount);// 实例化分页类 传入总记录数和每页显示的记录数
-		$show       = $Page->show();// 分页显示输出
-
-
-		
-
-		$this->assign('UserContent','UserContent/message');
-		$this->assign('List',$List);
-		$this->assign('read',$read);
-		$this->assign('page',$show);
-		$this->display('index');
-	}
-
-
 }

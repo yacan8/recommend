@@ -19,15 +19,12 @@ class FollowController extends Controller{
 					$data['delete_tag'] = (bool)0;
 					$result = $FollowModel->add($data);
 					$content_id = $FollowModel->getLastInsID();
-
-					
 					$mesData['type'] = 5;
 					$mesData['user_id'] = $follow_id;
 					$mesData['content_id'] = $content_id;
 					$mesData['time'] = date('Y-m-d H:i:s',time());
 					$mesData['read_tag'] = (bool)0;
-					$MessageManagerModel = M('MessageManager');
-					$messageResult = $MessageManagerModel->add($mesData);
+
 
 				}else{//曾经点收藏
 					if($list[0]['delete_tag'] == '1')
@@ -35,20 +32,11 @@ class FollowController extends Controller{
 					else if($list[0]['delete_tag'] == '0')
 						$data['delete_tag'] = (bool)1;
 					$result = $FollowModel->where("id=".$list[0]['id'])->save($data);
-					$messageResult = 1;//假装有消息添加成功
 				}
 				if($result!=0){
 					if(count($list)==0||$list[0]['delete_tag'] == '1'){
-						if($messageResult!=0){
-							$json['Code'] = '200';
-							$json['Message'] = '关注成功';
-							$model->commit();
-						}else{
-							$json['Code'] = '202';
-							$json['Message'] = '操作失败';
-							$model->rollback();
-						}
-
+						$json['Code'] = '200';
+						$json['Message'] = '关注成功';
 					}else{
 						$json['Code'] = '201';
 						$json['Message'] = '取消关注成功';

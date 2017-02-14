@@ -8,8 +8,6 @@
     </a>
     <ul class="dropdown-menu user">
       <li><a href="{:U('/u/'.session('login'),'',false,false)}">我的资料</a></li>
-      <li><a href="{:U('User/topic',array('id'=>session('login')))}">我的话题</a></li>
-      <li><a href="{:U('User/comment',array('id'=>session('login')))}">我的评论</a></li>
       <li><a href="{:U('User/fans',array('id'=>session('login')))}">我的粉丝</a></li>
       <li><a href="{:U('Login/outlogin')}">退出登录</a></li>
     </ul>

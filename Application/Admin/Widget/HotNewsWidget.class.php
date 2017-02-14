@@ -8,7 +8,7 @@ class HotNewsWidget extends Controller{
     	$date = date("Y-m-d",strtotime("-1 day"));
         $M = M('');
         $List = $M -> query("select b.news_id id,n.title,t.type,count(*) pv
- from cl_browse b, cl_news n , cl_type t
+ from re_browse b, re_news n , re_type t
  where time >= '$time' and n.id = b.news_id and n.type = t.id group by news_id order by pv desc limit 0,5");
         $this->assign('List',$List);
         $this->display('Widget:HotNews');
