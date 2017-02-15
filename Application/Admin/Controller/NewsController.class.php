@@ -37,13 +37,10 @@ class NewsController extends Controller{
 	}
 	//添加新闻view
 	public function add(){
-		$LabelModel = D('Label');
-		$List = $LabelModel->getAll();
 		$TypeList = D('Type')->getType();
 		$SectionsModel = M('Sections');
 		$SectionList = $SectionsModel->select();
 		$this->assign('title','添加新闻');
-		$this->assign('List',$List);
 		$this->assign('TypeList',$TypeList);
 		$this->display();
 	}
@@ -54,16 +51,11 @@ class NewsController extends Controller{
 		$NewsModel = M('News');
 		$p = I('get.p',1);
 		$SectionsModel = M('Sections');
-		$NewsLabelModel = D('NewsLabel');
 		$TypeList = D('Type')->getType();
-		$LabelList =D('Label')->getAll();
 		$detail = $NewsModel->where("id=$id")->find();
-		$NewsLabelList = $NewsLabelModel->getLabelByNewsId($id);
 		$SectionList = $SectionsModel->where("type_id =".$detail['type'])->select();
 		$this->assign('SectionList',$SectionList);
 		$this->assign('TypeList',$TypeList);
-		$this->assign('NewsLabelList',$NewsLabelList);
-		$this->assign('LabelList',$LabelList);
 		$this->assign('p',$p);
 		$this->assign('detail',$detail);
 		$this->display();
@@ -75,9 +67,8 @@ class NewsController extends Controller{
 		$p = I('get.p',1);
 		$NewsModel = D('News');
 		$List = $NewsModel->search($key,$p,$count);
-		for ($i=0; $i < count($List); $i++) { 
+		for ($i=0; $i < count($List); $i++) {
 			$List[$i]['title'] = str_replace($key, "<font color='red'>".$key."</font>", $List[$i]['title'] );
-			$List[$i]['intro'] = str_replace($key, "<font color='red'>".$key."</font>", $List[$i]['intro'] );
 		}
 		$Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数
 		$show       = $Page->show();// 分页显示输出
@@ -85,7 +76,8 @@ class NewsController extends Controller{
 		$this->assign('List',$List);
 		$this->assign('key',$key);
 		$this->display();
-	}	
+
+	}
 
 	//上下线切换
 	public function uplinetoggle(){
@@ -126,34 +118,65 @@ class NewsController extends Controller{
 	//添加新闻
 	public function addNews(){
 		$NewsModel = D("News");
+		dump($_POST);
 		$result = $NewsModel->create();
-
 		if(!$result){
 			$this->error($NewsModel->getError());
 		}else{
+			$Model = M('');
+			$Model->startTrans();
 			if($_FILES['file']['name']!=null){
 				if($NewsModel->upload()=='上传失败'){
 					$this->error('上传失败');
 				}
 			}
+
 			$NewsModel->publish_time = date('y-m-d H:i:s',time());
 			$NewsModel->state = '0';
-			$user = session('Adminlogin');
-			$NewsModel->contributor = M('Login')->where("tel = '$user'")->getField('id');
+			$NewsModel->contributor = session('Adminlogin');
+
 			$nresult = $NewsModel->add();
-			if($nresult!=0){
-				$NewsLabelModel = D("NewsLabel");
-				$id = $NewsModel->getLastInsID();
-				$Label_str = I('post.label');
-				$LabelArray = explode(',',$Label_str);
-				for ($i=0; $i < count($LabelArray); $i++) { 
-					$NewsLabelModel->addLabel($id,$LabelArray[$i]);
+			$newsId = $NewsModel->getLastInsID();
+
+			//添加关键字
+			$KeywordModel = M('NewsKeyword');
+			$KeywordStr = $_POST['keyword'];
+			$KeywordArr = json_decode($KeywordStr,TRUE);
+
+			$sign = true;
+			foreach ($KeywordArr as &$item) {
+				if( $item['id'] == 0) {
+					if ( $keyword = $KeywordModel->where(array('keyword'=>$item['keyword']))->find() ){
+						$item['id'] = $keyword['id'];
+					}else{
+						$keywordResult = $KeywordModel->add(array('keyword'=>$item['keyword']));
+						if( $keywordResult !== false ){
+							$item['id'] = $KeywordModel->getLastInsID();
+						}else{
+							$sign = false;
+						}
+					}
 				}
+			}
+
+			$keywordBelongSign = true;
+			if($sign){
+				$keywordBelongModel = M('NewsKeywordBelong');
+				foreach ($KeywordArr as $item) {
+					$keywordBelongResult = $keywordBelongModel->add(array('keyword_id'=>$item['id'],'news_id' => $newsId));
+					if( $keywordBelongResult === false ){
+						$keywordBelongSign = false;
+					}
+				}
+			}
+			if( $keywordBelongSign && $sign && $nresult!==false) {
+				$Model->commit();
 				$this->success('添加成功');
 			}else{
+				$Model->rollback();
 				$this->error('添加失败');
 			}
-			
+
 		}
 	}
 
@@ -176,13 +199,6 @@ class NewsController extends Controller{
 				}
 			}
 			$NewsModel->where("id = $id")->save();
-			$NewsLabelModel = D("NewsLabel");
-			$NewsLabelModel ->where("news_id = $id")->delete();
-			$Label_str = I('post.label');
-			$LabelArray = explode(',',$Label_str);
-			for ($i=0; $i < count($LabelArray); $i++) { 
-				$NewsLabelModel->addLabel($id,$LabelArray[$i]);
-			}
 			$this->redirect('News/index',array('p'=>$p));
 		}
 	}

@@ -1,147 +1,71 @@
 
-<script type="text/javascript" src="__PUBLIC__/js/admin/admin_type_sections.js"></script>
 <script type="text/javascript">
-    var add_label_url = "{:U('Label/add')}";
-    var AjaxAddSections_url = '{:U("Sections/AjaxAddSections")}';
-    var changeType_url = '{:U("Sections/AjaxChangeType")}';
+var PUBLIC = "__PUBLIC__";
+var dd_load_url = "{:U('NewsKeyword/loading')}";
+$(function(){
 
-    $(function(){
-      var t = $("#type").find("option").first().val();
-      changeType(t);
-    })
+})
 </script>
-
+<script type="text/javascript" src="__PUBLIC__/js/admin/admin_type_sections.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/admin/keyword.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/admin/admin.js"></script>
 <include file="Common:edhead" />
 
+<div class="row margin-bottom">
+	<div class="col-xs-12">
+        <h3 class="page-header">发表新闻</h3>
+    </div>
+</div>
 
-
-<!-- add sections Modal -->
-<div class="modal fade" id="AddSections" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">添加二级分类</h4>
-      </div>
-      
-      <div class="modal-body">
-        <form class="form-horizontal"
-      <fieldset>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">分类名</label>
-          <div class="col-lg-10">
-            <input type="text" class="form-control" name="sections" placeholder="输入二级分类名" maxlength="4">
-          </div>
+<form class="form-horizontal" id='new-form' method="post" action="{:U('News/addNews')}" enctype="multipart/form-data">
+    <div class="form-group">
+        <div class="col-sm-12">
+            <input type="text" class="form-control" id="title" name="title" placeholder="输入标题" value="" required />
         </div>
-      </fieldset>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" id="add_sections" class="btn btn-primary">提交</button>
-      </div>
-  
     </div>
-  </div>
-</div>
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">标签库</h4>
-      </div>
-     
-      <div class="modal-body flex-row">
-        <volist name="List" id="vo">
-        <a class="la-info label_ku" data-label='{$vo.id}'>{$vo.label}</a>
-        </volist>
-        <span class="la-info label_ku_add"><a class="fa fa-plus"></a></span>
-        <input class="add-label" type="text" />
-      </div>
-      <div class="modal-footer">
-
-      </div>
-    </div>
-  </div>
-</div>
-
-
-	<div class="row margin-bottom">
-		<div class="col-xs-12">
-	        <h3 class="page-header">发表新闻</h3>
-	    </div>
-
-
-	</div>
-	<!-- / .row -->
-
-	
-		<form class="form-horizontal" id='new-form' method="post" action="{:U('News/addNews')}" enctype="multipart/form-data">
-<div class="form-group">
-    <label class="col-sm-1 control-label">标题</label>
-    <div class="col-sm-11">
-        <input type="text" class="form-control" id="title" name="title" placeholder="输入标题" value="" required />
+    <div class="form-group">
+        <div class="col-sm-12">
+            <div id="dd-container" class="dd-container form-control">
+                <input type="hidden" id="keyword"  name="keyword"/>
+                <!-- <span data-id="1" class="dd-item">成都<span data-role="remove">×</span></span> -->
+                <input type="text" data-role="dd-input" class="dd-input" placeholder="输入关键字" style="width: 20em;">
+                <ul class="dd-load-list dropdown-menu" style="display:none;"></ul>
+            </div>
+        </div>
     </div>
 
-</div>
-
-<div class="form-group">
-    <label class="col-sm-1 control-label">简介</label>
-    <div class="col-sm-11">
-        <input type="text" class="form-control" id="intro" name="intro" placeholder="输入简介" value="" required/>
+    <div class="form-group">
+        <div class="col-sm-6">
+            <select class="form-control" name="type" id="type">
+              <volist name="TypeList" id="vo">
+                  <option value="{$vo.id}">{$vo.type}</option>
+              </volist>
+            </select>
+        </div>
+        <div class="col-sm-6">
+            <select class="form-control" name='sections' id="sections">
+                <option value="1">文章</option>
+                <option value="2">图片</option>
+            </select>
+        </div>
     </div>
 
-</div>
-<div class="form-group">
-    <label class="col-sm-1 control-label">分类</label>
-    <div class="col-sm-5">
-        <select class="form-control" name="type" id="type">
-          <volist name="TypeList" id="vo">
-              <option value="{$vo.id}">{$vo.type}</option>
-          </volist>
-        </select>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <textarea name="content" class="form-control"></textarea>
+        </div>
     </div>
-    <label class="col-sm-1 control-label">栏目</label>
-    <div class="col-sm-5">
-        <select class="form-control" name='sections' id="sections">
-          
-        </select>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-success btn-sm" id="news-submit" data-loading="提交中...">提交保存</button>
+        </div>
     </div>
-</div>
-<div class="form-group">
-    <label class="col-sm-1 control-label">标签</label>
-    <div class="col-sm-11 label_container" style="padding-top:7px;">
-        <span id="label_span_container">
-        </span>
-        <span class="la-info" data-toggle="modal" data-target="#myModal"><a class="fa fa-plus"></a></span>
-        <input type="hidden" id="input_label" name="label" required/>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <img id="file-img" class="img-thumbnail" alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTJmMzFiNjE5ZSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1MmYzMWI2MTllIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=">
+            <input name="file" type="file" id="file" style="display:none"/>
+            <button type="button" class="btn btn-default btn-sm btn-file">选择封面</button>
+        </div>
     </div>
-</div>
 
-<div class="form-group">
-    <label class="col-sm-1 control-label">内容</label>
-    <div class="col-sm-11">
-        <textarea name="content" class="form-control"></textarea>
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-sm-1 control-label">图片</label>
-    <div class="col-sm-11">
-        <img id="file-img" class="img-thumbnail" alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTJmMzFiNjE5ZSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1MmYzMWI2MTllIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" style="width: 200px; height: 150px;">
-        <input name="file" type="file" id="file" style="display:none"/>
-        <button type="button" class="btn btn-default btn-sm btn-file">浏览</button>
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-sm-offset-1 col-sm-11">
-        <button type="submit" class="btn btn-success btn-sm">提交保存</button>
-    </div>
-</div>
 </form>
-

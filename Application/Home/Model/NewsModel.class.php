@@ -48,7 +48,7 @@ class NewsModel extends RelationModel{
 		if($List!=null){
 			$str = '';
 			$Date = new \Org\Util\Date();
-			for ($i=0; $i < count($List); $i++) { 
+			for ($i=0; $i < count($List); $i++) {
 				$str = $str.$List['label'][$i]['label_id'];
 				if($i != count($List))
 					$str = $str.",";
@@ -59,7 +59,7 @@ class NewsModel extends RelationModel{
 			$List['LabelName'] = $LabelList;
 			$List['publish_time'] = substr($List['publish_time'],0,10);
 			$count = count($List['comment'])>4?4:count($List['comment']);
-			for ($j=0; $j < $count; $j++) { 
+			for ($j=0; $j < $count; $j++) {
 				$List['comment'][$j]['time'] = $Date ->timeDiff($List['comment'][$j]['time']);
 				if(strpos($List['comment'][$j]['time'],'秒')||$List['comment'][$j]['time']==''){
 					$List['comment'][$j]['time'] = '刚刚';
@@ -70,7 +70,7 @@ class NewsModel extends RelationModel{
 		}else{
 			return null;
 		}
-		
+
 	}
 
 	/**
@@ -78,12 +78,12 @@ class NewsModel extends RelationModel{
 	 * @return [List] [<返货头条的List>]
 	 */
 	public function getHeadLines(){
-		$List = $this->relation('type') -> where('state=1') ->order('publish_time desc')-> field('id,image,title,type,image_thumb,publish_time,intro')->select();
+		$List = $this->relation('type') -> where('state=1') ->order('publish_time desc')-> field('id,image,title,type,image_thumb,publish_time')->select();
 		if(count($List)<5){
 			$LackNum = 5-count($List);
-			$LackList = $this->relation('type')->where('state=0')->order('publish_time desc')-> field('id,image,image_thumb,title,type,publish_time,intro')->limit('0,5')->select();
+			$LackList = $this->relation('type')->where('state=0')->order('publish_time desc')-> field('id,image,image_thumb,title,type,publish_time')->limit('0,5')->select();
 			$j = 0;
-			for ($i=count($List); $i < 5; $i++) { 
+			for ($i=count($List); $i < 5; $i++) {
 				$List[$i] = $LackList[$j];
 				$j++;
 			}
@@ -114,11 +114,10 @@ class NewsModel extends RelationModel{
 		$where['title']  = array('like','%'.$key.'%');
 		$where['_logic'] = 'or';
 		$page = ($page-1)*10;
-		$List = $this->relation('type')->where($where)->order('publish_time desc')->field('id,title,intro,publish_time,browse,type,image,image_thumb')->limit("$page,10")->select();
+		$List = $this->relation('type')->where($where)->order('publish_time desc')->field('id,title,publish_time,browse,type,image,image_thumb')->limit("$page,10")->select();
 		$List = $this->GenerateNews($List);
-		for ($i=0; $i < count($List); $i++) { 
+		for ($i=0; $i < count($List); $i++) {
 			$List[$i]['title'] = str_replace($key, "<font color='red'>".$key."</font>", $List[$i]['title'] );
-			$List[$i]['intro'] = str_replace($key, "<font color='red'>".$key."</font>", $List[$i]['intro'] );
 		}
 		return $List;
 	}
@@ -134,7 +133,7 @@ class NewsModel extends RelationModel{
 			$str = '';
 			$LackNum = 5-$HeadLinesNum;
 			$LackList = $this->limit('0,5') ->where('state=0')->order('publish_time desc')-> field('id')->select();
-			for ($i=0; $i < $LackNum; $i++) { 
+			for ($i=0; $i < $LackNum; $i++) {
 				$str = $str.$LackList[$i]['id'];
 				if($i!= $LackNum-1)
 					$str = $str.",";
@@ -153,8 +152,8 @@ class NewsModel extends RelationModel{
 		// if($str_supplementId!=null)
 		// 	$condition['id'] = array('not in',$str_supplementId);
 		// $condition['state'] = '0';
-		$List = $this->relation(['sections','type'])->field('id,title,intro,publish_time,browse,type,image,image_thumb,sections')->order('publish_time desc')->limit('0,10')->select();
-		// $List = $this->relation(['type','sections'])->field('id,title,intro,publish_time,browse,type,image,image_thumb,sections')->order('publish_time desc')->limit('0,10')->select();
+		$List = $this->relation(['sections','type'])->field('id,title,publish_time,browse,type,image,image_thumb,sections')->order('publish_time desc')->limit('0,10')->select();
+		// $List = $this->relation(['type','sections'])->field('id,title,publish_time,browse,type,image,image_thumb,sections')->order('publish_time desc')->limit('0,10')->select();
 		$List = $this->GenerateNews($List);
 		return $List;
 	}
@@ -169,24 +168,11 @@ class NewsModel extends RelationModel{
 		$LabelModel = M('Label');
 		$NewsLabelModel = M('NewsLabel');
 		$MessageModel = D('Message');
-		
+
 		$Date = new \Org\Util\Date();
 		for ($i=0; $i < count($List); $i++) {
 			$str = '';
 			$List[$i]['PublishTime'] = $Date ->timeDiff($List[$i]['publish_time']);
-			$LabelIdList = $NewsLabelModel -> where("news_id=".$List[$i]['id'])->field('label_id')->select();
-			for ($j=0; $j < count($LabelIdList); $j++) { 
-				$str .= $LabelIdList[$j]['label_id'];
-				if($j != count($LabelIdList)-1)
-					$str .=',';
-			}
-			$con['id'] = array('in',$str);
-			$LabelArray = array();
-			$LabelList =  $LabelModel -> where($con) ->field('label')->select();
-			for ($j=0; $j < count($LabelList); $j++) { 
-				$LabelArray[] = $LabelList[$j]['label'];
-			}
-			$List[$i]['LabelName'] = $LabelArray;
 			$List[$i]['MessageCount'] = $MessageModel->getCountById($List[$i]['id']);
 			$List[$i]['url'] = U('/n/'.$List[$i]['id']);
 		}
@@ -204,19 +190,13 @@ class NewsModel extends RelationModel{
 	 * @return [List] [查询到的列表]
 	 */
 	public function getSelectType($type,$page,$in_index=false,$sections=''){
-		// $str_supplementId=$this->str_supplementId();
-		// if($in_index){
-		// 	if($str_supplementId!=null)
-		// 		$condition['id'] = array('not in',$str_supplementId);
-		// }	
-		// $condition['state'] = 0;
 		if($type!=0)
 			$condition['type'] = $type;
 		if($sections !='')
 			$condition['sections'] = $sections;
 		$page = ($page-1)*10;
-		// $List =  $this->relation(['type','sections']) ->where($condition)->limit("$page,10")->field('id,title,intro,publish_time,type,browse,image,image_thumb,sections')->order('publish_time desc')->select();
-		$List =  $this->relation(['type','sections']) ->where($condition)->limit("$page,10")->field('id,title,intro,publish_time,type,browse,image,image_thumb,sections')->order('publish_time desc')->select();
+		// $List =  $this->relation(['type','sections']) ->where($condition)->limit("$page,10")->field('id,title,publish_time,type,browse,image,image_thumb,sections')->order('publish_time desc')->select();
+		$List =  $this->relation(['type','sections']) ->where($condition)->limit("$page,10")->field('id,title,publish_time,type,browse,image,image_thumb,sections')->order('publish_time desc')->select();
 		$List = $this->GenerateNews($List);
 		return $List;
 	}
@@ -228,7 +208,7 @@ class NewsModel extends RelationModel{
 	 */
 	public function getSectionsList($sections){
 		$condition['sections'] = $sections;
-		$List = $this->relation(true)->where($condition)->field('id,title,intro,publish_time,type,browse,image,image_thumb')->order('publish_time desc')->limit('0,15')->select();
+		$List = $this->relation(true)->where($condition)->field('id,title,publish_time,type,browse,image,image_thumb')->order('publish_time desc')->limit('0,15')->select();
 		$List = $this->GenerateNews($List);
 		return $List;
 	}
@@ -247,6 +227,6 @@ class NewsModel extends RelationModel{
 		$result['pre'] = $pre[0];
 		return $result;
 	}
-	
+
 
 }

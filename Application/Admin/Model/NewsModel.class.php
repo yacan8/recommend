@@ -2,14 +2,13 @@
 namespace Admin\Model;
 use Think\Model\RelationModel;
 class NewsModel extends RelationModel{
-	
+
 	protected $_auto = array(
 	    array('content', 'htmlspecialchars_decode', self::MODEL_BOTH, 'function'),
 	);
 	//自动检验
 	protected $_validate = array(
 	    array('title','require','标题必须！'),
-	    array('intro','require','简介必须！'),
 	);
 	/**
 	 * [$_link 关联属性]
@@ -51,20 +50,20 @@ class NewsModel extends RelationModel{
 			$data['type'] = $type;
 		if($upline){
 			$data['state'] = '1';
-			$List = $this->where($data)->field('id,title,intro,image,image_thumb,type,publish_time,contributor,sections,state')->order('publish_time desc')->relation(true)->select();
+			$List = $this->where($data)->field('id,title,image,image_thumb,type,publish_time,contributor,sections,state')->order('publish_time desc')->relation(true)->select();
 		}else if(!$upline){
 			$page = ($page-1)*10;
-			$List = $this->where($data)->limit("$page,10")->field('id,title,intro,image,image_thumb,type,publish_time,contributor,sections,state')->order('publish_time desc')->relation(true)->select();
+			$List = $this->where($data)->limit("$page,10")->field('id,title,image,image_thumb,type,publish_time,contributor,sections,state')->order('publish_time desc')->relation(true)->select();
 			$count = $this->where($data)->count();
 		}
-		for ($i=0; $i < count($List); $i++) { 
+		for ($i=0; $i < count($List); $i++) {
 			if($List[$i]['user']['icon'] == '')
 				$List[$i]['user']['icon']='default.jpg';
 		}
-			
+
 		return $List;
 	}
-	
+
 	/**
 	 * [search 新闻搜索]
 	 * @param  [string] $key    [传入的关键字]
@@ -74,8 +73,8 @@ class NewsModel extends RelationModel{
 	 */
 	public function search($key,$page,&$count){
 		$page = ($page-1)*10;
-		$List = $this->where("title like '%$key%' or intro like '%$key%'")->limit("$page,10")->field('id,title,intro,image,image_thumb,type,publish_time,contributor,sections')->order('publish_time desc')->relation(true)->select();
-		$count = $this->where("title like '%$key%' or intro like '%$key%'")->count();
+		$List = $this->where("title like '%$key%'")->limit("$page,10")->field('id,title,image,image_thumb,type,publish_time,contributor,sections')->order('publish_time desc')->relation(true)->select();
+		$count = $this->where("title like '%$key%'")->count();
 		return $List;
 	}
 	/**
@@ -108,7 +107,7 @@ class NewsModel extends RelationModel{
 	 */
 	public function upload(){
 		$config = array(
-				'maxSize' => 3145728,// 设置附件上传大小
+				'maxSize' => 23145728,// 设置附件上传大小
 				'exts' => array('jpg', 'gif', 'png', 'jpeg'),// 设置附件上传类型
 				'savePath'=>'news/',// 设置附件上传目录
 				'subName' => null,

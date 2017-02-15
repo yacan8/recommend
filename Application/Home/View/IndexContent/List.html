@@ -6,15 +6,9 @@
             </a>
             <div class="list-content">
                 <div class="to"><a class="title" href="{$vo.url}">{$vo.title}</a></div>
-                <div class="intro tc-gray6 text-over-3 hidden-xs">{$vo.intro}</div>
+                <!-- <div class="intro tc-gray6 text-over-3 hidden-xs"></div> -->
                 <div class="info">
-                    <span class="hidden-xs">
 
-                        <php>
-                            for($j=0;$j<count($vo['LabelName']);$j++)
-                                echo '<span class="la-info pull-left">'.$vo['LabelName'][$j].'</span>';
-                        </php>
-                    </span>
                     <span class="time tc-gray9"><span title="发布时间" class="iconfont icon-fabushijian pull-left m-r-xs"> {$vo.PublishTime}</span>
                     <br class="visible-xs">
                     <div class="tc-gray9  info-item-continer">

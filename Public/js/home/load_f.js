@@ -40,7 +40,7 @@
 		                        };
 	                        }
 	                        if(!BtnLoad){
-	                        	if(dataObj!=null){ 
+	                        	if(dataObj!=null){
 			                        _list_container.html(str);
 			                        _load_btn.show();
 			                    }
@@ -65,13 +65,7 @@
 	            '<span class="mask-tags" style="background-color:'+data['type'].color+'">'+data.sections+'</span></a>'+
 	        '<div class="list-content">'+
 	            '<div class="to"><a class="title" href="'+data.url+'">'+data.title+'</a></div>'+
-	            '<div class="intro m-t-sm tc-gray6 text-over-3 hidden-xs">'+data.intro+'</div>'+
 	            '<div class="info">'+
-	                '<span class="hidden-xs">';
-	                for (var i = 0; i < data.LabelName.length; i++) {
-	                	str +='<span class="la-info pull-left">'+data.LabelName[i]+'</span>';
-	                };
-	            str += '</span>'+
 	                '<span class="time tc-gray6"><span title="发布时间" class="iconfont icon-fabushijian pull-left"> '+data.PublishTime+'</span><br class="visible-xs">'+
 	                '<div class="tc-gray9  info-item-continer">'+
 	                '<span title="浏览" class="iconfont icon-liulanliang m-r-md"> '+data.browse+'</span><span title="评论" class="iconfont icon-pingjia"> '+data.MessageCount+'</span>'+

@@ -22,8 +22,8 @@
 	padding: 5px;
 }
 .overflow-ellipsis{
-	white-space: nowrap;  
-    overflow: hidden;  
+	white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 .online-item{
@@ -94,14 +94,14 @@
 
 
 .online-item .online-item-content{
-	
+
 }
 
 .online-item .online-item-content .online-item-content-title{
 	line-height: 24px;
 	display: block;
-	white-space: nowrap;  
-    overflow: hidden;  
+	white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 @media (max-width: 768px){
@@ -158,12 +158,12 @@
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 	height: 50px;
-	line-height:25px; 
+	line-height:25px;
 	display: block;
 }
 .list-group li .op{
 	margin-right: 10px;
-	margin-top:8px; 
+	margin-top:8px;
 }
 .list-group li .op:last-child{
 	margin-right: 0;
@@ -241,4 +241,51 @@ a{
 .fr-toolbar {
 	border-width: 1px!important;
 	border-color: #eee!important;
+}
+
+
+
+/*新闻关键字*/
+
+.dd-container{
+	position: relative;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    display: block;
+    color: #555;
+    vertical-align: middle;
+    border-radius: 3px;
+    max-width: 100%;
+    cursor: text;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 5px 5px 0 5px;
+}
+.dd-item{
+	display: inline-block;
+    color: #017e66;
+    background-color: #e7f2ed;
+    font-size: 13px;
+    text-align: center;
+    padding: 5px 8px;
+    line-height: 1;
+    margin:0 5px 5px 0;
+}
+.dd-input{
+	border: none;
+    box-shadow: none;
+    outline: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0 0 5px 0;
+    text-transform: lowercase;
+    width: 6rem;
+    max-width: 100%;
+}
+*[data-role='remove']{
+	cursor:pointer;
 }
