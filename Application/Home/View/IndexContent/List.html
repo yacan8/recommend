@@ -1,21 +1,23 @@
-<div id="list_container" class=" bg-white">
+<div id="list_container" class=" bg-white" style="padding-top:0.1px">
     <volist name="List" id="vo">
-        <div class="m-t-md p-md overflow-auto border-l-main">
+        <div class="m-t-sm p-l-sm p-l-sm  border-l-main">
             <a href="{$vo.url}" class="list-img" style="background-image: url('{:C('__DATA__')}/news_thumb/{$vo.image_thumb}')">
-                <span class="mask-tags" style="background-color:{$vo['type'].color}">{$vo.sections}</span>
+                <!-- <span class="mask-tags" style="background-color:{$vo['type'].color}">{$vo.sections}</span> -->
+                <span class="mask-tags">{$vo.type||default="其他"}</span>
             </a>
             <div class="list-content">
-                <div class="to"><a class="title" href="{$vo.url}">{$vo.title}</a></div>
+                <div class="to2"><a class="title" href="{$vo.url}">{$vo.title}</a></div>
                 <!-- <div class="intro tc-gray6 text-over-3 hidden-xs"></div> -->
                 <div class="info">
-
-                    <span class="time tc-gray9"><span title="发布时间" class="iconfont icon-fabushijian pull-left m-r-xs"> {$vo.PublishTime}</span>
-                    <br class="visible-xs">
-                    <div class="tc-gray9  info-item-continer">
-                        <span title="浏览" class="iconfont icon-liulanliang m-r-md"> {$vo.browse}</span><span title="评论" class="iconfont icon-pingjia"> {$vo.MessageCount}</span>
-                    </div>
+                    <span class="font-smoothing tc-gray9">
+                        <a href="#"><img class="i-user-icon" src="{:C('__DATA__')}/login_thumb/{$vo.user.icon|default='default.jpg'}"</a>
+                        <a href="#">{$vo.user.nickname}</a> ·
+                        {$vo.PublishTime} · {$vo.browse}次浏览 · {$vo.MessageCount} 次评论
+                    </span>
                 </div>
             </div>
+
         </div>
+        <div class="list-hr m-l-sm m-r-sm m-t-sm"></div>
     </volist>
 </div>

@@ -14,23 +14,29 @@
     var PUBLIC = '__PUBLIC__';
     var page = 1;
     var sections = '';
+    $(function(){
+        fixed(".category");
+    })
     </script>
 
     <title>CampusLeader-最校园的发声体</title>
 </head>
 
 <body>
-    
+
     <include file="Common/navbar" />
     <!-- 头条焦点图 -->
     <include file="IndexContent/Focus" />
     <!-- /头条焦点图 -->
     <div class="container m-t-sm">
         <div class="row">
-            <div class="col-sm-12 col-md-9">
-                <include file="IndexContent/SelectList" />
+            <div class="hidden-sm hidden-xs col-md-2 ">
+                <include file = "IndexContent/IndexMenu" />
+            </div>
+            <div class="col-sm-12 col-md-7">
+                <!-- <include file="IndexContent/SelectList" /> -->
                 <!-- 列表 -->
-                
+
                 <include file="IndexContent/List" />
                 <!-- /列表 -->
                 <button type="button" id="load" class="btn bg-main btn-sm btn-block m-b-md m-t-md">加载更多</button>
@@ -41,7 +47,7 @@
             </div>
         </div>
     </div>
-    
+
     <include file="Common/footer" />
 </body>
 <script src="__PUBLIC__/js/home/focus.js"></script>

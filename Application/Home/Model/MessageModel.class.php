@@ -54,7 +54,7 @@ class MessageModel extends RelationModel{
 		$Date = new \Org\Util\Date();
 		$page = ($page-1)*4;
 		$List = $this->limit("$page,4")->order('time desc')->where(array('other_id'=>$other_id))->select();
-		for ($i=0; $i < count($List); $i++) { 
+		for ($i=0; $i < count($List); $i++) {
 			$List[$i]['time'] = $Date ->timeDiff($List[$i]['time']);
 			$List[$i] = $this->generate($List[$i]);
 		}
@@ -70,7 +70,7 @@ class MessageModel extends RelationModel{
 		$Date = new \Org\Util\Date();
 		$TypeModel = M('Type');
 		$List = $this->relation(true)->where(array('receiver'=>$receiver,'state'=>1))->order('time desc')->select();
-		for ($i=0; $i < count($List); $i++) { 
+		for ($i=0; $i < count($List); $i++) {
 			$List[$i]['time'] = $Date ->timeDiff($List[$i]['time']);
 			$List[$i] = $this->generate($List[$i]);
 			$List[$i]['News']['type'] = $TypeModel->where("id=".$List[$i]['News']['type'])->getField('type');
@@ -99,6 +99,6 @@ class MessageModel extends RelationModel{
 		$data['state'] = '0';
 		$result = $this->where(array('id'=>$id))->data($data)->save();
 		if($result!=0) return true;
-		else return false; 
+		else return false;
 	}
 }

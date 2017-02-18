@@ -1,13 +1,23 @@
 // 文章显示列表改变点击事件js
 	;$(function(){
-		$(".select_list").find('a').click(function(e) {
+		// $(".select_list").find('a').click(function(e) {
+		// 	var _self = $(this);
+		// 	if(_self.hasClass('active'))
+		// 		e.preventdefault();
+		// 	else{
+		// 		type = _self.attr('data-type');
+		// 		page = 1;
+		// 		getList(type,page,url,_self,sections);
+		// 	}
+		// });
+		$(".category").find('a').click(function(e) {
 			var _self = $(this);
-			if(_self.hasClass('active'))
+			if(_self.parent().hasClass('active'))
 				e.preventdefault();
 			else{
 				type = _self.attr('data-type');
 				page = 1;
-				getList(type,page,url,_self,sections);
+				getList(type,page,url,_self.parent(),sections);
 			}
 		});
 		$("#load").click(function(e) {
@@ -23,4 +33,3 @@
 			}
 		});
 	})
-

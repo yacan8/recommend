@@ -121,3 +121,7 @@ a{
   height: 40px;
   border-radius: 3px;
 }
+.font-smoothing{
+	-webkit-font-smoothing: antialiased;
+	font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei","Helvetica Neue",Arial,sans-serif;
+}

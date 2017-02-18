@@ -44,8 +44,6 @@ class NewsModel extends RelationModel{
 	 * @return [list]           [查询到的列表]
 	 */
 	public function getList($type,$upline,$page,&$count){
-		if($sections!='')
-			$data['sections'] = $sections;
 		if($type!=0)
 			$data['type'] = $type;
 		if($upline){
@@ -94,7 +92,7 @@ class NewsModel extends RelationModel{
 	/**
 	 * [delectById 通过id删除新闻]
 	 * @param  [Integer] $id [传入的id]
-	 * @return [bool]     [删除是否成功]
+	 * @return [Boolean]     [删除是否成功]
 	 */
 	public function deleteById($id){
 		$result = $this->where("id = $id")->delete();

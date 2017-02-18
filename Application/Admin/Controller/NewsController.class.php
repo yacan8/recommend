@@ -3,7 +3,7 @@ namespace Admin\Controller;
 use Think\Controller;
 class NewsController extends Controller{
 	public function _initialize(){
-        if (!isset($_SESSION['Adminlogin'])) {
+        if (!session('?Adminlogin')) {
             $this->redirect('Login/index');
         }
  	}
@@ -15,7 +15,6 @@ class NewsController extends Controller{
 		$UpList = $NewsModel->getList(0,true,$p,$count);
 		$type = I('get.type',0);
 		$List = $NewsModel->getList($type,false,$p,$count);
-		// dump($List);
 		$Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数
 		$show       = $Page->show();// 分页显示输出
 		$TypeList = D('Type')->getType();
@@ -38,8 +37,6 @@ class NewsController extends Controller{
 	//添加新闻view
 	public function add(){
 		$TypeList = D('Type')->getType();
-		$SectionsModel = M('Sections');
-		$SectionList = $SectionsModel->select();
 		$this->assign('title','添加新闻');
 		$this->assign('TypeList',$TypeList);
 		$this->display();
@@ -52,8 +49,12 @@ class NewsController extends Controller{
 		$p = I('get.p',1);
 		$SectionsModel = M('Sections');
 		$TypeList = D('Type')->getType();
-		$detail = $NewsModel->where("id=$id")->find();
+		$detail = $NewsModel->where(array('id'=>$id))->find();
 		$SectionList = $SectionsModel->where("type_id =".$detail['type'])->select();
+		$keywordBelongModel = D('NewsKeywordBelong');
+		$keywordList = $keywordBelongModel->relation('keyword')->where(array('news_id'=>$id))->select();
+
+		$this->assign('keywordList',$keywordList);
 		$this->assign('SectionList',$SectionList);
 		$this->assign('TypeList',$TypeList);
 		$this->assign('p',$p);
@@ -118,7 +119,6 @@ class NewsController extends Controller{
 	//添加新闻
 	public function addNews(){
 		$NewsModel = D("News");
-		dump($_POST);
 		$result = $NewsModel->create();
 		if(!$result){
 			$this->error($NewsModel->getError());
@@ -135,7 +135,7 @@ class NewsController extends Controller{
 			$NewsModel->state = '0';
 			$NewsModel->contributor = session('Adminlogin');
 
-			$nresult = $NewsModel->add();
+			$newResult = $NewsModel->add();
 			$newsId = $NewsModel->getLastInsID();
 
 			//添加关键字
@@ -169,7 +169,7 @@ class NewsController extends Controller{
 					}
 				}
 			}
-			if( $keywordBelongSign && $sign && $nresult!==false) {
+			if( $keywordBelongSign && $sign && $newResult!==false) {
 				$Model->commit();
 				$this->success('添加成功');
 			}else{
@@ -189,6 +189,8 @@ class NewsController extends Controller{
 		if(!$result){
 			$this->error($NewsModel->getError());
 		}else{
+			$Model = M('');
+			$Model->startTrans();
 			if($_FILES['file']['name']!=null){
 				if($NewsModel->upload()=='上传失败'){
 					$this->error('上传失败');
@@ -198,8 +200,56 @@ class NewsController extends Controller{
 					unlink('./Data/news_thumb/'.$detail['image_thumb']);
 				}
 			}
-			$NewsModel->where("id = $id")->save();
-			$this->redirect('News/index',array('p'=>$p));
+			$newResult = $NewsModel->where(array('id' => $id))->save();
+
+
+			//添加关键字
+			$KeywordModel = M('NewsKeyword');
+			$KeywordStr = $_POST['keyword'];
+			$KeywordArr = json_decode($KeywordStr,TRUE);
+
+			$sign = true;
+			foreach ($KeywordArr as &$item) {
+				if( $item['id'] == 0) {
+					if ( $keyword = $KeywordModel->where(array('keyword'=>$item['keyword']))->find() ){
+						$item['id'] = $keyword['id'];
+					}else{
+						$keywordResult = $KeywordModel->add(array('keyword'=>$item['keyword']));
+						if( $keywordResult !== false ){
+							$item['id'] = $KeywordModel->getLastInsID();
+						}else{
+							$sign = false;
+						}
+					}
+				}
+			}
+
+			$keywordBelongSign = true;
+			if($sign){
+				$keywordBelongModel = M('NewsKeywordBelong');
+				$deleteResult = $keywordBelongModel ->where(array('news_id'=>$id))->delete();
+				if($deleteResult !== false){
+					foreach ($KeywordArr as $item) {
+						$keywordBelongResult = $keywordBelongModel->add(array('keyword_id'=>$item['id'],'news_id' => $id));
+						if( $keywordBelongResult === false ){
+							$keywordBelongSign = false;
+						}
+					}
+				}else{
+					$keywordBelongSign = false;
+				}
+			}
+
+			if( $keywordBelongSign && $sign && $newResult!==false) {
+				$Model->commit();
+				$this->redirect('News/index',array('p'=>$p));
+			}else{
+				$Model->rollback();
+				$this->error('修改失败');
+			}
+
+
+
 		}
 	}
 

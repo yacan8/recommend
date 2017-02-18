@@ -31,7 +31,7 @@
 		                	str = '';
 		                    var dataObj = $.parseJSON(data);
 		                    if(!BtnLoad){
-	                        	object.siblings('a').removeClass('active');
+	                        	object.siblings().removeClass('active');
 								object.addClass('active');
 	                        }
 	                        if(dataObj!=null){
@@ -60,15 +60,24 @@
 	            });
 			}
 			function generate(data){
-				var str ='<div class="bg-white m-t-md p-md overflow-auto border-l-main">'+
-	        '<a href="'+data.url+'" class="list-img" style="background-image: url(\''+DATAPATH+'/news_thumb/'+data.image_thumb+'\')">'+
-	            '<span class="mask-tags" style="background-color:'+data['type'].color+'">'+data.sections+'</span></a>'+
-	        '<div class="list-content">'+
-	            '<div class="to"><a class="title" href="'+data.url+'">'+data.title+'</a></div>'+
-	            '<div class="info">'+
-	                '<span class="time tc-gray6"><span title="发布时间" class="iconfont icon-fabushijian pull-left"> '+data.PublishTime+'</span><br class="visible-xs">'+
-	                '<div class="tc-gray9  info-item-continer">'+
-	                '<span title="浏览" class="iconfont icon-liulanliang m-r-md"> '+data.browse+'</span><span title="评论" class="iconfont icon-pingjia"> '+data.MessageCount+'</span>'+
-	                '</div></div></div></div>';
+				data.type = data.type || '其他';
+				data.user.icon = data.user.icon || 'default.jpg';
+				var str ='<div class="m-t-sm p-l-sm p-l-sm  border-l-main">'+
+	        				'<a href="'+data.url+'" class="list-img" style="background-image: url(\''+DATAPATH+'/news_thumb/'+data.image_thumb+'\')">'+
+	            				'<span class="mask-tags" >'+data.type+'</span>' +
+							'</a>'+
+							'<div class="list-content">'+
+	            				'<div class="to">' +
+									'<a class="title" href="'+data.url+'">'+data.title+'</a>' +
+								'</div>'+
+	            				'<div class="info">'+
+	                				'<span class="time tc-gray9"> ' +
+					'<a href="#"><img class="i-user-icon" src="'+DATAPATH+'/login_thumb/'+data.user.icon+'" > ' +
+					'</a><a href="#">'+data.user.nickname+'</a> ·' +
+					data.PublishTime+' · '+data.browse+'次浏览 · '+data.MessageCount+' 次评论 ' +
+					'</span>'+
+								'</div>' +
+							'</div>' +
+						'</div><div class="list-hr m-l-sm m-r-sm m-t-sm"></div>';
 	            return str;
 			}

@@ -7,24 +7,13 @@ class NewsModel extends RelationModel{
 	 * @var array
 	 */
 	protected $_link = array(
-	    'label'  =>  array(
-	    	'mapping_type' =>self::HAS_MANY,
-	        'class_name' => 'NewsLabel',
-	        'foreign_key'=>'news_id',
-	    ),
-	    'comment'  =>  array(
-	    	'mapping_limit'=>'0,4',
-	    	'mapping_type' =>self::HAS_MANY,
-	        'class_name' => 'Message',
-	        'foreign_key'=>'other_id',
-	        'mapping_order'=>'time desc'
 
-	    ),
 	    'type'  =>  array(
 	    	'mapping_type' =>self::BELONGS_TO,
 	        'class_name' => 'Type',
 	        'foreign_key'=>'type',
-	        'mapping_fields'=>'type,color',
+	        'mapping_fields'=>'type',
+			'as_fields' =>'type'
 	    ),
 
 	    'sections' => array(
@@ -33,6 +22,12 @@ class NewsModel extends RelationModel{
 	        'foreign_key'=>'sections',
 	        'mapping_fields'=>'sections',
 	        'as_fields'=>'sections'
+	    ),
+		'user' => array(
+	    	'mapping_type' =>self::BELONGS_TO,
+	    	'class_name' => 'Login',
+	        'foreign_key'=> 'contributor',
+	        'mapping_fields'=>'icon,nickname'
 	    )
 	);
 
@@ -43,7 +38,7 @@ class NewsModel extends RelationModel{
 	 */
 	public function getById($id){
 		$LoginModel = D('Login');
-		$MessageModel = D('Message');
+		// $MessageModel = D('Message');
 		$List = $this -> relation(true) ->find($id);
 		if($List!=null){
 			$str = '';
@@ -53,10 +48,10 @@ class NewsModel extends RelationModel{
 				if($i != count($List))
 					$str = $str.",";
 			}
-			$LabelModel = M('Label');
+			// $LabelModel = M('Label');
 			$condition['id'] = array('in',$str);
-			$LabelList =  $LabelModel -> where($condition) ->field('label')->select();
-			$List['LabelName'] = $LabelList;
+			// $LabelList =  $LabelModel -> where($condition) ->field('label')->select();
+			// $List['LabelName'] = $LabelList;
 			$List['publish_time'] = substr($List['publish_time'],0,10);
 			$count = count($List['comment'])>4?4:count($List['comment']);
 			for ($j=0; $j < $count; $j++) {
@@ -64,7 +59,7 @@ class NewsModel extends RelationModel{
 				if(strpos($List['comment'][$j]['time'],'秒')||$List['comment'][$j]['time']==''){
 					$List['comment'][$j]['time'] = '刚刚';
 				}
-				$List['comment'][$j] = $MessageModel->generate($List['comment'][$j]);
+				// $List['comment'][$j] = $MessageModel->generate($List['comment'][$j]);
 			}
 			return $List;
 		}else{
@@ -114,7 +109,7 @@ class NewsModel extends RelationModel{
 		$where['title']  = array('like','%'.$key.'%');
 		$where['_logic'] = 'or';
 		$page = ($page-1)*10;
-		$List = $this->relation('type')->where($where)->order('publish_time desc')->field('id,title,publish_time,browse,type,image,image_thumb')->limit("$page,10")->select();
+		$List = $this->relation(['type','user'])->where($where)->order('publish_time desc')->field('id,title,publish_time,browse,type,image,image_thumb,contributor')->limit("$page,10")->select();
 		$List = $this->GenerateNews($List);
 		for ($i=0; $i < count($List); $i++) {
 			$List[$i]['title'] = str_replace($key, "<font color='red'>".$key."</font>", $List[$i]['title'] );
@@ -148,12 +143,7 @@ class NewsModel extends RelationModel{
 	 * @return [List] [返回前十条最新News]
 	 */
 	public function getTop10(){
-		// $str_supplementId=$this->str_supplementId();
-		// if($str_supplementId!=null)
-		// 	$condition['id'] = array('not in',$str_supplementId);
-		// $condition['state'] = '0';
-		$List = $this->relation(['sections','type'])->field('id,title,publish_time,browse,type,image,image_thumb,sections')->order('publish_time desc')->limit('0,10')->select();
-		// $List = $this->relation(['type','sections'])->field('id,title,publish_time,browse,type,image,image_thumb,sections')->order('publish_time desc')->limit('0,10')->select();
+		$List = $this->relation(['sections','type','user'])->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor')->order('publish_time desc')->limit('0,10')->select();
 		$List = $this->GenerateNews($List);
 		return $List;
 	}
@@ -165,15 +155,9 @@ class NewsModel extends RelationModel{
 	public function GenerateNews($List){
 
 		$TypeModel = D('Type');
-		$LabelModel = M('Label');
-		$NewsLabelModel = M('NewsLabel');
-		$MessageModel = D('Message');
-
 		$Date = new \Org\Util\Date();
 		for ($i=0; $i < count($List); $i++) {
-			$str = '';
 			$List[$i]['PublishTime'] = $Date ->timeDiff($List[$i]['publish_time']);
-			$List[$i]['MessageCount'] = $MessageModel->getCountById($List[$i]['id']);
 			$List[$i]['url'] = U('/n/'.$List[$i]['id']);
 		}
 		return $List;
@@ -195,8 +179,7 @@ class NewsModel extends RelationModel{
 		if($sections !='')
 			$condition['sections'] = $sections;
 		$page = ($page-1)*10;
-		// $List =  $this->relation(['type','sections']) ->where($condition)->limit("$page,10")->field('id,title,publish_time,type,browse,image,image_thumb,sections')->order('publish_time desc')->select();
-		$List =  $this->relation(['type','sections']) ->where($condition)->limit("$page,10")->field('id,title,publish_time,type,browse,image,image_thumb,sections')->order('publish_time desc')->select();
+		$List =  $this->relation(['type','user']) ->where($condition)->limit("$page,10")->field('id,title,publish_time,type,browse,image,image_thumb,contributor')->order('publish_time desc')->select();
 		$List = $this->GenerateNews($List);
 		return $List;
 	}

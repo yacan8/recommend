@@ -3,14 +3,13 @@
 
 .navbar-white{
     background-color: #fff;
-
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-white li>a{
     padding: 20px;
     color: #333;
     text-align: center;
-
 }
 
 .navbar-white .nav .open>a,
@@ -152,7 +151,7 @@
         min-width: 110px!important;
         margin:10px auto;
     }
-    
+
 
     .navbar-white .dropdown .dropdown-menu.crawler img{
         width: 110px!important;

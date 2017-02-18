@@ -1,52 +1,18 @@
+
 <script type="text/javascript">
-    var add_label_url = "{:U('Label/add')}";
-    var PUBLIC = "__PUBLIC__";
-    var dd_load_url = "{:U('NewsKeyword/loading')}";
+var PUBLIC = "__PUBLIC__";
+var dd_load_url = "{:U('NewsKeyword/loading')}";
 </script>
 <script type="text/javascript" src="__PUBLIC__/js/admin/admin_type_sections.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/admin/keyword.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/admin/admin.js"></script>
 <include file="Common:edhead" />
 
-<!-- add sections Modal -->
-<div class="modal fade" id="AddSections" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">添加二级分类</h4>
-      </div>
-
-      <div class="modal-body">
-        <form class="form-horizontal"
-      <fieldset>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">分类名</label>
-          <div class="col-lg-10">
-            <input type="text" class="form-control" name="sections" placeholder="输入二级分类名"  maxlength="4">
-          </div>
-        </div>
-      </fieldset>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" id="add_sections" class="btn btn-primary">提交</button>
-      </div>
-
+<div class="row margin-bottom">
+	<div class="col-xs-12">
+        <h3 class="page-header">发表新闻</h3>
     </div>
-  </div>
 </div>
-
-
-
-
-
-
-	<div class="row margin-bottom">
-		<div class="col-xs-12">
-	        <h3 class="page-header">发表新闻</h3>
-	    </div>
-	</div>
 
 
 <form class="form-horizontal" id='new-form' method="post" action="{:U('News/changeNews',array('id'=>$detail['id'],'p'=>$p))}" enctype="multipart/form-data">
@@ -57,8 +23,11 @@
 </div>
 <div class="form-group">
     <div class="col-sm-12">
-        <div class="dd-container form-control">
-            <!-- <span data-id="1" class="dd-item">成都<span data-role="remove">×</span></span> -->
+        <div id="dd-container" class="dd-container form-control">
+            <input type="hidden" id="keyword"  name="keyword"/>
+            <volist name="keywordList" id="vo">
+                <span data-id="{$vo.id}" class="dd-item">{$vo.keyword}<span data-role="remove">×</span></span>
+            </volist>
             <input type="text" data-role="dd-input" class="dd-input" placeholder="输入关键字" style="width: 20em;">
             <ul class="dd-load-list dropdown-menu" style="display:none;"></ul>
         </div>
@@ -87,7 +56,7 @@
     </div>
 </div>
 <div class="form-group">
-    <div class="col-sm-offset-1 col-sm-11">
+    <div class="col-sm-12">
         <button type="submit" class="btn btn-success btn-sm">提交保存</button>
     </div>
 </div>

@@ -22,7 +22,7 @@ class FollowModel extends Model{
 	 * @param  [Integer] $follow_id [被关注的ID]
 	 * @param  [Integer] $page      [页数]
 	 * @param  [Integer] $count     [每页显示个数]
-	 * @return [List]            
+	 * @return [List]
 	 */
 	public function getFansByUserId($follow_id,$page,$count){
 		$DB_PREFIX = C('DB_PREFIX');//表前缀
@@ -32,7 +32,7 @@ class FollowModel extends Model{
 			$condition['_logic'] = "AND";
 			$condition['follow_id'] = $follow_id;
 			$M = M('');
-			$List = $M ->table($DB_PREFIX.'follow f') 
+			$List = $M ->table($DB_PREFIX.'follow f')
 						 ->field('l.id id,l.icon icon,l.nickname,(select count(1) from '.$DB_PREFIX.'follow where follow_id = f.user_id and delete_tag = 0) fans_count,u.province province,u.city city')
 					  	 ->join($DB_PREFIX.'login l on l.id=f.user_id ','left')
 					  	 ->join($DB_PREFIX.'user as u on u.id = l.userId','left')
@@ -49,7 +49,7 @@ class FollowModel extends Model{
 	 * @param  [Integer] $user_id   [用户ID]
 	 * @param  [Integer] $page      [页数]
 	 * @param  [Integer] $count     [每页显示个数]
-	 * @return [List]            
+	 * @return [List]
 	 */
 	public function getFollowByUserId($user_id,$page,$count){
 		$DB_PREFIX = C('DB_PREFIX');//表前缀
@@ -59,7 +59,7 @@ class FollowModel extends Model{
 			$condition['_logic'] = "AND";
 			$condition['user_id'] = $user_id;
 			$M = M('');
-			$List = $M ->table($DB_PREFIX.'follow f') 
+			$List = $M ->table($DB_PREFIX.'follow f')
 						 ->field('l.id id,l.icon icon,l.nickname,(select count(1) from '.$DB_PREFIX.'follow where follow_id = f.follow_id and delete_tag = 0) fans_count,u.province province,u.city city')
 					  	 ->join($DB_PREFIX.'login l on l.id=f.follow_id ','left')
 					  	 ->join($DB_PREFIX.'user as u on u.id = l.userId','left')
@@ -81,7 +81,6 @@ class FollowModel extends Model{
  					->field('u.id u_id,u.icon u_icon,u.nickname u_nickname')
  					->where('u.id = f.user_id and f.id = '.$id)
  					->find();
-
  		return $array;
  	}
 }

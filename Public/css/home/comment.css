@@ -1,15 +1,26 @@
 .comment-area {
     width: 100%;
-    background: #f3f7fb;
+    background: #fff;
     border: solid 1px #ebeff5;
     padding: 10px;
     resize: none;
-    height: 120px;
+    height: 40px;
     font-size: 14px;
-    border-radius: 3px;
-    -webkit-transition: all 1s ease;
-    transition: all 1s ease;
     -webkit-appearance: none;
+    outline: none;
+    margin-bottom: 10px;
+}
+.comment-btn{
+    outline: none;
+    padding: 10px 20px;
+    font-size: 15px;
+    background-color: #31b0d5;
+    color: #fff;
+    display: none;
+}
+.comment-btn:hover,.comment-btn:focus{
+    color: #fff;
+    background-color: #2A99B9;
 }
 .media.m-b-md {
     padding-bottom: 15px;

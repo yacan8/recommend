@@ -1,32 +1,22 @@
-.detail-title
-{
-    font-size: 22px;
-    color: #111;
-    margin-bottom: 10px;
-}
-.detail-time{
-    font-size: 13px;
-    color: #888888;
-    line-height: 30px;
-
+.detail-title{
+    font-size: 26px;
+    color: #555;
+    margin-bottom: 20px;
 }
 
-.detail-img
-{
+.detail-img{
     text-align: center;
     margin: 10px auto;
-    margin-bottom: 25px;
+    margin: 25px 0;
     width: 100%;
 }
 
 
-.detail-img img
-{
+.detail-img img{
     max-width: 100%;
 }
 
-.detail-content
-{
+.detail-content{
     line-height: 1.8;
     font-size: 16px;
     color: #111;
@@ -66,7 +56,6 @@
 }
 .operate
 {
-    border-top:1px solid #faf2cc;
     padding-top: 15px;
     margin-bottom: 15px;
     overflow: hidden;
@@ -186,3 +175,6 @@
     color: #fff;
 }
 .f-r{float: right;margin-right:10px;}.audio {overflow: hidden;padding: 10px;    border:1px solid #eee;border-radius: 2px;margin: 10px 0;background-color:#fff; }.audio .tit{margin-left: 10px;line-height: 30px;}.audio .audio_icon{background: transparent no-repeat center center;background-size: cover;color: #aaa;border:2px solid #aaa;float: left;display: block;height: 30px;width: 30px;border-radius: 50%;text-align: center;line-height: 26px;}.audio .audio-play{background-image: url("../../img/play.png");}.audio .audio-pause{background-image: url("../../img/pause.png");}
+ .zan-btn.active{
+     color: #F65A4A;
+ }

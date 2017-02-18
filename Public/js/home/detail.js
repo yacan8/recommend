@@ -1,10 +1,37 @@
 // 文章详情Js
 ;$(function(){
-
         //提交收藏
         $("#concern").click(function(event) {
             concern(id);
         });
+
+        $(document).on('click','.zan-btn',function(){
+            var _self = $(this);
+
+            if(!_self.hasClass('active')){
+                _self.addClass('active');
+                var zan_container = _self.children('.zan');
+                var zan_count = zan_container.text();
+                zan_container.html(parseInt(zan_count)+1);
+                var comment_id = _self.attr('data-comment-id');
+                $.ajax({
+                    url: zan_url,
+                    type: 'post',
+                    dataType: 'json',
+                    data: {comment_id: comment_id}
+                })
+                .done(function(data) {
+                    if(!data.success){
+                        zan_container.html(zan_count);
+                        _self.removeClass('active');
+                        $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : data.message});
+                    }
+                })
+                .fail(function() {
+                    alert('请求失败')
+                })
+            }
+        })
 
         $("#loading").click(function(event) {
             var _self= $(this);
@@ -12,11 +39,14 @@
             page++;
         });
 
-
+        $(".comment-area").focus(function(event) {
+            $(this).animate({height:'120px'}, 500);
+            $(this).siblings('.comment-btn-container').children("#comment").show();
+        });
         $("#comment").click(function(event) {
             var content = $('#comment-area').val();
             if(content==''){
-                alert('请输入内容');
+                $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : '请输入内容'});
                 return false;
             }else
                 comment(id,content,'');
@@ -24,7 +54,7 @@
 
 
         $(document).on("click",".reply",function(event) {
-            var title = $(this).parents("div.m-t-sm").siblings('h5.media-heading').find(".sender_id").html();
+            var title = $(this).parent().parent().siblings('.media-heading').children(".sender_id").text();
             $("#ModalTitle").html('回复：'+title);
             receiver_tel = $(this).attr('data-sender');
             $("#reply").modal("show");
@@ -79,7 +109,7 @@
                         '<h5 class="media-heading"><span class="sender_id">'+data.senderinfo.nickname+"</span>";
                             if(data.receiverinfo!=null)
                                 str = str+' 回复：'+data.receiverinfo.nickname;
-                str = str+'</h5>'+data.content+           
+                str = str+'</h5>'+data.content+
                         '<div class="m-t-sm" style="font-size:12px;">'+
                             '<a class="fa tc-gray9"><span class="m-r-sm">'+data.time+'</span></a> <a href="javascript:void(0)"><span class="m-r-sm reply" data-sender="'+data.sender+'">回复</span></a>'+
                         '</div></div></div>';
@@ -87,25 +117,29 @@
         }
 
         //回复
-        function comment(id,content,receiver){
+        function comment(id,content,reply){
             $.ajax({
                 url: comment_url,
-                data:{other_id:id,content:content,receiver:receiver},
+                data:{news_id:id,content:$.trim(content),reply:reply},
                 type: 'post',
-                dataType: 'text',
+                dataType: 'json',
                 success:function(data,textStatus){
-                    if(data=='1'){
-                        location.reload();
-                    }else if(data =='2'){
-                        $("#reply").modal("hide");
-                        $("#comment_content").val("");
-                        self.location = login_url;
-                        alert('你还没有登录');
-                    }else if(data =='3'){
-                        $("#reply").modal("hide");
-                        alert('不能评价自己');
+                    if( data.success ){
+                        if( data.code = 200 ) {
+                            location.reload();
+                        }else if( data.code == 199 ) {
+                            $("#reply").modal("hide");
+                            $("#comment_content").val("");
+                            $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : '你还没有登录。'});
+                            setTimeout(function(){
+                                self.location = login_url;
+                            },1000)
+                        }else if( data.code == 300 ){
+                            $("#reply").modal("hide");
+                            $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : '不能回复自己'});
+                        }
                     }else{
-                        alert(data);
+                        $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : data.message});
                     }
                 },
                 error:function() {

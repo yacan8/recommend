@@ -22,14 +22,14 @@
                         </case>
                     </switch>
                     <a class="focus-item-img" href="{:U('/n/'.$vo['id'])}" style="background: url('{:C('__DATA__')}/news/{$vo.image}') no-repeat center center;background-size: cover;">
-                        <span class="mask-tags" style="background-color:{$vo['type'].color}">{$vo['type'].type}</span>
+                        <!-- <span class="mask-tags" style="background-color:{$vo['type'].color}">{$vo['type'].type}</span> -->
+                        <span class="mask-tags">{$vo.type}</span>
                         <span class="title to">{$vo.title}</span>
                     </a>
                 </div>
                 </volist>
-                
+
                 <span class="focus-btn focus-next glyphicon glyphicon-chevron-right"></span>
             </div>
 
     </div>
- 
