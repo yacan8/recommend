@@ -1,8 +1,28 @@
 // 文章详情Js
 ;$(function(){
         //提交收藏
-        $("#concern").click(function(event) {
-            concern(id);
+        $("#collection").click(function(event) {
+            var _self = $(this);
+            $.ajax({
+                url: collection_url,
+                data:{collection_id:_self.attr('data-id')},
+                type: 'post',
+                dataType: 'json',
+                success:function(data){
+                    if(data.success){
+                        if( data.code == 201 ){
+                            _self.attr('title','收藏').html('<i class="glyphicon glyphicon-star-empty"></i> 收藏')
+                        }else{
+                            _self.attr('title','取消收藏').html('<i class="glyphicon glyphicon-star"></i> 取消收藏')
+                        }
+                    }else{
+                        $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : data.message});
+                    }
+                },
+                error:function() {
+                    alert("请求失败");
+                }
+            });
         });
 
         $(document).on('click','.zan-btn',function(){
@@ -32,11 +52,50 @@
                 })
             }
         })
+        function loadingBind(){
+            $("#loading").bind('click',function(event) {
+                var _self= $(this);
+                ajax_load_comment(page,id,_self);
+                page++;
+            });
+        }
+        loadingBind();
+        $("#order").children('li').click(function(event) {
+            var _self = $(this);
+            page = 1;
+            $.ajax({
+                url: loading_url,
+                type: 'get',
+                dataType: 'json',
+                data: {id:id,page:page,order:_self.attr('data-order')},
+            })
+            .done(function(data) {
+                var object = $('#loading');
+                _self.siblings('li').removeClass('active');
+                _self.addClass('active');
+                if(data.success){
+                    if(!data.attr){
+                        object.html('暂无更多评论').addClass('no-content');
+                        object.unbind('click');
+                    } else{
+                        if(data.has_more){
+                            loadingBind();
+                            object.html('查看更多评论').removeClass('no-content');
+                        }else{
+                            object.html('暂无更多评论').addClass('no-content');
+                            object.unbind('click');
+                        }
+                        $(".comment-containter").html( g_comment(data.attr));
+                    }
+                    page++;
+                }else{
+                    alert("加载错误");
+                }
+            })
+            .fail(function() {
+                alert('请求失败');
+            })
 
-        $("#loading").click(function(event) {
-            var _self= $(this);
-            ajax_load_comment(page,id,_self);
-            page++;
         });
 
         $(".comment-area").focus(function(event) {
@@ -45,11 +104,14 @@
         });
         $("#comment").click(function(event) {
             var content = $('#comment-area').val();
-            if(content==''){
+            if( $.trim(content) == ''){
                 $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : '请输入内容'});
                 return false;
-            }else
-                comment(id,content,'');
+            }else{
+                $(this).button("loading");
+                comment(id,content,'',$(this));
+            }
+
         });
 
 
@@ -63,34 +125,35 @@
 
         $(".comment_btn").click(function(event) {
             var content = $("#comment_content").val();
-            comment(id,content,receiver_tel);
+            comment(id,content,receiver_tel,$(this));
         });
 
         //ajax加载评价
         function ajax_load_comment(page,id,object){
             $.ajax({
                 url: loading_url,
-                data:{id:id,page:page},
+                data:{id:id,page:page,order:$('#order').children('li.active').attr('data-order')},
                 type: 'get',
-                dataType: 'text',
+                dataType: 'json',
                 beforeSend:function(XMLHttpRequest){
                     object.html("加载中 <img src='"+PUBLIC+"/img/loading.gif'>");
                 },
-                success:function(data,textStatus){
-                    var dataObj = $.parseJSON(data);
-                    console.log(dataObj);
-                    var str ='';
-                    if(data=='[]'||data==null||dataObj==null){
-                        $(".comment-containter").append("<div class='text-center' style='font-size:12px;'>暂无更多</div>");
-                        object.html('加载更多');
-                        object.fadeOut();
-                    }
-                    else{
-                        object.html('加载更多');
-                        for(var i=0;i<dataObj.length;i++){
-                            str = str+g_comment(dataObj[i]);
+                success:function(data){
+                    if(data.success){
+                        if(!data.attr){
+                            object.html('暂无更多评论').addClass('no-content');
+                            object.unbind('click');
+                        } else{
+                            if(data.has_more){
+                                object.html('查看更多评论');
+                            }else{
+                                object.html('暂无更多评论').addClass('no-content');
+                                object.unbind('click');
+                            }
+                            $(".comment-containter").append( g_comment(data.attr));
                         }
-                        $(".comment-containter").append(str);
+                    }else{
+                        alert("加载错误");
                     }
                 },
                 error:function() {
@@ -100,24 +163,41 @@
         }
 
         //生成评价字符串
-        function g_comment(data){
-            var str = '<div class="media m-b-md">'+
-                        '<div class="media-left">'+
-                            '<a href="javascript:void(0)"><img class="media-object img-circle" alt="" src="'+DATA+'/login_thumb/'+data.senderinfo.icon+'" data-holder-rendered="true"></a>'+
-                        '</div>'+
-                        '<div class="media-body">'+
-                        '<h5 class="media-heading"><span class="sender_id">'+data.senderinfo.nickname+"</span>";
-                            if(data.receiverinfo!=null)
-                                str = str+' 回复：'+data.receiverinfo.nickname;
-                str = str+'</h5>'+data.content+
-                        '<div class="m-t-sm" style="font-size:12px;">'+
-                            '<a class="fa tc-gray9"><span class="m-r-sm">'+data.time+'</span></a> <a href="javascript:void(0)"><span class="m-r-sm reply" data-sender="'+data.sender+'">回复</span></a>'+
-                        '</div></div></div>';
-            return str;
+        function g_comment(dataObj){
+            var result = '';
+            for(var i=0;i<dataObj.length;i++){
+                var data = dataObj[i];
+                data.user.icon = data.user.icon || 'default.jpg';
+                result += '<div class="media m-b-md"> ' +
+                    '<div class="media-left"> ' +
+                    '<a href="'+data.user_url+'"><img class="media-object img-circle"  alt="" src="'+DATA+'/login_thumb/'+data.user.icon+'" data-holder-rendered="true"></a>'+
+                    '</div> ' +
+                    '<div class="media-body"> ' +
+                    '<h5 class="media-heading"> ' +
+                    '<a href="'+data.user_url+'" class="sender_id tc-main">'+data.user.nickname+'</a>';
+                if(author == data.user_id)
+                    result += '<span class="label label-info">作者</span> ';
+                result += ' · <span class="tc-gray9 font-smoothing">'+data.time+'</span></h5> ' +
+                    '<div class="font-14">' + data.content;
+                if(data.reply_count) {
+                    result += '<a class="tc-main" href="'+data.reply_count.reply_user_url+'">@data.reply_content.nickname</a>：data.reply_content.content';
+                }
+                result += '</div> ' +
+                    '<div class="m-t-xs" style="font-size:12px;"> ' +
+                    '<a href="javascript:void(0)" class="font-smoothing"><span class="m-r-sm reply" data-sender="'+data.id+'">回复</a>';
+                if(data.is_zan){
+                    result += '<a class="tc-gray9 zan-btn" href="javascript:;" data-comment-id="'+data.id+'"> <span class="glyphicon glyphicon-thumbs-up"></span> <span class="zan">'+data.zan_count+'</span> </a>';
+                }else{
+                    result += '<a class="tc-gray9 zan-btn active" href="javascript:;" data-comment-id="'+data.id+'"> <span class="glyphicon glyphicon-thumbs-up"></span> <span class="zan">'+data.zan_count+'</span> </a>';
+                }
+                result+= '</div></div></div>';
+            }
+
+            return result;
         }
 
         //回复
-        function comment(id,content,reply){
+        function comment(id,content,reply,button){
             $.ajax({
                 url: comment_url,
                 data:{news_id:id,content:$.trim(content),reply:reply},
@@ -135,10 +215,12 @@
                                 self.location = login_url;
                             },1000)
                         }else if( data.code == 300 ){
+                            if(button) button.button('reset');
                             $("#reply").modal("hide");
                             $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : '不能回复自己'});
                         }
                     }else{
+                        if(button) button.button('reset');
                         $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : data.message});
                     }
                 },
@@ -147,29 +229,6 @@
                 }
             });
         }
-        //收藏
-        function concern(id){
-            $.ajax({
-                url: concern_url,
-                data:{collected:id},
-                type: 'post',
-                dataType: 'text',
-                success:function(data,textStatus){
-                    if(data=='1'){
-                        alert('收藏成功');
-                    }else if(data =='2'){
-                        alert('你还没有登录');
-                        self.location = login_url;
-                    }else if(data == '3'){
-                        alert('你已收藏过本条新闻');
-                    }else{
-                        alert(data);
-                    }
-                },
-                error:function() {
-                    alert("请求失败");
-                }
-            });
-        }
+
 
     });

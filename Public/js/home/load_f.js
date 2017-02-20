@@ -67,14 +67,14 @@
 	            				'<span class="mask-tags" >'+data.type+'</span>' +
 							'</a>'+
 							'<div class="list-content">'+
-	            				'<div class="to">' +
+	            				'<div class="to2">' +
 									'<a class="title" href="'+data.url+'">'+data.title+'</a>' +
 								'</div>'+
 	            				'<div class="info">'+
-	                				'<span class="time tc-gray9"> ' +
+	                				'<span class="font-smoothing tc-gray9"> ' +
 					'<a href="#"><img class="i-user-icon" src="'+DATAPATH+'/login_thumb/'+data.user.icon+'" > ' +
-					'</a><a href="#">'+data.user.nickname+'</a> ·' +
-					data.PublishTime+' · '+data.browse+'次浏览 · '+data.MessageCount+' 次评论 ' +
+					'</a><a href="#">'+data.user.nickname+'</a> ·' +' '+
+					data.PublishTime+' · '+data.browse+'次浏览 · '+data.comment_count+' 次评论 ' +
 					'</span>'+
 								'</div>' +
 							'</div>' +

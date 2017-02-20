@@ -13,7 +13,7 @@ return array(
 	//调试
 	'URL_PATHINFO_DEPR'=>'-',
 	'__DATA__' => __ROOT__.'/Data',
-	
+
 	'MODULE_ALLOW_LIST' => array('Home','Admin'), // 配置你原来的分组列表
 	'DEFAULT_MODULE' => 'Home', // 配置你原来的默认分组
 	// 'HTML_CACHE_ON'=>true,
@@ -24,13 +24,13 @@ return array(
 	'TOKEN_TYPE'=>'md5',  //令牌哈希验证规则 默认为MD5
 	'TOKEN_RESET'=>true,  //令牌验证出错后是否重置令牌 默认为true
 
-	'URL_ROUTER_ON'   => true, 
-	'URL_ROUTE_RULES'=>array(    
+	'URL_ROUTER_ON'   => true,
+	'URL_ROUTE_RULES'=>array(
 		'n/:id'          => array('News/detail','',array('ext'=>'html')),
 	),
 	'APP_SUB_DOMAIN_DEPLOY'   =>    1, // 开启子域名配置
-	'APP_SUB_DOMAIN_RULES'    =>    array(       
-		'admin.campusleader.cn'        => 'Admin',  // admin子域名指向Admin模块    
+	'APP_SUB_DOMAIN_RULES'    =>    array(
+		'admin.campusleader.cn'        => 'Admin',  // admin子域名指向Admin模块
 	)
 );
 ?>

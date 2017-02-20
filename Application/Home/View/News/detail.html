@@ -24,7 +24,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">关闭</button>
-            <button type="button" class="comment_btn btn btn-primary btn-sm">提交</button>
+            <button type="button" class="comment_btn btn btn-info btn-sm" data-loading-text="提交中...">提交</button>
           </div>
         </div>
       </div>
@@ -68,9 +68,7 @@
                             <i class="iconfont icon-weibo"></i>
                         </a>
                         <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1" charset="utf-8"></script>
-                        <a class="share-btn btn-info pull-right" title="收藏" id="concern">
-                            <i class="iconfont icon-shoucangyishoucang-copy-copy"></i>
-                        </a>
+                        {:W('Collection/collection',array('collection_id'=>$id))}
                     </div>
                     <div class="m-t-sm p-b-sm">
                         <if condition="$PreAndNextTitle['pre']['id'] neq ''">
@@ -93,7 +91,7 @@
                     <if condition = "session('?login')">
                     <textarea id="comment-area" class="comment-area" rows="4" placeholder="你要说点什么吗？"></textarea>
                     <div class="m-t-sm comment-btn-container">
-                        <a href="javascript:void(0)" id="comment" class="comment-btn">提交评论</span></a>
+                        <a href="javascript:void(0)" id="comment" class="comment-btn" data-loading-text="提交中...">提交评论</span></a>
                     </div>
                     <else/>
                     <div class="comment-area text-center tc-gray9" style="height:200px;font-size:18px;line-height:173px;background:#fcfcfc;">
@@ -101,6 +99,15 @@
                     </div>
                     </if>
 
+
+                    <div class=" over-h">
+                        <if condition = "$comment_count gt 0">
+                            <ul id="order" class="c-sections over-h">
+                                <li class="active" data-order="newest"><a href="javasacipt:;">最新</a></li>
+                                <li data-order="hot"><a href="javasacipt:;">最热</a></li>
+                            </ul>
+                        </if>
+                    </div>
                     <hr>
                     <div class="comment-containter">
                         <volist name = 'commentList' id="vo">
@@ -111,7 +118,6 @@
                                 <div class="media-body">
                                     <h5 class="media-heading">
                                         <a href="{:U('/u/'.$vo['user_id'],'',false,false)}" class="sender_id tc-main">{$vo.user.nickname}</a> <if condition = "$List['contributor'] eq $vo['user_id']"><span class="label label-info">作者</span></if> · <span class="tc-gray9 font-smoothing">{$vo.time}</span>
-                                        <if condition="$vo.receiver neq ''"> 回复：{$vo.receiverinfo.nickname}</if>
                                     </h5>
                                     <div class="font-14">
                                     {$vo.content} <if condition="$vo['reply_content']">// <a class="tc-main" href="{:U('/u/'.$vo['reply_content']['user_id'],'',false,false)}">@{$vo.reply_content.nickname}</a>：{$vo.reply_content.content}</if>
@@ -125,8 +131,10 @@
                         </volist>
 
                     </div>
-                    <if condition = "count($List['comment']) neq 0">
-                        <a id="loading" href="javascript:void(0)" class="text-center btn-block btn-sm">加载更多 </a>
+                    <if condition = "$comment_count lt 5 and $commment_count gt 0">
+                        <a id="loading" href="javascript:;" class="bg-gray-f6 text-center btn-block btn-sm no-content">暂无无更多评论</a>
+                    <elseif condition="$comment_count gt 5" />
+                        <a id="loading" href="javascript:;" class="bg-gray-f6 text-center btn-block btn-sm">查看更多评论</a>
                     </if>
                 </div>
 
@@ -149,9 +157,10 @@
     var DATA = "{:C('__DATA__')}";
     var page = 2;
     var id = {$id};
-    var loading_url = "{:U('News/comment_load')}";
+    var author = {$List.contributor};
+    var loading_url = "{:U('Comment/comment_load')}";
     var comment_url = "{:U('Comment/comment')}";
-    var concern_url = "{:U('News/attention')}";
+    var collection_url = "{:U('Collection/AjaxCollecting')}";
     var login_url = "{:U('Login/index')}?NewsId={$List.id}";
     $(function(){
             <if condition="session('?news')">

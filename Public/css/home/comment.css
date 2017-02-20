@@ -33,3 +33,7 @@
 h5.media-heading{
 	margin-bottom: 2px;
 }
+.zan-btn.active{
+    color: #F65A4A;
+    cursor: default;
+}

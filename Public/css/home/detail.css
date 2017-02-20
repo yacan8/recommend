@@ -175,6 +175,24 @@
     color: #fff;
 }
 .f-r{float: right;margin-right:10px;}.audio {overflow: hidden;padding: 10px;    border:1px solid #eee;border-radius: 2px;margin: 10px 0;background-color:#fff; }.audio .tit{margin-left: 10px;line-height: 30px;}.audio .audio_icon{background: transparent no-repeat center center;background-size: cover;color: #aaa;border:2px solid #aaa;float: left;display: block;height: 30px;width: 30px;border-radius: 50%;text-align: center;line-height: 26px;}.audio .audio-play{background-image: url("../../img/play.png");}.audio .audio-pause{background-image: url("../../img/pause.png");}
- .zan-btn.active{
-     color: #F65A4A;
- }
+.no-content{cursor: default;}
+.no-content:focus{color: #111!important;}
+.c-sections{
+    float:right;
+}
+.c-sections li{
+	float: left;
+	border-bottom: 2px solid #ccc;
+}
+.c-sections .active{
+	border-color: #F65A4A;
+}
+.c-sections li a{
+	display: inline-block;
+	padding:  5px 8px;
+	color: #999;
+    font-size: 12px;
+}
+.c-sections .active a{
+	color: #F65A4A;
+}

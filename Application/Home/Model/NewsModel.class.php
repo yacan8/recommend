@@ -143,7 +143,7 @@ class NewsModel extends RelationModel{
 	 * @return [List] [返回前十条最新News]
 	 */
 	public function getTop10(){
-		$List = $this->relation(['sections','type','user'])->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor')->order('publish_time desc')->limit('0,10')->select();
+		$List = $this->relation(['sections','type','user'])->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count')->order('publish_time desc')->limit('0,10')->select();
 		$List = $this->GenerateNews($List);
 		return $List;
 	}
@@ -179,7 +179,7 @@ class NewsModel extends RelationModel{
 		if($sections !='')
 			$condition['sections'] = $sections;
 		$page = ($page-1)*10;
-		$List =  $this->relation(['type','user']) ->where($condition)->limit("$page,10")->field('id,title,publish_time,type,browse,image,image_thumb,contributor')->order('publish_time desc')->select();
+		$List =  $this->relation(['type','user']) ->where($condition)->limit("$page,10")->field('id,title,publish_time,type,browse,image,image_thumb,contributor,comment_count')->order('publish_time desc')->select();
 		$List = $this->GenerateNews($List);
 		return $List;
 	}

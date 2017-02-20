@@ -16,9 +16,12 @@ class NewsController extends Controller {
 			$this->error("该文章不存在");
 		$commentModel = D('Comment');
 		$commentList =  $commentModel->getList($id,0,1,5,'newest');
+		$comment_count =  $commentModel->getCommentCount($id);
+
 		$PreAndNextTitle = $NewsModel->getTitlePreAndNext($id);//获取上一篇和下一篇标题
 		$this->assign('commentList',$commentList);
 		$this->assign('PreAndNextTitle',$PreAndNextTitle);
+		$this->assign('comment_count',$comment_count);
 		$this->assign('Crawler',$Crawler);
 		$this->assign('id',$id);
 		$this->assign('List',$List);
