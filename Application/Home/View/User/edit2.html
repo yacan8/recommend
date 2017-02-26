@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <include file="Common/header" />
+    <meta name="KeyWord" content="topic，话题，Campus，Leader，campusleader，高校领袖，高校新闻，高校达人秀。为创业者提供一个展示舞台。">
+    <meta name="description" content="Campus Leader是最校园的发声体，带你了解最新鲜的校园资讯，走近不一样的高校领袖，发掘最有意义的大学生活，玩转高逼格广视野的校园生活！">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/wait.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/account.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/u.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/comment.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/u.icon.css">
+    <link href="__PUBLIC__/assets/Font-Awesome-master/css/font-awesome.min.css" rel="stylesheet">
+  <title>个人信息昵称-CampusLeader</title>
+</head>
+
+<body>
+
+    <include file="Common/navbar" />
+
+    <div class="container" style="min-height:500px;">
+      <div class="row">
+
+        <div class="col-sm-12 col-md-2 m-t-sm">
+          <include file="AccountContent/menu" />
+        </div>
+
+
+        <div class="col-sm-12 col-md-10 p-md bg-white over-h m-t-sm m-b-sm">
+          <if condition="ACTION_NAME eq 'edit'">
+            <include file ="UserContent/edit" />
+          <else/>
+            <include file ="UserContent/safe" />
+          </if>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <include file="Common/footer" />
+</body>
+
+<script type="text/javascript">
+  var DATAPATH = "{:C('__DATA__')}";
+  var login_state = <if condition="session('?login')">true<else/>false</if>;
+  var PUBLIC = "__PUBLIC__";
+  var this_url = window.location.href;
+  var login_url = "{:U('Login/index')}";
+  var options = {
+    title:false,
+    maxZoomRatio:1,
+    url: 'data-original',
+  };
+</script>
+<script type="text/javascript">
+    var province_change_url = '{:U("Edit/province_change",'',false,false)}';
+    var city_change_url = '{:U("Edit/city_change",'',false,false)}';
+    var s_p_c_url = '{:U("Edit/school_province_change",'',false,false)}';
+    var s_c_c_url = '{:U("Edit/school_city_change",'',false,false)}';
+    $(function(){
+        $('button[type="submit"]').click(function(){
+            $(this).button('loading');
+        })
+    })
+</script>
+
+<script type="text/javascript" src="__PUBLIC__/js/home/wait.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/home/account.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/home/user-edit.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/assets/jquery.toaster.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/assets/jquery.toaster.js"></script>
+<script type="text/javascript">
+  $(function(){
+      <if condition="session('?Message')">
+        $.toaster({ priority : 'success', title : '<span class="glyphicon glyphicon-ok"> </span>', message : '<php>echo session('Message')</php>'});
+      </if>
+      <if condition="session('?ErrorMessage')">
+        $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-remove"> </span>', message : '<php>echo session('ErrorMessage')</php>'});
+      </if>
+      <php>session('Message',null);session('ErrorMessage',null);</php>
+      })
+</script>
+</html>

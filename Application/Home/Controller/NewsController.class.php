@@ -17,7 +17,6 @@ class NewsController extends Controller {
 		$commentModel = D('Comment');
 		$commentList =  $commentModel->getList($id,0,1,5,'newest');
 		$comment_count =  $commentModel->getCommentCount($id);
-
 		$PreAndNextTitle = $NewsModel->getTitlePreAndNext($id);//获取上一篇和下一篇标题
 		$this->assign('commentList',$commentList);
 		$this->assign('PreAndNextTitle',$PreAndNextTitle);

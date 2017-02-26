@@ -27,7 +27,6 @@
 
         $(document).on('click','.zan-btn',function(){
             var _self = $(this);
-
             if(!_self.hasClass('active')){
                 _self.addClass('active');
                 var zan_container = _self.children('.zan');
@@ -51,7 +50,7 @@
                     alert('请求失败')
                 })
             }
-        })
+        });
         function loadingBind(){
             $("#loading").bind('click',function(event) {
                 var _self= $(this);

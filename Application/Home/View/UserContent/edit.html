@@ -1,11 +1,10 @@
         <form class="form-horizontal" method="post" action="{:U('User/ChangeUserinfo')}" enctype="multipart/form-data">
           <fieldset>
-            <legend class="p-b-md text-center">个人资料</legend>
             <div class="form-group">
               <label class="col-md-2 control-label user_icon_label">头像：</label>
               <div class="col-md-6">
-                 <div class="user_icon">
-                  <img class="icon" src="{:C('__DATA__')}/login_thumb/{$userinfo.icon|default='default.jpg'}">
+                 <div class="user_icon" style="margin: 0;width:50px;height: 50px;;">
+                  <img class="icon" src="{:C('__DATA__')}/login_thumb/{$user_info.icon|default='default.jpg'}">
                   <a href="javascript:void(0)" class="icon icon_btn transition-all-03">修改</a>
                   <input type="file" id="file" name="file" accept="image/*" hidden/>
                  </div>
@@ -15,44 +14,37 @@
 
             <div class="form-group">
               <label class="col-lg-2 control-label">昵称：</label>
-              <div class="col-lg-6">
+              <div class="col-lg-10">
                 <input type="text" class="form-control" name="nickname" placeholder="输入昵称" value="{$user_info.nickname}">
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-2 control-label">邮箱：</label>
-              <div class="col-lg-6">
+              <div class="col-lg-10">
                 <input type="text" class="form-control" name="email" placeholder="请输入邮箱" value="{$user_info.email}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-lg-2 control-label">QQ：</label>
-              <div class="col-lg-6">
-                <input type="text" class="form-control" name="qq" placeholder="输入QQ号码" value="{$user_info.userinfo.qq}">
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-2 control-label">性别：</label>
               <div class="col-lg-10">
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="sex" value="1" <if condition = "$user_info['userinfo']['sex'] eq '1'">checked=""</if>>
-                    男
-                  </label>
-                </div>
 
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="sex" value="0" <if condition = "$user_info['userinfo']['sex'] eq '0'">checked=""</if>>
-                    女
-                  </label>
-                </div>
+                <label class="radio-inline">
+                  <input type="radio" name="sex" value="1" <if condition = "$user_info['userinfo']['sex'] eq '1'">checked=""</if>> 男
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="sex" value="0" <if condition = "$user_info['userinfo']['sex'] eq '0'">checked=""</if>> 女
+                </label>
+
+                <label class="radio-inline">
+                  <input type="radio" name="sex" value="3" <if condition = "$user_info['userinfo']['sex'] eq '3'">checked=""</if>> 未知
+                </label>
+
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-lg-2 control-label">生日：</label>
-              <div class="col-sm-2">
+              <div class="col-sm-3">
                 <select class="form-control" name="year">
                   <option value="0">请选择年份</option>
                   <for start = "1980" end = "2015">
@@ -65,7 +57,7 @@
                 </select>
               </div>
 
-              <div class="col-sm-2">
+              <div class="col-sm-3">
                 <select class="form-control" name="month">
                   <option value="0">请选择月份</option>
                   <for start = "1" end = "13">
@@ -78,7 +70,7 @@
                   </for>
                 </select>
               </div>
-              <div class="col-sm-2">
+              <div class="col-sm-4">
                 <select class="form-control" name="day">
                   <option value="0">请选择日期</option>
                   <for start = "1" end = "32">
@@ -96,7 +88,7 @@
 
             <div class="form-group">
               <label class="col-lg-2 control-label">学校：</label>
-              <div class="col-sm-2">
+              <div class="col-sm-3">
                 <select class="form-control" name="schoolP">
                   <option value="0">请选择省份</option>
                   <volist name="schoolProvinces" id= 'vo'>
@@ -112,7 +104,7 @@
                 </select>
               </div>
 
-              <div class="col-sm-2">
+              <div class="col-sm-3">
                 <select class="form-control" name="schoolC">
                   <option value="0">请选择城市</option>
                   <volist name="schoolCitys" id= 'vo'>
@@ -124,9 +116,9 @@
                   </volist>
                 </select>
               </div>
-              <div class="col-sm-2">
+              <div class="col-sm-4">
                 <select class="form-control" name="school">
-                  <option value="0">请选择学校</option>
+                  <option value="">请选择学校</option>
                   <volist name="schools" id= 'vo'>
                     <if condition = "$school eq $vo['sh_shool']">
                       <option selected>{$vo.sh_shool}</option>
@@ -148,9 +140,9 @@
 
             <div class="form-group">
               <label class="col-lg-2 control-label">地区：</label>
-              <div class="col-sm-2">
+              <div class="col-sm-3">
                 <select class="form-control" name="province">
-                  <option value="0">请选择省份</option>
+                  <option value="">请选择省份</option>
                   <volist name="provinces" id= 'vo'>
                     <if condition = "$user_info['userinfo']['province'] eq $vo['province']">
                       <option selected>{$vo.province}</option>
@@ -161,9 +153,9 @@
                 </select>
               </div>
 
-              <div class="col-sm-2">
+              <div class="col-sm-3">
                 <select class="form-control" name="city">
-                  <option value="0">请选择城市</option>
+                  <option value="">请选择城市</option>
                   <volist name="cities" id= 'vo'>
                     <if condition = "$user_info['userinfo']['city'] eq $vo['city']">
                       <option selected>{$vo.city}</option>
@@ -176,9 +168,9 @@
 
 
 
-              <div class="col-sm-2">
+              <div class="col-sm-4">
                 <select class="form-control" name="areas">
-                  <option value="0">请选择地区</option>
+                  <option value="">请选择地区</option>
                   <volist name="areas" id= 'vo'>
                     <if condition = "$user_info['userinfo']['area'] eq $vo['area']">
                       <option selected>{$vo.area}</option>
@@ -186,23 +178,56 @@
                       <option>{$vo.area}</option>
                     </if>
                   </volist>
-
                 </select>
               </div>
             </div>
-            
             <div class="form-group">
-              <label for="textArea" class="col-lg-2 control-label">签名：</label>
-              <div class="col-lg-8">
+              <label class="col-lg-2 control-label">兴趣标签：</label>
+              <div class="col-lg-10 p-t-xs">
+                <input name="interest" type="hidden" id="interest" />
+                <volist name="typeList" id="vo">
+                  <if condition="$vo['is_interest'] eq 1">
+                  <a class="select-interest active" data-type-id="{$vo.id}" href="javascript:;">{$vo.type}</a>
+                    <else/>
+                  <a class="select-interest" data-type-id="{$vo.id}" href="javascript:;">{$vo.type}</a>
+                  </if>
+                </volist>
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-lg-2 control-label">签名：</label>
+              <div class="col-lg-10">
                 <textarea class="form-control" rows="3" name="shelfIntroduction" placeholder="输入你的个人简介或者签名">{$user_info.userinfo.shelfintroduction}</textarea>
-   
               </div>
             </div>
         
             <div class="form-group">
               <div class="col-lg-10 col-lg-offset-2">
-                <button type="submit" class="btn btn-success btn-sm" data-loading-text="提交中">提交</button>
+                <button id="submit" type="submit" class="btn btn-success btn-sm btn-block" data-loading-text="提交中...">提交</button>
               </div>
             </div>
           </fieldset>
         </form>
+        <script>
+          $(function(){
+            $('.select-interest').click(function(){
+              $(this).toggleClass('active');
+            })
+            $("#submit").click(function(){
+              var selectType = $('.select-interest.active');
+              if(selectType.length>0){
+                var interest = [];
+                $.each(selectType,function(index,ele){
+                  interest.push(selectType.eq(index).attr('data-type-id'));
+                });
+                $("#interest").val(interest.join(','));
+                return true;
+              }else{
+                $(this).button('reset');
+                return false;
+              }
+            })
+          })
+        </script>

@@ -26,22 +26,20 @@ class FollowModel extends Model{
 	 */
 	public function getFansByUserId($follow_id,$page,$count){
 		$DB_PREFIX = C('DB_PREFIX');//表前缀
-		if(is_int($follow_id)){
-			$firstrow = ($page-1)*$count;
-			$condition['delete_tag'] = (bool)0;
-			$condition['_logic'] = "AND";
-			$condition['follow_id'] = $follow_id;
-			$M = M('');
-			$List = $M ->table($DB_PREFIX.'follow f')
-						 ->field('l.id id,l.icon icon,l.nickname,(select count(1) from '.$DB_PREFIX.'follow where follow_id = f.user_id and delete_tag = 0) fans_count,u.province province,u.city city')
-					  	 ->join($DB_PREFIX.'login l on l.id=f.user_id ','left')
-					  	 ->join($DB_PREFIX.'user as u on u.id = l.userId','left')
-					  	 ->where($condition)
-					  	 ->limit("$firstrow,$count")
-					  	 ->select();
-			return $List;
-		}else
-			exit('参数错误');
+
+		$condition['f.delete_tag'] = (bool)0;
+		$condition['_logic'] = "AND";
+		$condition['f.follow_id'] = $follow_id;
+		$M = M('');
+		$List = $M ->table($DB_PREFIX.'follow f')
+					 ->field('f.id id,l.id user_id,l.icon icon,l.nickname,(select count(1) from '.$DB_PREFIX.'follow where follow_id = f.user_id and delete_tag = 0) fans_count,(select count(1) from '.$DB_PREFIX.'follow where user_id = f.user_id and delete_tag = 0) follow_count,u.province province,u.city city,u.sex sex')
+					 ->join($DB_PREFIX.'login l on l.id=f.user_id ','left')
+					 ->join($DB_PREFIX.'user as u on u.id = l.userId','left')
+					 ->where($condition)
+					 ->page($page,$count)
+					 ->select();
+		return $List;
+
 	}
 
 	/**
@@ -53,22 +51,20 @@ class FollowModel extends Model{
 	 */
 	public function getFollowByUserId($user_id,$page,$count){
 		$DB_PREFIX = C('DB_PREFIX');//表前缀
-		if(is_int($user_id)){
-			$firstrow = ($page-1)*$count;
-			$condition['delete_tag'] = (bool)0;
-			$condition['_logic'] = "AND";
-			$condition['user_id'] = $user_id;
-			$M = M('');
-			$List = $M ->table($DB_PREFIX.'follow f')
-						 ->field('l.id id,l.icon icon,l.nickname,(select count(1) from '.$DB_PREFIX.'follow where follow_id = f.follow_id and delete_tag = 0) fans_count,u.province province,u.city city')
-					  	 ->join($DB_PREFIX.'login l on l.id=f.follow_id ','left')
-					  	 ->join($DB_PREFIX.'user as u on u.id = l.userId','left')
-					  	 ->where($condition)
-					  	 ->limit("$firstrow,$count")
-					  	 ->select();
-			return $List;
-		}else
-			exit('参数错误');
+
+		$condition['f.delete_tag'] = (bool)0;
+		$condition['_logic'] = "AND";
+		$condition['f.user_id'] = $user_id;
+		$M = M('');
+		$List = $M ->table($DB_PREFIX.'follow f')
+					 ->field('f.id id,l.id user_id,l.icon icon,l.nickname,(select count(1) from '.$DB_PREFIX.'follow where follow_id = f.follow_id and delete_tag = 0) fans_count,(select count(1) from '.$DB_PREFIX.'follow where user_id = f.follow_id and delete_tag = 0) follow_count,u.province province,u.city city,u.sex sex,u.shelfIntroduction intro')
+					 ->join($DB_PREFIX.'login l on l.id=f.follow_id ','left')
+					 ->join($DB_PREFIX.'user as u on u.id = l.userId','left')
+					 ->where($condition)
+					 ->page($page,$count)
+					 ->select();
+		return $List;
+
 	}
 
 

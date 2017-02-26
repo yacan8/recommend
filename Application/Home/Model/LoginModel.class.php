@@ -72,7 +72,7 @@ class LoginModel extends RelationModel{
 	 * [change_icon 修改头像，生成缩略图，删除原本头像]
 	 * @param  [string] $tel [传入的手机号码]
 	 */
-	public function change_icon($tel){
+	public function change_icon($user_id){
 		$config = array(
 				'maxSize' => 8145728,// 设置附件上传大小
 				'exts' => array('jpg', 'gif', 'png', 'jpeg'),// 设置附件上传类型
@@ -94,7 +94,7 @@ class LoginModel extends RelationModel{
 
 		unlink('./Data/login/'.$Savename);
 		$this->icon = $thumbname;	//图片名字
-		$bef = $this->where(array('tel'=>$tel))->getField('icon');
+		$bef = $this->where(array('id'=>$user_id))->getField('icon');
 		if($bef!=''){
 			unlink('./Data/login_thumb/'.$bef);
 		}
@@ -127,6 +127,8 @@ class LoginModel extends RelationModel{
 	 */
 	public function getUserInfoById($id){
 		$array = $this->where(array('id'=>$id))->relation('userinfo')->find();
+		$interestModel = D('Interest');
+		$array['interest'] = $interestModel->relation('type')->where(array('user_id'=>$id))->select();
 		return $array;
 	}
 

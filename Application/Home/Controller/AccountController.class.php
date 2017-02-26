@@ -46,22 +46,6 @@ class AccountController extends Controller{
 	}
 
 
-
-	// public function message(){
-	// 	$login_id = session('login');
-	// 	$p = isset($_GET['p'])?$_GET['p']:1;
-	// 	$p = ($p-1)*4;
-	// 	$MessageModel = D('Message');
-	// 	$List = $MessageModel ->getByReceiver($user_id);
-	// 	$count = count($List);
-	// 	$Page  = new  \Think\Page($count,4);
-	// 	$show  = $Page->show();// 分页显示输出
-	// 	$this->assign('page',$show);
-	// 	$this->assign('List',$List);
-	// 	$this->assign('p',$p);
-	// 	$this->display();
-	// }
-
 	public function ChangeUserinfo(){
 		$LoginModel = D("Login");
 		$login_id = session('login');

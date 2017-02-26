@@ -11,20 +11,19 @@ class UploadController extends Controller{
 	public function upload() {
 		C('SHOW_PAGE_TRACE',false);
 		$config = array(
-				'maxSize' => 3145728,// 设置附件上传大小
+				'maxSize' => 93145728,// 设置附件上传大小
 				'exts' => array('jpg', 'gif', 'png', 'jpeg'),// 设置附件上传类型
 				'savePath'=>'Upload/',// 设置附件上传目录
-				'subName' => null,
-				'rootPath'=> './Data/'
+				'rootPath'=> './Data/',
+				'autoSub'    =>    true,
+				'subName'    =>    array('date','Y-m-d')
 			);
 		$upload = new \Think\Upload($config);// 实例化上传类
 		$info = $upload->uploadOne($_FILES['file']);
-		// dump($info['file']);
 	    if(!$info) {// 上传错误提示错误信息
 	        $this->error($upload->getError());
 	    }else{// 上传成功
-	        $name = $info['savename'];
-			$link['link'] = "http://".$_SERVER['HTTP_HOST'].__ROOT__."/Data/Upload/".$name;
+			$link['link'] = __ROOT__."/Data/".$info['savepath'].$info['savename'];
 			echo stripslashes(json_encode($link));
 	    }
  	 }

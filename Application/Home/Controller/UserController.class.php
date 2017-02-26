@@ -5,7 +5,7 @@ use Think\Controller;
 class UserController extends Controller{
 	//构造函数
 	public function _initialize(){
-		$allowArray = array('collection_news','message','edit','ChangeUserinfo','safe','ChangePassword');//允许不输入Id的action
+		$allowArray = array('collection_news','edit','ChangeUserinfo','safe','ChangePassword','myDynamics');//允许不输入Id的action
 		if( in_array (ACTION_NAME,$allowArray))
 			$id = session('login');
 		else
@@ -24,7 +24,7 @@ class UserController extends Controller{
 			$LoginModel = D('Login');
 			$userinfo = $LoginModel->getUserInfoById((int)$id);
 			if($userinfo!=''){
-				$this->assign('userinfo',$userinfo);
+				$this->assign('user_info',$userinfo);
 				$this->assign('user_id',$id);
 			}else{
 				header("Content-type: text/html; charset=utf-8");
@@ -36,18 +36,60 @@ class UserController extends Controller{
 		}
 	}
 
-	//个人资料view
+	function getReadInfo($id){
+		$loginModel = M('Login');
+		$userInfo = $loginModel->find($id);
+		$followModel = M('Follow');
+		$new_fans_count = $followModel->where(array('time'=>array('gt',$userInfo['last_fans_read_time']),'follow_id'=>$id,'delete_tag'=>(bool)0))->count();
+		$new_dynamics_count = M('Dynamics')->where(array('time'=>array('gt',$userInfo['last_dynamics_read_time']),'user_id'=>$id))->count();
+		$new_message_count = M('Message')->where(array('time'=>array('gt',$userInfo['last_message_read_time']),'user_id'=>$id))->count();
+		return array(
+			'new_fans_count'=>$new_fans_count,
+			'new_dynamics_count'=>$new_dynamics_count,
+			'new_message_count'=>$new_message_count
+		);
+	}
+
 	public function index(){
 		$id = I('get.id');
+		$user_id = session('login');
 		if($id!=""){
-			$this->assign('UserContent','UserContent/userinfo');
-			$this->display();
+			if($user_id == $id){
+				$readInfo = $this->getReadInfo($id);
+				$this->assign('readInfo',$readInfo);
+			}
+			$is_follow = M('Follow')->where(array('user_id'=>$user_id,'follow_id'=>$id,'delete_tag'=>false))->count();
+			$is_fans = M('Follow')->where(array('user_id'=>$id,'follow_id'=>$user_id,'delete_tag'=>false))->count();
+			$this->assign('user_id',$id);
+			$this->assign('is_fans',$is_fans);
+			$this->assign('is_follow',$is_follow);
+			$this->userinfo($id);
+			$this->assign('UserContent','UserContent/dynamics');
+			$this->display('index2');
 		}else{
 			header("Content-type: text/html; charset=utf-8");
 			exit('参数错误');
 		}
+	}
 
-
+	public function myDynamics(){
+		$readInfo = $this->getReadInfo(session('login'));
+		$this->assign('readInfo',$readInfo);
+		$this->display('myDynamics');
+	}
+	public function userInfoLoading(){
+		$id = I('get.id',0);
+		if($id != 0){
+			$loginModel = D('Login');
+			$userinfo = $loginModel->getUserInfoById((int)$id);
+			unset($userinfo['password']);
+			unset($userinfo['tel']);
+			unset($userinfo['last_message_read_time']);
+			unset($userinfo['last_dynamics_read_time']);
+			unset($userinfo['last_fans_read_time']);
+			$userinfo['is_ower'] = $id == session('login');
+			$this->ajaxReturn($userinfo);
+		}
 	}
 
 
@@ -59,7 +101,6 @@ class UserController extends Controller{
 	//编辑..完善资料view
 	public function edit(){
 		$id = session('login');
-
 
 		$LoginModel = D('Login');
 		$userinfo = $LoginModel->getUserInfoById((int)$id);
@@ -109,7 +150,6 @@ class UserController extends Controller{
 
 			$province = $userinfo['userinfo']['province'];
 			$city = $userinfo['userinfo']['city'];
-			$area = $userinfo['userinfo']['area'];
 
 			$CitiesModel = M('AddressCities');
 
@@ -138,17 +178,34 @@ class UserController extends Controller{
 				$day = 0;
 			}
 
-
-
 			$this->assign('year',$year);
 			$this->assign('month',$month);
 			$this->assign('day',$day);
-
 			$this->assign('cities',$cities);
 			$this->assign('areas',$areas);
 		}
+
+
+		$typeList = M('Type')->select();
+		$interestArr = array();
+		foreach ($userinfo['interest'] as $item) {
+			array_push($interestArr,$item['type_id']);
+		}
+
+		foreach ($typeList as &$item) {
+			if(in_array($item['id'],$interestArr)){
+				$item['is_interest'] = 1;
+			}else{
+				$item['is_interest'] = 0;
+			}
+		}
+
+		$readInfo = $this->getReadInfo($id);
+		$this->assign('readInfo',$readInfo);
+		$this->assign('typeList',$typeList);
 		$this->assign('user_info',$userinfo);
-		$this->display();
+		$this->assign('user_id',session('login'));
+		$this->display('edit');
 	}
 
 
@@ -167,21 +224,13 @@ class UserController extends Controller{
 		}else{
 			$data['birthDate'] = '';
 		}
-		if(I('post.school')!='0'){
-			$data['schoolName'] = trim(I('post.school'));
-		}
-		if(I('post.profession')!='0'){
-			$data['profession'] = trim(I('post.profession'));
-		}
-		if(I('post.province')!='0'){
-			$data['province'] = trim(I('post.province'));
-		}
-		if(I('post.city')!='0'){
-			$data['city'] = trim(I('post.city'));
-		}
-		if(I('post.areas')!='0'){
-			$data['area'] = trim(I('post.areas'));
-		}
+
+		$data['schoolName'] = I('post.school')?trim(I('post.school')):'';
+		$data['profession'] = I('post.profession')?trim(I('post.profession')):'';
+		$data['province'] = I('post.province')?trim(I('post.province')):'';
+		$data['city'] = I('post.city')?trim(I('post.city')):'';
+		$data['area'] = I('post.area')?trim(I('post.areas')):'';
+
 		$UserModel = M('User');
 		// code 个人简介字符长度大小判断
 		$data['shelfIntroduction'] = trim(I('post.shelfIntroduction'));
@@ -214,7 +263,6 @@ class UserController extends Controller{
 			}
 
 
-			$nickname = I('post.nickname');
 
 			$LoginModel->id = $login_id;
 			$result = $LoginModel->create();
@@ -224,17 +272,38 @@ class UserController extends Controller{
 				session('ErrorMessage',$message);
 
 			}else{
+
+				//兴趣标签保存
+
+				$interestStr = I('post.interest');
+				$interestArr = explode(',',$interestStr);
+
+				$interestModel = M('Interest');
+				$deleteResult = $interestModel->where(array('user_id'=>$login_id))->delete();
+				$sign = true;
+
+				foreach($interestArr as $interest){
+					$interestResult = $interestModel->add(array('user_id'=>$login_id,'type_id'=>$interest));
+					if($interestResult === false){
+						$sign = false;
+					}
+				}
+
+
+
 				if($user_id == 0 || $user_id == ''){
 					$LoginModel->userId = $UserModel->getLastInsID();
 				}
 				if($_FILES['file']['name']!=null){
-					$errorMSG = $LoginModel->change_icon($tel);
+					$errorMSG = $LoginModel->change_icon($user_id);
 				}
 				$l_result = $LoginModel->where(array('id'=>$login_id))->save();
 
-				if($errorMSG==''&&$l_result!==false){
+				if( $errorMSG == '' && $l_result !== false && $deleteResult !== false && $sign){
 					session('Message','修改成功');
 					$model->commit();
+				}else{
+					$model->rollback();
 				}
 			}
 		}
@@ -276,57 +345,57 @@ class UserController extends Controller{
 
 
 	//粉丝view
-	public function fans(){
-		$id = I('get.id');
-		$p = I('get.p',1);
-		if($id!=""){
-			$showCount = 20;//每页显示个数
-			$FollowModel = D('Follow');
-			$count = $FollowModel->where(array('follow_id'=>$id,'delete_tag'=>(bool)0))->count();
-			if($count%$showCount==0)
-				$TotalPage = intval($count/$showCount);
-			else
-				$TotalPage = intval($count/$showCount)+1;
-			$List = $FollowModel->getFansByUserId((int)$id,$p,$showCount);
-			$this->assign('p',$p);//分页
-			$this->assign('TotalPage',$TotalPage);//总页数
-			$this->assign('count',$count);//总数
-			$this->assign('List',$List);
-			$this->assign('user_id',$id);
-			$this->assign('UserContent','UserContent/fans');
-			$this->display('index');
-		}else{
-			header("Content-type: text/html; charset=utf-8");
-			exit('参数错误');
-		}
-
-	}
+//	public function fans(){
+//		$id = I('get.id');
+//		$p = I('get.p',1);
+//		if($id!=""){
+//			$showCount = 20;//每页显示个数
+//			$FollowModel = D('Follow');
+//			$count = $FollowModel->where(array('follow_id'=>$id,'delete_tag'=>(bool)0))->count();
+//			if($count%$showCount==0)
+//				$TotalPage = intval($count/$showCount);
+//			else
+//				$TotalPage = intval($count/$showCount)+1;
+//			$List = $FollowModel->getFansByUserId((int)$id,$p,$showCount);
+//			$this->assign('p',$p);//分页
+//			$this->assign('TotalPage',$TotalPage);//总页数
+//			$this->assign('count',$count);//总数
+//			$this->assign('List',$List);
+//			$this->assign('user_id',$id);
+//			$this->assign('UserContent','UserContent/fans2');
+//			$this->display('index2');
+//		}else{
+//			header("Content-type: text/html; charset=utf-8");
+//			exit('参数错误');
+//		}
+//
+//	}
 
 	//关注view
-	public function follow(){
-		$id = I('get.id');
-		$p = I('get.p',1);
-		if($id!=""){
-			$showCount = 20;//每页显示个数
-			$FollowModel = D('Follow');
-			$count = $FollowModel->where(array('user_id'=>$id,'delete_tag'=>(bool)0))->count();
-			if($count%$showCount==0)
-				$TotalPage = intval($count/$showCount);
-			else
-				$TotalPage = intval($count/$showCount)+1;
-			$List = $FollowModel->getFollowByUserId((int)$id,$p,$showCount);
-			$this->assign('p',$p);//分页
-			$this->assign('TotalPage',$TotalPage);//总页数
-			$this->assign('count',$count);//总数
-			$this->assign('List',$List);
-			$this->assign('user_id',$id);
-			$this->assign('UserContent','UserContent/follow');
-			$this->display('index');
-		}else{
-			header("Content-type: text/html; charset=utf-8");
-			exit('参数错误');
-		}
-	}
+//	public function follow(){
+//		$id = I('get.id');
+//		$p = I('get.p',1);
+//		if($id!=""){
+//			$showCount = 20;//每页显示个数
+//			$FollowModel = D('Follow');
+//			$count = $FollowModel->where(array('user_id'=>$id,'delete_tag'=>(bool)0))->count();
+//			if($count%$showCount==0)
+//				$TotalPage = intval($count/$showCount);
+//			else
+//				$TotalPage = intval($count/$showCount)+1;
+//			$List = $FollowModel->getFollowByUserId((int)$id,$p,$showCount);
+//			$this->assign('p',$p);//分页
+//			$this->assign('TotalPage',$TotalPage);//总页数
+//			$this->assign('count',$count);//总数
+//			$this->assign('List',$List);
+//			$this->assign('user_id',$id);
+//			$this->assign('UserContent','UserContent/follow');
+//			$this->display('index');
+//		}else{
+//			header("Content-type: text/html; charset=utf-8");
+//			exit('参数错误');
+//		}
+//	}
 	//登录验证
     public function login_check(){
     	if (!isset($_SESSION['login'])) {
@@ -358,5 +427,14 @@ class UserController extends Controller{
 		$this->assign('List',$List);
 		$this->assign('page',$show);
 		$this->display('index');
+	}
+
+
+	public function message(){
+			$this->assign('UserContent','UserContent/message');
+			$this->display('index2');
+	}
+	public function test(){
+		$this->ajaxReturn($_GET);
 	}
 }

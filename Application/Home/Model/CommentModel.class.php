@@ -54,5 +54,51 @@ class CommentModel extends RelationModel{
         return $result;
     }
 
+    /**
+     * [getDynamics2 description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function getDynamics2($id){
+        $DBPREFIX = C('DB_PREFIX');
+        $result = $this->relation(['user'])->where(array('id'=>$id))->find();
+
+        $newsModel = M('News');
+
+        $result['newsInfo'] = $newsModel->where(array('id'=>$result['news_id']))->field('id,content,image,title')->find();
+        if($result['newsInfo']['image'] == '' || $result['newsInfo']['image']== null){
+            $img = getNewsImg($result['newsInfo']['content']);
+            if( $img == '' || $img == null ) {
+                $result['newsInfo']['image'] = '';
+            }else{
+                $result['newsInfo']['image'] = getNewsImg($result['newsInfo']['content']);
+            }
+
+        }else{
+            $result['newsInfo']['image'] = 'news/'.$result['newsInfo']['image'];
+        }
+        if($result['newsInfo']['image'] !== '' ){
+            $result['newsInfo']['image'] = U('Image/img',array('image'=>urlencode($result['newsInfo']['image']).'!feature'),false,false);
+        }else{
+            $result['newsInfo']['image'] = __ROOT__.'/Public/img/链接.png';
+        }
+
+        if($result['reply'] != '0'){
+            $reply_content = M('')->query('select c.user_id user_id, l.nickname nickname,c.content content from '.$DBPREFIX.'comment c,'.$DBPREFIX.'login l where l.id = c.user_id and c.id = '.$result['reply']);
+            $result['replyContent'] = $reply_content[0];
+        }else{
+            $result['replyContent'] = '';
+        }
+        return $result;
+    }
+
+    public function getMessage2($id){
+        return $this->getDynamics2($id);
+    }
+
+    public function getMessage3($id){
+        return $this->getDynamics2($id);
+    }
+
 }
 ?>

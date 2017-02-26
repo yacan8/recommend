@@ -37,5 +37,5 @@ class CollectionController extends Controller{
 			$this->ajaxReturn($json);
 		}
 	}
-	
+
 }

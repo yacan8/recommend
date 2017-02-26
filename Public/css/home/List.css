@@ -108,7 +108,7 @@
     border-radius: 15px;
 	font-family: PingFang SC,Lantinghei SC,Helvetica Neue,Helvetica,Arial,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,STHeitiSC-Light,simsun,\\5B8B\4F53,WenQuanYi Zen Hei,WenQuanYi Micro Hei,"sans-serif";;
 	background: rgba(0, 0, 0, 0.5);
-	font-family: 0;
+	font-weight: 100;
 }
 
 @media (max-width: 768px){

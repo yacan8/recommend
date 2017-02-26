@@ -103,8 +103,9 @@ li{	list-style: none;}
 a{
   transition:all .3s;-moz-transition:all .3s;-webkit-transition:all .3s;-o-transition:all .3s;
 }
-.font-12{font-size: 12px;}
+.font-12{font-size: 12px!important;}
 .font-16{font-size: 16px;}
+.font-18{font-size: 18px;}
 
 #jiathis_weixin_modal{
   max-width: 100%!important;
@@ -115,13 +116,13 @@ a{
   border: none!important;
   border-radius: 0!important;
 }
-
+.p-15{padding: 15px 10px;}
 .u-icon{
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 3px;
 }
 .font-smoothing{
-	-webkit-font-smoothing: antialiased;
+	/*-webkit-font-smoothing: antialiased;*/
 	font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei","Helvetica Neue",Arial,sans-serif;
 }

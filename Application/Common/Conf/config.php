@@ -30,9 +30,6 @@ return array(
 		't/:id'  => array('Topic/detail','',array('ext'=>'html')),
 		'n/:id'  => array('News/detail','',array('ext'=>'html')),
 		'u/:id'  =>array('User/index','',array('ext'=>'')),
-		'Service-headlines' =>array('Service/headlines','',array('ext'=>'')),
-		'Service-hot' =>array('Service/hot','',array('ext'=>''))
-
 	),
 );
 ?>

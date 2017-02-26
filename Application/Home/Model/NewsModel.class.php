@@ -212,4 +212,30 @@ class NewsModel extends RelationModel{
 	}
 
 
+	public function getDynamics4($id){
+		$result1 = $this->relation(['user'])->where(array('id'=>$id))-> field('id,contributor,image,content,title')->select();
+		$result = $result1[0];
+
+		if($result['image'] == '' || $result['image']== null){
+			$img = getNewsImg($result['newsInfo']['content']);
+			if( $img == '' || $img == null ) {
+				$result['image'] = '';
+			}else{
+				$result['image'] = getNewsImg($result['content']);
+			}
+
+		}else{
+			$result['image'] = 'news/'.$result['image'];
+		}
+		if($result['image'] !== '' ){
+			$result['image'] = U('Image/img',array('image'=>urlencode($result['newsInfo']['image']).'!feature'),false,false);
+		}else{
+			$result['image'] = __ROOT__.'/Public/img/链接.png';
+		}
+		unset($result['content']);
+
+		return $result;
+	}
+
+
 }

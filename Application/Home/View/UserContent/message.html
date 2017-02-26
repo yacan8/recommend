@@ -1,206 +1,98 @@
-<ul class="c-sections over-h mr_-25">
-    <li <if condition="$read eq 'false'">class="active"</if>><a href="{:U('User/message',array('read'=>'false'))}">未读</a></li>
-	<li <if condition="$read eq 'true'">class="active"</if>><a href="{:U('User/message',array('read'=>'true'))}">已读</a></li>
-	<li class="pull-right"><a href="{:U('MessageManager/readAll',array('id'=>$user_id),false,false)}">全部标记为已读</a></li>
+<script id="message1" type="text/template">
+    <div class="user-item">
+        <div class="media">
+            <div class="media-left">
+                <a href="{{ROOT}}/u/{{content.user_id}}">
+                    <img class="u-icon m-r-xs" src="{{DATAPATH}}/login_thumb/{{content.user.icon||'default.jpg'}}" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <div class="U_Info m-b-sm">
+                    <a class="media-heading Un_t font-bold font-16">{{content.user.nickname}}</a>
+                    · <span class="tc-gray9 font-12 font-smoothing">{{time}}</span>
+                </div>
+                <div class="font-smoothing">
+                    点赞 <i class="fa fa-thumbs-o-up"></i> // <a class="tc-main" href="{{ROOT}}/u/{{content.user_id}}">@{{content.user.nickname}}</a>：{{content.content}} {{if content.replyContent !== ''}} // <a class="tc-main" href="{{ROOT}}/u/{{content.replyContent.user_id}}">@{{content.replyContent.nickname}}</a>：{{content.replyContent.content}}{{/if}}
+                </div>
+                <div class="dynamics-content m-t-sm">
+                    <div class="media bg-gray-f6">
+                        <div class="media-left media-middle">
+                            <a target="_blank" href="{{ROOT}}/n/{{content.news_id}}.html">
+                                <img class="u-icon" src="{{content.newsInfo.image}}" alt="..." style="border-radius:0;">
+                            </a>
+                        </div>
+                        <div class="media-body d_m_content">
+                            <a target="_blank" href="{{ROOT}}/n/{{content.news_id}}.html">{{content.newsInfo.title}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="message2" type="text/template">
+    <div class="user-item">
+        <div class="media">
+            <div class="media-left">
+                <a href="{{ROOT}}/u/{{content.user_id}}">
+                    <img class="u-icon m-r-xs" src="{{DATAPATH}}/login_thumb/{{content.user.icon||'default.jpg'}}" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <div class="U_Info m-b-sm">
+                    <a class="media-heading Un_t font-bold font-16">{{content.user.nickname}}</a>
+                    · <span class="tc-gray9 font-12 font-smoothing">{{time}}</span>
+                </div>
+                <div class="font-smoothing">
+                    {{content.content}} {{if content.replyContent !== ''}} // <a class="tc-main" href="{{ROOT}}/u/{{content.replyContent.user_id}}">@{{content.replyContent.nickanme}}</a>：{{content.replyContent.content}}{{/if}}
+                </div>
+                <div class="dynamics-content m-t-sm">
+                    <div class="media bg-gray-f6">
+                        <div class="media-left media-middle">
+                            <a target="_blank" href="{{ROOT}}/n/{{content.news_id}}.html">
+                                <img class="u-icon" src="{{content.newsInfo.image}}" alt="..." style="border-radius:0;">
+                            </a>
+                        </div>
+                        <div class="media-body d_m_content">
+                            <a target="_blank" href="{{ROOT}}/n/{{content.news_id}}.html">{{content.newsInfo.title}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
 
-</ul>
-
-
-<div class="m-t-sm mr_-25">
-	<if condition="count($List) neq 0">
-
-	<volist name="List" id="vo">
-
-
-		<switch name="vo.type" >
-		
-			<case value="1" break="1">
-				<div class="media m-b-sm bg-white u-message">
-			      	<div class="media-left">
-			        	<a href="{:U('/u/'.$vo['content']['u_id'],'',false,false)}">
-			          		<img class="media-object u-icon" src="{:C('__DATA__')}/login_thumb/{$vo.content.u_icon|default="default.jpg"}">
-			        	</a>
-			      	</div>
-			     	 <div class="media-body">
-			        	<div class="m-b-xs">
-			        		<a class="tc-main" href="{:U('/u/'.$vo['content']['u_id'],'',false,false)}">{$vo.content.u_nickname}</a> 评论了我的话题
-			        	</div>
-			        	<div class="font-12 tc-gray9 m-b-xs">
-			        		{$vo.time}
-			        	</div>
-			        	<p>{$vo.content.content}
-			        		<if condition="$vo['content']['pic_count'] neq '0'">
-					        	<for start="1" end="$vo['content']['pic_count']">
-									<span class="glyphicon glyphicon-picture"></span>
-					        	</for>
-					        </if>
-			        	</p>
-			        
-			      	</div>
-
-			      	<div class="m-t-xs p-md bg-gray-f6">
-			        	<a class="tc-main" href="{:U('/u/'.$vo['content']['u_id'],'',false,false)}">
-			        		{$vo.content.u_nickname}
-			        	</a>：
-			        	<a href="{:U('/t/'.$vo['content']['topic_id'])}" target="_blank">{$vo.content.t_title}</a>
-			      	</div>
-					<div class="m-t-sm">
-						<a href="{:U('TopicComment/view',array('id'=>$vo['content_id']),false,false)}" class="m-r-sm btn btn-info btn-sm" target="_blank">查看</a>
-						<if condition="$read eq 'false'">
-						<a href="{:U('MessageManager/read',array('id'=>$vo['id']),false,false)}" class="m-r-sm btn btn-default btn-sm">标记为已读</a>
-						</if>
-					</div>
-			    </div>
-
-			</case>
-			
-			<case value="2" break="1">
-				<div class="media m-b-sm bg-white u-message">
-			      	<div class="media-left">
-			        	<a href="{:U('/u/'.$vo['content']['u_id'],'',false,false)}">
-			          		<img class="media-object u-icon" src="{:C('__DATA__')}/login_thumb/{$vo.content.u_icon|default="default.jpg"}">
-			        	</a>
-			      	</div>
-			     	 <div class="media-body">
-			        	<div class="m-b-xs"><a class="tc-main" href="{:U('/u/'.$vo['content']['u_id'],'',false,false)}">{$vo.content.u_nickname}</a> 回复了我</div>
-			        	<div class="font-12 tc-gray9 m-b-xs">{$vo.time}</div>
-			        	<p>{$vo.content.content}
-			        	</p>
-			      	</div>
-
-			      	<div class="m-t-xs p-md bg-gray-f6">
-			        	<a class="tc-main" href="{:U('/u/'.$vo['content']['topic_user_id'],'',false,false)}">{$vo.content.topic_user_nickname}</a>：<a href="{:U('/t/'.$vo['content']['topic_id'])}" target="_blank">{$vo.content.t_title}</a>
-			      	</div>
-					<div class="m-t-sm">
-						<a href="{:U('TopicComment/view',array('id'=>$vo['content_id']),false,false)}" class="m-r-sm btn btn-info btn-sm" target="_blank">查看</a>
-						<if condition="$read eq 'false'">
-						<a href="{:U('MessageManager/read',array('id'=>$vo['id']),false,false)}" class="m-r-sm btn btn-default btn-sm">标记为已读</a>
-						</if>
-					</div>
-			    </div>
-
-			</case>
-
-
-		
-			<case value="3" break="1">
-				<div class="media m-b-sm bg-white u-message">
-			      	<div class="media-left">
-			        	<a href="{:U('/u/'.$vo['content']['u_id'],'',false,false)}">
-			          		<img class="media-object u-icon" src="{:C('__DATA__')}/login_thumb/{$vo.content.u_icon|default="default.jpg"}">
-			        	</a>
-			      	</div>
-			     	 <div class="media-body">
-			        	<div class="m-b-xs"><a class="tc-main" href="{:U('/u/'.$vo['content']['u_id'],'',false,false)}">{$vo.content.u_nickname}</a> 赞了我的话题</div>
-			        	<div class="font-12 tc-gray9 m-b-xs">{$vo.time}</div>
-
-			      	</div>
-
-			      	<div class="m-t-xs p-md bg-gray-f6">
-			        	<a class="tc-main" href="{:U('/u/'.$vo['content']['u_id'],'',false,false)}">{$vo.content.u_nickname}</a>：<a href="{:U('/t/'.$vo['content']['topic_id'])}" target="_blank">{$vo.content.t_title}</a>
-			      	</div>
-					<if condition="$read eq 'false'">
-						<div class="m-t-sm">
-							<a href="{:U('MessageManager/read',array('id'=>$vo['id']),false,false)}" class="m-r-sm btn btn-default btn-sm">标记为已读</a>
-						</div>
-					</if>
-			    </div>
-
-			</case>
-			<case value="4" break="1">
-				<div class="media m-b-sm bg-white u-message">
-			      	<div class="media-left">
-			        	<a href="{:U('/u/'.$vo['content']['u_id'],'',false,false)}">
-			          		<img class="media-object u-icon" src="{:C('__DATA__')}/login_thumb/{$vo.content.u_icon|default="default.jpg"}">
-			        	</a>
-			      	</div>
-			     	 <div class="media-body">
-			        	<div class="m-b-xs"><a class="tc-main" href="{:U('/u/'.$vo['content']['u_id'],'',false,false)}">{$vo.content.u_nickname}</a> 赞了我的评论</div>
-			        	<div class="font-12 tc-gray9 m-b-xs">{$vo.time}</div>
-			        	<p>{$vo.content.content}
-			        	</p>
-			      	</div>
-
-			      	<div class="m-t-xs p-md bg-gray-f6">
-			        	<a class="tc-main" href="{:U('/u/'.$vo['content']['topic_user_id'],'',false,false)}">{$vo.content.topic_user_nickname}</a>：<a href="{:U('/t/'.$vo['content']['topic_id'])}" target="_blank">{$vo.content.t_title}</a>
-			      	</div>
-					<div class="m-t-sm">
-						<a href="{:U('TopicComment/view',array('id'=>$vo['content']['comment_id']),false,false)}" class="m-r-sm btn btn-info btn-sm" target="_blank">查看</a>
-						<if condition="$read eq 'false'">
-						<a href="{:U('MessageManager/read',array('id'=>$vo['id']),false,false)}" class="m-r-sm btn btn-default btn-sm">标记为已读</a>
-						</if>
-					</div>
-			    </div>
-
-
-			</case>
-
-			
-			<case value="5" break="1">
-				<div class="media m-b-sm bg-white u-message">
-			      	<div class="media-left">
-			        	<a href="{:U('/u/'.$vo['content']['u_id'],'',false,false)}">
-			          		<img class="media-object u-icon" src="{:C('__DATA__')}/login_thumb/{$vo.content.u_icon|default="default.jpg"}">
-			        	</a>
-			      	</div>
-			     	 <div class="media-body">
-			        	<div class="m-b-xs"><a class="tc-main" href="{:U('/u/'.$vo['content']['u_id'],'',false,false)}">{$vo.content.u_nickname}</a> 关注了我</div>
-			        	<div class="font-12 tc-gray9 m-b-xs">{$vo.time}</div>
-			      	</div>
-
-					<if condition="$read eq 'false'">
-						<div class="m-t-sm">
-							<a href="{:U('MessageManager/read',array('id'=>$vo['id']),false,false)}" class="m-r-sm btn btn-default btn-sm">标记为已读</a>
-						</div>
-					</if>
-			    </div>
-
-			</case>
-			<case value="6" break="1">
-				<div class="media m-b-sm bg-white u-message">
-			      	<div class="media-left">
-			        	<a href="{:U('/u/'.$vo['content']['u_id'],'',false,false)}">
-			          		<img class="media-object u-icon" src="{:C('__DATA__')}/login_thumb/{$vo.content.u_icon|default="default.jpg"}">
-			        	</a>
-			      	</div>
-			     	 <div class="media-body">
-			        	<div class="m-b-xs"><a class="tc-main" href="{:U('/u/'.$vo['content']['u_id'],'',false,false)}">{$vo.content.u_nickname}</a> 回复了我</div>
-			        	<div class="font-12 tc-gray9 m-b-xs">{$vo.time}</div>
-			        	<p>{$vo.content.content}
-			        	</p>
-			      	</div>
-
-			      	<div class="m-t-xs p-md bg-gray-f6">
-			        	<a class="tc-main" href="{:U('/u/'.$vo['content']['topic_user_id'],'',false,false)}">{$vo.content.topic_user_nickname}</a>：<a href="{:U('/t/'.$vo['content']['topic_id'])}" target="_blank">{$vo.content.t_title}</a>
-			      	</div>
-					<div class="m-t-sm">
-						<a href="{:U('TopicComment/view',array('id'=>$vo['content_id']),false,false)}" class="m-r-sm btn btn-info btn-sm" target="_blank">查看</a>
-						<if condition="$read eq 'false'">
-							<a href="{:U('MessageManager/read',array('id'=>$vo['id']),false,false)}" class="m-r-sm btn btn-default btn-sm">标记为已读</a>
-						</if>
-					</div>
-			    </div>
-			</case>
-
-
-		
-			
-
-
-		</switch>
-
-
-
-	</volist>
-	<else/>
-		<div class="text-center tc-gray9 bg-white" style="height:210px;line-height:210px;">暂无消息</div>
-	</if>
-
-
-	<ul class="pagination pagination-sm">
-	    {$page}
-	</ul>
-
-</div>
-	
+<script id="message3" type="text/template">
+    <div class="user-item">
+        <div class="media">
+            <div class="media-left">
+                <a href="{{ROOT}}/u/{{content.user_id}}">
+                    <img class="u-icon m-r-xs" src="{{DATAPATH}}/login_thumb/{{content.user.icon||'default.jpg'}}" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <div class="U_Info m-b-sm">
+                    <a class="media-heading Un_t font-bold font-16">{{content.user.nickname}}</a>
+                    · <span class="tc-gray9 font-12 font-smoothing">{{time}}</span>
+                </div>
+                <div class="font-smoothing">
+                    {{content.content}} {{if content.replyContent !== ''}} // <a class="tc-main" href="{{ROOT}}/u/{{content.replyContent.user_id}}">@{{content.replyContent.nickname}}</a>：{{content.replyContent.content}}{{/if}}
+                </div>
+                <div class="dynamics-content m-t-sm">
+                    <div class="media bg-gray-f6">
+                        <div class="media-left media-middle">
+                            <a target="_blank" href="{{ROOT}}/n/{{content.news_id}}.html">
+                                <img class="u-icon" src="{{content.newsInfo.image}}" alt="..." style="border-radius:0;">
+                            </a>
+                        </div>
+                        <div class="media-body d_m_content">
+                            <a target="_blank" href="{{ROOT}}/n/{{content.news_id}}.html">{{content.newsInfo.title}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
 
