@@ -1,7 +1,7 @@
 		<volist name="UpList" id="vo">
 			<div class="col-sm-6 col-md-3 margin-bottom">
 				<div class="online-item">
-					<div class="online-item-img" style="background: url('{:C('__DATA__')}/news/{$vo.image}') no-repeat center center;background-size: cover;">
+					<div class="online-item-img" style="background: url('{:C('__DATA__')}/{$vo.image}') no-repeat center center;background-size: cover;">
 						<div class="shade">
 							<div class="operate">
 								<a class="operate-item btn-default" href="{:U('News/view',array('id'=>$vo['id']))}" target="_blank">查看</a>

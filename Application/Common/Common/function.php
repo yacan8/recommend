@@ -142,3 +142,58 @@ function timeDiff($DateObj,$time){
     else
         return $str;
 }
+
+
+function getNewsImg($content){
+    preg_match_all('/<img.*?src="(.*?)".*?>/is',$content,$array);
+
+    if($array[1][0]){
+        $_src = $array[1][0];
+        $result_arr = explode('/',$_src);
+
+        $result = '';
+        $sign = false;
+        foreach($result_arr as $value){
+            if($sign){
+                $result .= '/'.$value;
+            }
+            if($value == 'Data'){
+                $sign = true;
+            }
+        }
+        $result = strlen($result)>0?substr($result,1):'';
+    }else{
+        $result = null;
+    }
+    return $result;
+}
+
+
+function getNewsImg2($content,$count){
+    preg_match_all('/<img.*?src="(.*?)".*?>/is',$content,$array);
+
+    if($array[1]){
+        $imgArr = $array[1];
+        $srcs = array_slice($imgArr,0,$count);
+        foreach($srcs as &$src){
+            $result_arr = explode('/',$src);
+
+            $result = '';
+            $sign = false;
+            foreach($result_arr as $value){
+                if($sign){
+                    $result .= '/'.$value;
+                }
+                if($value == 'Data'){
+                    $sign = true;
+                }
+            }
+            if($sign){
+                $src = strlen($result)>0?substr($result,1):'';
+            }
+        }
+    }else{
+        $srcs = array();
+    }
+    return $srcs;
+}

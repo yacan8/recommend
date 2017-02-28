@@ -38,4 +38,42 @@ class CollectionController extends Controller{
 		}
 	}
 
+
+	public function loading(){
+		if(session('?login')){
+			$user_id = session('login');
+			$page = I('get.page',1);
+			$count = 10;
+			$CollectionModel = D('Collection');
+			$json = $CollectionModel->getList($user_id,$page,$count);
+			$this->ajaxReturn($json);
+		}else{
+			$this->ajaxReturn(array());
+		}
+	}
+
+	public function cancel(){
+		if(session('?login')){
+			$id = I('post.id');
+			$user_id = session('login');
+			$collectionModel = M('Collection');
+			if( $user_id == $collectionModel->where(array('id'=>$id))->getField('user_id')){
+				$result = $collectionModel->where(array('id'=>$id))->delete();
+				if($result!== false){
+					$json['success'] = true;
+				}else{
+					$json['success'] = false;
+					$json['message'] = '操作失败';
+				}
+			}else{
+				$json['success'] = false;
+				$json['message'] = '你还没有权限';
+			}
+		}else{
+			$json['success'] = false;
+			$json['message'] = '你还没登录';
+		}
+		$this->ajaxReturn($json);
+	}
+
 }

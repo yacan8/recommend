@@ -289,3 +289,25 @@ a{
 *[data-role='remove']{
 	cursor:pointer;
 }
+.space-item{
+	display: inline-block;
+    color: #017e66;
+    background-color: #e7f2ed;
+    font-size: 13px;
+    text-align: center;
+    padding: 5px 8px;
+    line-height: 1;
+    margin:0 5px 5px 0;
+}
+.space-item.active{
+	background-color: #34B79E;
+	color: #e7f2ed;
+}
+[data-role="remove"]{
+	cursor: pointer;
+}
+.c_u_icon{
+	width: 35px;
+	height: 35px;
+	border-radius: 3px;
+}

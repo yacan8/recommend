@@ -11,7 +11,15 @@ class CommentModel extends RelationModel{
 	        'class_name' => 'Login',
 	        'foreign_key'=>'user_id',
 	        'mapping_fields'=>'nickname,icon'
-	    )
+	    ),
+        'newsInfo' => array(
+            'mapping_type' => self::BELONGS_TO,
+            'class_name' => 'News',
+            'foreign_key'=>'news_id',
+            'mapping_fields'=>'title',
+            'as_fields'=>'title'
+
+        )
     );
 
 
@@ -31,7 +39,7 @@ class CommentModel extends RelationModel{
      * @param  [Integer] $order [description]
      * @return [type]        [description]
      */
-    public function getList($news_id ,$user_id = 0,$page = 1,$count = 5,$order='newest'){
+    public function getList($news_id ,$user_id = 0,$page = 1,$count = 5,$order='newest',$relationNews=false){
         $DBPREFIX = C('DB_PREFIX');
         if( $user_id != 0){
             $condition['user_id'] = $user_id;
@@ -39,13 +47,17 @@ class CommentModel extends RelationModel{
         if( $news_id != 0 ){
             $condition['news_id'] = $news_id;
         }
-        $condition['delete_tag'] = (bool)0;
+        $relationArr = array('user');
+        if($relationNews){
+            array_push($relationArr,'newsInfo');
+        }else{
+            $condition['delete_tag'] = (bool)0;
+        }
         $order = $order == 'newest' ? 'time desc,zan_count desc' : 'zan_count desc,time desc';
-
-        $result = $this ->relation(['user'])->field('id,time,content,user_id,reply,zan_count') -> where($condition) -> order($order) -> page($page,$count) -> select();
+        $result = $this ->relation($relationNews)->field('id,time,content,user_id,reply,zan_count,news_id,delete_tag') -> where($condition) -> order($order) -> page($page,$count) -> select();
         foreach ($result as &$value) {
             if($value['reply'] != '0'){
-                $reply_content = M('')->query('select c.user_id user_id, l.nickname nickname,c.content content from '.$DBPREFIX.'comment c,'.$DBPREFIX.'login l where l.id = c.user_id and c.id = '.$value['reply']);
+                $reply_content = M('')->query('select c.user_id user_id, l.nickname nickname,c.content content from '.$DBPREFIX.'comment c,'.$DBPREFIX.'login l where c.delete_tag = 0 and l.id = c.user_id and c.id = '.$value['reply']);
                 $value['reply_content'] = $reply_content[0];
             }else{
                 $value['reply_content'] = '';
@@ -74,8 +86,6 @@ class CommentModel extends RelationModel{
                 $result['newsInfo']['image'] = getNewsImg($result['newsInfo']['content']);
             }
 
-        }else{
-            $result['newsInfo']['image'] = 'news/'.$result['newsInfo']['image'];
         }
         if($result['newsInfo']['image'] !== '' ){
             $result['newsInfo']['image'] = U('Image/img',array('image'=>urlencode($result['newsInfo']['image']).'!feature'),false,false);

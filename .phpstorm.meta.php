@@ -23,6 +23,7 @@
 			'User' instanceof Home\Model\UserModel,
 			'Login' instanceof Home\Model\LoginModel,
 			'Follow' instanceof Home\Model\FollowModel,
+			'Interest' instanceof Home\Model\InterestModel,
 			'Zan' instanceof Home\Model\ZanModel,
 			'Merge' instanceof Think\Model\MergeModel,
 			'Sections' instanceof Home\Model\SectionsModel,

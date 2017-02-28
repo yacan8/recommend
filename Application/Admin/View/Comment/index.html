@@ -1,0 +1,60 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h3 class="page-header to">
+			评论管理
+		</h3>
+	</div>
+	<div class="col-xs-12">
+		<div class="boder-e-container">
+			共 {$all_count} 条结果
+		</div>
+	</div>
+	<if condition ="($nickname neq '') or ($news_title neq '')">
+	<div class="col-xs-12 m-t-md">
+		<if condition ="$nickname neq ''">
+			<span class='space-item'>{$nickname} <a href="{:U('Comment/comment',array('news_id'=>$news_id))}">×</a></span>
+		</if>
+		<if condition ="$news_title neq ''">
+			<span title="{$news_title}" class='space-item'>{$news_title} <a href="{:U('Comment/comment',array('user_id'=>$user_id))}">×</a></span>
+		</if>
+	</div>
+	</if>
+
+
+	<div class="col-xs-12 m-t-md">
+		<volist name="commentList" id="vo">
+		<div class="media boder-b-dashed">
+		  <div class="media-left">
+		    <a href="{:U('Comment/comment',array('user_id'=>$vo['user_id'],'news_id'=>$news_id))}">
+		      <img class="media-object c_u_icon m-t-xs" src="{:C('__DATA__')}/login_thumb/{$vo.user.icon|default='default.jpg'}" alt="...">
+		    </a>
+		  </div>
+		  <div class="media-body">
+			<div class="m-b-xs">
+				{$vo.content} <if condition="$vo['reply_content'] neq ''"> // <a href="{:U('Comment/comment',array('user_id'=>$vo['reply_content']['user_id'],'news_id'=>$news_id))}">@{$vo.reply_content.nickname}</a>：{$vo.reply_content.content}</if>
+			</div>
+		    <div class="tc-gray9 font-12">
+				<a href="{:U('Comment/comment',array('news_id'=>$news_id,'user_id'=>$vo['user_id']))}">{$vo.user.nickname}</a>
+				·
+		    	<if condition="$vo['title'] neq ''">
+		    	<a href="{:U('Comment/comment',array('user_id'=>$user_id,'news_id'=>$vo['news_id']))}">{$vo.title}</a>
+		    	<else/>
+		    	<span>该内容已被删除</span>
+			    </if>
+		    	·
+		    	<span>{$vo.time}</span>
+				·
+				<if condition="$vo['delete_tag'] eq 0">
+				<a href="{:U('Comment/delete',array('id'=>$vo['id']))}" onclick="return confirm('确认删除吗')">删除</a>
+				<else/>
+				<span>已删除</span>
+				</if>
+		    </div>
+		  </div>
+		</div>
+		</volist>
+		<ul class="pagination pagination-sm m-t-md">
+			{$page}
+		</ul>
+	</div>
+</div>

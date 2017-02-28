@@ -7,8 +7,8 @@ class CollectionModel extends RelationModel{
 	    'News'  =>  array(
 	    	'mapping_type' =>self::HAS_ONE,
 	        'class_name' => 'News',
-	        'foreign_key'=>'collected',
-	        'mapping_fields'=>'id,type,title,intro,publish_time'
+	        'foreign_key'=>'collection_id',
+	        'mapping_fields'=>'id,type,title,intro,publish_time,contributor'
 	    )
 	);
 
@@ -40,5 +40,17 @@ class CollectionModel extends RelationModel{
 		$condition['_logic'] = 'AND';
 		$list = $this->where($data)->field('id,delete_tag')->select();
 		return $list;
+	}
+
+	public function getList($user_id,$page,$count){
+		$condition['user_id'] = $user_id;
+		$result = $this->where($condition)->page($page,$count)->select();
+		$newsModel = D('News');
+		foreach ($result as &$item) {
+			$item['content'] = $newsModel->getNewsById($item['collection_id']);
+		}
+		return $result;
+
+
 	}
 }

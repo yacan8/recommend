@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="__PUBLIC__/css/home/u.css">
     <link rel="stylesheet" href="__PUBLIC__/css/home/comment.css">
     <link rel="stylesheet" href="__PUBLIC__/css/home/u.icon.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/List.css">
     <link href="__PUBLIC__/assets/Font-Awesome-master/css/font-awesome.min.css" rel="stylesheet">
   <php>
     if(session('login') == $user_id)//判断是自己还是他人
@@ -66,9 +67,10 @@
     <include file="UserContent:dynamics" />
     <include file="UserContent:message" />
     <include file="UserContent:userinfo" />
+    <include file="IndexContent:newsTemplate" />
     <include file="Common/footer" />
 </body>
-
+<script type="text/javascript" src="__PUBLIC__/js/assets/jquery.scrollLoading.js"></script>
 <script type="text/javascript">
     var ROOT = "__ROOT__";
     var DATAPATH = "{:C('__DATA__')}";
@@ -84,19 +86,12 @@
     var follow_action_url = "{:U('Follow/followAction')}";
     var fans_action_url = "{:U('Follow/fansAction')}";
     var user_info_loading_url = "{:U('User/userInfoLoading')}";
+    var collection_loading_url = "{:U('Collection/loading')}";
+    var cancel_collection_url = "{:U('Collection/cancel')}";
     var zan_url = "{:U('Zan/zan')}";
     var PUBLIC = "__PUBLIC__";
     var this_url = window.location.href;
     var login_url = "{:U('Login/index')}";
-    var dynamicsPage = 1;
-    var fansPage = 1;
-    var followPage = 1;
-    var messagePage = 1;
-    var dynamicsContent = {hasMore:true,dynamicsList:[],myDynamicsList:[]};
-    var fansContent = {hasMore:true,fansList:[]};
-    var followContent = {hasMore:true,followList:[]};
-    var messageContent = {hasMore:true,messageList:[]};
-    var userInfoContent = {isLoaded:false,userInfo: null};
 
 </script>
 
@@ -107,5 +102,6 @@
 </script>
 <script type="text/javascript" src="__PUBLIC__/js/home/u.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/home/follow.js"></script>
+
 
 </html>

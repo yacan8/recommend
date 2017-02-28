@@ -4,7 +4,7 @@
     <div class="side-list">
         <volist name="List" id="vo">
             <div class="side-list-item m-t-md">
-                <a class="side-item-img" target="_blank" href="{:U('/n/'.$vo['id'])}" style="background-image: url('{:C('__DATA__')}/news_thumb/{$vo.image_thumb}')"></a>
+                <a class="side-item-img" target="_blank" href="{:U('/n/'.$vo['id'])}" style="background-image: url('{:C('__DATA__')}/{$vo.image_thumb}')"></a>
                 <div class="side-item-right text-over-3">
                     <a target="_blank" href="{:U('/n/'.$vo['id'])}">
                         【{$vo.type}】{$vo.title}
@@ -14,5 +14,4 @@
         </volist>
 
     </div>
-
 </div>

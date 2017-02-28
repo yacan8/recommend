@@ -46,26 +46,3 @@ function is_weixin(){
     return false;
 }
 
-function getNewsImg($content){
-    preg_match_all('/<img.*?src="(.*?)".*?>/is',$content,$array);
-
-    if($array[1][0]){
-        $_src = $array[1][0];
-        $result_arr = explode('/',$_src);
-
-        $result = '';
-        $sign = false;
-        foreach($result_arr as $value){
-            if($sign){
-                $result .= '/'.$value;
-            }
-            if($value == 'Data'){
-                $sign = true;
-            }
-        }
-        $result = strlen($result)>0?substr($result,1):'';
-    }else{
-        $result = null;
-    }
-    return $result;
-}

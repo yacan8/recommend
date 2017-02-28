@@ -60,6 +60,5 @@ function getStartEndTime($pre){
 
     $result['start'] = $start;
     $result['end']   = $end;
-    // dump($result);
     return $result;
 }

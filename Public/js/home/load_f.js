@@ -16,8 +16,8 @@
                 		else
                 			object.append('<img src="'+PUBLIC+'/img/loading.gif">');
 	                },
-	                success:function(data,textStatus){
-	                	var _list_container = $("#list_container");
+	                success:function(data){
+						var _list_container = $("#list_container");
 	                	var _load_btn = $("#load");
 	                	if(data==null||data=='[]'){
 	                		_load_btn.hide();
@@ -36,7 +36,9 @@
 	                        }
 	                        if(dataObj!=null){
 		                        for (var i = 0 ; i < dataObj.length; i++) {
-		                        	str += generate(dataObj[i]);
+									dataObj[i].ROOT = ROOT;
+									dataObj[i].DATAPATH = DATAPATH;
+		                        	str += template('news-item',dataObj[i]);
 		                        };
 	                        }
 	                        if(!BtnLoad){
@@ -53,7 +55,9 @@
 	                        }
 		                    object.find('img').remove();
 	                	}
-	                },
+						$('.list-img>img').scrollLoading();
+
+					},
 	                error:function() {
 	                    alert("请求失败");
 	                }

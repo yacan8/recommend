@@ -48,17 +48,22 @@ class NewsModel extends RelationModel{
 			$data['type'] = $type;
 		if($upline){
 			$data['state'] = '1';
-			$List = $this->where($data)->field('id,title,image,image_thumb,type,publish_time,contributor,sections,state')->order('publish_time desc')->relation(true)->select();
+			$List = $this->where($data)->field('id,title,image,image_thumb,type,publish_time,contributor,sections,state,content')->order('publish_time desc')->relation(true)->select();
 		}else if(!$upline){
 			$page = ($page-1)*10;
-			$List = $this->where($data)->limit("$page,10")->field('id,title,image,image_thumb,type,publish_time,contributor,sections,state')->order('publish_time desc')->relation(true)->select();
+			$List = $this->where($data)->limit("$page,10")->field('id,title,image,image_thumb,type,publish_time,contributor,sections,state,content')->order('publish_time desc')->relation(true)->select();
 			$count = $this->where($data)->count();
 		}
 		for ($i=0; $i < count($List); $i++) {
-			if($List[$i]['user']['icon'] == '')
+			if($List[$i]['user']['icon'] == ''){
 				$List[$i]['user']['icon']='default.jpg';
+			}
+			if($List[$i]['image'] == ''){
+				$img = getNewsImg($List[$i]['content']);
+				$List[$i]['image'] = $img;
+				$List[$i]['image_thumb'] = $img;
+			}
 		}
-
 		return $List;
 	}
 

@@ -2,25 +2,21 @@
 <volist name="List" id="vo">
 	<li class="p-sm">
 		<div class="row">
-			<div class="col-sm-6 col-md-3">
-				<div class="list-item-img" style="background: url('{:C('__DATA__')}/news_thumb/{$vo.image_thumb}') no-repeat center center;background-size: cover;">
+			<if condition="$vo['image_thumb']">
+				<div class="col-sm-6 col-md-3">
+					<div class="list-item-img" style="background: url('{:C('__DATA__')}/{$vo.image_thumb}') no-repeat center center;background-size: cover;">
+					</div>
 				</div>
-			</div>
+			</if>
 			<div class="col-sm-6 col-md-9">
 					<div class="overflow-ellipsis">
-						<a href="#"><img class="user-icon"  src="{:C('__DATA__')}/login_thumb/{$vo.user.icon}" alt="提交者" title="提交者"></a>
+						<a href=""><img class="user-icon"  src="{:C('__DATA__')}/login_thumb/{$vo.user.icon}" alt="提交者" title="提交者"></a>
 						<a href="#" class="user-name">{$vo.user.nickname}</a>
 						<span class="user-name" style="margin-left:0">发布于{$vo.publish_time}</span>
 					</div>
-				<span class="list-item-title">
-					<div class="row">
-						<div class="col-sm-6 overflow-ellipsis">
-							<b>【{$vo.type}】{$vo.title}</b>
-						</div>
-						<div class="col-sm-6">
-							栏目：{$vo.sections.sections}
-						</div>
-					</div>
+				<div class="list-item-title to">
+					【{$vo.type}】{$vo.title}
+				</div>
 
 				</span>
 				<a href="{:U('News/view',array('id'=>$vo['id']))}" target="_blank" class="btn btn-default btn-xs op">

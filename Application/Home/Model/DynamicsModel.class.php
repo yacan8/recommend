@@ -21,8 +21,7 @@ class DynamicsModel extends RelationModel{
             $followCondition['user_id'] = $user_id;
             $followCondition['delete_tag'] = false;
             $followUserId = $followModel -> field('follow_id') -> where($followCondition) -> select(false);
-            $dynamicsCondition['_string'] = "user_id in ( $followUserId )";
-            $dynamicsCondition['_logic'] = 'and';
+            $dynamicsCondition['_string'] = "user_id in ( $followUserId ) or user_id = $user_id";
         }else{
             $dynamicsCondition['user_id'] = $user_id;
         }

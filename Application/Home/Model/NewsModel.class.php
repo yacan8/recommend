@@ -143,24 +143,58 @@ class NewsModel extends RelationModel{
 	 * @return [List] [返回前十条最新News]
 	 */
 	public function getTop10(){
-		$List = $this->relation(['sections','type','user'])->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count')->order('publish_time desc')->limit('0,10')->select();
+		$List = $this->relation(['type','user'])->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order('publish_time desc')->limit('0,10')->select();
 		$List = $this->GenerateNews($List);
 		return $List;
 	}
+
+	public function getNewsById($id){
+		$List = $this->relation(['type','user'])->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->find($id);
+		$List = $this->GenerateNewsItem($List);
+		return $List;
+	}
+
+
+
 
 	/**
 	 * [GenerateNews 在传入的新闻列表中添加正确的显示信息,如标签，评价个数]
 	 * @param [type] $List [description]
 	 */
 	public function GenerateNews($List){
-
-		$TypeModel = D('Type');
 		$Date = new \Org\Util\Date();
 		for ($i=0; $i < count($List); $i++) {
 			$List[$i]['PublishTime'] = $Date ->timeDiff($List[$i]['publish_time']);
-			$List[$i]['url'] = U('/n/'.$List[$i]['id']);
+			$List[$i] = $this->GenerateNewsItem($List[$i]);
 		}
 		return $List;
+	}
+
+
+	function GenerateNewsItem($item){
+		$item['url'] = U('/n/'.$item['id']);
+		if($item['image']==''){
+			$imgArr = getNewsImg2($item['content'],3);
+			if( count($imgArr)== 0 ){
+				$item['show_type'] = '0';
+			}else if(count($imgArr)>0 && count($imgArr)<3){
+				$item['show_type'] = '1';
+				$item['image'] = U('Image/img',array('w'=>140,'h'=>100,'image'=> urlencode($imgArr[0].'!featrue')),'',false,false);
+				$item['image_thumb'] = U('Image/img',array('w'=>140,'h'=>100,'image'=> urlencode($imgArr[0].'!featrue')),'',false,false);
+			}else{
+				foreach($imgArr as &$img){
+					$img = U('Image/img',array('w'=>140,'h'=>100,'image'=> urlencode($img.'!featrue')),'',false,false);
+				}
+				$item['image'] = $imgArr;
+				$item['show_type'] = '2';
+			}
+		}else{
+			$item['image'] = U('Image/img',array('w'=>140,'h'=>100,'image'=> urlencode($item['image'].'!featrue')),'',false,false);
+			$item['image_thumb'] = U('Image/img',array('w'=>140,'h'=>100,'image'=> urlencode($item['image_thumb'].'!featrue')),'',false,false);
+			$item['show_type'] = '1';
+		}
+		unset($item['content']);
+		return $item;
 	}
 
 
@@ -179,7 +213,7 @@ class NewsModel extends RelationModel{
 		if($sections !='')
 			$condition['sections'] = $sections;
 		$page = ($page-1)*10;
-		$List =  $this->relation(['type','user']) ->where($condition)->limit("$page,10")->field('id,title,publish_time,type,browse,image,image_thumb,contributor,comment_count')->order('publish_time desc')->select();
+		$List =  $this->relation(['type','user']) ->where($condition)->limit("$page,10")->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order('publish_time desc')->select();
 		$List = $this->GenerateNews($List);
 		return $List;
 	}
@@ -191,7 +225,7 @@ class NewsModel extends RelationModel{
 	 */
 	public function getSectionsList($sections){
 		$condition['sections'] = $sections;
-		$List = $this->relation(true)->where($condition)->field('id,title,publish_time,type,browse,image,image_thumb')->order('publish_time desc')->limit('0,15')->select();
+		$List = $this->relation(true)->where($condition)->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order('publish_time desc')->limit('0,15')->select();
 		$List = $this->GenerateNews($List);
 		return $List;
 	}

@@ -26,7 +26,6 @@
 
     <include file="Common/navbar" />
     <!-- 头条焦点图 -->
-    <include file="IndexContent/Focus" />
     <!-- /头条焦点图 -->
     <div class="container m-t-sm">
         <div class="row">
@@ -48,10 +47,23 @@
         </div>
     </div>
 
+    <include file="IndexContent/newsTemplate" />
     <include file="Common/footer" />
 </body>
+<script src="__PUBLIC__/assets/artTemplate/js/artTemplate.js"></script>
 <script src="__PUBLIC__/js/home/focus.js"></script>
 <script src="__PUBLIC__/js/home/sidefixed.js"></script>
 <script src="__PUBLIC__/js/home/load_f.js?v=20160323"></script>
 <script src="__PUBLIC__/js/home/load.js"></script>
+<script src="__PUBLIC__/js/assets/jquery.scrollLoading.js"></script>
+
+<script>
+    var ROOT = '__ROOT__';
+    var DATAPATH = '{:C("__DATA__")}';
+    var PUBLIC = "__PUBLIC__";
+
+    $(function(){
+        $('.list-img>img').scrollLoading();
+    })
+</script>
 </html>

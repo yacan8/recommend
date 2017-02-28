@@ -26,7 +26,7 @@ var dd_load_url = "{:U('NewsKeyword/loading')}";
         <div id="dd-container" class="dd-container form-control">
             <input type="hidden" id="keyword"  name="keyword"/>
             <volist name="keywordList" id="vo">
-                <span data-id="{$vo.id}" class="dd-item">{$vo.keyword}<span data-role="remove">×</span></span>
+                <span data-id="{$vo.keyword_id}" class="dd-item">{$vo.keyword}<span data-role="remove">×</span></span>
             </volist>
             <input type="text" data-role="dd-input" class="dd-input" placeholder="输入关键字" style="width: 20em;">
             <ul class="dd-load-list dropdown-menu" style="display:none;"></ul>
@@ -62,7 +62,12 @@ var dd_load_url = "{:U('NewsKeyword/loading')}";
 </div>
 <div class="form-group">
     <div class="col-sm-12">
-        <img id="file-img" class="img-thumbnail" alt="" src="{:C('__DATA__')}/news/{$detail.image}">
+        <if condition="$detail['image']">
+        <img id="file-img" class="img-thumbnail" alt="" src="{:C('__DATA__')}/{$detail.image}">
+            <else/>
+            <img id="file-img" class="img-thumbnail" alt="" src="">
+
+        </if>
         <input name="file" type="file" id="file" style="display:none" />
         <button type="button" class="btn btn-default btn-sm btn-file">浏览</button>
     </div>

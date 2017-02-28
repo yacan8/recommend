@@ -10,3 +10,19 @@
     <script src="__PUBLIC__/js/assets/bootstrap.min.js"></script>
     <script src="__PUBLIC__/js/home/nav.js"></script>
     <script src="__PUBLIC__/js/assets/jquery.toaster.js"></script>
+    <script>
+        $(function(){
+            listContentWidthSet();
+            $(window).resize(function(){
+                listContentWidthSet()
+            });
+        })
+
+        function listContentWidthSet(){
+            var client = document.documentElement.clientWidth;
+            if(client < 768){
+                $('.list-content').css('maxWidth',client-$('.list-img').first().width()-30);
+            }
+        }
+
+    </script>

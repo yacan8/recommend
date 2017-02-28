@@ -216,6 +216,7 @@
 	color:#fff;
 	font-size: 18px;
 }
+.cancel-collection,
 .follow-btn,
 .user-header  .header-info .header-menu a{
 	display: inline-block;
@@ -226,6 +227,7 @@
 	position: relative;
 	border-radius: 15px;
 }
+.cancel-collection,
 .follow-btn{
 	font-size: 14px;
 }
@@ -239,11 +241,14 @@
 	display: block;
 	background-color: rgb(255, 106, 0);
 }
+.cancel-collection,
 .follow-btn.active,.follow-btn:hover{
 	color: #fff;
 	background: rgba(60, 60, 60, 0.6);
 }
+.cancel-collection:hover,
 .follow-btn:hover{
+	color:#fff;
 	background: rgba(60, 60, 60, 0.9);
 }
 .user-header  .header-info .header-menu a.active,.user-header  .header-info .header-menu a:hover{
