@@ -229,20 +229,21 @@ class UserController extends Controller{
 		$data['profession'] = I('post.profession')?trim(I('post.profession')):'';
 		$data['province'] = I('post.province')?trim(I('post.province')):'';
 		$data['city'] = I('post.city')?trim(I('post.city')):'';
-		$data['area'] = I('post.area')?trim(I('post.areas')):'';
+		$data['area'] = I('post.areas')?trim(I('post.areas')):'';
 
 		$UserModel = M('User');
 		// code 个人简介字符长度大小判断
 		$data['shelfIntroduction'] = trim(I('post.shelfIntroduction'));
 		if(is_numeric(trim(I('post.qq'))))
 			$data['qq'] = trim(I('post.qq'));
-		$data['sex'] = (bool)trim(I('post.sex'));
+		$data['sex'] = trim(I('post.sex'));
 		$data['modifyTime'] = date('Y-m-d H:i:s',time());
 
-		if($user_id == 0 || $user_id == ''){
+		if($user_id == '0' || $user_id == ''){
 			$data['createTime'] = $data['modifyTime'];
 			$data['deleteTag']  = (bool)0;
 			$u_result = $UserModel->add($data);
+			$user_id = $UserModel->getLastInsID();
 		}else{
 			$u_result = $UserModel->where(array('id'=>$user_id))->save($data);
 		}
@@ -264,8 +265,10 @@ class UserController extends Controller{
 
 
 
-			$LoginModel->id = $login_id;
+
 			$result = $LoginModel->create();
+			$LoginModel->id = $login_id;
+			$LoginModel->userId = $user_id;
 			if(!$result){
 				$message = $LoginModel->getError();
 				$model->rollback();
@@ -291,11 +294,9 @@ class UserController extends Controller{
 
 
 
-				if($user_id == 0 || $user_id == ''){
-					$LoginModel->userId = $UserModel->getLastInsID();
-				}
+
 				if($_FILES['file']['name']!=null){
-					$errorMSG = $LoginModel->change_icon($user_id);
+					$errorMSG = $LoginModel->change_icon($login_id);
 				}
 				$l_result = $LoginModel->where(array('id'=>$login_id))->save();
 

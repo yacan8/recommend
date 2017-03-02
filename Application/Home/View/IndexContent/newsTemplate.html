@@ -6,7 +6,7 @@
                     <img src="" data-url="{{image_thumb}}">
                 </a>
                 <div class="list-content">
-                    <div class="to2"><a class="title" href="{{url}}">{{title}}</a></div>
+                    <div class="to2"><a class="title" target="_blank" href="{{url}}">{{title}}</a></div>
                     <div class="info font-12">
                         <span class="font-smoothing tc-gray9">
                             <a target="_blank" href="{{ROOT}}/u/{{contributor}}"><img class="i-user-icon" src="{{DATAPATH}}/login_thumb/{{user.icon||'default.jpg'}}" ></a>
@@ -20,9 +20,8 @@
 
             {{ else if show_type == '0'}}
             <div class="news-item">
-
                 <div class="">
-                    <div class="to2"><a class="title" href="{{url}}">{{title}}</a></div>
+                    <div class="to2"><a target="_blank" class="title" href="{{url}}">{{title}}</a></div>
                     <div class="info font-12">
                         <span class="font-smoothing tc-gray9">
                             <a target="_blank" href="{{ROOT}}/u/{{contributor}}"><img class="i-user-icon" src="{{DATAPATH}}/login_thumb/{{user.icon||'default.jpg'}}" ></a>
@@ -41,7 +40,7 @@
                 </div>
                 <div class="m-t-sm">
                     {{each image as value i}}
-                        <a href="{{url}}" class="list-img">
+                        <a target="_blank" href="{{url}}" class="list-img">
                             <img src="" data-url="{{value}}">
                         </a>
                     {{/each}}

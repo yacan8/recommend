@@ -1,0 +1,64 @@
+<div class="header">
+    <span class="header-title">内容管理</span>
+</div>
+<div id="content-container">
+
+</div>
+<div id="loading-img" class="text-center m-t-md font-smoothing" style="display: none">
+    <img style="width:20px;height:20px;opacity: .8;" src="__PUBLIC__/img/loading.gif" class="m-r-xs">加载中...
+</div>
+<ul class="pagination pagination-sm m-t-md">
+    {$page}
+</ul>
+<div class="modal fade" tabindex="-1" role="dialog" id="uv-pv">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">浏览指数</h4>
+            </div>
+            <div class="modal-body">
+                <div class="m-b-sm">
+                    <!--<input type="text" class="form-control" id="time" placeholder="请选择时间" style="border-radius: 4px;font-size:12px;">-->
+                    <label>时间：</label> <button class="btn btn-sm btn-default" id="time"></button>
+                </div>
+
+                <div id="index-container"></div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<link rel="stylesheet" href="__PUBLIC__/assets/daterangepicker/css/daterangepicker-bs3.css">
+
+<style>
+    .header{
+        border-bottom: 1px solid #ddd;
+    }
+    .header>.header-title{
+        font-size: 18px;
+        font-weight: 500;
+        border-bottom: 3px solid #F65A4A;
+        display: inline-block;
+        padding: 10px 0;
+        margin-bottom: -3px;
+        margin-left: 10px;
+    }
+    .daterangepicker .ranges .input-mini {
+        width: auto;
+    }
+    #index-container{
+        padding: 20px 5px;
+        font-size: 12px;
+        width: 100%;
+        height: 400px;;
+    }
+</style>
+<include file="IssueContent/pv_header" />
+<script src="__PUBLIC__/assets/daterangepicker/js/moment.min.js"></script>
+<script src="__PUBLIC__/assets/daterangepicker/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="__PUBLIC__/assets/daterangepicker/js/daterangepicker.js"></script>
+<script>
+
+
+</script>

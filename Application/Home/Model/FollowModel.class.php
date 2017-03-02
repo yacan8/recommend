@@ -64,7 +64,14 @@ class FollowModel extends Model{
 					 ->page($page,$count)
 					 ->select();
 		return $List;
+	}
 
+
+	public function getGroupByTime($follow_id,$startTime,$endTime){
+		$DB_PREFIX = C('DB_PREFIX');
+		$result = $this->query("select (select count(1) from {$DB_PREFIX}follow f where UNIX_TIMESTAMP(f.time) < UNIX_TIMESTAMP(DATE_FORMAT(b.time,'%Y-%m-%d')) and b.follow_id = f.follow_id and f.delete_tag = 0) count,DATE_FORMAT(b.time,'%Y-%m-%d') date from {$DB_PREFIX}follow b where b.follow_id = {$follow_id} and b.time BETWEEN '{$startTime}' and '{$endTime}' and b.delete_tag = 0 group by DATE_FORMAT(b.time,'%Y-%m-%d') order by time asc");
+
+		return $result;
 	}
 
 

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <include file="Common/header" />
+    <meta name="KeyWord" content="topic，话题，Campus，Leader，campusleader，高校领袖，高校新闻，高校达人秀。为创业者提供一个展示舞台。">
+    <meta name="description" content="Campus Leader是最校园的发声体，带你了解最新鲜的校园资讯，走近不一样的高校领袖，发掘最有意义的大学生活，玩转高逼格广视野的校园生活！">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/account.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/List.css">
+    <link href="__PUBLIC__/assets/Font-Awesome-master/css/font-awesome.min.css" rel="stylesheet">
+    <title>发布者中心-CampusLeader</title>
+</head>
+
+<body>
+
+<include file="Common/navbar" />
+
+<div class="container" style="min-height:500px;">
+    <div class="row">
+
+        <div class="col-sm-12 col-md-2 m-t-sm">
+            <include file="AccountContent/menu" />
+        </div>
+
+
+        <div class="col-sm-12 col-md-10 p-md bg-white over-h m-t-sm m-b-sm">
+            <include file="$IssueContent" />
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<include file="Common/footer" />
+<include file="IndexContent/newsTemplate" />
+</body>
+
+<script type="text/javascript">
+    var DATAPATH = "{:C('__DATA__')}";
+    var ROOT = "__ROOT__";
+    var login_state = <if condition="session('?login')">true<else/>false</if>;
+    var content_loading_url = "{:U('Apply/contentLoading')}";
+    var PUBLIC = "__PUBLIC__";
+    var contentIndexLoadingUrl = "{:U('Apply/uvPvIndexLoading')}";
+    var this_url = window.location.href;
+    <if condition = "$user_id">
+    var user_id = {$user_id};
+    </if>
+    <if condition = "$p">
+        var page = {$p};
+    <else/>
+        var page = 1;
+    </if>
+
+    var login_url = "{:U('Login/index')}";
+</script>
+<script src="__PUBLIC__/assets/artTemplate/js/artTemplate.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/home/apply.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/assets/jquery.scrollLoading.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/assets/jquery.toaster.js"></script>
+<script type="text/javascript">
+    $(function(){
+        <if condition="session('?Message')">
+                $.toaster({ priority : 'success', title : '<span class="glyphicon glyphicon-ok"> </span>', message : '<php>echo session('Message')</php>'});
+        </if>
+        <if condition="session('?ErrorMessage')">
+                $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-remove"> </span>', message : '<php>echo session('ErrorMessage')</php>'});
+        </if>
+        <php>session('Message',null);session('ErrorMessage',null);</php>
+    })
+</script>
+</html>

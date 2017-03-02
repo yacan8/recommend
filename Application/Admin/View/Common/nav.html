@@ -57,6 +57,21 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                <li>
+                    <a href="#"><i class="fa fa-th-list"></i> 发布者审核<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{:U('Apply/index',array('state'=>0))}"><i class="fa fa-angle-right fa-fw"></i> 待审核</a>
+                        </li>
+                        <li>
+                            <a href="{:U('Apply/index',array('state'=>1))}"><i class="fa fa-angle-right fa-fw"></i> 已通过</a>
+                        </li>
+                        <li>
+                            <a href="{:U('Apply/index',array('state'=>2))}"><i class="fa fa-angle-right fa-fw"></i> 已拒绝</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
 
                 <li>
                     <a href="#"><i class="fa fa-th-list"></i> 用户管理<span class="fa arrow"></span></a>

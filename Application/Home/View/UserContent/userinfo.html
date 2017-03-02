@@ -58,11 +58,7 @@
 
 
 
-        {{ if is_ower }}
-        <div class="m-t-sm">
-          <a href="{{ROOT}}/User/edit" class="btn btn-sm btn-primary">编辑资料</a>
-        </div>
-        {{ /if }}
+
 
         {{ else }}
         <div class="m-t-sm font-smoothing ">
@@ -71,6 +67,11 @@
 
 
 
+        {{ /if }}
+        {{ if is_ower }}
+        <div class="m-t-sm">
+          <a href="{{ROOT}}/User/edit" class="btn btn-sm btn-primary">编辑资料</a>
+        </div>
         {{ /if }}
       </div>
     </div>

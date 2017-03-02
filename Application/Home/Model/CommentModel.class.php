@@ -54,7 +54,7 @@ class CommentModel extends RelationModel{
             $condition['delete_tag'] = (bool)0;
         }
         $order = $order == 'newest' ? 'time desc,zan_count desc' : 'zan_count desc,time desc';
-        $result = $this ->relation($relationNews)->field('id,time,content,user_id,reply,zan_count,news_id,delete_tag') -> where($condition) -> order($order) -> page($page,$count) -> select();
+        $result = $this ->relation($relationArr)->field('id,time,content,user_id,reply,zan_count,news_id,delete_tag') -> where($condition) -> order($order) -> page($page,$count) -> select();
         foreach ($result as &$value) {
             if($value['reply'] != '0'){
                 $reply_content = M('')->query('select c.user_id user_id, l.nickname nickname,c.content content from '.$DBPREFIX.'comment c,'.$DBPREFIX.'login l where c.delete_tag = 0 and l.id = c.user_id and c.id = '.$value['reply']);

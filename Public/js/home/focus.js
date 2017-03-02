@@ -1,14 +1,14 @@
 // 焦点图js
 ;$(function(){
     //上一张事件
-    $(".focus-pre").click(function(event) {
-       focus_op('pre');
+    $(".focus-pre").click(function() {
+        focus_op('pre');
     });
     //下一张事件
-    $(".focus-next").click(function(event) {
+    $(".focus-next").click(function() {
         focus_op('next');
     });
-    auto_next = window.setInterval(function(){
+    window.setInterval(function(){
         focus_op('next');
     },5000);
 })

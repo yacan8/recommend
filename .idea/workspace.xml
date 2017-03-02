@@ -2,34 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75bbf53d-486e-43e9-bf3f-9541df020f1f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/IndexContent/newsTemplate.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Admin/Controller/ApplyController.class.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/Controller/ApplyController.class.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Admin/Model/ApplyModel.class.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/Model/ApplyModel.class.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/IssueContent/apply.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Public/js/home/apply.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/IssueContent/content.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Admin/View/Apply/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/Issue/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/IssueContent/pv_header.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.phpstorm.meta.php" afterPath="$PROJECT_DIR$/.phpstorm.meta.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/CollectionController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/CollectionController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Model/CollectionModel.class.php" afterPath="$PROJECT_DIR$/Application/Home/Model/CollectionModel.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Model/BrowseModel.class.php" afterPath="$PROJECT_DIR$/Application/Home/Model/BrowseModel.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Model/CommentModel.class.php" afterPath="$PROJECT_DIR$/Application/Home/Model/CommentModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Model/DynamicsModel.class.php" afterPath="$PROJECT_DIR$/Application/Home/Model/DynamicsModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/IndexContent/Focus.html" afterPath="$PROJECT_DIR$/Application/Home/View/IndexContent/Focus.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Model/FollowModel.class.php" afterPath="$PROJECT_DIR$/Application/Home/Model/FollowModel.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/css/home/List.css" afterPath="$PROJECT_DIR$/Public/css/home/List.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/IndexContent/List.html" afterPath="$PROJECT_DIR$/Application/Home/View/IndexContent/List.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Model/NewsModel.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Model/NewsModel.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/LoginController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/LoginController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php" afterPath="$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/css/admin/backstage.css" afterPath="$PROJECT_DIR$/Public/css/admin/backstage.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/News/change.html" afterPath="$PROJECT_DIR$/Application/Admin/View/News/change.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Common/function.php" afterPath="$PROJECT_DIR$/Application/Admin/Common/function.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Common/function.php" afterPath="$PROJECT_DIR$/Application/Common/Common/function.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Common/function.php" afterPath="$PROJECT_DIR$/Application/Home/Common/function.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Common/header.html" afterPath="$PROJECT_DIR$/Application/Home/View/Common/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Index/index.html" afterPath="$PROJECT_DIR$/Application/Home/View/Index/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/User/index2.html" afterPath="$PROJECT_DIR$/Application/Home/View/User/index2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/NewsContent/list.html" afterPath="$PROJECT_DIR$/Application/Admin/View/NewsContent/list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/js/home/load_f.js" afterPath="$PROJECT_DIR$/Public/js/home/load_f.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Widget/sidelist.html" afterPath="$PROJECT_DIR$/Application/Home/View/Widget/sidelist.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/css/home/u.css" afterPath="$PROJECT_DIR$/Public/css/home/u.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/js/home/u.js" afterPath="$PROJECT_DIR$/Public/js/home/u.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/NewsContent/upline.html" afterPath="$PROJECT_DIR$/Application/Admin/View/NewsContent/upline.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/UserController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/UserController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Model/VisitorNewsModel.class.php" afterPath="$PROJECT_DIR$/Application/Home/Model/VisitorNewsModel.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/News/detail.html" afterPath="$PROJECT_DIR$/Application/Home/View/News/detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/js/home/focus.js" afterPath="$PROJECT_DIR$/Public/js/home/focus.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/AccountContent/menu.html" afterPath="$PROJECT_DIR$/Application/Home/View/AccountContent/menu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Common/nav.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Common/nav.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/IndexContent/newsTemplate.html" afterPath="$PROJECT_DIR$/Application/Home/View/IndexContent/newsTemplate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/UserContent/userinfo.html" afterPath="$PROJECT_DIR$/Application/Home/View/UserContent/userinfo.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="recommoned.iws" />
@@ -55,74 +52,107 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="NewsModel.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php">
+      <file leaf-file-name="content.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Home/View/IssueContent/content.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-32.166668">
-              <caret line="185" column="81" selection-start-line="185" selection-start-column="81" selection-end-line="185" selection-end-column="81" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DynamicsModel.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Application/Home/Model/DynamicsModel.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.20951156">
-              <caret line="23" column="86" selection-start-line="23" selection-start-column="86" selection-end-line="23" selection-end-column="86" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="upline.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Admin/View/NewsContent/upline.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.5625">
-              <caret line="3" column="89" selection-start-line="3" selection-start-column="89" selection-end-line="3" selection-end-column="89" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Admin/View/NewsContent/list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.647059">
-              <caret line="26" column="101" selection-start-line="26" selection-start-column="90" selection-end-line="26" selection-end-column="101" />
+            <state vertical-scroll-proportion="-27.5">
+              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#if#0;n#div#0;n#li#0;n#volist#0;n#ul#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#li#0;n#volist#0;n#ul#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#2;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NewsModel.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Admin/Model/NewsModel.class.php">
+      <file leaf-file-name="ApplyController.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Home/Controller/ApplyController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.541667">
-              <caret line="63" column="48" selection-start-line="63" selection-start-column="48" selection-end-line="63" selection-end-column="48" />
+            <state vertical-scroll-proportion="-15.625">
+              <caret line="83" column="36" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="function.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Common/Common/function.php">
+      <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.960784">
-              <caret line="198" column="1" selection-start-line="198" selection-start-column="1" selection-end-line="198" selection-end-column="1" />
+            <state vertical-scroll-proportion="-12.5">
+              <caret line="20" column="67" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="function.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Home/Common/function.php">
+      <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Home/View/News/detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.125">
-              <caret line="14" column="28" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="28" />
+            <state vertical-scroll-proportion="-14.375">
+              <caret line="119" column="127" selection-start-line="119" selection-start-column="127" selection-end-line="119" selection-end-column="127" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="apply.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Public/js/home/apply.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-16.11111">
+              <caret line="29" column="85" selection-start-line="29" selection-start-column="85" selection-end-line="29" selection-end-column="85" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewsController.class.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Application/Home/Controller/NewsController.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33701658">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommentModel.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Home/Model/CommentModel.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.9411764">
+              <caret line="56" column="47" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="47" />
+              <folding>
+                <marker date="1488459816000" expanded="true" signature="1910:2078" placeholder="select c.use..." />
+                <marker date="1488459816000" expanded="true" signature="3470:3617" placeholder="select c.use..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Admin/View/Index/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ht_pv.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Public/js/admin/ht_pv.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="112" column="20" selection-start-line="112" selection-start-column="20" selection-end-line="118" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -136,29 +166,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Application/Home/Controller/FansController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Home/Controller/CommentController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Home/Model/MessageModel.class.php" />
-        <option value="$PROJECT_DIR$/Application/Home/Model/ZanModel.class.php" />
-        <option value="$PROJECT_DIR$/Application/Home/Controller/MessageController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Common/Conf/config.php" />
-        <option value="$PROJECT_DIR$/Application/Home/View/UserContent/message.html" />
-        <option value="$PROJECT_DIR$/Application/Admin/Controller/UploadController.class.php" />
-        <option value="$PROJECT_DIR$/Public/js/home/detail.js" />
-        <option value="$PROJECT_DIR$/Application/Home/View/User/edit2.html" />
-        <option value="$PROJECT_DIR$/Public/css/assets/bootstrap.min.css" />
-        <option value="$PROJECT_DIR$/Application/Home/View/UserContent/fans2.html" />
-        <option value="$PROJECT_DIR$/Application/Home/Model/InterestModel.class.php" />
-        <option value="$PROJECT_DIR$/Application/Home/Model/LoginModel.class.php" />
-        <option value="$PROJECT_DIR$/Application/Home/Model/FollowModel.class.php" />
-        <option value="$PROJECT_DIR$/Application/Home/Controller/FollowController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Home/Controller/NewsController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Home/View/UserContent/edit.html" />
-        <option value="$PROJECT_DIR$/Application/Home/View/UserContent/userinfo.html" />
-        <option value="$PROJECT_DIR$/Application/Home/View/UserContent/myDynamics.html" />
-        <option value="$PROJECT_DIR$/Application/Home/View/User/edit.html" />
-        <option value="$PROJECT_DIR$/Application/Home/Controller/UserController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Home/View/User/myDynamics.html" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/DynamicsController.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/View/UserContent/dynamics.html" />
         <option value="$PROJECT_DIR$/index.php" />
@@ -166,15 +173,11 @@
         <option value="$PROJECT_DIR$/Application/Home/View/Widget/sidelist.html" />
         <option value="$PROJECT_DIR$/Application/Home/View/IndexContent/Focus.html" />
         <option value="$PROJECT_DIR$/Application/Home/View/Common/header.html" />
-        <option value="$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php" />
         <option value="$PROJECT_DIR$/Public/css/home/List.css" />
         <option value="$PROJECT_DIR$/Application/Home/View/Index/index.html" />
         <option value="$PROJECT_DIR$/Public/js/home/load_f.js" />
-        <option value="$PROJECT_DIR$/Application/Home/Model/CommentModel.class.php" />
         <option value="$PROJECT_DIR$/Application/Admin/View/News/change.html" />
         <option value="$PROJECT_DIR$/Application/Home/View/IndexContent/List.html" />
-        <option value="$PROJECT_DIR$/Application/Home/View/IndexContent/newsTemplate.html" />
-        <option value="$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Model/CollectionModel.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/View/User/index2.html" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/CollectionController.class.php" />
@@ -187,6 +190,33 @@
         <option value="$PROJECT_DIR$/Application/Admin/Model/NewsModel.class.php" />
         <option value="$PROJECT_DIR$/Application/Admin/View/NewsContent/list.html" />
         <option value="$PROJECT_DIR$/Application/Home/Model/DynamicsModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/View/IndexContent/newsTemplate.html" />
+        <option value="$PROJECT_DIR$/Application/Home/View/UserContent/userinfo.html" />
+        <option value="$PROJECT_DIR$/Application/Home/View/UserContent/edit.html" />
+        <option value="$PROJECT_DIR$/Application/Home/Controller/UserController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/View/Issue/apply.html" />
+        <option value="$PROJECT_DIR$/Application/Home/View/AccountContent/menu.html" />
+        <option value="$PROJECT_DIR$/Public/js/home/focus.js" />
+        <option value="$PROJECT_DIR$/Application/Home/Model/ApplyModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/Controller/LoginController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/View/IssueContent/apply.html" />
+        <option value="$PROJECT_DIR$/Application/Admin/Model/ApplyModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Admin/View/Apply/index.html" />
+        <option value="$PROJECT_DIR$/Application/Admin/View/Common/nav.html" />
+        <option value="$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Admin/Controller/ApplyController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/View/IssueContent/pv_header.html" />
+        <option value="$PROJECT_DIR$/Application/Home/Model/FollowModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/Controller/ApplyController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/View/IssueContent/content.html" />
+        <option value="$PROJECT_DIR$/Application/Home/View/Issue/index.html" />
+        <option value="$PROJECT_DIR$/Application/Home/Model/BrowseModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/Model/VisitorNewsModel.class.php" />
+        <option value="$PROJECT_DIR$/Public/js/home/apply.js" />
+        <option value="$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/Model/CommentModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/View/News/detail.html" />
+        <option value="$PROJECT_DIR$/Application/Home/Controller/NewsController.class.php" />
       </list>
     </option>
   </component>
@@ -197,6 +227,7 @@
   <component name="NamedScopeManager">
     <order />
   </component>
+  <component name="PhpDebugGeneral" hide_empty_superglobals="false" />
   <component name="PhpServers">
     <servers>
       <server host="localhost" id="bc28685c-b2cb-45b5-9ef9-a0e59bbb54f2" name="recommoned" port="8888" />
@@ -248,6 +279,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -298,6 +330,46 @@
               <option name="myItemId" value="Public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommoned" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommoned" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommoned" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommoned" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -328,6 +400,80 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommoned" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommoned" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommoned" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommoned" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IssueContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommoned" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommoned" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Issue" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -367,29 +513,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="recommoned" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="recommoned" />
+              <option name="myItemId" value="Home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
+              <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -411,9 +539,30 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommoned" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommoned" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -424,13 +573,15 @@
     <property name="FullScreen" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="u.css&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/home/u.css&#10;inde&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/index2.html&#10;index2&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/index2.html&#10;new&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/IndexContent/newsTemplate.html&#10;newsm&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/NewsModel.class.php&#10;u.js&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/u.js&#10;change.htm&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/View/News/change.html&#10;dy&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/dynamics.html&#10;load_&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/load_f.js&#10;newModel&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/NewsModel.class.php&#10;List.css&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/home/List.css&#10;IndexC&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/IndexController.class.php&#10;InDE&#9;null&#9;null&#10;Lis&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/IndexContent/List.html&#10;newsMode&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/NewsModel.class.php&#10;Index.ph&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/index.php&#10;function&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Common/function.php&#10;dyna&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/dynamics.html&#10;NewsC&#9;null&#9;null&#10;NewControll&#9;null&#9;null&#10;userinfo.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/userinfo.html&#10;edit.ht&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/edit.html&#10;edi&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/edit.html&#10;User&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/UserController.class.php&#10;follow&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/FollowController.class.php&#10;foll&#9;null&#9;null&#10;inde2&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/index2.html&#10;zanContr&#9;null&#9;null&#10;zanC&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/ZanModel.class.php&#10;List.c&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/home/List.css&#10;fan2&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/fans2.html&#10;bootstrap.min.css&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/bower_components/bootstrap/dist/css/bootstrap.min.css&#10;Acc&#9;null&#9;null&#10;List.htm&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/IndexContent/List.html&#10;detai&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/News/detail.html&#10;det&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/detail.js&#10;comment&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/CommentModel.class.php&#10;Commen&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/CommentModel.class.php&#10;deta&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/detail.js&#10;followC&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/FollowController.class.php&#10;followMode&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/FollowModel.class.php&#10;Followc&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/FollowModel.class.php&#10;fans2&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/fans2.html&#10;newsModel&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/NewsModel.class.php&#10;comm&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/CommentModel.class.php&#10;follo&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/FollowController.class.php&#10;UploadCont&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/Controller/UploadController.class.php&#10;edh&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/View/Common/edhead.html&#10;add&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/View/News/add.html&#10;config.p&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Common/Conf/config.php" />
+    <property name="SearchEverywhereHistoryKey" value="new&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/NewsController.class.php&#10;detail&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/News/detail.html&#10;ht_&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/admin/ht_pv.js&#10;apply.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/apply.js&#10;apply.js&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/ApplyController.class.php&#10;u.js&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/u.js&#10;followC&#9;null&#9;null&#10;content.html&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/IssueContent/content.html&#10;content.ht,&#9;null&#9;null&#10;applyCon&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/Controller/ApplyController.class.php&#10;commentC&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/Controller/CommentController.class.php&#10;edit&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/edit.html&#10;edit.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/edit.html&#10;useri&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/userinfo.html&#10;index&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/Index/index.html&#10;u.css&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/home/u.css&#10;inde&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/index2.html&#10;index2&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/index2.html&#10;newsm&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/NewsModel.class.php&#10;change.htm&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/View/News/change.html&#10;dy&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/dynamics.html&#10;load_&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/load_f.js&#10;newModel&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/NewsModel.class.php&#10;List.css&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/home/List.css&#10;IndexC&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/IndexController.class.php&#10;InDE&#9;null&#9;null&#10;Lis&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/IndexContent/List.html&#10;newsMode&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/NewsModel.class.php&#10;Index.ph&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/index.php&#10;function&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Common/function.php&#10;dyna&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/dynamics.html&#10;NewsC&#9;null&#9;null&#10;NewControll&#9;null&#9;null&#10;userinfo.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/userinfo.html&#10;edit.ht&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/edit.html&#10;edi&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/edit.html&#10;User&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/UserController.class.php&#10;follow&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/FollowController.class.php&#10;foll&#9;null&#9;null&#10;inde2&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/index2.html&#10;zanContr&#9;null&#9;null&#10;zanC&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/ZanModel.class.php&#10;List.c&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/home/List.css&#10;fan2&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/fans2.html&#10;bootstrap.min.css&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/bower_components/bootstrap/dist/css/bootstrap.min.css&#10;Acc&#9;null&#9;null&#10;List.htm&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/IndexContent/List.html&#10;detai&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/News/detail.html&#10;det&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/detail.js&#10;comment&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/CommentModel.class.php" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Application/Home/View/IssueContent" />
       <recent name="$PROJECT_DIR$/Application/Home/View/User" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Application/Home/View" />
       <recent name="$PROJECT_DIR$/Application/Home/View/User" />
     </key>
   </component>
@@ -504,7 +655,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20028612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30114448" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4477612" sideWeight="0.5057143" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -519,7 +670,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.4942857" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -533,11 +684,11 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2532189" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32891566" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20314735" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -567,302 +718,256 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="64" />
+      <option name="time" value="70" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/NewsController.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/UserContent/safe.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.882353">
-          <caret line="142" column="23" selection-start-line="142" selection-start-column="12" selection-end-line="142" selection-end-column="23" />
+        <state vertical-scroll-proportion="-1.25">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FollowController.class.php">
+    <entry file="file://$PROJECT_DIR$/Public/js/home/verify.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="38.125">
-          <caret line="17" column="150" selection-start-line="17" selection-start-column="145" selection-end-line="17" selection-end-column="150" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/NewsController.class.php">
+    <entry file="file://$PROJECT_DIR$/Public/js/home/account.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.875">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/UserContent/edit.html">
+    <entry file="file://$PROJECT_DIR$/Public/js/home/focus.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.823529">
-          <caret line="30" column="15" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/User/edit2.html">
+    <entry file="file://$PROJECT_DIR$/Application/Home/Model/ApplyModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625">
-          <caret line="29" column="25" selection-start-line="29" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/User/edit.html">
+    <entry file="file://$PROJECT_DIR$/Application/Home/Model/LoginModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9625">
-          <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="65" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="8" selection-start-line="75" selection-start-column="8" selection-end-line="100" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Controller/UserController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.235294">
-          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="298" column="51" selection-start-line="297" selection-start-column="16" selection-end-line="299" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/User/myDynamics.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.916666">
-          <caret line="87" column="50" selection-start-line="86" selection-start-column="8" selection-end-line="87" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/DynamicsController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.4018692">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19280206">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27962717">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/IndexContent/SelectList.html">
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/LoginController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/IndexContent/SideList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="53" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/Widget/sidelist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/IndexContent/Focus.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.0">
-          <caret line="24" column="57" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Public/js/assets/jquery.scrollLoading.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="60" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/ImageController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Public/js/home/sidefixed.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="28" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/Common/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.625">
-          <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.5">
-          <caret line="20" column="52" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Public/css/home/List.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.4819276">
-          <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.phpstorm.meta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.phpstorm.meta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/UserContent/userinfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="12" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/Index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.166666">
-          <caret line="65" column="11" selection-start-line="65" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Data/Upload/2017-02-23/58ae4d7776cd8.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Data/Upload/2017-02-26/58b2e06131a31.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Data/Upload/2017-02-26/58b2e08a4132b.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Public/js/home/load_f.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.0">
-          <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/UploadController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.25">
-          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+          <caret line="145" column="53" selection-start-line="145" selection-start-column="47" selection-end-line="145" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/UploadController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.0">
-          <caret line="32" column="68" selection-start-line="32" selection-start-column="65" selection-end-line="32" selection-end-column="68" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="81" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="81" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/View/News/change.html">
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/IssueContent/apply.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5875">
-          <caret line="64" column="38" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="22" selection-start-line="62" selection-start-column="22" selection-end-line="62" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/IndexContent/List.html">
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.416666">
-          <caret line="56" column="45" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.0059405942">
+          <caret line="260" column="61" selection-start-line="260" selection-start-column="53" selection-end-line="260" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Mode/Api/App.class.php">
+    <entry file="file://$PROJECT_DIR$/Public/js/assets/lightbox.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4048843">
-          <caret line="29" column="71" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="71" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/CommentController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="45" selection-start-line="24" selection-start-column="8" selection-end-line="25" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Model/CollectionModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="39" selection-start-line="7" selection-start-column="12" selection-end-line="9" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Model/LoginModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Model/NewsLabelModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="27" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Model/ApplyModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/bower_components/flot/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.666666">
+          <caret line="39" column="60" selection-start-line="39" selection-start-column="52" selection-end-line="39" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/js/admin/ht_change_type.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/BrowseController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/View/Apply/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.666666">
+          <caret line="41" column="88" selection-start-line="41" selection-start-column="88" selection-end-line="41" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/View/Common/nav.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.375">
+          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/Account/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/User/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.5">
+          <caret line="78" column="32" selection-start-line="78" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/View/User/index2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.4125">
-          <caret line="89" column="55" selection-start-line="89" selection-start-column="49" selection-end-line="89" selection-end-column="55" />
-          <folding />
+        <state vertical-scroll-proportion="-28.041666">
+          <caret line="60" column="8" selection-start-line="60" selection-start-column="8" selection-end-line="62" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Model/CollectionModel.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Admin/View/Comment/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.791666">
-          <caret line="51" column="23" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
-          <folding />
+        <state vertical-scroll-proportion="0.78791773">
+          <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="57" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/UserContent/dynamics.html">
+    <entry file="file://$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-133.75">
+          <caret line="214" column="28" selection-start-line="214" selection-start-column="28" selection-end-line="214" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/Index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-32.5">
+          <caret line="52" column="44" selection-start-line="52" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/View/IndexContent/pv.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="43" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/IndexContent/newsTemplate.html">
+    <entry file="file://$PROJECT_DIR$/Application/Admin/View/IndexContent/pv_header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8290489">
-          <caret line="43" column="59" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Model/CommentModel.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/BrowseController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44087404">
-          <caret line="79" column="14" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
-          <folding>
-            <marker date="1488209588000" expanded="true" signature="-1:-1" placeholder="select c.use..." />
-            <marker date="1488209588000" expanded="true" signature="-1:-1" placeholder="select c.use..." />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/CollectionController.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/ApplyController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5372751">
-          <caret line="58" column="47" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.40231362">
+          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/View/Common/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="58" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Public/css/home/u.css">
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/IssueContent/pv_header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.611111">
-          <caret line="250" column="15" selection-start-line="250" selection-start-column="15" selection-end-line="250" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="52" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Model/BrowseModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="74.375">
+          <caret line="23" column="52" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
           <folding />
         </state>
       </provider>
@@ -870,12 +975,75 @@
     <entry file="file://$PROJECT_DIR$/Public/js/home/u.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="1" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="1" />
+          <caret line="474" column="23" selection-start-line="462" selection-start-column="20" selection-end-line="474" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/View/News/index.html">
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FollowController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="79" selection-start-line="56" selection-start-column="78" selection-end-line="56" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Model/FollowModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.625">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding>
+            <marker date="1488383759000" expanded="true" signature="-1:-1" placeholder="select (sele..re_follow..." />
+            <marker date="1488383759000" expanded="true" signature="-1:-1" placeholder="select count..." />
+            <marker date="1488383759000" expanded="true" signature="-1:-1" placeholder="select count..re_follow..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/Issue/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.625">
+          <caret line="45" column="66" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Model/BrowseModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.125">
+          <caret line="13" column="87" selection-start-line="13" selection-start-column="87" selection-end-line="13" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Model/VisitorNewsModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.875">
+          <caret line="11" column="87" selection-start-line="11" selection-start-column="87" selection-end-line="11" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/IssueContent/content.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-27.5">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#2;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/js/admin/ht_pv.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="112" column="20" selection-start-line="112" selection-start-column="20" selection-end-line="118" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/View/Index/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -883,69 +1051,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/View/NewsContent/upline.html">
+    <entry file="file://$PROJECT_DIR$/Public/js/home/apply.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5625">
-          <caret line="3" column="89" selection-start-line="3" selection-start-column="89" selection-end-line="3" selection-end-column="89" />
+        <state vertical-scroll-proportion="-16.11111">
+          <caret line="29" column="85" selection-start-line="29" selection-start-column="85" selection-end-line="29" selection-end-column="85" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Common/function.php">
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.25">
-          <caret line="63" column="1" selection-start-line="63" selection-start-column="1" selection-end-line="63" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Common/function.php">
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/ApplyController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.125">
-          <caret line="14" column="28" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="28" />
+        <state vertical-scroll-proportion="-15.625">
+          <caret line="83" column="36" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/Common/function.php">
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.960784">
-          <caret line="198" column="1" selection-start-line="198" selection-start-column="1" selection-end-line="198" selection-end-column="1" />
+        <state vertical-scroll-proportion="-12.5">
+          <caret line="20" column="67" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Model/NewsModel.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Home/Model/CommentModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.541667">
-          <caret line="63" column="48" selection-start-line="63" selection-start-column="48" selection-end-line="63" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/View/NewsContent/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.647059">
-          <caret line="26" column="101" selection-start-line="26" selection-start-column="90" selection-end-line="26" selection-end-column="101" />
+        <state vertical-scroll-proportion="-5.9411764">
+          <caret line="56" column="47" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="47" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#if#0;n#div#0;n#li#0;n#volist#0;n#ul#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#li#0;n#volist#0;n#ul#0;n#!!top" expanded="true" />
+            <marker date="1488459816000" expanded="true" signature="1910:2078" placeholder="select c.use..." />
+            <marker date="1488459816000" expanded="true" signature="3470:3617" placeholder="select c.use..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/News/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-32.166668">
-          <caret line="185" column="81" selection-start-line="185" selection-start-column="81" selection-end-line="185" selection-end-column="81" />
+        <state vertical-scroll-proportion="-14.375">
+          <caret line="119" column="127" selection-start-line="119" selection-start-column="127" selection-end-line="119" selection-end-column="127" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Model/DynamicsModel.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/NewsController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20951156">
-          <caret line="23" column="86" selection-start-line="23" selection-start-column="86" selection-end-line="23" selection-end-column="86" />
+        <state vertical-scroll-proportion="0.33701658">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
       </provider>

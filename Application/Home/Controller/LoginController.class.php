@@ -64,13 +64,11 @@ class LoginController extends Controller{
 			}else{
 				$LoginModel->password = md5($LoginModel->password);
 				$LoginModel->reg_time = date('y-m-d H:i:s',time());
-				$tel = $LoginModel->tel;
 				$result1 = $LoginModel->add();
-				if($result1!=0){
+				if($result1!==false){
 					session('SMS',null);
 					session('login', $LoginModel->getLastInsID());
 					if(!session('?url')){
-
 						session('url',U('Index/index','',false,true));
 					}
 					$this->redirect("User/edit");
@@ -143,8 +141,8 @@ class LoginController extends Controller{
 					$LoginModel = M('Login');
 					$old_password = $LoginModel ->where("tel = '%d'",$tel)->getField('password');
 					if($old_password !=$data['password']){//如果与原密码一样
-						$LoginModel->where(array('tel'=>$tel))->save($data);
-						if($result!=0){
+						$result = $LoginModel->where(array('tel'=>$tel))->save($data);
+						if($result === false){
 							session('message','密码重置失败');
 							$this->redirect("Login/forget");
 						}

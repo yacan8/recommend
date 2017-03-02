@@ -37,8 +37,6 @@ class NewsModel extends RelationModel{
 	 * @return [List] [<返回查询到的News>]
 	 */
 	public function getById($id){
-		$LoginModel = D('Login');
-		// $MessageModel = D('Message');
 		$List = $this -> relation(true) ->find($id);
 		if($List!=null){
 			$str = '';
@@ -48,10 +46,7 @@ class NewsModel extends RelationModel{
 				if($i != count($List))
 					$str = $str.",";
 			}
-			// $LabelModel = M('Label');
 			$condition['id'] = array('in',$str);
-			// $LabelList =  $LabelModel -> where($condition) ->field('label')->select();
-			// $List['LabelName'] = $LabelList;
 			$List['publish_time'] = substr($List['publish_time'],0,10);
 			$count = count($List['comment'])>4?4:count($List['comment']);
 			for ($j=0; $j < $count; $j++) {
@@ -59,7 +54,6 @@ class NewsModel extends RelationModel{
 				if(strpos($List['comment'][$j]['time'],'秒')||$List['comment'][$j]['time']==''){
 					$List['comment'][$j]['time'] = '刚刚';
 				}
-				// $List['comment'][$j] = $MessageModel->generate($List['comment'][$j]);
 			}
 			return $List;
 		}else{
@@ -75,7 +69,6 @@ class NewsModel extends RelationModel{
 	public function getHeadLines(){
 		$List = $this->relation('type') -> where('state=1') ->order('publish_time desc')-> field('id,image,title,type,image_thumb,publish_time')->select();
 		if(count($List)<5){
-			$LackNum = 5-count($List);
 			$LackList = $this->relation('type')->where('state=0')->order('publish_time desc')-> field('id,image,image_thumb,title,type,publish_time')->limit('0,5')->select();
 			$j = 0;
 			for ($i=count($List); $i < 5; $i++) {
@@ -218,17 +211,30 @@ class NewsModel extends RelationModel{
 		return $List;
 	}
 
-	/**
-	 * [getSectionsList 通过栏目获取访谈新闻列表]
-	 * @param [string] $[sections] [<传入的栏目值>]
-	 * @return [List] [返回查询到的列表]
-	 */
-	public function getSectionsList($sections){
-		$condition['sections'] = $sections;
-		$List = $this->relation(true)->where($condition)->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order('publish_time desc')->limit('0,15')->select();
+
+	public function getIssueList($user_id,$page,$count,$order = 'newest'){
+		if($order == 'newest'){
+			$order = 'publish_time desc';
+		}else{
+			$order = 'browse desc';
+		}
+		$condition['contributor'] = $user_id;
+		$List =  $this->relation(['type','user']) ->where($condition)->page($page,$count)->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order($order)->select();
 		$List = $this->GenerateNews($List);
 		return $List;
 	}
+
+//	/**
+//	 * [getSectionsList 通过栏目获取访谈新闻列表]
+//	 * @param [string] $[sections] [<传入的栏目值>]
+//	 * @return [List] [返回查询到的列表]
+//	 */
+//	public function getSectionsList($sections){
+//		$condition['sections'] = $sections;
+//		$List = $this->relation(true)->where($condition)->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order('publish_time desc')->limit('0,15')->select();
+//		$List = $this->GenerateNews($List);
+//		return $List;
+//	}
 
 	/**
 	 * [getTitlePreAndNext 通过文章ID获取上一篇和下一篇的标题和id]
