@@ -31,7 +31,7 @@ class AccountController extends Controller{
 		$NewsModel = D('News');
 		$CollectionNewIdList = $Model->table($DB_PREFIX.'collection co') ->join($DB_PREFIX.'news n on co.collected = n.id')->where(array('co.collecting'=>$id,'co.type'=>1,'co.delete_tag'=>(bool)0))->field('collected')->limit("$firstrow,$ShowCount")->order('co.id desc')->select();
 		for ($i=0; $i < count($CollectionNewIdList); $i++) {
-			$List[$i] =  $NewsModel->relation(['type','sections']) ->where(array('id'=>$CollectionNewIdList[$i]['collected']))->field('id,title,intro,publish_time,type,browse,image,image_thumb,sections')->find();
+			$List[$i] =  $NewsModel->relation(['type','sections']) ->where(array('id'=>$CollectionNewIdList[$i]['collected'],'delete_tag'=>false))->field('id,title,intro,publish_time,type,browse,image,image_thumb,sections')->find();
 		}
 		$List = $NewsModel->GenerateNews($List);
 

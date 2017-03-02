@@ -8,7 +8,8 @@ class CollectionModel extends RelationModel{
 	    	'mapping_type' =>self::HAS_ONE,
 	        'class_name' => 'News',
 	        'foreign_key'=>'collection_id',
-	        'mapping_fields'=>'id,type,title,intro,publish_time,contributor'
+	        'mapping_fields'=>'id,type,title,intro,publish_time,contributor',
+			'condition' => 'delete_tag = 0'
 	    )
 	);
 

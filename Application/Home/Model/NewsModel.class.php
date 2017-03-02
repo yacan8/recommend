@@ -67,9 +67,9 @@ class NewsModel extends RelationModel{
 	 * @return [List] [<返货头条的List>]
 	 */
 	public function getHeadLines(){
-		$List = $this->relation('type') -> where('state=1') ->order('publish_time desc')-> field('id,image,title,type,image_thumb,publish_time')->select();
+		$List = $this->relation('type') -> where('state=1 and delete_tag = 0') ->order('publish_time desc')-> field('id,image,title,type,image_thumb,publish_time')->select();
 		if(count($List)<5){
-			$LackList = $this->relation('type')->where('state=0')->order('publish_time desc')-> field('id,image,image_thumb,title,type,publish_time')->limit('0,5')->select();
+			$LackList = $this->relation('type')->where('state=0 and delete_tag = 0')->order('publish_time desc')-> field('id,image,image_thumb,title,type,publish_time')->limit('0,5')->select();
 			$j = 0;
 			for ($i=count($List); $i < 5; $i++) {
 				$List[$i] = $LackList[$j];
@@ -87,7 +87,7 @@ class NewsModel extends RelationModel{
 	public function getHotTop7(){
 		// $data = date("Y-m-d H:i:s",strtotime("-1 month"));
 		$data = date("Y-m-d H:i:s",strtotime("-2 year"));
-		$List = $this->order('browse desc')-> where("publish_time >= '$data'") -> field('id,image,title,type,image_thumb')->limit('0,7')->relation('type')->select();
+		$List = $this->order('browse desc')-> where("publish_time >= '$data' and delete_tag = 0") -> field('id,image,title,type,image_thumb')->limit('0,7')->relation('type')->select();
 		return $List;
 	}
 
@@ -101,6 +101,7 @@ class NewsModel extends RelationModel{
 		$where['name']  = array('like', '%'.$key.'%');
 		$where['title']  = array('like','%'.$key.'%');
 		$where['_logic'] = 'or';
+		$where['delete_tag'] = false;
 		$page = ($page-1)*10;
 		$List = $this->relation(['type','user'])->where($where)->order('publish_time desc')->field('id,title,publish_time,browse,type,image,image_thumb,contributor')->limit("$page,10")->select();
 		$List = $this->GenerateNews($List);
@@ -120,7 +121,7 @@ class NewsModel extends RelationModel{
 		if($HeadLinesNum<5){
 			$str = '';
 			$LackNum = 5-$HeadLinesNum;
-			$LackList = $this->limit('0,5') ->where('state=0')->order('publish_time desc')-> field('id')->select();
+			$LackList = $this->limit('0,5') ->where('state=0 and delete_tag = 0')->order('publish_time desc')-> field('id')->select();
 			for ($i=0; $i < $LackNum; $i++) {
 				$str = $str.$LackList[$i]['id'];
 				if($i!= $LackNum-1)
@@ -136,13 +137,15 @@ class NewsModel extends RelationModel{
 	 * @return [List] [返回前十条最新News]
 	 */
 	public function getTop10(){
-		$List = $this->relation(['type','user'])->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order('publish_time desc')->limit('0,10')->select();
+		$condition['delete_tag'] = false;
+		$List = $this->relation(['type','user'])->where($condition)->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order('publish_time desc')->limit('0,10')->select();
 		$List = $this->GenerateNews($List);
 		return $List;
 	}
 
 	public function getNewsById($id){
-		$List = $this->relation(['type','user'])->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->find($id);
+		$condition['delete_tag'] = false;
+		$List = $this->relation(['type','user'])->where($condition)->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->find($id);
 		$List = $this->GenerateNewsItem($List);
 		return $List;
 	}
@@ -205,6 +208,7 @@ class NewsModel extends RelationModel{
 			$condition['type'] = $type;
 		if($sections !='')
 			$condition['sections'] = $sections;
+		$condition['delete_tag'] = false;
 		$page = ($page-1)*10;
 		$List =  $this->relation(['type','user']) ->where($condition)->limit("$page,10")->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order('publish_time desc')->select();
 		$List = $this->GenerateNews($List);
@@ -219,6 +223,7 @@ class NewsModel extends RelationModel{
 			$order = 'browse desc';
 		}
 		$condition['contributor'] = $user_id;
+		$condition['delete_tag'] = false;
 		$List =  $this->relation(['type','user']) ->where($condition)->page($page,$count)->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order($order)->select();
 		$List = $this->GenerateNews($List);
 		return $List;
@@ -253,7 +258,7 @@ class NewsModel extends RelationModel{
 
 
 	public function getDynamics4($id){
-		$result1 = $this->relation(['user'])->where(array('id'=>$id))-> field('id,contributor,image,content,title')->select();
+		$result1 = $this->relation(['user'])->where(array('id'=>$id,'delete_tag'=>false))-> field('id,contributor,image,content,title')->select();
 		$result = $result1[0];
 
 		if($result['image'] == '' || $result['image']== null){

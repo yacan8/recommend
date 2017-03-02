@@ -22,7 +22,57 @@
             });
         })
 
+        $(document).on('click','.content-delete',function(){
+            var _self = $(this);
+            $.confirm({
+                theme:'material',
+                title: '提示',
+                content: '确认删除吗？',
+                buttons: {
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-blue',
+                        action: function(){
+                            $.confirm({
+                                content: function(){
+                                    var self = this;
+                                    return $.ajax({
+                                        url: contentDeleteUrl,
+                                        data:{news_id:_self.attr('data-id')},
+                                        dataType: 'json',
+                                        method: 'post'
+                                    }).done(function (result) {
+                                        if(result.success){
+                                            self.setContentAppend(result.message);
+                                            var parent = _self.parent();
+                                            parent.next().remove();
+                                            parent.prev().remove();
+                                            parent.remove();
+                                        }else{
+                                            self.setContentAppend(result.message);
+                                        }
+                                    }).fail(function(){
+                                        self.setContentAppend('请求失败');
+                                    });
+                                },
+                                title:'消息提示',
+                                buttons:{
+                                    somethingElse:{
+                                        text:'OK',
+                                        btnClass:'btn-default'
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    cancel: {
+                        text: '取消',
+                        btnClass: 'btn-default'
+                    }
 
+                }
+            });
+        });
         $(document).on('click','.uv-pv',function(){
             $('#uv-pv').modal('show');
             var news_id = $(this).attr('data-id');

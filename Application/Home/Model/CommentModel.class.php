@@ -17,7 +17,8 @@ class CommentModel extends RelationModel{
             'class_name' => 'News',
             'foreign_key'=>'news_id',
             'mapping_fields'=>'title',
-            'as_fields'=>'title'
+            'as_fields'=>'title',
+            'condition' => 'delete_tag = 0'
 
         )
     );

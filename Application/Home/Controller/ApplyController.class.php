@@ -13,10 +13,10 @@ class ApplyController extends Controller{
 
 	public function content(){
 		$user_id = session('login');
-		$newsModel = D('Login');
-		$all_count = $newsModel->where(array('contributor'=>$user_id))->count();
+		$newsModel = D('News');
+		$all_count = $newsModel->where(array('contributor'=>$user_id,'delete_tag'=>false))->count();
 		$count = 10;
-		$Page       = new \Think\Page($count,$all_count);// 实例化分页类 传入总记录数和每页显示的记录数
+		$Page       = new \Think\Page($all_count,$count);// 实例化分页类 传入总记录数和每页显示的记录数
 		$show       = $Page->show();// 分页显示输出
 		$this->assign('page',$show);
 		$this->assign('p',I('get.p',1));
@@ -102,4 +102,38 @@ class ApplyController extends Controller{
 		$sql = $followModel->getLastSql();
 		$this->ajaxReturn($result);
 	}
+
+
+	public function contentDelete(){
+		if(session('?login')){
+			$news_id = I('post.news_id');
+			$newsModel = M('News');
+			$author = $newsModel->where(array('id'=>$news_id,'delete_tag'=>false))->getField('contributor');
+			$user_id = session('login');
+			if( $user_id == $author ){
+				$result = $newsModel->where(array('id'=>$news_id))->save(array('delete_tag'=>true));
+				if($result !== false){
+					$json['success'] = true;
+					$json['message'] = '删除成功';
+				}else{
+					$json = array(
+						'success'=>false,
+						'message'=>'删除失败'
+					);
+				}
+			}else{
+				$json = array(
+					'success'=>false,
+					'message'=>'你没有权限操作'
+				);
+			}
+		}else{
+			$json = array(
+				'success'=>false,
+				'message'=>'你还没有登录'
+			);
+		}
+		$this->ajaxReturn($json);
+	}
+
 }

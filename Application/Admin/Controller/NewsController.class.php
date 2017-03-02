@@ -49,7 +49,7 @@ class NewsController extends Controller{
 		$p = I('get.p',1);
 		$SectionsModel = M('Sections');
 		$TypeList = D('Type')->getType();
-		$detail = $NewsModel->where(array('id'=>$id))->find();
+		$detail = $NewsModel->where(array('id'=>$id,'delete_tag'=>false))->find();
 		$SectionList = $SectionsModel->where("type_id =".$detail['type'])->select();
 		$keywordBelongModel = D('NewsKeywordBelong');
 		$keywordList = $keywordBelongModel->relation('keyword')->where(array('news_id'=>$id))->select();
@@ -84,8 +84,8 @@ class NewsController extends Controller{
 	public function uplinetoggle(){
 		$id = I('get.id');
 		$NewsModel = D('News');
-		$UpCount = $NewsModel->where("state = 1")->count();
-		$state = $NewsModel->where("id = $id")->getField('state');
+		$UpCount = $NewsModel->where("state = 1 and delete_tag=0")->count();
+		$state = $NewsModel->where(array('id'=>$id,'delete_tag'=>false))->getField('state');
 		if($state =='0'){
 			if($UpCount>=5)
 				$this->error('上线类型数量已达到最大数量5');
@@ -95,7 +95,7 @@ class NewsController extends Controller{
 		}else{
 			$data['state'] = '0';
 		}
-		$result = $NewsModel->where("id= $id")->save($data);
+		$result = $NewsModel->where(array('id'=>$id,'delete_tag'=>false))->save($data);
 		if($result!=0)
 			$this->redirect('News/index');
 		else
@@ -200,7 +200,7 @@ class NewsController extends Controller{
 					unlink('./Data/news_thumb/'.$detail['image_thumb']);
 				}
 			}
-			$newResult = $NewsModel->where(array('id' => $id))->save();
+			$newResult = $NewsModel->where(array('id'=>$id,'delete_tag'=>false))->save();
 
 
 			//添加关键字
@@ -256,7 +256,7 @@ class NewsController extends Controller{
 	//文章pv
 	public function pv(){
 		$id = I('get.id');
-		$title = M('News')->where(array('id'=>$id))->getField('title');
+		$title = M('News')->where(array('id'=>$id,'delete_tag'=>false))->getField('title');
 		$this->assign('title',$title);
 		$this->assign('id',$id);
 		$this->display('Index/index');

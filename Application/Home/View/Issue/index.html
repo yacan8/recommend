@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="__PUBLIC__/css/home/account.css">
     <link rel="stylesheet" href="__PUBLIC__/css/home/List.css">
     <link href="__PUBLIC__/assets/Font-Awesome-master/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/assets/jquery-confirm/dist/jquery-confirm.min.css">
     <title>发布者中心-CampusLeader</title>
 </head>
 
@@ -44,6 +45,7 @@
     var content_loading_url = "{:U('Apply/contentLoading')}";
     var PUBLIC = "__PUBLIC__";
     var contentIndexLoadingUrl = "{:U('Apply/uvPvIndexLoading')}";
+    var contentDeleteUrl = "{:U('Apply/contentDelete')}";
     var this_url = window.location.href;
     <if condition = "$user_id">
     var user_id = {$user_id};
@@ -57,7 +59,7 @@
     var login_url = "{:U('Login/index')}";
 </script>
 <script src="__PUBLIC__/assets/artTemplate/js/artTemplate.js"></script>
-
+<script src="__PUBLIC__/assets/jquery-confirm/dist/jquery-confirm.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/home/apply.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/assets/jquery.scrollLoading.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/assets/jquery.toaster.js"></script>
