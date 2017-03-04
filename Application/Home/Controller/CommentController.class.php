@@ -81,7 +81,9 @@ class CommentController extends Controller{
                 );
                 $dynamicsResult = $dynamicsModel->add($dynamicsData);
 
-                if ( $dynamicsResult !== false && $replyMessageResult !== false && $authorMessageResult !== false && $commentResult !== false ) {
+                $newsResult = M('News')->where(array('id'=>$news_id))->setInc('comment_count',1);
+
+                if ( $newsResult !== false && $dynamicsResult !== false && $replyMessageResult !== false && $authorMessageResult !== false && $commentResult !== false ) {
                     $model->commit();
                     $json['code'] = 200;
                     $json['message'] = '评论成功';
@@ -99,7 +101,7 @@ class CommentController extends Controller{
 
     public function comment_load(){
         $id = I('get.id');
-        $p = I('get.page',2);
+        $p = I('get.page',1);
         $order = I('get.order','newest');
         $commentModel = D('Comment');
         $commentList =  $commentModel->getList($id,0,$p,5,$order);
@@ -122,7 +124,34 @@ class CommentController extends Controller{
             $json['success'] = false;
             $json['attr'] = array();
         }
+        $this->ajaxReturn($json);
+    }
 
+    public function delete(){
+        $comment_id = I('post.comment_id');
+        $commentModel = M('Comment');
+        $newsModel = M('News');
+        $news_id = $commentModel->where(array('id'=>$comment_id))->getField('news_id');
+        $user_id = $newsModel->where(array('id'=>$news_id,'delete_tag'=>false))->getField('contributor');
+        $login_id= session('login');
+        if( $user_id == $login_id ){
+            $model = M('');
+            $model->startTrans();
+            $result = $commentModel->where(array('id'=>$comment_id))->save(array('delete_tag'=>true));
+            $newsResult =$newsModel->where(array('id'=>$news_id))->setDec('comment_count',1);
+            if($result !== false && $newsResult !== false){
+                $json['success'] = true;
+                $json['message'] = '删除成功';
+                $model->commit();
+            }else{
+                $model->rollback();
+                $json['success'] = false;
+                $json['message'] = '删除失败';
+            }
+        }else{
+            $json['success'] = false;
+            $json['message'] = '你没有权限';
+        }
         $this->ajaxReturn($json);
     }
 }

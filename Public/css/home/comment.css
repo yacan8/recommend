@@ -37,3 +37,24 @@ h5.media-heading{
     color: #F65A4A;
     cursor: default;
 }
+.no-content{cursor: default;}
+.no-content:focus{color: #111!important;}
+.c-sections{
+    float:right;
+}
+.c-sections li{
+    float: left;
+    border-bottom: 2px solid #ccc;
+}
+.c-sections .active{
+    border-color: #F65A4A;
+}
+.c-sections li a{
+    display: inline-block;
+    padding:  5px 8px;
+    color: #999;
+    font-size: 12px;
+}
+.c-sections .active a{
+    color: #F65A4A;
+}

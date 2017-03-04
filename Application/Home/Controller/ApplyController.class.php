@@ -18,6 +18,12 @@ class ApplyController extends Controller{
 		$count = 10;
 		$Page       = new \Think\Page($all_count,$count);// 实例化分页类 传入总记录数和每页显示的记录数
 		$show       = $Page->show();// 分页显示输出
+		$browseModel = D('Browse');
+		$browse_count = $browseModel->getAllCountByUserId($user_id);
+		$news_count = $newsModel->getCountByUserId($user_id);
+
+		$this->assign('news_count',$news_count);
+		$this->assign('browse_count',$browse_count);
 		$this->assign('page',$show);
 		$this->assign('p',I('get.p',1));
 		$this->assign('user_id',$user_id);

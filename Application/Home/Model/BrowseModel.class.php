@@ -13,4 +13,11 @@ class BrowseModel extends Model{
 		$field = "count(1) count ,DATE_FORMAT(time,'%Y-%m-%d') date";
 		return $this->where($condition)->field($field)->order('date desc')->group('date')->select();
 	}
+
+
+	public function getAllCountByUserId($user_id){
+		$subQuery = M('News')->where(array('contributor'=>$user_id,'delete_tag'=>false))->field('id')->select(false);
+		$condition['_string'] = 'news_id in ('.$subQuery.')';
+		return $this->where($condition)->count();
+	}
 }

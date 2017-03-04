@@ -1,3 +1,32 @@
+<div class="header m-b-sm">
+    <span class="header-title">总数据</span>
+</div>
+<div class="p-sm">
+<div class="row">
+    <div class="col-xs-3">
+        <ul class="header-content hover-op8" style="background-color: #72b1ff">
+            <li class="text-center" style="width: 100%">
+                <a class="tc-white" href="#">
+                    <div class="" style="font-size: 28px;"><i class="fa fa-edit"></i> </div>
+                    <div class="font-14">发表</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-xs-9">
+<ul class="header-content text-center">
+    <li>
+        <div class=" font-20 m-b-sm">{$news_count}</div>
+        <div class="font-14">文章数</div>
+    </li>
+    <li>
+        <div class="font-20 m-b-sm">{$browse_count}</div>
+        <div class="font-14">总浏览数</div>
+    </li>
+</ul>
+    </div>
+</div>
+</div>
 <div class="header">
     <span class="header-title">内容管理</span>
 </div>
@@ -18,18 +47,85 @@
                 <h4 class="modal-title">浏览指数</h4>
             </div>
             <div class="modal-body">
-                <div class="m-b-sm">
+                <div id="uv-pv-news-info">
+                </div>
+                <!--<div class="m-b-sm">-->
                     <!--<input type="text" class="form-control" id="time" placeholder="请选择时间" style="border-radius: 4px;font-size:12px;">-->
-                    <label>时间：</label> <button class="btn btn-sm btn-default" id="time"></button>
+                <!--</div>-->
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <label class="font-12">时间段：</label> <a class="label label-info" id="time" href="javascript:;" style="color: #fff;"></a>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="index-container"></div>
+                    </div>
                 </div>
 
-                <div id="index-container"></div>
             </div>
 
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="comment-content">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">评论信息</h4>
+            </div>
+            <div class="modal-body">
+                <div id="comment-news-info">
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-right">
+                            <a href="javascript:;" class="label label-default comment-order active" data-order="newest" style="color: #fff;;">最新</a>
+                            <a href="javascript:;" class="label label-default comment-order" data-order="hot" style="color: #fff;;">最热</a>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="comment-container">
+
+                        </div>
+                        <button id="content-loading-btn" class="btn btn-info btn-block" type="button" data-loading-text="加载中...">查看更多内容</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script id="comment" type="text/template">
+    <div class="media m-b-md">
+        <div class="media-left">
+            <a target="_blank" href="{{user_url}}">
+                <img class="media-object img-circle"  alt="" src="{{DATAPATH}}/login_thumb/{{user.icon || 'default.jpg'}}">
+            </a>
+            </div>
+        <div class="media-body">
+            <h5 class="media-heading">
+                <a href="{{user_url}}" class="sender_id tc-main">{{user.nickname}}</a>
+                {{if author == user_id }}
+                <span class="label label-info">作者</span>
+                {{ /if }}
+                 · <span class="tc-gray9 font-smoothing">{{time}}</span></h5>
+            <div class="font-14"> {{content}};
+                {{if reply_count}}
+                <a class="tc-main" href="{{reply_count.reply_user_url}}">@{{reply_content.nickname}}</a>：{{reply_content.content}}
+                {{ /if }}
+                </div>
+            <div class="m-t-xs" style="font-size:12px;">
+                <a href="javascript:;" class="font-smoothing comment-delete" data-id="{{id}}"><span class="m-r-sm">删除</a>
+            </div>
+        </div>
+    </div>
+</script>
 <link rel="stylesheet" href="__PUBLIC__/assets/daterangepicker/css/daterangepicker-bs3.css">
+<link rel="stylesheet" href="__PUBLIC__/css/home/comment.css">
 
 <style>
     .header{
@@ -44,21 +140,48 @@
         margin-bottom: -3px;
         margin-left: 10px;
     }
-    .daterangepicker .ranges .input-mini {
-        width: auto;
-    }
     #index-container{
         padding: 20px 5px;
         font-size: 12px;
         width: 100%;
         height: 400px;;
     }
+    .header-content{
+        padding: 15px 0;
+        border:1px solid #ddd;
+        border-radius: 4px;
+        display: -webkit-flex; /* Safari */
+        display: flex;
+        background-color: #F65A4A;
+    }
+    .header-content li{
+        width: 50%;
+        border-right: 1px solid #ddd;
+        color:#fff!important;
+    }
+    .header-content li:last-child{
+        border-right-width: 0;
+    }
+    #uv-pv-news-info,#comment-news-info{
+        margin-top: 0px;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 10px;
+        padding-bottom: 15px;
+    }
+    .comment-order.active,.comment-order.active:hover,.comment-order.active:active,.comment-order.active:focus{
+        background-color: #31b0d5;
+    }
+
+
 </style>
 <include file="IssueContent/pv_header" />
 <script src="__PUBLIC__/assets/daterangepicker/js/moment.min.js"></script>
 <script src="__PUBLIC__/assets/daterangepicker/js/bootstrap-datetimepicker.zh-CN.js"></script>
 <script src="__PUBLIC__/assets/daterangepicker/js/daterangepicker.js"></script>
 <script>
+    var commentPage = 1;
+    var comment_loading_url = "{:U('Comment/comment_load')}";
+    var comment_delete_url = "{:U('Comment/delete')}";
 
 
 </script>

@@ -38,7 +38,7 @@ li{	list-style: none;}
 .tc-graya{color:#aaa;}.tc-grayb{color:#bbb;}.tc-grayc{color:#ccc;}.tc-grayd{color:#ddd;}
 .tc-graye{color:#eee;}
 .tc-red{color:red;}
-.tc-white{color: #fff;}
+.tc-white:hover,.tc-white:focus,.tc-white{color: #fff;}
 .font-bold{font-weight:600!important;}
 /*边框*/
 .border-main{border:1px solid #EE786E}
@@ -103,9 +103,11 @@ li{	list-style: none;}
 a{
   transition:all .3s;-moz-transition:all .3s;-webkit-transition:all .3s;-o-transition:all .3s;
 }
+.font-20{font-size: 20px;}
 .font-12{font-size: 12px!important;}
 .font-16{font-size: 16px;}
 .font-18{font-size: 18px;}
+
 
 #jiathis_weixin_modal{
   max-width: 100%!important;
@@ -125,4 +127,8 @@ a{
 .font-smoothing{
 	/*-webkit-font-smoothing: antialiased;*/
 	font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei","Helvetica Neue",Arial,sans-serif;
+}
+
+.hover-op8:hover{
+  opacity: .8!important;
 }

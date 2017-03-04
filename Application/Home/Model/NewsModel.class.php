@@ -228,6 +228,9 @@ class NewsModel extends RelationModel{
 		$List = $this->GenerateNews($List);
 		return $List;
 	}
+	public function getCountByUserId($user_id){
+		return $this->where(array('contributor'=>$user_id,'delete_tag'=>false))->count();
+	}
 
 //	/**
 //	 * [getSectionsList 通过栏目获取访谈新闻列表]
