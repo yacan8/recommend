@@ -127,6 +127,18 @@ class CommentController extends Controller{
         $this->ajaxReturn($json);
     }
 
+
+    public function comment_get_list_load(){
+        $p = I('get.page',1);
+        $order = I('get.order','newest');
+        $commentModel = D('Comment');
+        $user_id = session('login');
+        $commentList =  $commentModel->getListByIssue($user_id,$p,10,$order);
+        $this->ajaxReturn($commentList);
+
+
+    }
+
     public function delete(){
         $comment_id = I('post.comment_id');
         $commentModel = M('Comment');

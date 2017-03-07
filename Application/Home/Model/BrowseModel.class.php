@@ -6,6 +6,8 @@ class BrowseModel extends Model{
 
 
 	public function getIndexByTime($news_id,$startTime,$endTime){
+		$startTime = $startTime . ' 00:00:00';
+		$endTime = $endTime . ' 23:59:59';
 		if($news_id != 0){
 			$condition['news_id'] = $news_id;
 		}

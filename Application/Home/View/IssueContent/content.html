@@ -49,9 +49,7 @@
             <div class="modal-body">
                 <div id="uv-pv-news-info">
                 </div>
-                <!--<div class="m-b-sm">-->
-                    <!--<input type="text" class="form-control" id="time" placeholder="请选择时间" style="border-radius: 4px;font-size:12px;">-->
-                <!--</div>-->
+
 
                 <div class="panel panel-info">
                     <div class="panel-heading">
@@ -105,7 +103,7 @@
             <a target="_blank" href="{{user_url}}">
                 <img class="media-object img-circle"  alt="" src="{{DATAPATH}}/login_thumb/{{user.icon || 'default.jpg'}}">
             </a>
-            </div>
+        </div>
         <div class="media-body">
             <h5 class="media-heading">
                 <a href="{{user_url}}" class="sender_id tc-main">{{user.nickname}}</a>
@@ -127,53 +125,6 @@
 <link rel="stylesheet" href="__PUBLIC__/assets/daterangepicker/css/daterangepicker-bs3.css">
 <link rel="stylesheet" href="__PUBLIC__/css/home/comment.css">
 
-<style>
-    .header{
-        border-bottom: 1px solid #ddd;
-    }
-    .header>.header-title{
-        font-size: 18px;
-        font-weight: 500;
-        border-bottom: 3px solid #F65A4A;
-        display: inline-block;
-        padding: 10px 0;
-        margin-bottom: -3px;
-        margin-left: 10px;
-    }
-    #index-container{
-        padding: 20px 5px;
-        font-size: 12px;
-        width: 100%;
-        height: 400px;;
-    }
-    .header-content{
-        padding: 15px 0;
-        border:1px solid #ddd;
-        border-radius: 4px;
-        display: -webkit-flex; /* Safari */
-        display: flex;
-        background-color: #F65A4A;
-    }
-    .header-content li{
-        width: 50%;
-        border-right: 1px solid #ddd;
-        color:#fff!important;
-    }
-    .header-content li:last-child{
-        border-right-width: 0;
-    }
-    #uv-pv-news-info,#comment-news-info{
-        margin-top: 0px;
-        border-bottom: 1px solid #eee;
-        margin-bottom: 10px;
-        padding-bottom: 15px;
-    }
-    .comment-order.active,.comment-order.active:hover,.comment-order.active:active,.comment-order.active:focus{
-        background-color: #31b0d5;
-    }
-
-
-</style>
 <include file="IssueContent/pv_header" />
 <script src="__PUBLIC__/assets/daterangepicker/js/moment.min.js"></script>
 <script src="__PUBLIC__/assets/daterangepicker/js/bootstrap-datetimepicker.zh-CN.js"></script>
@@ -182,6 +133,7 @@
     var commentPage = 1;
     var comment_loading_url = "{:U('Comment/comment_load')}";
     var comment_delete_url = "{:U('Comment/delete')}";
-
+    var user_id = <if condition="session('?login')">{:session('login')}<else/>0</if>;
 
 </script>
+<script src="__PUBLIC__/js/home/apply-content.js"></script>

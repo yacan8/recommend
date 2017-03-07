@@ -5,6 +5,19 @@ use Think\Controller;
 
 class ApplyController extends Controller{
 
+	public function _initialize(){
+		if(ACTION_NAME != 'apply'){
+			$user_id = session('login');
+			$loginModel = M('Login');
+			$power = $loginModel->where(array('id'=>$user_id))->getField('power');
+			if($power != '0'){
+				$this->assign('power',$power);
+			}else{
+				$this->redirect('Apply/apply');
+			}
+		}
+	}
+
 	public function apply(){
 		$this->assign('IssueContent','IssueContent/apply');
 		$this->display('Issue/index');
@@ -21,7 +34,6 @@ class ApplyController extends Controller{
 		$browseModel = D('Browse');
 		$browse_count = $browseModel->getAllCountByUserId($user_id);
 		$news_count = $newsModel->getCountByUserId($user_id);
-
 		$this->assign('news_count',$news_count);
 		$this->assign('browse_count',$browse_count);
 		$this->assign('page',$show);
@@ -36,13 +48,61 @@ class ApplyController extends Controller{
 		$page = I('get.page',1);
 		$count = 10;
 		$power = $loginModel->where(array('id'=>$user_id))->getField('power');
-//		if( $power == '3' ){
+		if( $power == '3' ){
 			$newsModel = D('News');
 			$result = $newsModel->getIssueList($user_id,$page,$count);
-//		}else{
-//			$result = array();
-//		}
+		}else{
+			$result = array();
+		}
 		$this->ajaxReturn($result);
+	}
+
+
+
+	public function comment(){
+		$user_id = session('login');
+		$commentModel = D('Comment');
+		$order = I('get.order','newest');
+		$all_count = $commentModel->getCommentCountByContributor($user_id);
+		$zan_count = D('Zan')->getCountByContributor($user_id);
+		$zan_count = $zan_count ? $zan_count:'0';
+		$count = 10;
+		$Page       = new \Think\Page($all_count,$count);// 实例化分页类 传入总记录数和每页显示的记录数
+		$show       = $Page->show();// 分页显示输出
+		$this->assign('all_count',$all_count);
+		$this->assign('zan_count',$zan_count);
+		$this->assign('order',$order);
+		$this->assign('page',$show);
+		$this->assign('p',I('get.p',1));
+		$this->assign('user_id',$user_id);
+		$this->assign('IssueContent','IssueContent/comment');
+		$this->display('Issue/index');
+	}
+
+
+	public function fans(){
+		$user_id = session('login');
+		$followModel = M('Follow');
+		$cancelFollowModel = M('CancelFollow');
+		$fans_count = $followModel->where(array('follow_id'=>$user_id,'delete_tag'=>false))->count();
+		$cancel_follow_count = $cancelFollowModel->where(array('follow_id'=>$user_id,'delete_tag'=>false))->count();
+		$this->assign('fans_count',$fans_count);
+		$this->assign('cancel_follow_count',$cancel_follow_count);
+		$this->assign('IssueContent','IssueContent/fans');
+		$this->display('Issue/index');
+	}
+
+
+	public function info(){
+		session('login',41);
+		$user_id = session('login');
+		$applyModel = M('Apply');
+		$condition['state'] = 1;
+		$condition['user_id'] = $user_id;
+		$info = $applyModel->where($condition)->find();
+		$this->assign('info',$info);
+		$this->assign('IssueContent','IssueContent/info');
+		$this->display('Issue/index');
 	}
 
 	//发布者Action
@@ -105,7 +165,12 @@ class ApplyController extends Controller{
 		$followModel = D('Follow');
 		$follow_id = session('login');
 		$result = $followModel->getGroupByTime($follow_id,I('get.startTime'),I('get.endTime'));
-		$sql = $followModel->getLastSql();
+		$this->ajaxReturn($result);
+	}
+	public function cancelFollowLoading(){
+		$cancelFollowModel = D('CancelFollow');
+		$follow_id = session('login');
+		$result = $cancelFollowModel->getGroupByTime($follow_id,I('get.startTime'),I('get.endTime'));
 		$this->ajaxReturn($result);
 	}
 
