@@ -49,9 +49,9 @@
         //     _self.parents("span.la-info").remove();
         // });
         //添加标签按钮
-        $('.label_ku_add').click(function(event) {
-            $('.add-label').focus();
-        });
+        //$('.label_ku_add').click(function(event) {
+        //    $('.add-label').focus();
+        //});
 
 
         //ajax远程添加标签

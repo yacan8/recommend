@@ -77,6 +77,30 @@ class UserController extends Controller{
 		$this->assign('readInfo',$readInfo);
 		$this->display('myDynamics');
 	}
+
+
+	public function changePasswordView(){
+		$this->assign('UserContent','UserContent/dynamics');
+		$this->display('index2');
+	}
+	public function ChangePasswordAction(){
+		$o_password  = I('post.o_password');
+		$n_password  = I('post.n_password');
+		$re_password = I('post.re_password');
+		if($n_password!=$re_password){
+			session('message','新密码与确认密码不一致');
+			$this->redirect('Account/index',array());
+		}else{
+			if(strlen($n_password)<6||strlen($n_password)>20){
+				session('message','密码长度必须为6~20');
+			}else{
+				$LoginModel = D("Login");
+				$message = $LoginModel->ChangePassword($o_password,$n_password,session('login'));
+				session('message',$message);
+			}
+		}
+		$this->redirect('Account/index',array());
+	}
 	public function userInfoLoading(){
 		$id = I('get.id',0);
 		if($id != 0){
@@ -319,7 +343,9 @@ class UserController extends Controller{
 
 	// 账号安全view
 	public function safe(){
-		$this->display('edit');
+		$readInfo = $this->getReadInfo(session('login'));
+		$this->assign('readInfo',$readInfo);
+		$this->display('User/safe');
 	}
 	//修改密码action
 	public function ChangePassword(){

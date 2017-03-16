@@ -41,15 +41,16 @@
                         <a href="#">{$List.user.nickname}</a> ·
                         {$List.publish_time} · {$List.browse}次浏览
                     </span>
-
-                    <div class="detail-img"><img src="{:C('__DATA__')}/{$List.image}"></div>
-                    <div class="detail-content">
+                    <if condition = "$List['image']">
+                        <div class="detail-img"><img src="{:C('__DATA__')}/{$List.image}"></div>
+                    </if>
+                    <div class="detail-content m-t-md">
                         {$List.content}
                     </div>
                     <div class="m-t-sm m-b-md">
-                        标签：
-                        <volist name="List.LabelName" id="vo">
-                            <span class="la-info">{$vo.label}</span>
+                        关键字：
+                        <volist name="keywords" id="vo">
+                            <span class="la-info">{$vo.keyword}</span>
                         </volist>
                     </div>
                     <div class="operate">

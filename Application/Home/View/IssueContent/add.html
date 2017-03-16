@@ -1,20 +1,15 @@
 
 <script type="text/javascript">
-var PUBLIC = "__PUBLIC__";
-var dd_load_url = "{:U('NewsKeyword/loading')}";
+    var PUBLIC = "__PUBLIC__";
+    var dd_load_url = "{:U('Admin/NewsKeyword/loading')}";
 </script>
 <script type="text/javascript" src="__PUBLIC__/js/admin/admin.js"></script>
-
 <script type="text/javascript" src="__PUBLIC__/js/admin/keyword.js"></script>
-<include file="Common:edhead" />
+<link rel="stylesheet" href="__PUBLIC__/css/admin/keyword.css">
+<include file="IssueContent:edhead" />
 
-<div class="row margin-bottom">
-	<div class="col-xs-12">
-        <h3 class="page-header">发表新闻</h3>
-    </div>
-</div>
 
-<form class="form-horizontal" id='new-form' method="post" action="{:U('News/addNews')}" enctype="multipart/form-data">
+<form class="form-horizontal" id='new-form' method="post" action="{:U('Apply/publishAction')}" enctype="multipart/form-data">
     <div class="form-group">
         <div class="col-sm-12">
             <input type="text" class="form-control" id="title" name="title" placeholder="输入标题" value="" required />

@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="page-header">新闻抓取</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 m-b-sm">
+        <form class="form-inline">
+            <label>选择来源：</label>
+            <label class="checkbox-inline" data-toggle="tooltip" data-placement="top" title="最多只能2000条数据" style="margin-right:10px">
+              <input type="checkbox" class="from" value="sina" checked> 新浪
+            </label>
+            <label class="checkbox-inline" data-toggle="tooltip" data-placement="top" title="最多只能800条数据" style="margin-left:0">
+              <input type="checkbox" class="from" value="_163" checked> 网易
+            </label>
+            <div class="form-group m-l-lg">
+                <label>最早发布时间：</label>
+                <input type="text" class="form-control input-sm" id="time" placeholder="选择抓取时间" />
+            </div>
+            <button type="button" class='m-l-lg btn btn-sm btn-primary' id="crawler" data-loading-text="抓取中...">开始抓取</button>
+        </form>
+
+
+    </div>
+    <div class="col-xs-12" id="crawler-table">
+
+    </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/assets/artTemplate/js/artTemplate.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/assets/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+<script src="__PUBLIC__/assets/daterangepicker/js/moment.min.js"></script>
+<script src="__PUBLIC__/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="__PUBLIC__/js/admin/crawler.js"></script>
+<script>
+
+</script>
+
+
+<script id="crawler-news" type="text/template">
+    <div class="m-b-sm">
+        总共抓取 <span class="tc-main"> {{list.length}} </span> 条数据
+        <button type="button" class='m-l-lg btn btn-sm btn-success' id="crawler-in-begin" data-loading-text="队列进行中...">开始入库</button>
+        <button type="button" class='m-l-sm btn btn-sm btn-default' id="crawler-reset" >重置</button>
+
+    </div>
+    <div class="table-responsive" style="font-size:12px">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>来源</th>
+                <th>标题</th>
+                <th>分类</th>
+                <th>时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{each list as value i}}
+            <tr>
+                <td class="from_id">{{value.from_id}}</td>
+                <td class="from">{{value.from}}</td>
+                <td class="title"><a class="tc-main" href="{{value.url}}" target="_blank">{{value.title}}</a></td>
+                <td class="type">{{value.type}}</td>
+                <td class="time">{{value.time}}</td>
+                <td class="operate"><a class="crawler-delete fa-times fa tc-main" data-toggle="tooltip" data-placement="top" title="移除该项" href="javascript:;"></a></td>
+            </tr>
+            {{/each}}
+            </tbody>
+
+        </table>
+    </div>
+</script>

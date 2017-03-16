@@ -10,8 +10,8 @@
 			</if>
 			<div class="col-sm-6 col-md-9">
 					<div class="overflow-ellipsis">
-						<a href=""><img class="user-icon"  src="{:C('__DATA__')}/login_thumb/{$vo.user.icon}" alt="提交者" title="提交者"></a>
-						<a href="#" class="user-name">{$vo.user.nickname}</a>
+						<a target="_blank" href="{:U('User/applyContent',array('id'=>$vo['contributor']))}"><img class="user-icon"  src="{:C('__DATA__')}/login_thumb/{$vo.user.icon}" alt="提交者" title="提交者"></a>
+						<a target="_blank" href="{:U('User/applyContent',array('id'=>$vo['contributor']))}" class="user-name">{$vo.user.nickname}</a>
 						<span class="user-name" style="margin-left:0">发布于{$vo.publish_time}</span>
 					</div>
 				<div class="list-item-title to">

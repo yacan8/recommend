@@ -48,7 +48,7 @@ class ApplyController extends Controller{
 		$page = I('get.page',1);
 		$count = 10;
 		$power = $loginModel->where(array('id'=>$user_id))->getField('power');
-		if( $power == '3' ){
+		if( $power != '0' ){
 			$newsModel = D('News');
 			$result = $newsModel->getIssueList($user_id,$page,$count);
 		}else{
@@ -57,6 +57,75 @@ class ApplyController extends Controller{
 		$this->ajaxReturn($result);
 	}
 
+
+	public function publish(){
+		$typeModel = D('Admin/Type');
+		$TypeList = $typeModel->getType();
+		$this->assign('TypeList',$TypeList);
+		$this->assign('IssueContent','IssueContent/publish');
+		$this->display('Issue/index');
+	}
+
+	public function publishAction(){
+		$NewsModel = D("Admin/News");
+		$result = $NewsModel->create();
+		if(!$result){
+			$this->error($NewsModel->getError());
+		}else{
+			$Model = M('');
+			$Model->startTrans();
+			if($_FILES['file']['name']!=null){
+				if($NewsModel->upload()=='上传失败'){
+					$this->error('上传失败');
+				}
+			}
+
+			$NewsModel->publish_time = date('y-m-d H:i:s',time());
+			$NewsModel->state = '0';
+			$NewsModel->contributor = session('login');
+
+			$newResult = $NewsModel->add();
+			$newsId = $NewsModel->getLastInsID();
+
+			//添加关键字
+			$KeywordModel = M('NewsKeyword');
+			$KeywordStr = $_POST['keyword'];
+			$KeywordArr = json_decode($KeywordStr,TRUE);
+
+			$sign = true;
+			foreach ($KeywordArr as &$item) {
+				if( $item['id'] == 0) {
+					if ( $keyword = $KeywordModel->where(array('keyword'=>$item['keyword']))->find() ){
+						$item['id'] = $keyword['id'];
+					}else{
+						$keywordResult = $KeywordModel->add(array('keyword'=>$item['keyword']));
+						if( $keywordResult !== false ){
+							$item['id'] = $KeywordModel->getLastInsID();
+						}else{
+							$sign = false;
+						}
+					}
+				}
+			}
+			$keywordBelongSign = true;
+			if($sign){
+				$keywordBelongModel = M('NewsKeywordBelong');
+				foreach ($KeywordArr as $item) {
+					$keywordBelongResult = $keywordBelongModel->add(array('keyword_id'=>$item['id'],'news_id' => $newsId));
+					if( $keywordBelongResult === false ){
+						$keywordBelongSign = false;
+					}
+				}
+			}
+			if( $keywordBelongSign && $sign && $newResult!==false) {
+				$Model->commit();
+				$this->success('添加成功');
+			}else{
+				$Model->rollback();
+				$this->error('添加失败');
+			}
+		}
+	}
 
 
 	public function comment(){

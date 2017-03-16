@@ -96,24 +96,7 @@ class AccountController extends Controller{
 	}
 
 
-	public function ChangePassword(){
-		$o_password  = I('post.o_password');
-		$n_password  = I('post.n_password');
-		$re_password = I('post.re_password');
-		if($n_password!=$re_password){
-			session('message','新密码与确认密码不一致');
-			$this->redirect('Account/index',array());
-		}else{
-			if(strlen($n_password)<6||strlen($n_password)>20){
-				session('message','密码长度必须为6~20');
-			}else{
-				$LoginModel = D("Login");
-				$message = $LoginModel->ChangePassword($o_password,$n_password,session('login'));
-				session('message',$message);
-			}
-		}
-		$this->redirect('Account/index',array());
-	}
+
 
 	//取消收藏
 	public function d_attention(){

@@ -9,10 +9,10 @@ class UserController extends Controller{
  	}
 	public function index(){
 		$LoginModel = M('Login');
-		$count      = $LoginModel->count();
+		$count      = $LoginModel->where(array('power'=>0))->count();
 		$Page       = new \Think\Page($count,10);
 		$show       = $Page->show();
-		$List = $LoginModel->order('reg_time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+		$List = $LoginModel->where(array('power'=>0))->order('reg_time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
 		for ($i=0; $i < count($List); $i++) { 
 			if($List[$i]['icon'] == '')
 				$List[$i]['icon'] = 'default.jpg';
@@ -21,6 +21,22 @@ class UserController extends Controller{
 		$this->assign('page',$show);
 		$this->assign('List',$List);
 		$this->display();
+	}
+
+	public function applyUser(){
+		$loginModel = M('Login');
+		$count      = $loginModel->where(array('power'=>3))->count();
+		$Page       = new \Think\Page($count,10);
+		$show       = $Page->show();
+		$List = $loginModel->where(array('power'=>3))->order('reg_time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+		for ($i=0; $i < count($List); $i++) {
+			if($List[$i]['icon'] == '')
+				$List[$i]['icon'] = 'default.jpg';
+		}
+		$this->assign('title','发布者管理');
+		$this->assign('page',$show);
+		$this->assign('List',$List);
+		$this->display('applyUser');
 	}
 
 	//修改权限
@@ -39,9 +55,29 @@ class UserController extends Controller{
 		}
 	}
 
+
+
+
 	//注册用户根据日期统计view
 	public function reg_s(){
 		$this->display("reg_statistics");
+	}
+
+
+	public function applyContent(){
+		$user_id = I('get.id');
+		$userInfo = D('Login')->getInfoByid($user_id);
+
+		$count = 10;
+		$p = I('get.p',1);
+		$NewsModel = D('News');
+		$List = $NewsModel->getListByUserId($user_id,$p,$count);
+		$Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数
+		$show       = $Page->show();// 分页显示输出
+		$this->assign('userInfo',$userInfo);
+		$this->assign('page',$show);
+		$this->assign('List',$List);
+		$this->display('applyContent');
 	}
 	//注册用户根据日期统计action
 	public function reg_statistics(){

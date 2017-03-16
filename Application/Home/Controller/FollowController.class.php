@@ -39,6 +39,9 @@ class FollowController extends Controller{
 		if(session('?login')) {
 			$user_id = I('post.id');
 			$follow_id = session('login');
+			$time = date('Y-m-d',time());
+			$model = M('');
+			$model->startTrans();
 			if ($user_id != $follow_id) {
 				$followModel = M('Follow');
 				$new_info = $followModel->where(array('user_id' => $follow_id, 'follow_id' => $user_id))->find();
@@ -47,23 +50,36 @@ class FollowController extends Controller{
 					$result = $followModel->where(array('id' => $new_info['id']))->save(array('time' => date('Y-m-d H:i:s', time()), 'delete_tag' => (bool)1));
 					$json['id'] = $new_info['id'];
 					$json['is_follow'] = '0';
+					$cancelFollowModel = M('CancelFollow');
+					$cancelFollowInfo = $cancelFollowModel->where(array('user_id'=>$follow_id,'follow_id'=>$user_id,'DATE_FORMAT(time,"%Y-%m-%d")'=>$time))->find();
+					if( !$cancelFollowInfo ){
+						$cancelFollowResult =  $cancelFollowModel->add(array('user_id'=>$follow_id,'follow_id'=>$user_id,'time'=>date('Y-m-d H:i:s',time())));
+					}else{
+						$cancelFollowResult = 1;
+					}
 				} else if ($new_info && $new_info['delete_tag'] == '1') {
 					$new_info['delete_tag'] = '0';
 					$result = $followModel->where(array('id' => $new_info['id']))->save(array('time' => date('Y-m-d H:i:s', time()), 'delete_tag' => (bool)0));
 					$json['id'] = $new_info['id'];
 					$json['is_follow'] = '1';
+					$cancelFollowResult = 1;
+
 				} else {
 					$new_info['delete_tag'] = '0';
 					$result = $followModel->add(array('time' => date('Y-m-d H:i:s', time()), 'delete_tag' => (bool)1, 'user_id' => $follow_id, 'follow_id' => $user_id));
 					$json['id'] = $followModel->getLastInsID();
 					$json['is_follow'] = '1';
+					$cancelFollowResult = 1;
+
 				}
 
-				if ($result !== false) {
+				if ($result !== false && $cancelFollowResult !== false) {
+					$model->commit();
 					$json['success'] = true;
 					$json['is_fans'] = $followModel->where(array('user_id' => $user_id, 'follow_id' => $follow_id,'delete_tag'=>false))->count();
 
 				} else {
+					$model->rollback();
 					$json['success'] = false;
 					$json['message'] = '操作失败';
 				}
@@ -80,8 +96,11 @@ class FollowController extends Controller{
 
 	public function fansAction(){
 		if(session('?login')) {
+			$model = M('');
+			$model->startTrans();
 			$user_id = session('login');
 			$follow_id = I('post.id');
+			$time = date('Y-m-d',time());
 			if ($user_id != $follow_id) {
 				$followModel = M('Follow');
 				$new_info = $followModel->where(array('user_id' => $user_id, 'follow_id' =>$follow_id ))->find();
@@ -90,23 +109,36 @@ class FollowController extends Controller{
 					$result = $followModel->where(array('id' => $new_info['id']))->save(array('time' => date('Y-m-d H:i:s', time()), 'delete_tag' => (bool)1));
 					$json['id'] = $new_info['id'];
 					$json['is_follow'] = '0';
+					$cancelFollowModel = M('CancelFollow');
+					$cancelFollowInfo = $cancelFollowModel->where(array('user_id'=>$user_id,'follow_id'=>$follow_id,'DATE_FORMAT(time,"%Y-%m-%d")'=>$time))->find();
+					if( !$cancelFollowInfo ){
+						$cancelFollowResult =  $cancelFollowModel->add(array('user_id'=>$user_id,'follow_id'=>$follow_id,'DATE_FORMAT(time,"%Y-%m-%d")'=>date('Y-m-d H:i:s',time())));
+					}else{
+						$cancelFollowResult = 1;
+					}
 				} else if ($new_info && $new_info['delete_tag'] == '1') {
 					$new_info['delete_tag'] = '0';
 					$result = $followModel->where(array('id' => $new_info['id']))->save(array('time' => date('Y-m-d H:i:s', time()), 'delete_tag' => (bool)0));
 					$json['id'] = $new_info['id'];
 					$json['is_follow'] = '1';
+					$cancelFollowResult = 1;
+
 				} else {
 					$new_info['delete_tag'] = '0';
 					$result = $followModel->add(array('time' => date('Y-m-d H:i:s', time()), 'delete_tag' => (bool)1, 'user_id' => $follow_id, 'follow_id' => $user_id));
 					$json['id'] = $followModel->getLastInsID();
 					$json['is_follow'] = '1';
+					$cancelFollowResult = 1;
+
 				}
 
-				if ($result !== false) {
+				if ($result !== false && $cancelFollowResult !== false) {
+					$model->commit();
 					$json['success'] = true;
 					$json['is_fans'] = $followModel->where(array('user_id' => $follow_id, 'follow_id' => $user_id,'delete_tag'=>false))->count();
 
 				} else {
+					$model->rollback();
 					$json['success'] = false;
 					$json['message'] = '操作失败';
 				}

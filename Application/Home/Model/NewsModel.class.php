@@ -265,23 +265,21 @@ class NewsModel extends RelationModel{
 		$result = $result1[0];
 
 		if($result['image'] == '' || $result['image']== null){
-			$img = getNewsImg($result['newsInfo']['content']);
+			$img = getNewsImg($result['content']);
 			if( $img == '' || $img == null ) {
 				$result['image'] = '';
 			}else{
 				$result['image'] = getNewsImg($result['content']);
 			}
-
-		}else{
-			$result['image'] = 'news/'.$result['image'];
 		}
+
+
 		if($result['image'] !== '' ){
-			$result['image'] = U('Image/img',array('image'=>urlencode($result['newsInfo']['image']).'!feature'),false,false);
+			$result['image'] = U('Image/img',array('image'=>urlencode($result['image']).'!feature'),false,false);
 		}else{
 			$result['image'] = __ROOT__.'/Public/img/链接.png';
 		}
 		unset($result['content']);
-
 		return $result;
 	}
 

@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="__PUBLIC__/css/home/wait.css">
     <link rel="stylesheet" href="__PUBLIC__/css/home/account.css">
     <link rel="stylesheet" href="__PUBLIC__/css/home/u.css">
-    <link rel="stylesheet" href="__PUBLIC__/css/home/comment.css">
     <link rel="stylesheet" href="__PUBLIC__/css/home/u.icon.css">
+    <link rel="stylesheet" href="__PUBLIC__/assets/jquery-confirm/dist/jquery-confirm.min.css">
     <link href="__PUBLIC__/assets/Font-Awesome-master/css/font-awesome.min.css" rel="stylesheet">
     <script type="text/javascript">
       var province_change_url = '{:U("Edit/province_change",'',false,false)}';
@@ -87,7 +87,7 @@
   var this_url = window.location.href;
   var login_url = "{:U('Login/index')}";
 </script>
-
+<script src="__PUBLIC__/assets/jquery-confirm/dist/jquery-confirm.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/assets/jquery.toaster.js"></script>
 <script type="text/javascript">
   $(function(){
@@ -95,9 +95,11 @@
 
 
       <if condition="session('?Message')">
-        $.toaster({ priority : 'success', title : '<span class="glyphicon glyphicon-ok"> </span>', message : '<php>echo session('Message')</php>'});
+//        $.toaster({ priority : 'success', title : '<span class="glyphicon glyphicon-ok"> </span>', message : '<php>echo session('Message')</php>'});
+              $.alert('<php>echo session('Message')</php>!');
       </if>
       <if condition="session('?ErrorMessage')">
+              $.alert('<php>echo session('ErrorMessage')</php>!');
         $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-remove"> </span>', message : '<php>echo session('ErrorMessage')</php>'});
       </if>
       <php>session('Message',null);session('ErrorMessage',null);</php>

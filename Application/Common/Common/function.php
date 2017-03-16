@@ -147,21 +147,33 @@ function timeDiff($DateObj,$time){
 function getNewsImg($content){
     preg_match_all('/<img.*?src="(.*?)".*?>/is',$content,$array);
 
-    if($array[1][0]){
-        $_src = $array[1][0];
-        $result_arr = explode('/',$_src);
-
-        $result = '';
-        $sign = false;
-        foreach($result_arr as $value){
-            if($sign){
-                $result .= '/'.$value;
-            }
-            if($value == 'Data'){
-                $sign = true;
+    if( $array[1] ){
+        $_src = '';
+        for( $i = 0 ; $i < count($array[1]) ; $i++){
+            $_src = $array[1][$i];
+            if(!preg_match("/^http.*$/",$_src)){
+                break;
             }
         }
-        $result = strlen($result)>0?substr($result,1):'';
+
+        
+        if( $_src !== '') {
+            $result_arr = explode('/',$_src);
+            $result = '';
+            $sign = false;
+            foreach($result_arr as $value){
+                if($sign){
+                    $result .= '/'.$value;
+                }
+                if($value == 'Data'){
+                    $sign = true;
+                }
+            }
+            $result = strlen($result)>0?substr($result,1):'';
+        }else{
+            $result = null;
+        }
+        
     }else{
         $result = null;
     }
@@ -174,7 +186,18 @@ function getNewsImg2($content,$count){
 
     if($array[1]){
         $imgArr = $array[1];
-        $srcs = array_slice($imgArr,0,$count);
+        $srcs = array();
+        for( $i = 0 ; $i < count($imgArr) ; $i++){
+            $_src = $imgArr[$i];
+            if(!preg_match("/^http.*$/",$_src)){
+                $srcs[] = $_src;
+            }
+            if( count($srcs) == $count){
+                break;
+            }
+        }
+
+
         foreach($srcs as &$src){
             $result_arr = explode('/',$src);
 

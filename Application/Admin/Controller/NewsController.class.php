@@ -131,7 +131,7 @@ class NewsController extends Controller{
 				}
 			}
 
-			$NewsModel->publish_time = date('y-m-d H:i:s',time());
+			$NewsModel->publish_time = date('Y-m-d H:i:s',time());
 			$NewsModel->state = '0';
 			$NewsModel->contributor = session('Adminlogin');
 
@@ -176,7 +176,6 @@ class NewsController extends Controller{
 				$Model->rollback();
 				$this->error('添加失败');
 			}
-
 		}
 	}
 

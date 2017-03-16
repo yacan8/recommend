@@ -1,4 +1,11 @@
-        <form class="form-horizontal" method="post" action="{:U('User/ChangeUserinfo')}" enctype="multipart/form-data">
+<div id="user-title" class="font-20 p-l-lg m-b-md font-18 font-bold m-l-md">
+  <a href="{:U('User/edit')}" class="tc-black m-r-md">资料信息</a>
+  <a href="{:U('User/safe')}" class="tc-gray9">账号安全</a>
+
+
+</div>
+
+<form class="form-horizontal" method="post" action="{:U('User/ChangeUserinfo')}" enctype="multipart/form-data">
           <fieldset>
             <div class="form-group">
               <label class="col-md-2 control-label user_icon_label">头像：</label>

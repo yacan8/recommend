@@ -68,6 +68,25 @@ class NewsModel extends RelationModel{
 		return $List;
 	}
 
+
+	public function getListByUserId($user_id,$page,&$count){
+		$data['delete_tag'] = false;
+		$data['contributor'] = $user_id;
+		$List = $this->where($data) ->order('publish_time desc')->relation(true)->page($page,$count)->select();
+		$count = $this->where($data)->count();
+		for ($i=0; $i < count($List); $i++) {
+			if($List[$i]['user']['icon'] == ''){
+				$List[$i]['user']['icon']='default.jpg';
+			}
+			if($List[$i]['image'] == ''){
+				$img = getNewsImg($List[$i]['content']);
+				$List[$i]['image'] = $img;
+				$List[$i]['image_thumb'] = $img;
+			}
+		}
+		return $List;
+	}
+
 	/**
 	 * [search 新闻搜索]
 	 * @param  [string] $key    [传入的关键字]
@@ -114,7 +133,7 @@ class NewsModel extends RelationModel{
 				'maxSize' => 23145728,// 设置附件上传大小
 				'exts' => array('jpg', 'gif', 'png', 'jpeg'),// 设置附件上传类型
 				'savePath'=>'news/',// 设置附件上传目录
-				'subName' => null,
+				'subName'    =>    array('date','Y-m-d'),
 				'rootPath'=> './Data/'
 			);
 		$upload = new \Think\Upload($config);// 实例化上传类
@@ -122,15 +141,19 @@ class NewsModel extends RelationModel{
 		if(!$info){
 			return '上传错误';
 		}else{
-			$Savename = $info['savename'];
-			$SavenameArray = explode('.',$Savename);
-			$thumbname = $SavenameArray[0]."_thumb.jpg";
+			$saveName = $info['savepath'].$info['savename'];
 			$Image = new \Think\Image(\Think\Image::IMAGE_GD);
-			$Image->open('./Data/news/'.$Savename);
-			$Image->thumb(600,600)->save('./Data/news/'.$SavenameArray[0].'.jpg');
-			$Image->thumb(300,300)->save('./Data/news_thumb/'.$thumbname);
-			$this->image = $SavenameArray[0].'.jpg';
-			$this->image_thumb = $thumbname;
+			$Image->open('./Data/'.$saveName);
+			unlink('./Data/'.$saveName);
+			$Image->thumb(600,600)->save('./Data/'.$saveName);
+			$thumbName = str_replace('news','news_thumb',$saveName);
+			$dir = str_replace('news','news_thumb',$info['savepath']);
+			if(!is_readable("./Data/$dir")){
+				is_file("./Data/$dir") or mkdir("./Data/$dir",0700);
+			}
+			$Image->thumb(300,300)->save('./Data/'.$thumbName);
+			$this->image = $saveName;
+			$this->image_thumb = $thumbName;
 		}
 
 	}

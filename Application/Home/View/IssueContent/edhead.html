@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="__PUBLIC__/assets/froalaeditor/css/plugins/char_counter.css">
   <link rel="stylesheet" href="__PUBLIC__/assets/froalaeditor/css/plugins/video.css">
   <link rel="stylesheet" href="__PUBLIC__/assets/froalaeditor/css/themes/red.min.css">
+  <link rel="stylesheet" href="__PUBLIC__/css/admin/keyword.css">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
   <!-- js -->
 
@@ -38,11 +40,12 @@
   <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/save.min.js"></script>
   <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/languages/zh_cn.js"></script>
   <script type="text/javascript" src="__PUBLIC__/js/assets/jquery.form.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/js/admin/keyword.js"></script>
   <script type="text/javascript">
   $(function(){
     $('textarea').froalaEditor({
       heightMin: 200,
-      imageUploadURL: '{:U('Upload/upload')}',
+      imageUploadURL: '{:U('Admin/Upload/upload')}',
       language: 'zh_cn',
       pasteDeniedAttrs: ['class', 'id','style']
     });
@@ -113,7 +116,7 @@
         <h5 class="modal-title" id="myModalLabel">插入音频</h5>
       </div>
       <div class="modal-body">
-        <form id='audioupload' action='{:U("Upload/audio_upload")}' method='post' enctype='multipart/form-data'>
+        <form id='audioupload' action='{:U("Admin/Upload/audio_upload")}' method='post' enctype='multipart/form-data'>
           <div class="form-group">
           <input type="text" class="form-control" name="title" id="audio_title" placeholder="输入标题" title= "输入标题" maxlength='10' style="display:block"/>
         </div>
