@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xs-12">
-        <h3 class="page-header">新闻抓取</h3>
+        <h3 class="page-header">新闻抓取{$lastTime}</h3>
     </div>
 </div>
 
@@ -16,7 +16,7 @@
             </label>
             <div class="form-group m-l-lg">
                 <label>最早发布时间：</label>
-                <input type="text" class="form-control input-sm" id="time" placeholder="选择抓取时间" />
+                <input type="text" class="form-control input-sm" id="time" value="{:substr($lastTime,0,16)}" placeholder="选择抓取时间" />
             </div>
             <button type="button" class='m-l-lg btn btn-sm btn-primary' id="crawler" data-loading-text="抓取中...">开始抓取</button>
         </form>
@@ -32,13 +32,12 @@
 <script src="__PUBLIC__/assets/daterangepicker/js/moment.min.js"></script>
 <script src="__PUBLIC__/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="__PUBLIC__/js/admin/crawler.js"></script>
-<script>
 
-</script>
+
 
 
 <script id="crawler-news" type="text/template">
-    <div class="m-b-sm">
+    <div class="m-b-sm" id="fixed-container">
         总共抓取 <span class="tc-main"> {{list.length}} </span> 条数据
         <button type="button" class='m-l-lg btn btn-sm btn-success' id="crawler-in-begin" data-loading-text="队列进行中...">开始入库</button>
         <button type="button" class='m-l-sm btn btn-sm btn-default' id="crawler-reset" >重置</button>

@@ -5,10 +5,11 @@ use Think\Controller;
 
 class CrawlerController extends Controller{
 
-
-
 	public function crawler(){
+		$crawlerFromModel = M('CrawlerFrom');
+		$time = $crawlerFromModel->order('last_time asc')->getField('last_time');
 
+		$this->assign('lastTime',$time);
 		$this->assign('title','新闻抓取');
 		$this->display();
 	}
@@ -17,6 +18,9 @@ class CrawlerController extends Controller{
 	public function sinaNews(){
 		$last_time = I('get.time','');
 		$last_time = substr($last_time, 0, -3);
+		$time = date('Y-m-d H:i:s',time());
+		$crawlerFromModel = M('CrawlerFrom');
+		$crawlerFromModel->where(array('display_name'=>'新浪'))->save(array('last_time'=>$time));
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, "http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=89&spec=&type=&ch=01&k=&offset_page=0&offset_num=0&num=2000&asc=&page=1&last_time={$last_time}");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -30,6 +34,10 @@ class CrawlerController extends Controller{
 
 	public function news163(){
 		$ch = curl_init();
+		$crawlerFromModel = M('CrawlerFrom');
+		$time = date('Y-m-d H:i:s',time());
+
+		$crawlerFromModel->where(array('display_name'=>'网易'))->save(array('last_time'=>$time));
 		curl_setopt($ch, CURLOPT_URL, "http://news.163.com/special/0001220O/news_json.js");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -100,78 +108,88 @@ class CrawlerController extends Controller{
 			$document->find(join(',',$remove))->remove(); //过滤一些广告信息
 			$title = $document->find($structArr[0])->text();//标题
 			$content = $document->find($structArr[1])->html();//内容
+			if( $title != '' || $content != '') {
+				if ($struct == 'news.163.com' || $struct == 'money.163.com') { //解决网易抓取的中文乱码问题
+					$title = mb_convert_encoding($title, 'ISO-8859-1', 'utf-8');
+					$title = mb_convert_encoding($title, 'utf-8', 'GBK');
+					$content = mb_convert_encoding($content, 'ISO-8859-1', 'utf-8');
+					$content = mb_convert_encoding($content, 'utf-8', 'GBK');
+				}
+				if ($struct == 'tech.sina.com.cn' && !$title) {
+					$title = $document->find('#artibodyTitle')->text();
+				}
 
-			if( $struct == 'news.163.com' || $struct == 'money.163.com' ){ //解决网易抓取的中文乱码问题
-				$title = mb_convert_encoding($title,'ISO-8859-1','utf-8');
-				$title = mb_convert_encoding($title,'utf-8','GBK');
-				$content = mb_convert_encoding($content,'ISO-8859-1','utf-8');
-				$content = mb_convert_encoding($content,'utf-8','GBK');
-			}
+				$user_id = session('Adminlogin');
+				//相似度计算
+				// *** code
 
+				$typeModel = M('Type');
+				if( trim($type) != '' ){
+					$type_id = $typeModel->where(array('type' => $type))->getField('id');
+					if (!$type_id) {
+						$typeResult = $typeModel->add(array('type' => $type));
+						$type_id = $typeModel->getLastInsID();
+					} else {
+						$typeResult = 1;
+					}
+				}else{
+					$type_id = 0;
+					$typeResult = false;
+				}
 
-			
+				//写入
 
-			//相似度计算
-			// *** code
+				$crawlerData = array(
+					'from_id' => $from_id,
+					'from' => $from_site_id,
+					'url' => $url,
+					'time' => $time,
+					'title' => $title
+				);
 
-			$typeModel = M('Type');
-			$type_id = $typeModel->where(array('type'=>$type))->getField('id');
-			if( !$type_id ) {
-				$typeResult = $typeModel->add(array('type'=>$type));
-				$type_id = $typeModel->getLastInsID();
-			} else {
-				$typeResult = 1 ;
-			}
-			$user_id = session('Adminlogin');
-			//写入
-
-			$crawlerData = array(
-				'from_id' => $from_id,
-				'from' => $from_site_id,
-				'url' => $url,
-				'time' => $time,
-				'title' => $title
-			);
-
-			$crawlerResult = $crawlerModel -> add($crawlerData);
-
-
-
-			$newsModel = M('News');
-			$content = $this->saveImageByContent($content);
-			$newsData['title'] = $title;
-			$newsData['content'] = $content;
-			$newsData['contributor'] = $user_id;
-			$newsData['title'] = $title;
-			$newsData['type'] = $type_id;
-			$newsData['publish_time'] = $time;
-
-			$newsResult = $newsModel -> add($newsData);
-			$news_id = $newsModel -> getLastInsId();
-
-			$dynamicsModel = M('Dynamics');
-			$dynamicsData['content_id'] = $news_id;
-			$dynamicsData['user_id'] = $user_id;
-			$dynamicsData['time'] = $time;
-			$dynamicsData['type'] = 4;
-
-			$dynamicsResult = $dynamicsModel -> add($dynamicsData);
-
-			$keywordController = A('Keyword');
-			$KeywordResult = $keywordController -> keywordInByNewsId($news_id);
+				$crawlerResult = $crawlerModel->add($crawlerData);
 
 
+				$newsModel = M('News');
+				$content = $this->saveImageByContent($content);
+				$newsData['title'] = $title;
+				$newsData['content'] = $content;
+				$newsData['contributor'] = $user_id;
+				$newsData['title'] = $title;
+				$newsData['type'] = $type_id;
+				$newsData['publish_time'] = $time;
 
-			if( $KeywordResult === false || $newsResult === false || $dynamicsResult === false || $crawlerResult === false || $typeResult === false) {
+				$newsResult = $newsModel->add($newsData);
+				$news_id = $newsModel->getLastInsId();
+
+				$dynamicsModel = M('Dynamics');
+				$dynamicsData['content_id'] = $news_id;
+				$dynamicsData['user_id'] = $user_id;
+				$dynamicsData['time'] = $time;
+				$dynamicsData['type'] = 4;
+
+				$dynamicsResult = $dynamicsModel->add($dynamicsData);
+
+				$keywordController = A('Keyword');
+				$KeywordResult = $keywordController->keywordInByNewsId($news_id);
+
+
+				if ($KeywordResult === false || $newsResult === false || $dynamicsResult === false || $crawlerResult === false || $typeResult === false) {
+					$json['success'] = false;
+					$json['code'] = 500;
+					$json['message'] = '写入失败';
+					$model->rollback();
+				} else {
+					$json['success'] = true;
+					$json['code'] = 200;
+					$json['message'] = '写入成功';
+					$model->commit();
+				}
+			}else{
 				$json['success'] = false;
 				$json['code'] = 500;
-				$json['message'] = '写入失败';
+				$json['message'] = '爬取失败';
 				$model->rollback();
-			} else {
-				$json['success'] = true;
-				$json['code'] = 200;
-				$json['message'] = '写入成功';
-				$model->commit();
 			}
 
 
@@ -203,15 +221,5 @@ class CrawlerController extends Controller{
 
 
 
+
 }
-
-
-
-
-
-
-
-
-
-
-

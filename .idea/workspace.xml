@@ -2,42 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75bbf53d-486e-43e9-bf3f-9541df020f1f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Admin/Controller/CrawlerController.class.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/Model/NewsKeywordBelongModel.class.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/IssueContent/add.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Admin/View/User/applyContent.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Admin/View/User/applyUser.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Admin/View/Crawler/crawler.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Public/js/admin/crawler.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/IssueContent/edhead.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Public/css/admin/keyword.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/IssueContent/publish.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/User/safe.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/AccountController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/AccountController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/ApplyController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/ApplyController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/FollowController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/FollowController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/NewsController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/NewsController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/NewsController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/NewsController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Model/NewsModel.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Model/NewsModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php" afterPath="$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/UserController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/UserController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/UserController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/UserController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/News/add.html" afterPath="$PROJECT_DIR$/Application/Admin/View/News/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/js/admin/admin.js" afterPath="$PROJECT_DIR$/Public/js/admin/admin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/css/admin/backstage.css" afterPath="$PROJECT_DIR$/Public/css/admin/backstage.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/News/change.html" afterPath="$PROJECT_DIR$/Application/Admin/View/News/change.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/assets/daterangepicker/js/daterangepicker.js" afterPath="$PROJECT_DIR$/Public/assets/daterangepicker/js/daterangepicker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/News/detail.html" afterPath="$PROJECT_DIR$/Application/Home/View/News/detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Common/edhead.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Common/edhead.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/User/edit.html" afterPath="$PROJECT_DIR$/Application/Home/View/User/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/UserContent/edit.html" afterPath="$PROJECT_DIR$/Application/Home/View/UserContent/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Common/function.php" afterPath="$PROJECT_DIR$/Application/Admin/Common/function.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Common/function.php" afterPath="$PROJECT_DIR$/Application/Common/Common/function.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Common/header.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Common/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/NewsContent/list.html" afterPath="$PROJECT_DIR$/Application/Admin/View/NewsContent/list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Common/nav.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Common/nav.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/UserContent/safe.html" afterPath="$PROJECT_DIR$/Application/Home/View/UserContent/safe.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/phpquery" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/phpquery" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.phpstorm.meta.php" afterPath="$PROJECT_DIR$/.phpstorm.meta.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/CrawlerController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/CrawlerController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Crawler/crawler.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Crawler/crawler.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/js/admin/crawler.js" afterPath="$PROJECT_DIR$/Public/js/admin/crawler.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="recommoned.iws" />
@@ -72,18 +41,8 @@
       <file leaf-file-name="CrawlerController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/CrawlerController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.4583335">
-              <caret line="198" column="26" selection-start-line="198" selection-start-column="16" selection-end-line="198" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NewsModel.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.591716">
-              <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+            <state vertical-scroll-proportion="-50.625">
+              <caret line="164" column="50" selection-start-line="164" selection-start-column="50" selection-end-line="164" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -92,7 +51,7 @@
       <file leaf-file-name="NewsController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/NewsController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.25">
+            <state vertical-scroll-proportion="0.0">
               <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
               <folding />
             </state>
@@ -102,7 +61,7 @@
       <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/View/News/detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.9411764">
+            <state vertical-scroll-proportion="0.0">
               <caret line="46" column="53" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
               <folding />
             </state>
@@ -112,7 +71,7 @@
       <file leaf-file-name="NewsKeywordBelongModel.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Model/NewsKeywordBelongModel.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.5">
+            <state vertical-scroll-proportion="0.0">
               <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
               <folding />
             </state>
@@ -122,7 +81,7 @@
       <file leaf-file-name="function.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Common/Common/function.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.3333333">
+            <state vertical-scroll-proportion="0.0">
               <caret line="146" column="9" selection-start-line="146" selection-start-column="9" selection-end-line="146" selection-end-column="9" />
               <folding />
             </state>
@@ -132,8 +91,8 @@
       <file leaf-file-name="crawler.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Admin/View/Crawler/crawler.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.375">
-              <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+            <state vertical-scroll-proportion="-16.875">
+              <caret line="40" column="43" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -142,18 +101,18 @@
       <file leaf-file-name="function.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Admin/Common/function.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="35.791668">
+            <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="crawler.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="crawler.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Public/js/admin/crawler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.4114713">
+              <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -225,16 +184,16 @@
         <option value="$PROJECT_DIR$/Application/Admin/View/Common/header.html" />
         <option value="$PROJECT_DIR$/Application/Admin/View/News/index.html" />
         <option value="$PROJECT_DIR$/Application/Admin/View/NewsContent/list.html" />
-        <option value="$PROJECT_DIR$/Application/Admin/View/Crawler/crawler.html" />
-        <option value="$PROJECT_DIR$/Public/js/admin/crawler.js" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/phpquery/phpQuery/phpQuery/DOMDocumentWrapper.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/phpquery/phpQuery/phpQuery/phpQueryObject.php" />
-        <option value="$PROJECT_DIR$/Application/Admin/Controller/CrawlerController.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Model/NewsKeywordModel.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/NewsController.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Model/NewsKeywordBelongModel.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/View/News/detail.html" />
+        <option value="$PROJECT_DIR$/Application/Admin/Controller/CrawlerController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Admin/View/Crawler/crawler.html" />
+        <option value="$PROJECT_DIR$/Public/js/admin/crawler.js" />
       </list>
     </option>
   </component>
@@ -371,7 +330,7 @@
     <property name="FullScreen" value="true" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="detai&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/News/detail.html&#10;function.php&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/Common/function.php&#10;list.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/View/NewsContent/list.html&#10;apply-&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/apply-comment.js&#10;User&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/UserController.class.php&#10;fun&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Common/function.php&#10;newsModel&#9;null&#9;null&#10;newsContro&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/Controller/NewsController.class.php&#10;followM&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/FollowModel.class.php&#10;followContr&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/FollowController.class.php&#10;apply.js&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/apply.js&#10;applyCont&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/ApplyController.class.php&#10;followCo&#9;null&#9;null&#10;u.css&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/home/u.css&#10;commentMo&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/CommentModel.class.php&#10;commentC&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/CommentController.class.php&#10;commentM&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/CommentModel.class.php&#10;u.js&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/u.js&#10;bro&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/BrowseModel.class.php&#10;newsCo&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/NewsController.class.php&#10;comment&#9;null&#9;null&#10;deta&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/detail.js&#10;COMMENTMODEL&#9;null&#9;null&#10;commentmODEL&#9;null&#9;null&#10;comment.css&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/home/comment.css&#10;apply&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/apply.js&#10;sty&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/style.css&#10;NEWSMODEL.CLASS.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/NewsModel.class.php&#10;newSmO&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/VisitorNewsModel.class.php&#10;APP&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/ApplyController.class.php&#10;style&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/style.css&#10;content.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/IssueContent/content.html&#10;newsMo&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/NewsModel.class.php&#10;app&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/ApplyController.class.php&#10;new&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/NewsController.class.php&#10;detail&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/News/detail.html&#10;ht_&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/admin/ht_pv.js&#10;apply.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/apply.js&#10;followC&#9;null&#9;null&#10;content.html&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/IssueContent/content.html&#10;content.ht,&#9;null&#9;null&#10;applyCon&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/Controller/ApplyController.class.php&#10;edit&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/edit.html&#10;edit.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/edit.html&#10;useri&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/userinfo.html&#10;index&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/Index/index.html&#10;inde&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/index2.html&#10;index2&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/index2.html&#10;newsm&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/NewsModel.class.php&#10;change.htm&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/View/News/change.html" />
+    <property name="SearchEverywhereHistoryKey" value="crawler.js&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/admin/crawler.js&#10;detai&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/News/detail.html&#10;function.php&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/Common/function.php&#10;list.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/View/NewsContent/list.html&#10;apply-&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/apply-comment.js&#10;User&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/UserController.class.php&#10;fun&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Common/function.php&#10;newsModel&#9;null&#9;null&#10;newsContro&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/Controller/NewsController.class.php&#10;followM&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/FollowModel.class.php&#10;followContr&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/FollowController.class.php&#10;apply.js&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/apply.js&#10;applyCont&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/ApplyController.class.php&#10;followCo&#9;null&#9;null&#10;u.css&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/home/u.css&#10;commentMo&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/CommentModel.class.php&#10;commentC&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/CommentController.class.php&#10;commentM&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/CommentModel.class.php&#10;u.js&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/u.js&#10;bro&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/BrowseModel.class.php&#10;newsCo&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/NewsController.class.php&#10;comment&#9;null&#9;null&#10;deta&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/detail.js&#10;COMMENTMODEL&#9;null&#9;null&#10;commentmODEL&#9;null&#9;null&#10;comment.css&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/home/comment.css&#10;apply&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/apply.js&#10;sty&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/style.css&#10;NEWSMODEL.CLASS.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/NewsModel.class.php&#10;newSmO&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/VisitorNewsModel.class.php&#10;APP&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/ApplyController.class.php&#10;style&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/style.css&#10;content.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/IssueContent/content.html&#10;newsMo&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/NewsModel.class.php&#10;app&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/ApplyController.class.php&#10;new&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/NewsController.class.php&#10;detail&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/News/detail.html&#10;ht_&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/admin/ht_pv.js&#10;apply.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/apply.js&#10;followC&#9;null&#9;null&#10;content.html&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/IssueContent/content.html&#10;content.ht,&#9;null&#9;null&#10;applyCon&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/Controller/ApplyController.class.php&#10;edit&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/edit.html&#10;edit.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/edit.html&#10;useri&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/userinfo.html&#10;index&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/Index/index.html&#10;inde&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/index2.html&#10;index2&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/index2.html&#10;newsm&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/NewsModel.class.php" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
   </component>
   <component name="RecentsManager">
@@ -454,26 +413,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25822604" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26180258" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4477612" sideWeight="0.5057143" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32650602" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32572114" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32771084" sideWeight="0.4942857" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32771084" sideWeight="0.4942857" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -485,8 +444,8 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32650602" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25107297" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32572114" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26180258" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -745,7 +704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -786,14 +744,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Public/js/admin/crawler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/phpquery/phpQuery/phpQuery/DOMDocumentWrapper.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.59881425">
@@ -818,16 +768,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Admin/Common/function.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="35.791668">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/View/Crawler/crawler.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.375">
-          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -839,23 +781,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Common/Common/function.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.3333333">
+        <state vertical-scroll-proportion="0.0">
           <caret line="146" column="9" selection-start-line="146" selection-start-column="9" selection-end-line="146" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/CrawlerController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.4583335">
-          <caret line="198" column="26" selection-start-line="198" selection-start-column="16" selection-end-line="198" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/View/News/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.9411764">
+        <state vertical-scroll-proportion="0.0">
           <caret line="46" column="53" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
           <folding />
         </state>
@@ -863,7 +797,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Model/NewsKeywordBelongModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5">
+        <state vertical-scroll-proportion="0.0">
           <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
           <folding />
         </state>
@@ -871,7 +805,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Controller/NewsController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.25">
+        <state vertical-scroll-proportion="0.0">
           <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
           <folding />
         </state>
@@ -879,8 +813,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.591716">
+        <state vertical-scroll-proportion="-0.09615385">
           <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/CrawlerController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-50.625">
+          <caret line="164" column="50" selection-start-line="164" selection-start-column="50" selection-end-line="164" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/View/Crawler/crawler.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.875">
+          <caret line="40" column="43" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/js/admin/crawler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4114713">
+          <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
           <folding />
         </state>
       </provider>

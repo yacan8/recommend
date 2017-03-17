@@ -22,15 +22,15 @@ var crawler = {
             var promise = [];
             data.forEach(function(item){
                 var crawlerFun = map[item.from];
-                promise.push(crawlerFun(item.time))
+                promise.push( crawlerFun(item.time) )
             })
             return promise;
         }()).then(function (results) {
             var result = [];
-            results.forEach(function(item){//结果连接
+            results.forEach(function(item){ //结果连接
                 result = result.concat.apply(result,item)
             });
-            result.sort(function(a,b){//按时间排序
+            result.sort(function(a,b){ //按时间排序
                 return b._time - a._time;
             });
             var html = template('crawler-news',{list:result});
@@ -154,7 +154,10 @@ var fetchLoading = function(url,params,beforeSend){
 $(function(){
     var crawlerTable = $('#crawler-table');
     $('[data-toggle="tooltip"]').tooltip();
-    $('#time').val(new Date().oneDayAgo().format2()).datetimepicker({
+    $(document).scroll(function(){
+
+    });
+    $('#time').datetimepicker({
         format: 'yyyy-mm-dd hh:ii'
     });
     $("#crawler").click(function(){

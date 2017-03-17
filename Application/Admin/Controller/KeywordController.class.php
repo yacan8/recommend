@@ -123,4 +123,55 @@ class KeywordController extends Controller{
 	    );
 	}
 
+
+	public function test(){
+		header('Content-Type: text/html; charset=utf-8');
+		$newsModel = M('News');
+		// $str1 = '余弦值越接近1，就表明夹角越接近0度，也就是两个向量越相似，这就叫"余弦相似性"。所以，上面的句子A和句子B是很相似的，事实上它们的夹角大约为20.3度。';
+		// $str2 = '每篇文章各取出若干个关键词（比如20个），合并成一个集合，计算每篇文章对于这个集合中的词的词频（为了避免文章长度的差异，可以使用相对词频）；';
+		$str1 =  trim(strip_tags($newsModel->where('id=3010')->getField('content')));
+		$str2 =  trim(strip_tags($newsModel->where('id=2044')->getField('content')));
+		print_r($str1);
+		echo "<br>";
+		print_r($str2);
+		$wordsarr1 = $this->getWords($str1);
+		$wordsarr2 = $this->getWords($str2);
+		$words1 = $wordsarr1['words'];
+		$words2 = $wordsarr2['words'];
+		dump($this->xsd($words1,$words2));
+	}
+
+
+	public function xsd($words1,$words2){
+		//初始化单词个数
+		foreach ($words1 as $key => $num) {
+			if( !$words2[$key] ){
+				$words2[$key] = 0;
+			}
+		}
+		foreach ($words2 as $key => $num) {
+			if( !$words1[$key] ){
+				$words1[$key] = 0;
+			}
+		}
+		$fz = 0;
+		foreach ($words1 as $key => $num) {
+			$fz += $words1[$key] * $words2[$key];
+			
+		}
+		$fm1 = 0.0 ;
+		foreach ($words1 as $key => $num) {
+			$fm1 += $num * $num;
+		}
+		$fm2 = 0.0;
+		foreach ($words2 as $key => $num) {
+			$fm2 += $num*$num;
+		}
+		$fm = sqrt($fm1) * sqrt($fm2) ;
+
+		return $fz/$fm;
+
+
+	}
+
 }
