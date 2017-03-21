@@ -214,7 +214,7 @@ $(function(){
                     optrateTd.html('<a class="fa fa-check" data-toggle="tooltip" data-placement="top" title="'+result.message+'" href="javascript:;"></a>')
                 } else {
                     if( result.code == 500 ) {
-                        trItem.addClass('error');
+                        trItem.addClass('danger');
                         optrateTd.html('<a class="fa fa-times" data-toggle="tooltip" data-placement="top" title="'+result.message+'" href="javascript:;"></a>')
                     } else if ( result.code == 300) {
                         trItem.addClass('info');

@@ -3,12 +3,12 @@
         <if condition="$vo['show_type'] eq '1'">
 
             <div class="news-item">
-                <a href="{$vo.url}" class="list-img">
+                <a target="_blank" href="{$vo.url}" class="list-img">
                     <span class="mask-tags">{$vo.type||default="其他"}</span>
                     <img src="" data-url="{$vo.image_thumb}">
                 </a>
                 <div class="list-content">
-                    <div class="to2"><a class="title" href="{$vo.url}">{$vo.title}</a></div>
+                    <div class="to2"><a target="_blank" class="title" href="{$vo.url}">{$vo.title}</a></div>
                     <div class="info font-12">
                         <span class="font-smoothing tc-gray9">
                             <a target="_blank" href="__ROOT__/u/{$vo.contributor}"><img class="i-user-icon" src="{:C('__DATA__')}/login_thumb/{$vo.user.icon|default='default.jpg'}" ></a>
@@ -24,7 +24,7 @@
             <div class="news-item">
 
                 <div class="">
-                    <div class="to2"><a class="title" href="{$vo.url}">{$vo.title}</a></div>
+                    <div class="to2"><a target="_blank" class="title" href="{$vo.url}">{$vo.title}</a></div>
                     <div class="info font-12">
                         <span class="font-smoothing tc-gray9">
                             <a target="_blank" href="__ROOT__/u/{$vo.contributor}"><img class="i-user-icon" src="{:C('__DATA__')}/login_thumb/{$vo.user.icon|default='default.jpg'}" ></a>
@@ -40,11 +40,11 @@
             <div class="news-item">
 
                 <div class="">
-                    <div class="to2"><a class="title" href="{$vo.url}">{$vo.title}</a></div>
+                    <div class="to2"><a target="_blank" class="title" href="{$vo.url}">{$vo.title}</a></div>
                 </div>
                 <div class="m-t-sm">
                     <foreach name="vo.image" item="_vo">
-                    <a href="{$vo.url}" class="list-img">
+                    <a target="_blank" href="{$vo.url}" class="list-img">
                         <img src="" data-url="{$_vo}">
                     </a>
                     </foreach>

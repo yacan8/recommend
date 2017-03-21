@@ -233,3 +233,28 @@ to{-o-transform:rotate(360deg)}
   animation: 2s linear 0s normal none infinite rotate;
   -webkit-animation:2s linear 0s normal none infinite rotate;
 }
+.profile-classic li {
+    padding: 8px 0;
+    font-size: 13px;
+    border-top: solid 1px #f5f5f5;
+    list-style: none;
+}
+.profile-classic li:first-child {
+    border-top: none;
+}
+.profile-classic li span {
+    color: #777;
+    font-size: 13px;
+    margin-right: 7px;
+}
+.edit_btn {
+    top: 0;
+    right: 0;
+    margin: 0;
+    color: #fff;
+    opacity: 0.6;
+    padding: 2px 9px;
+    font-size: 11px;
+    background: #000;
+    position: absolute;
+}

@@ -1,0 +1,104 @@
+<div class="row ">
+	<div class="col-xs-12">
+        <h3 class="page-header">推荐权重配置</h3>
+    </div>
+
+    <div class="col-xs-12">
+    	<form class="form-inline" action="{:U('Recommoned/saveOrUpadte')}" method="post">
+    	<input name="id" type="hidden" value="{$r.id}" />
+    	<div class="panel panel-success">
+    		<div class="panel-heading">新增配置</div>
+		    <div class="panel-body" style="position:relative;">
+		      <ul class="profile-classic">
+		        <li>
+		        	<span>配置：</span> 
+		        	<input type="text" name="display_name" class="form-control input-sm" placeholder="配置名称" value="{$r.display_name}">
+		        </li>
+		        <li>
+		        	<span>可推荐时间长度（单位：天）：</span> 
+		        	<select class="form-control input-sm" name="allow_recommoned_time">
+		        		<for start ="1" end="11">
+					  		<option <if condition="$r['allow_recommoned_time'] eq $i">selected</if>>{$i}</option>
+						</for>
+					</select>
+				</li>
+		        <li>
+		        	<span>推荐计算时间跨度（单位：天）：</span> 
+		        	<select class="form-control input-sm" name="calculate_time_span">
+		        		<for start ="1" end="11">
+					  		<option <if condition="$r['calculate_time_span'] eq $i">selected</if>>{$i}</option>
+						</for>
+					</select>
+		        </li>
+		        <li>
+		        	<span>浏览关键字权重：</span> 
+		        	<select class="form-control input-sm" name="browse_keyword">
+		        		<for start ="1" end="11">
+					  		<option <if condition="$r['browse_keyword'] eq $i">selected</if>>{$i}</option>
+						</for>
+					</select>
+		        </li>
+		        <li>
+		        	<span>评论关键字权重：</span>
+		        	<select class="form-control input-sm" name="comment_keyword">
+		        		<for start ="1" end="11">
+					  		<option>{$i}</option>
+						</for>
+					</select>
+		        </li>
+		        <li>
+		        	<span>点赞关键字权重：</span> 
+		        	<select class="form-control input-sm" name="zan_keyword">
+		        		<for start ="1" end="11">
+					  		<option <if condition="$r['comment_keyword'] eq $i">selected</if>>{$i}</option>
+						</for>
+					</select>
+		        </li>
+		        <li>
+		        	<span>浏览分类权重：</span> 
+		        	<select class="form-control input-sm" name="browse_type">
+		        		<for start ="1" end="11">
+					  		<option <if condition="$r['browse_type'] eq $i">selected</if>>{$i}</option>
+						</for>
+					</select>
+		        </li>
+		        <li>
+		        	<span>评论分类权重：</span> 
+		        	<select class="form-control input-sm" name="comment_type">
+		        		<for start ="1" end="11">
+					  		<option <if condition="$r['comment_type'] eq $i">selected</if>>{$i}</option>
+						</for>
+					</select>
+		        </li>
+		        <li>
+		        	<span>点赞分类权重：</span> 
+		        	<select class="form-control input-sm" name="zan_type">
+		        		<for start ="1" end="11">
+					  		<option <if condition="$r['zan_type'] eq $i">selected</if>>{$i}</option>
+						</for>
+					</select>
+		        </li>
+		        <li>
+		        	<span>关注的人喜欢推荐权重：</span> 
+		        	<select class="form-control input-sm"  name="follow_keyword">
+		        		<for start ="1" end="11">
+					  		<option <if condition="$r['follow_keyword'] eq $i">selected</if>>{$i}</option>
+						</for>
+					</select>
+		        </li>
+		        <li>
+		        	<span>个人信息兴趣设定权重：</span> 1
+		        </li>
+		        <li>
+		        	<span>描述：</span><br/>
+		        	<textarea name="description" class="form-control m-t-sm" rows="3" placeholder="请输入描述" style="border-radius:4px;display:block;width:100%;">{$r.description}</textarea>
+		        </li>
+		      </ul>
+		      <button type="submit" class="btn btn-success btn-block btn-sm">提交保存</button> 
+		    </div>
+		</div>
+	</form>
+
+
+    </div>
+</div>

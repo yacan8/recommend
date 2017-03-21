@@ -5,6 +5,11 @@ use Think\Controller;
 
 class CrawlerController extends Controller{
 
+	public function _initialize(){
+        if (!isset($_SESSION['Adminlogin'])) {
+            $this->redirect('Login/index');
+        }
+ 	}
 	public function crawler(){
 		$crawlerFromModel = M('CrawlerFrom');
 		$time = $crawlerFromModel->order('last_time asc')->getField('last_time');
@@ -99,26 +104,27 @@ class CrawlerController extends Controller{
 				'script',
 				'.ct_hqimg',
 				'.fin_reference',
-				'[data-sudaclick]',
 				'.finance_app_zqtg',
-				'link'
+				'link',
+				'#j_album_1',
+				'#blk_weiboBox_01'
 			);
 			$struct = $urlInfo['host'];
 			$structArr = explode(',',$structs[$struct]);
-			$document->find(join(',',$remove))->remove(); //过滤一些广告信息
+			$document->find($structArr[1])->find(join(',',$remove))->remove(); //过滤一些广告信息
 			$title = $document->find($structArr[0])->text();//标题
 			$content = $document->find($structArr[1])->html();//内容
-			if( $title != '' || $content != '') {
-				if ($struct == 'news.163.com' || $struct == 'money.163.com') { //解决网易抓取的中文乱码问题
-					$title = mb_convert_encoding($title, 'ISO-8859-1', 'utf-8');
-					$title = mb_convert_encoding($title, 'utf-8', 'GBK');
-					$content = mb_convert_encoding($content, 'ISO-8859-1', 'utf-8');
-					$content = mb_convert_encoding($content, 'utf-8', 'GBK');
-				}
-				if ($struct == 'tech.sina.com.cn' && !$title) {
-					$title = $document->find('#artibodyTitle')->text();
-				}
-
+			if ($struct == 'news.163.com' || $struct == 'money.163.com') { //解决网易抓取的中文乱码问题
+				$title = mb_convert_encoding($title, 'ISO-8859-1', 'utf-8');
+				$title = mb_convert_encoding($title, 'utf-8', 'GBK');
+				$content = mb_convert_encoding($content, 'ISO-8859-1', 'utf-8');
+				$content = mb_convert_encoding($content, 'utf-8', 'GBK');
+			}
+			if ($struct == 'tech.sina.com.cn' && !$title) {
+				$title = $document->find('#artibodyTitle')->text();
+			}
+			if( $title != '' || trim($content) != '' || trim($content) != null) {
+				
 				$user_id = session('Adminlogin');
 				//相似度计算
 				// *** code
@@ -211,12 +217,7 @@ class CrawlerController extends Controller{
 		return $content;
 	}
 	public function test(){
-		$m = M('News');
-		$info = $m->where('id=321')->find();
-		// $info['content'] = $this->saveImageByContent($info['content']);
-		print_r(getNewsImg($info['content']));
-		// $url = 'http://cms-bucket.nosdn.127.net/catchpic/3/3b/3b29cea1a64a84129ff4914c8995f77c.jpg';
-		// echo preg_match("/^http.*$/",$url);
+	
 	}
 
 

@@ -7,6 +7,7 @@ class KeywordController extends Controller{
 
 
 	public function keywordCalculate($content){
+		//去除html中的特殊字符
 		$content = str_replace('&nbsp;', '', $content);
 		$content = str_replace('&rdquo;', '', $content);
 		$content = str_replace('&ldquo;', '', $content);
@@ -68,17 +69,40 @@ class KeywordController extends Controller{
 		$keywordBelongModel = M('NewsKeywordBelong');
 		$newsInfo = $newsModel->find($news_id);
 		$keywordsInfo = $this->keywordCalculate($newsInfo['content']);
-		$kewwordIsExist = $keywordModel->where(array('keyword'=>$keywordsInfo[0]['keyword']))->find();
-		if( $kewwordIsExist ){
-			$keyword_id = $kewwordIsExist['id'];
-			$keywordResult = 1;
+		if( $keywordsInfo[0]['keyword'] ){
+			//第一个关键字
+			$keywordIsExist1 = $keywordModel->where(array('keyword'=>$keywordsInfo[0]['keyword']))->find();
+			if( $keywordIsExist1 ){
+				$keyword_id1 = $keywordIsExist1['id'];
+				$keywordResult1 = 1;
+			}else{
+				$keywordResult1 = $keywordModel->add(array('keyword'=>$keywordsInfo[0]['keyword']));
+				$keyword_id1 = $keywordModel->getLastInsID();
+			}
+			$keywordBelongModelResult1 = $keywordBelongModel->add(array('news_id'=>$news_id,'keyword_id'=>$keyword_id1));
 		}else{
-			$keywordResult = $keywordModel->add(array('keyword'=>$keywordsInfo[0]['keyword']));
-			$keyword_id = $keywordModel->getLastInsID();
+			$keywordResult1 = false;
+			$keywordBelongModelResult1 = false;
 		}
-		$keywordBelongModelResult = $keywordBelongModel->add(array('news_id'=>$news_id,'keyword_id'=>$keyword_id));
+		
+		if( $keywordsInfo[1]['keyword'] ){
+			//第二个关键字
+			$keywordIsExist2 = $keywordModel->where(array('keyword'=>$keywordsInfo[1]['keyword']))->find();
+			if( $keywordIsExist2 ){
+				$keyword_id2 = $keywordIsExist2['id'];
+				$keywordResult2 = 1;
+			}else{
+				$keywordResult2 = $keywordModel->add(array('keyword'=>$keywordsInfo[1]['keyword']));
+				$keyword_id2 = $keywordModel->getLastInsID();
+				$keywordBelongModelResult2 = $keywordBelongModel->add(array('news_id'=>$news_id,'keyword_id'=>$keyword_id2));
+			}
+		}else{
+			$keywordResult2 = 1;
+			$keywordBelongModelResult2 = 1;
+		}
+		
 		// print_r($newsInfo['title']);
-		if( $keywordResult === false || $keywordBelongModelResult === false){
+		if( $keywordResult1 === false || $keywordBelongModelResult1 === false || $keywordResult2 === false || $keywordBelongModelResult2 === false ) {
 			return false;
 		}else{
 			return true;
@@ -92,7 +116,6 @@ class KeywordController extends Controller{
 		ini_set('display_errors', 'On');
 		ini_set('memory_limit', '64M');
 		error_reporting(E_ALL);
-	    // echo $str;
 	    //岐义处理
 	    $do_fork =  true ;
 	    //新词识别
@@ -129,16 +152,20 @@ class KeywordController extends Controller{
 		$newsModel = M('News');
 		// $str1 = '余弦值越接近1，就表明夹角越接近0度，也就是两个向量越相似，这就叫"余弦相似性"。所以，上面的句子A和句子B是很相似的，事实上它们的夹角大约为20.3度。';
 		// $str2 = '每篇文章各取出若干个关键词（比如20个），合并成一个集合，计算每篇文章对于这个集合中的词的词频（为了避免文章长度的差异，可以使用相对词频）；';
-		$str1 =  trim(strip_tags($newsModel->where('id=3010')->getField('content')));
-		$str2 =  trim(strip_tags($newsModel->where('id=2044')->getField('content')));
-		print_r($str1);
-		echo "<br>";
-		print_r($str2);
-		$wordsarr1 = $this->getWords($str1);
-		$wordsarr2 = $this->getWords($str2);
-		$words1 = $wordsarr1['words'];
-		$words2 = $wordsarr2['words'];
-		dump($this->xsd($words1,$words2));
+		// $str1 =  trim(strip_tags($newsModel->where('id=3015')->getField('content')));
+		// $str2 =  trim(strip_tags($newsModel->where('id=2045')->getField('content')));
+		// print_r($str1);
+		// echo "<br>";
+		// print_r($str2);
+		// $wordsarr1 = $this->getWords($str1);
+		// $wordsarr2 = $this->getWords($str2);
+		// $words1 = $wordsarr1['words'];
+		// $words2 = $wordsarr2['words'];
+		// dump($this->xsd($words1,$words2));
+		$content = $newsModel->where('id=5308')->getField('content');
+	    preg_match_all('/<img.*?src=\"(.*?\.(jpg|jpeg|png|bmp|svg|pcx){1}.*?)\".*?>/i',$content,$array);
+	    dump($array);
+
 	}
 
 

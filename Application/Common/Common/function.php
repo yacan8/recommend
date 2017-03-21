@@ -145,7 +145,7 @@ function timeDiff($DateObj,$time){
 
 
 function getNewsImg($content){
-    preg_match_all('/<img.*?src="(.*?)".*?>/is',$content,$array);
+    preg_match_all('/<img.*?src="(.*?\.(jpg|jpeg|png|bmp|svg|pcx){1}.*?)".*?>/i',$content,$array);
 
     if( $array[1] ){
         $_src = '';
@@ -182,7 +182,7 @@ function getNewsImg($content){
 
 
 function getNewsImg2($content,$count){
-    preg_match_all('/<img.*?src="(.*?)".*?>/is',$content,$array);
+    preg_match_all('/<img.*?src="(.*?\.(jpg|jpeg|png|bmp|svg|pcx){1}.*?)".*?>/i',$content,$array);
 
     if($array[1]){
         $imgArr = $array[1];
