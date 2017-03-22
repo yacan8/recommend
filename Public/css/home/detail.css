@@ -175,3 +175,12 @@
     color: #fff;
 }
 .f-r{float: right;margin-right:10px;}.audio {overflow: hidden;padding: 10px;    border:1px solid #eee;border-radius: 2px;margin: 10px 0;background-color:#fff; }.audio .tit{margin-left: 10px;line-height: 30px;}.audio .audio_icon{background: transparent no-repeat center center;background-size: cover;color: #aaa;border:2px solid #aaa;float: left;display: block;height: 30px;width: 30px;border-radius: 50%;text-align: center;line-height: 26px;}.audio .audio-play{background-image: url("../../img/play.png");}.audio .audio-pause{background-image: url("../../img/pause.png");}
+.img_wrapper{
+    margin-bottom: 10px;
+}
+.article-a__figcaption,
+.img_wrapper .img_descr{
+    font-weight:600;
+    text-align: center;
+    display: block;
+}

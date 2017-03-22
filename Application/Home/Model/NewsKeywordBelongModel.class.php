@@ -18,7 +18,7 @@ class NewsKeywordBelongModel extends RelationModel
 	);
 
 
-	public function getKeywordByNewsId($news_id){
+	public function getKeywordByNewsId($news_id) {
 		return $this->relation('keyword')->where(array('news_id'=>$news_id))->select();
 	}
 }

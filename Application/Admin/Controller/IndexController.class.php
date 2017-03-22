@@ -12,13 +12,14 @@ class IndexController extends Controller {
     public function index(){
 //		 $str = "abcd abcd";
 //		 echo str_replace('abcd','---',$str);
-//		 $list = M('News')->select();
+
 //		 $Model = M('News');
+//        $list = M('News')->where('id between 9000 and 9400')->select();
 //		 echo count($list);
 //		 for ($i=0; $i < count($list); $i++) {
-//		 	echo "$i";
-//		 	$list[$i]['content'] = str_replace('http://www.campusleader.cn','/recommoned',$list[$i]['content']);
-//		 	$Model->where('id = '.$list[$i]['id'])->save($list[$i]);
+//		 	$list[$i]['content'] = str_replace('/recommoned','/recommend',$list[$i]['content']);
+//		 	echo $Model->where('id = '.$list[$i]['id'])->save($list[$i]);
+//             echo "<br>";
 //		 }
     	$this->display('index');
     }

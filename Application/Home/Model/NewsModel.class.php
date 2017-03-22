@@ -137,7 +137,7 @@ class NewsModel extends RelationModel{
 	 * @return [List] [返回前十条最新News]
 	 */
 	public function getTop10(){
-		$condition['delete_tag'] = false;
+		$condition['delete_tag'] = (bool)0;
 		$List = $this->relation(['type','user'])->where($condition)->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order('publish_time desc')->limit('0,10')->select();
 		$List = $this->GenerateNews($List);
 		return $List;

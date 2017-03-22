@@ -2,7 +2,7 @@
 	<div class="col-xs-12">
         <h3 class="page-header">
         	推荐权重配置
-        	<a href="__ROOT__/Admin/Recommoned/saveOrUpdateView.html" class="pull-right btn btn-sm btn-default">新增配置</a>
+        	<a href="__ROOT__/Admin/Recommend/saveOrUpdateView.html" class="pull-right btn btn-sm btn-default">新增配置</a>
         </h3>
     </div>
 
@@ -11,15 +11,15 @@
     	<form class="form-inline">
     	<div class="panel <if condition="$vo.state eq '0'">panel-default<else/>panel-success</if>">
     		<div class="panel-heading">
-    			[编号：{$vo.id}] {$vo.display_name} 
+    			编号：{$vo.id} · {$vo.display_name} 
     			<if condition="$vo.state eq '0'">
     				
-    				<a onclick="return confirm('确认删除吗?')" class="pull-right btn-xs btn btn-danger" href="__ROOT__/Admin/Recommoned/deleteConfig/id/{$vo.id}.html">删除配置</a>
-    				<a class="pull-right btn-xs btn btn-success m-r-sm" href="__ROOT__/Admin/Recommoned/openConfig/id/{$vo.id}.html">启用配置</a>
-    				<a href="__ROOT__/Admin/Recommoned/saveOrUpdateView/id/{$vo.id}.html" class="pull-right btn-xs btn btn-info m-r-sm">编辑配置</a>
+    				<a onclick="return confirm('确认删除吗?')" class="pull-right btn-xs btn btn-danger" href="__ROOT__/Admin/Recommend/deleteConfig/id/{$vo.id}.html">删除配置</a>
+    				<a class="pull-right btn-xs btn btn-success m-r-sm" href="__ROOT__/Admin/Recommend/openConfig/id/{$vo.id}.html">启用配置</a>
+    				<a href="__ROOT__/Admin/Recommend/saveOrUpdateView/id/{$vo.id}.html" class="pull-right btn-xs btn btn-info m-r-sm">编辑配置</a>
     			<else/>
     			   	<button class="pull-right btn-xs btn btn-success disabled" disabled="disabled">已启用</button>
-    			   	<a href="__ROOT__/Admin/Recommoned/saveOrUpdateView/id/{$vo.id}.html" class="pull-right btn-xs btn btn-info m-r-sm">编辑配置</a>
+    			   	<a href="__ROOT__/Admin/Recommend/saveOrUpdateView/id/{$vo.id}.html" class="pull-right btn-xs btn btn-info m-r-sm">编辑配置</a>
     			</if>
     		</div>
 		    <div class="panel-body" style="position:relative;display:none">
