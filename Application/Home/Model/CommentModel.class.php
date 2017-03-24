@@ -19,7 +19,14 @@ class CommentModel extends RelationModel{
             'mapping_fields'=>'title',
             'as_fields'=>'title',
             'condition' => 'delete_tag = 0'
-
+        ),
+        'commentType' => array(
+            'mapping_type' => self::BELONGS_TO,
+            'class_name' => 'News',
+            'foreign_key'=>'news_id',
+            'mapping_fields'=>'type',
+            'as_fields'=>'type',
+            'condition' => 'delete_tag = 0'
         )
     );
 
@@ -130,6 +137,11 @@ class CommentModel extends RelationModel{
             $result['replyContent'] = '';
         }
         return $result;
+    }
+
+
+    public function getCommentListByUserIdAndBeginTime($user_id,$allowRecommendBeginTime){
+        return $this->relation('commentType')-> where(array( 'user_id' => $user_id ,'time'=> array('gt',$allowRecommendBeginTime))) ->order('time desc') -> field('news_id,time') -> select();
     }
 
     public function getMessage2($id){

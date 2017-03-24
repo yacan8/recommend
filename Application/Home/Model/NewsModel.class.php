@@ -7,7 +7,6 @@ class NewsModel extends RelationModel{
 	 * @var array
 	 */
 	protected $_link = array(
-
 	    'type'  =>  array(
 	    	'mapping_type' =>self::BELONGS_TO,
 	        'class_name' => 'Type',

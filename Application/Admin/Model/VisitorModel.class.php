@@ -20,7 +20,7 @@ class VisitorModel extends Model{
 		}else{
 			$VisitorNewsModel = M('VisitorNews');
 			$condition['news_id'] = array('eq',$id);
-			$List = $VisitorNewsModel->field("area label,count(*) data")
+			$List = $VisitorNewsModel->field("area label,count(*) DATE_FORMAT(date,'%Y-%m-%d')")
 						->where($condition)
 						->group("area")
 						->select();

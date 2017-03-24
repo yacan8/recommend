@@ -7,7 +7,7 @@
     	<form class="form-inline" action="{:U('Recommend/saveOrUpadte')}" method="post">
     	<input name="id" type="hidden" value="{$r.id}" />
     	<div class="panel panel-success">
-    		<div class="panel-heading">新增配置</div>
+    		<div class="panel-heading"><if condition="!$r['id']">新增配置<else/>修改配置</if></div>
 		    <div class="panel-body" style="position:relative;">
 		      <ul class="profile-classic">
 		        <li>
@@ -16,9 +16,9 @@
 		        </li>
 		        <li>
 		        	<span>可推荐时间长度（单位：天）：</span> 
-		        	<select class="form-control input-sm" name="allow_recommoned_time">
+		        	<select class="form-control input-sm" name="allow_recommend_time">
 		        		<for start ="1" end="11">
-					  		<option <if condition="$r['allow_recommoned_time'] eq $i">selected</if>>{$i}</option>
+					  		<option <if condition="$r['allow_recommend_time'] eq $i">selected</if>>{$i}</option>
 						</for>
 					</select>
 				</li>
@@ -42,7 +42,7 @@
 		        	<span>评论关键字权重：</span>
 		        	<select class="form-control input-sm" name="comment_keyword">
 		        		<for start ="1" end="11">
-					  		<option>{$i}</option>
+							<option <if condition="$r['comment_keyword'] eq $i">selected</if>>{$i}</option>
 						</for>
 					</select>
 		        </li>

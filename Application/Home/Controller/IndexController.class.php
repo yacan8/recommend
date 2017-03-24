@@ -67,4 +67,13 @@ class IndexController extends Controller {
             echo '<h1>无法识别手机操作系统，请使用qq扫一扫获取其他二维码扫描器。</h1>';
         }
     }
+
+//    public function test(){
+//        $m = M('VisitorNews');
+//        $list = $m ->where('id>8013')->select();
+//        for($i=0;$i<count($list);$i++){
+//            $list[$i]['news_id'] = rand(400,8000);
+//            echo $m->where('id='.$list[$i]['id'])->save($list[$i]);
+//        }
+//    }
 }

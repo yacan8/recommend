@@ -41,9 +41,9 @@ class VisitorController extends Controller{
                         // $config = array('expire'=>$expire,'path'=>'/','domain'=>'.campusleader.cn');
                         cookie($cookie_name,"true",$expire);
                         $data['ip'] = $ip_value;//ip
-                        $data['date'] = date('Y-m-d',time());//时间
+                        $data['date'] = date('Y-m-d H:i:s',time());//时间
                         $data['area'] = $area['country'];//地区
-                        $data['news_id'] = I('get.id');//文章Id
+                        $data['news_id'] = I('post.id');//文章Id
                         M('VisitorNews')->add($data);
                     }
                 }

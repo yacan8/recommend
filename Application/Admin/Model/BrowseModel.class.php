@@ -45,8 +45,8 @@ class BrowseModel extends Model{
 			$condition['date']   = array('between',array($start,$end));
 			$VisitorNewsModel = M('VisitorNews');
 			$Visitor = $VisitorNewsModel
-							->field("date 日期,count(*) 访客")
-							->group('date')
+							->field("DATE_FORMAT(date,'%Y-%m-%d') 日期,count(*) 访客")
+							->group("DATE_FORMAT(date,'%Y-%m-%d')")
 							->where($condition)
 							->select();
 
