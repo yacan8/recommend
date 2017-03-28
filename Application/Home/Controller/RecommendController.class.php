@@ -6,15 +6,17 @@ class RecommendController extends Controller{
 
 
 	public function recommend($user_id){
-		$start = microtime(true);
+
 		header("Content-type: text/html; charset=utf-8");
 		$recommendConfigModel = M('RecommendConfig');
 		//获取推荐配置信息
 		$recommendConfig = $recommendConfigModel->where(array('state' => array('neq','0')))->find();
+
 		$calculateTimeSpan = $recommendConfig['calculate_time_span'];
 		$timestamp = time();
 		$calculateTimeSpanStamp = $timestamp - 60 * 60 * 24 * (int)$calculateTimeSpan;
 		$calculateTimeSpanBeginTime = date('Y-m-d H:i:s', $calculateTimeSpanStamp );
+
 
 		$isLogin = session('?login');
 		$user_id = session('login');
@@ -24,6 +26,7 @@ class RecommendController extends Controller{
 		$zanModel = D('Zan');
 		$commentModel = D('Comment');
 		if ( $isLogin ) {
+
 			$browseList = $visitorModel -> getVisitorListByUserIdAndBeginTime($user_id,$calculateTimeSpanBeginTime);
 			$commentList = $commentModel -> getCommentListByUserIdAndBeginTime($user_id,$calculateTimeSpanBeginTime);
 			$zanList = $zanModel -> getZanListByUserIdAndBeginTime($user_id,$calculateTimeSpanBeginTime);
@@ -34,6 +37,7 @@ class RecommendController extends Controller{
 				'zanInfo' => $zanList
 			);
 			$recommendNum = count($browseList) > 10 ? 10 : count($browseList) ;
+
 			foreach( $portrayalInfo as $key => &$item ) {
 				foreach( $item as &$_item ) {
 					$_item['keywords'] = $keywordBelongModel -> getKeywordByNewsId($_item['news_id']);
@@ -41,6 +45,7 @@ class RecommendController extends Controller{
 			}
 			$portrayal = $this->portrayal($portrayalInfo);
 			$data = $this->getRecommendWeight($portrayal,$recommendConfig);
+
 			$read = $recommendModel -> where(array('user_id'=>$user_id))->field('id')->select(false);
 		} else {
 			$cookieRecommendedString = cookie('recommend');
@@ -57,8 +62,10 @@ class RecommendController extends Controller{
 			}
 			$read = join(',',$browseIdArray);
 			$portrayal = $this->portrayal($portrayalInfo);
+
 			$data = $this->getRecommendWeight($portrayal,$recommendConfig);
 		}
+
 
 
 		$recommendArray = $this -> getRecommendNum($data,$recommendNum);
@@ -128,6 +135,7 @@ class RecommendController extends Controller{
 //		dump($recommendKeywordList);
 
 		return $result;
+
 	}
 
 

@@ -15,3 +15,7 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+<<<<<<< HEAD
+=======
+/Data/
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc

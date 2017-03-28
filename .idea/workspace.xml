@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="504c96ac-4b0a-4d2b-bc59-4b7f63fdebf9" name="Default" comment="" />
     <ignored path="recommend.iws" />
+=======
+    <list default="true" id="75bbf53d-486e-43e9-bf3f-9541df020f1f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/assets/bootstrap-datetimepicker" afterPath="$PROJECT_DIR$/Public/assets/bootstrap-datetimepicker" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/phpquery" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/phpquery" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Model/BrowseModel.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Model/BrowseModel.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Model/CommentModel.class.php" afterPath="$PROJECT_DIR$/Application/Home/Model/CommentModel.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php" afterPath="$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/RecommendController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/RecommendController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/VisitorController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/VisitorController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Model/VisitorModel.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Model/VisitorModel.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Model/VisitorNewsModel.class.php" afterPath="$PROJECT_DIR$/Application/Home/Model/VisitorNewsModel.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Model/ZanModel.class.php" afterPath="$PROJECT_DIR$/Application/Home/Model/ZanModel.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Recommend/addOrUpdate.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Recommend/addOrUpdate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Recommend/index.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Recommend/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
+    <ignored path="recommoned.iws" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,6 +36,7 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+<<<<<<< HEAD
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="recommend" />
@@ -27,46 +48,103 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="31.666666">
               <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+=======
+  <component name="DatabaseView">
+    <option name="FLATTEN" value="false" />
+    <option name="GROUP_BY_TYPE" value="true" />
+    <option name="SORT_CHILDREN" value="false" />
+    <option name="SHOW_TABLE_CONSTRAINTS" value="true" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="recommoned" />
+  </component>
+  <component name="FileColors">
+    <fileColor scope="All" color="Blue" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="NewsKeywordBelongModel.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Home/Model/NewsKeywordBelongModel.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="CrawlerController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/CrawlerController.class.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="21.148148">
               <caret line="87" column="36" selection-start-line="87" selection-start-column="36" selection-end-line="87" selection-end-column="36" />
               <folding />
+=======
+      <file leaf-file-name="RecommendController.class.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Application/Home/Controller/RecommendController.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.11597938">
+              <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+              <folding>
+                <marker date="1490323945000" expanded="true" signature="1488:1666" placeholder="..." />
+              </folding>
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="KeywordController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/KeywordController.class.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-1.0941176">
               <caret line="65" column="58" selection-start-line="65" selection-start-column="58" selection-end-line="65" selection-end-column="58" />
+=======
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Admin/View/Recommend/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="37" column="37" selection-start-line="37" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="NewsModel.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-81.8">
               <caret line="350" column="31" selection-start-line="350" selection-start-column="31" selection-end-line="350" selection-end-column="31" />
+=======
+      <file leaf-file-name="addOrUpdate.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Admin/View/Recommend/addOrUpdate.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="55" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.032367975">
               <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+=======
+      <file leaf-file-name="modal.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modal.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="16" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="16" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
               <folding />
             </state>
           </provider>
@@ -74,6 +152,7 @@
       </file>
     </leaf>
   </component>
+<<<<<<< HEAD
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -87,10 +166,77 @@
         <option value="$PROJECT_DIR$/Application/Admin/Controller/KeywordController.class.php" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/CrawlerController.class.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
+=======
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Html5" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/Controller/ApplyController.class.php" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/View/IssueContent/edhead.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/View/IssueContent/add.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/Controller/AccountController.class.php" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/Controller/UserController.class.php" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/View/UserContent/safe.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/View/UserContent/edit.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/View/User/safe.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/View/User/edit.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Admin/View/News/add.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Admin/View/News/change.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Admin/View/Common/nav.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Admin/Controller/UserController.class.php" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Admin/View/User/applyUser.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Admin/Model/NewsModel.class.php" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Admin/View/User/applyContent.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/View/Crawler/crawler.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Common/Common/function.php" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Admin/View/Common/header.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Admin/View/News/index.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Admin/View/NewsContent/list.html" />
+        <option value="$PROJECT_DIR$/../recommoned/ThinkPHP/Library/Vendor/phpquery/phpQuery/phpQuery/DOMDocumentWrapper.php" />
+        <option value="$PROJECT_DIR$/../recommoned/ThinkPHP/Library/Vendor/phpquery/phpQuery/phpQuery/phpQueryObject.php" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/Model/NewsModel.class.php" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/Model/NewsKeywordModel.class.php" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/Controller/NewsController.class.php" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/View/News/detail.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Admin/Controller/CrawlerController.class.php" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Admin/View/Crawler/crawler.html" />
+        <option value="$PROJECT_DIR$/../recommoned/Public/js/admin/crawler.js" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Admin/Controller/RecommonedController.class.php" />
+        <option value="$PROJECT_DIR$/../recommoned/modal.json" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/Model/NewsKeywordBelongModel.class.php" />
+        <option value="$PROJECT_DIR$/../recommoned/Public/css/home/detail.css" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Home/Controller/RecommonedController.class.php" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Common/Conf/config.php" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Admin/Controller/RecommendController.class.php" />
+        <option value="$PROJECT_DIR$/../recommoned/Application/Runtime/Cache/Admin/897bcc95ab99af1d9567e06b8271764f.php" />
+        <option value="$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php" />
+        <option value="$PROJECT_DIR$/recommend.json" />
+        <option value="$PROJECT_DIR$/Application/Home/Controller/VisitorController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Admin/Model/BrowseModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Admin/Model/VisitorModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Admin/View/Recommend/index.html" />
+        <option value="$PROJECT_DIR$/Application/Home/Model/CommentModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/Model/VisitorNewsModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/Model/ZanModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Admin/View/Recommend/addOrUpdate.html" />
+        <option value="$PROJECT_DIR$/Application/Home/Controller/RecommendController.class.php" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" />
+<<<<<<< HEAD
   <component name="JsBuildToolPackageJson" detection-done="true" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
@@ -107,6 +253,42 @@
     <option name="y" value="-8" />
     <option name="width" value="1376" />
     <option name="height" value="754" />
+=======
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
+  <component name="PhpDebugGeneral" hide_empty_superglobals="false" />
+  <component name="PhpServers">
+    <servers>
+      <server host="localhost" id="bc28685c-b2cb-45b5-9ef9-a0e59bbb54f2" name="recommoned" port="8888" />
+      <server host="r.cn" id="e1b9f9cb-5366-4f69-9299-dce39796ed93" name="recommoned1" />
+    </servers>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="PhpXdebugProxy" ide_key="PHPSTORM" host="localhost" port="8888" />
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Blade files</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -119,7 +301,11 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
+<<<<<<< HEAD
     <navigator proportions="" version="1">
+=======
+    <navigator currentView="ProjectPane" proportions="" version="1">
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -129,6 +315,7 @@
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
+<<<<<<< HEAD
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
@@ -143,6 +330,72 @@
     <property name="SearchEverywhereHistoryKey" value="keywordCon&#9;null&#9;null&#10;crawlerController&#9;FILE&#9;file://D:/WWW/recommend/Application/Admin/Controller/CrawlerController.class.php&#10;config.php&#9;FILE&#9;file://D:/WWW/recommend/Application/Common/Conf/config.php&#10;newsModel.class&#9;FILE&#9;file://D:/WWW/recommend/Application/Home/Model/NewsModel.class.php&#10;u.js&#9;FILE&#9;file://D:/WWW/recommend/Public/js/home/u.js&#10;newsTe&#9;FILE&#9;file://D:/WWW/recommend/Application/Home/View/IndexContent/newsTemplate.html&#10;List.html&#9;FILE&#9;file://D:/WWW/recommend/Application/Home/View/IndexContent/List.html&#10;IndexController.cl&#9;FILE&#9;file://D:/WWW/recommend/Application/Home/Controller/IndexController.class.php&#10;recommendController&#9;null&#9;null&#10;recommendC&#9;null&#9;null&#10;crawler&#9;FILE&#9;file://D:/WWW/recommend/Application/Admin/View/Crawler/crawler.html" />
   </component>
   <component name="RunManager" selected="PHP Web Application.recommend">
+=======
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="recommend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="/Applications/MAMP/bin/php" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="FullScreen" value="true" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="SearchEverywhereHistoryKey" value="detail&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommend/Application/Home/View/News/detail.html&#10;newsModel&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommend/Application/Home/Model/NewsModel.class.php&#10;detail.css&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/home/detail.css&#10;moda&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/modal.json&#10;Recommoned&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/Controller/RecommonedController.class.php&#10;crawler.js&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/admin/crawler.js&#10;detai&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/News/detail.html&#10;function.php&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/Common/function.php&#10;list.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/View/NewsContent/list.html&#10;apply-&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/apply-comment.js&#10;User&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/UserController.class.php&#10;fun&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Common/function.php&#10;newsContro&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/Controller/NewsController.class.php&#10;followM&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/FollowModel.class.php&#10;followContr&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/FollowController.class.php&#10;apply.js&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/apply.js&#10;applyCont&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/ApplyController.class.php&#10;followCo&#9;null&#9;null&#10;u.css&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/home/u.css&#10;commentMo&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/CommentModel.class.php&#10;commentC&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/CommentController.class.php&#10;commentM&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/CommentModel.class.php&#10;u.js&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/u.js&#10;bro&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/BrowseModel.class.php&#10;newsCo&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/NewsController.class.php&#10;comment&#9;null&#9;null&#10;deta&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/detail.js&#10;COMMENTMODEL&#9;null&#9;null&#10;commentmODEL&#9;null&#9;null&#10;comment.css&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/home/comment.css&#10;apply&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/apply.js&#10;sty&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/style.css&#10;NEWSMODEL.CLASS.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/NewsModel.class.php&#10;newSmO&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/VisitorNewsModel.class.php&#10;APP&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/ApplyController.class.php&#10;style&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/css/style.css&#10;content.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/IssueContent/content.html&#10;newsMo&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Model/NewsModel.class.php&#10;app&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/ApplyController.class.php&#10;new&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/Controller/NewsController.class.php&#10;ht_&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/admin/ht_pv.js&#10;apply.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Public/js/home/apply.js&#10;followC&#9;null&#9;null&#10;content.html&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/IssueContent/content.html&#10;content.ht,&#9;null&#9;null&#10;applyCon&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Admin/Controller/ApplyController.class.php&#10;edit&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/edit.html&#10;edit.&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/User/edit.html&#10;useri&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/UserContent/userinfo.html&#10;index&#9;FILE&#9;file:///Users/yang.can/ROOT_FRO_PHP/recommoned/Application/Home/View/Index/index.html" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../recommoned/Application/Home/View/IssueContent" />
+      <recent name="$PROJECT_DIR$/../recommoned/Application/Home/View/User" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../recommoned/Application/Admin/View" />
+      <recent name="$PROJECT_DIR$/../recommoned/Application/Home/View/Issue" />
+      <recent name="$PROJECT_DIR$/../recommoned/Application/Home/View" />
+      <recent name="$PROJECT_DIR$/../recommoned/Application/Home/View/User" />
+    </key>
+  </component>
+  <component name="RunManager" selected="PHP Web Application.recommoned">
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
@@ -154,13 +407,26 @@
       <BehatRunner />
       <method />
     </configuration>
+<<<<<<< HEAD
     <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
       <method />
     </configuration>
+=======
+    <configuration default="true" type="PhpHttpRequestRunConfigurationType" factoryName="PHP HTTP Request" server_name="recommoned">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
     <configuration default="true" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application">
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+<<<<<<< HEAD
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -174,6 +440,25 @@
     </configuration>
     <list size="1">
       <item index="0" class="java.lang.String" itemvalue="PHP Web Application.recommend" />
+=======
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="recommoned" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="recommoned1" start_url="/recommend/index.php/">
+      <method />
+    </configuration>
+    <configuration default="false" name="Unnamed" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" browser="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" server_name="recommoned1" start_url="/recommoned/index.php/Admin/News/add">
+      <method />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="PHP Web Application.recommoned" />
+      <item index="1" class="java.lang.String" itemvalue="PHP Web Application.Unnamed" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -182,10 +467,17 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="504c96ac-4b0a-4d2b-bc59-4b7f63fdebf9" name="Default" comment="" />
       <created>1490534776638</created>
       <option name="number" value="Default" />
       <updated>1490534776638</updated>
+=======
+      <changelist id="75bbf53d-486e-43e9-bf3f-9541df020f1f" name="Default" comment="" />
+      <created>1487159995653</created>
+      <option name="number" value="Default" />
+      <updated>1487159995653</updated>
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
     </task>
     <servers />
   </component>
@@ -199,6 +491,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-8" y="-8" width="1376" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
@@ -240,6 +533,49 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39906833" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+=======
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19670959" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4477612" sideWeight="0.5057143" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3253012" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32650602" sideWeight="0.4942857" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32771084" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4477612" sideWeight="0.5057143" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3253012" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19670959" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32771084" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32650602" sideWeight="0.4942857" order="3" side_tool="false" content_ui="tabs" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -255,11 +591,19 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+<<<<<<< HEAD
       <option name="time" value="2" />
+=======
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="98" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Application/Admin/View/Crawler/crawler.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -337,12 +681,122 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
           <folding />
+=======
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.833334">
+          <caret line="229" column="25" selection-start-line="229" selection-start-column="25" selection-end-line="229" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/js/home/wait.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/User/index2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.002570694">
+          <caret line="61" column="115" selection-start-line="61" selection-start-column="115" selection-end-line="61" selection-end-column="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/User/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/View/Common/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="42" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/js/home/apply.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="89" column="4" selection-start-line="89" selection-start-column="4" selection-end-line="89" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/UserContent/dynamics.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="44" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/phpquery/phpQuery/phpQuery.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.375">
+          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/phpquery/phpQuery/phpQuery/DOMDocumentWrapper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.59881425">
+          <caret line="161" column="32" selection-start-line="161" selection-start-column="32" selection-end-line="161" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/Core_c.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.6304348">
+          <caret line="55" column="20" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/phpquery/phpQuery/phpQuery/phpQueryObject.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5769231">
+          <caret line="30" column="20" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Common/function.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/news/2017-03-15/58c9367794d09.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Common/Common/function.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="146" column="9" selection-start-line="146" selection-start-column="9" selection-end-line="146" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/NewsController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/CrawlerController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="178" column="50" selection-start-line="178" selection-start-column="50" selection-end-line="178" selection-end-column="50" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Admin/View/Crawler/crawler.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
           <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
           <folding />
         </state>
@@ -400,12 +854,96 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
           <folding />
+=======
+          <caret line="37" column="0" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/js/admin/crawler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="178" column="38" selection-start-line="178" selection-start-column="38" selection-end-line="178" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Think/Model/RelationModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1121134">
+          <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/css/home/detail.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="180" column="23" selection-start-line="180" selection-start-column="23" selection-end-line="180" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Common/Conf/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Runtime/Cache/Admin/897bcc95ab99af1d9567e06b8271764f.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68577075">
+          <caret line="31" column="28" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/RecommendController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitattributes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.96039605">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/recommend.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.923077">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/News/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.884615">
+          <caret line="185" column="37" selection-start-line="185" selection-start-column="37" selection-end-line="185" selection-end-column="37" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Public/js/home/u.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
@@ -479,43 +1017,157 @@
         <state vertical-scroll-proportion="0.34863946">
           <caret line="1013" column="9" selection-start-line="1013" selection-start-column="9" selection-end-line="1013" selection-end-column="9" />
           <folding />
+=======
+          <caret line="278" column="41" selection-start-line="278" selection-start-column="41" selection-end-line="278" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/js/home/tj.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="29" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Model/VisitorModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6030928">
+          <caret line="26" column="26" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/KeywordController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-118.38461">
+          <caret line="171" column="23" selection-start-line="171" selection-start-column="20" selection-end-line="171" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Model/BrowseModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2783505">
+          <caret line="47" column="65" selection-start-line="47" selection-start-column="65" selection-end-line="47" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/BrowseController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5798969">
+          <caret line="25" column="45" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/standard_5.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34407216">
+          <caret line="266" column="9" selection-start-line="266" selection-start-column="9" selection-end-line="266" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/BrowseController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.538462">
+          <caret line="21" column="9" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/ApplyController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.9896908">
+          <caret line="220" column="8" selection-start-line="220" selection-start-column="8" selection-end-line="220" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Model/UserModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Model/TypeModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.245283">
+          <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Model/MessageModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Model/NewsKeywordBelongModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="-15.481482">
           <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+=======
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/.gitattributes">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.43252033">
           <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+=======
+    <entry file="file://$PROJECT_DIR$/Application/Home/Model/CommentModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-48.566036">
+          <caret line="143" column="152" selection-start-line="143" selection-start-column="48" selection-end-line="143" selection-end-column="152" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Application/Admin/View/Crawler/crawler.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.93877554">
           <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+=======
+    <entry file="file://$PROJECT_DIR$/Application/Home/Model/ZanModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.056603">
+          <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/recommend.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2244898">
           <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+=======
+    <entry file="file://$PROJECT_DIR$/Application/Home/Model/VisitorNewsModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.307692">
+          <caret line="25" column="90" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="90" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Model/NewsModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="-81.8">
           <caret line="350" column="31" selection-start-line="350" selection-start-column="31" selection-end-line="350" selection-end-column="31" />
           <folding />
@@ -534,33 +1186,93 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-19.607143">
           <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
+=======
+        <state vertical-scroll-proportion="137.76923">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/VisitorController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68758345">
+          <caret line="45" column="39" selection-start-line="45" selection-start-column="39" selection-end-line="45" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modal.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="16" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Application/Home/Controller/RecommendController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="31.666666">
           <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+=======
+    <entry file="file://$PROJECT_DIR$/Application/Admin/View/Recommend/addOrUpdate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="55" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/KeywordController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.0941176">
           <caret line="65" column="58" selection-start-line="65" selection-start-column="58" selection-end-line="65" selection-end-column="58" />
+=======
+    <entry file="file://$PROJECT_DIR$/Application/Admin/View/Recommend/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="37" selection-start-line="37" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.032367975">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
+=======
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/RecommendController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.11597938">
+          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+          <folding>
+            <marker date="1490323945000" expanded="true" signature="1488:1666" placeholder="..." />
+          </folding>
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
         </state>
       </provider>
     </entry>
   </component>
+<<<<<<< HEAD
+=======
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
 </project>

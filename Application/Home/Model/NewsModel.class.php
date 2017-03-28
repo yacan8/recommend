@@ -283,6 +283,7 @@ class NewsModel extends RelationModel{
 	}
 
 
+
 	public function getRecommendByKeyword($keyword_id_arr,$read,$begin_time){
 
 		$DB_PREFIX = C('DB_PREFIX');
@@ -367,7 +368,6 @@ class NewsModel extends RelationModel{
 		}
 		return $result;
 	}
-
 
 
 }

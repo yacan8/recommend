@@ -1,12 +1,20 @@
 var crawler = {
     sina : function(time){
+<<<<<<< HEAD
         var url = ROOT+'/index.php/Admin/Crawler/sinaNews';
+=======
+        var url = ROOT+'/Admin/Crawler/sinaNews';
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
         return fetchLoading(url,{ time : time }).then( function( result ) { return result.text() }).then(function(result){
             return crawlerCallBack.sina(result,time);
         });
     },
     _163 : function(time){
+<<<<<<< HEAD
         var url = ROOT+'/index.php/Admin/Crawler/news163';
+=======
+        var url = ROOT+'/Admin/Crawler/news163';
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
         return fetchLoading(url,{}).then( function( result ) { return result.text() } ).then(function(result){
             return crawlerCallBack._163(result,time);
         });
@@ -44,7 +52,11 @@ var crawler = {
         for(var key in params){
             formData.append(key, params[key]);
         }
+<<<<<<< HEAD
         return fetch( ROOT+'/index.php/Admin/Crawler/crawlerIn', {
+=======
+        return fetch( ROOT+'/Admin/Crawler/crawlerIn', {
+>>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
                 credentials: 'include',
                 method:"post",
                 body: formData,
