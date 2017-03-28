@@ -1,0 +1,77 @@
+
+  <if condition="!session('?app_nav')">
+  <!-- .navbar -->
+  <nav class="navbar navbar-white">
+    <div class="container transition-all-03" id="search-margin-top">
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <button type="button" class="navbar-toggle collapsed" id="search-toggle">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </button>
+        <a class="navbar-brand" href="{:U('Index/index')}">
+            <img src="__PUBLIC__/img/logo.jpeg"><span class="logo-text">CampusLeader</span>
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class='dropdown hidden-xs'>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+            <ul class="dropdown-menu nav-search hidden-xs">
+              <li>
+                <form action="{:U('News/search')}" method="get">
+                  <div class="input-group"><input type="text" class="form-control" name="key" placeholder="输入关键字">
+                    <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="reply-to" type="submit">搜索</button></span>
+                  </div>
+                </form>
+              </li>
+            </ul>
+          </li>
+          <li class="hidden-xs">
+            <a href="{:U('User/message')}">
+              <span class="glyphicon glyphicon-envelope"></span>
+              <span class="badge icon-message-count pc-message"></span>
+            </a>
+          </li>
+          <li <if condition="CONTROLLER_NAME eq 'Index'">class="active"</if>><a href="{:U('Index/index')}">首页</a></li>
+          <li class='dropdown'>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">app下载 <!-- <span class="caret"></span> --></a>
+            <ul class="dropdown-menu crawler">
+              <img src="{:U('Index/QRcode')}" style="width:110px;" class="m-l-sm">
+              <!-- <li><img src="/cl/index.php/Index/QRcode.html" style="width:100px;"></li> -->
+            </ul>
+          </li>
+
+
+
+
+          {:W('User/user')}
+
+        </ul>
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+
+  <!-- 手机搜索div -->
+    <div class="xs-search" id="xs-search">
+      <form action="{:U('News/search')}" class="searchForm">
+        <input type="text" placeholder="你要寻找什么吗" name="key" id="search-key">
+        <button class="headericon-header-search" type="submit">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </button>
+        <button class="headericon-close" type="button" id="search-close">
+          <span class="glyphicon glyphicon-plus search-close" aria-hidden="true"></span>
+        </button>
+      </form>
+    </div>
+    <!-- /手机搜索div -->
+  </nav>
+  <!-- /.navbar -->
+  </if>

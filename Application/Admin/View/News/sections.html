@@ -1,0 +1,79 @@
+<script>
+    $(function(){
+      $('.sections_change').click(function(event) {
+         $("#id").val($(this).attr('data-id'));
+      });
+    })
+</script>
+<!-- <script src="__PUBLIC__/js/"></script> -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">修改二级分类分类</h4>
+      </div>
+      <form class="form-horizontal" action="{:U('Sections/Change')}">
+        <input type="hidden" name="id" id='id' value=''/>
+      <div class="modal-body">
+      <fieldset>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">分类名</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" name="sections" placeholder="输入修改后的分类名" maxlength="4">
+          </div>
+        </div>
+      </fieldset>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="submit" class="btn btn-primary">提交</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+
+  <div class="row margin-bottom">
+    <div class="col-xs-12">
+          <h3 class="page-header">二级分类管理
+      </div>
+  </div>
+
+<form class="form-horizontal">
+
+
+  <table class="table table-bordered">
+  	<tr>
+  		<th>
+  		归属分类
+  		</th>
+		<th>
+  		二级分类
+  		</th>
+    </tr>
+
+    <volist name="List" id="vo">
+    <tr>
+      <td>
+      {$vo.type}
+      </td>
+      <td>
+        <volist name="vo.sections" id="item">
+        <div class="m-b-sm">
+          <if condition="$item['sections'] neq '其他'">
+      {$item.sections}-<a data-id='{$item.id}' class='sections_change btn btn-info btn-sm' class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">修改</a>-<a href="{:U('Sections/Delete',array('id'=>$item['id']))}" class="btn btn-danger btn-sm" onclick="return confirm('确认删除吗?')">删除</a>
+      </div>
+    </if>
+        </volist>
+      </td>
+    </tr>
+    </volist>
+
+
+    
+  </table>
+</form>

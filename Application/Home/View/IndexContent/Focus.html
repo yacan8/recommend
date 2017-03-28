@@ -1,0 +1,34 @@
+
+    <div class="container">
+            <div class="focus-container">
+                <span class="focus-btn focus-pre glyphicon glyphicon-chevron-left"></span>
+
+                <volist name="HeadLines" id="vo">
+                    <switch name="i">
+                        <case value="1">
+                            <div class="focus-item f-w-2 f-h-2 active">
+                        </case>
+                        <case value="2">
+                            <div class="focus-item f-w-2 f-h-1">
+                        </case>
+                        <case value="3">
+                            <div class="focus-item f-w-1 f-h-1 m-r-no">
+                        </case>
+                        <case value="4">
+                            <div class="focus-item f-w-1 f-h-1">
+                        </case>
+                        <case value="5">
+                            <div class="focus-item f-w-2 f-h-1 m-r-no">
+                        </case>
+                    </switch>
+                    <a class="focus-item-img" href="{:U('/n/'.$vo['id'])}" style="background: url('{:C('__DATA__')}/{$vo.image}') no-repeat center center;background-size: cover;">
+                        <span class="mask-tags">{$vo.type}</span>
+                        <span class="title to">{$vo.title}</span>
+                    </a>
+                </div>
+                </volist>
+
+                <span class="focus-btn focus-next glyphicon glyphicon-chevron-right"></span>
+            </div>
+
+    </div>

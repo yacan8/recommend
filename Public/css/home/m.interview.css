@@ -1,0 +1,226 @@
+.ratateIn{
+	-webkit-animation:rotateIn 1s .2s ease both;
+	-moz-animation:rotateIn 1s .2s ease both;}
+	@-webkit-keyframes rotateIn{
+	0%{-webkit-transform-origin:center center;
+	-webkit-transform:rotate(-200deg);
+	opacity:0}
+	100%{-webkit-transform-origin:center center;
+	-webkit-transform:rotate(0);
+	opacity:1}
+	}
+	@-moz-keyframes rotateIn{
+	0%{-moz-transform-origin:center center;
+	-moz-transform:rotate(-200deg);
+	opacity:0}
+	100%{-moz-transform-origin:center center;
+	-moz-transform:rotate(0);
+	opacity:1}
+}
+.ratateOut{
+	-webkit-animation:rotateOut 1s .2s ease both;
+	-moz-animation:rotateOut 1s .2s ease both;}
+	@-webkit-keyframes rotateOut{
+	0%{-webkit-transform:rotate(0);
+	opacity:1}
+	100%{-webkit-transform:rotate(-90deg);
+	opacity:0}
+	}
+	@-moz-keyframes rotateOut{
+	0%{-moz-transform:rotate(0);
+	opacity:1}
+	100%{-moz-transform:rotate(-90deg);
+	opacity:0}
+}
+.fadeIn{
+	-webkit-animation:fadeInUp 1s .2s ease both;
+	-moz-animation:fadeInUp 1s .2s ease both;}
+	@-webkit-keyframes fadeInUp{
+	0%{opacity:0;
+	-webkit-transform:translateY(20px)}
+	100%{opacity:1;
+	-webkit-transform:translateY(0)}
+	}
+	@-moz-keyframes fadeInUp{
+	0%{opacity:0;
+	-moz-transform:translateY(20px)}
+	100%{opacity:1;
+	-moz-transform:translateY(0)}
+}
+*{	margin: 0;	padding: 0;}
+img{
+	max-width: 100%;
+}
+body{
+	text-align: center;
+    font: 400 16px "Myriad Set Pro",'Hiragino Sans GB W3','微软雅黑‘','YaHei', 'Microsoft YaHei',"Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif",'SHSCN','Open Sans';
+}
+.start{
+	padding-top: 80px;
+}
+.start-text{
+	color: #fff;
+	font-size: 24px;
+}
+.start-btn{
+	border:1px solid #fff;
+	border-radius: 3px;
+	padding: 10px;
+	font-size: 20px;
+	display: block;
+	max-width: 200px;
+	text-decoration: none;
+	text-align: center;
+	margin: 100px auto 40px auto;
+}
+.result,
+.qu{
+	-webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+	transition:all 0.3s;-moz-transition:all 0.3s;-webkit-transition:all 0.3s;-o-transition:all 0.3s;
+}
+.result.active,
+.qu.active{
+	-webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+.result{
+	color: #fff;
+	padding: 30px 10px;
+	text-align: left;
+	text-indent: 20px;
+	line-height: 24px;
+}
+.tc-white{
+	color: #fff;
+}
+.bg-main{
+	background-color: #669999;
+}
+.header-container{
+	padding:30px 10px 20px 10px;
+}
+.img-container{
+	margin: 0 auto;
+	width: 250px;
+	height: 250px;
+	margin-bottom: 10px;
+}
+.img-container img{
+	display: block;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+	width: 100%;
+    height: 100%;
+    border:5px solid #fff;
+}
+.aw-container,
+.qu-container{
+	padding: 0 10px;
+}
+.qu-container{
+	margin-bottom: 25px;
+}
+.btn{
+	padding: 5px 10px;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 4px;
+	border:1px solid #fff;
+	display: inline-block;
+	font-size: 12px;
+}
+.aw-container{
+	max-width: 250px;
+	margin:  10px auto;
+ }
+
+.aw-item{
+	border:1px solid #fff;
+	color: #fff;
+	padding: 7px 10px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	display: block;
+	text-decoration: none;
+}
+.pass{
+	display: none;
+}
+.wait-mask,
+.mes-mask,
+.img-mask{
+	overflow: scroll;
+	display: none;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	background: rgba(0,0,0,.5);
+	z-index: 100;
+}
+.img-modal{
+	
+    margin: 10px ;
+    margin-top: 40px;
+    
+}
+.img-close.active,
+.img-modal.active{
+	-webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+.img-modal img{
+	background-color: #fff;
+	padding: 5px;
+	width: 90%;
+}
+.img-close{
+	display: block;
+	max-width: 80%;
+	margin: 0 auto;
+}
+.img-close,.img-modal{
+	-webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    transition:all .3s;-moz-transition:all .3s;-webkit-transition:all .3s;-o-transition:all .3s;
+}
+.mes-container{
+	border:5px solid #fff;
+	box-sizing:box;
+	margin: 10px ;
+    margin-top: -100px;
+    padding: 20px 10px;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    transition:all .3s;-moz-transition:all .3s;-webkit-transition:all .3s;-o-transition:all .3s;
+}
+.active.mes-container{
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+	margin-top: 60px;
+}
+.mes-header{
+	font-size: 16px;
+	margin-bottom:15px ;
+}
+.mes-content{
+	line-height: 26px;
+}
+.restart{
+	margin-top: 10px;
+}
+.wait-mask img{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 20px;
+	width: 20px;
+	margin: -10px 0 0 -10px;
+}

@@ -1,0 +1,42 @@
+
+<div class="row margin-bottom">
+    <div class="col-xs-12">
+        <h3 class="page-header">用户查询</h3>
+    </div>
+    <!-- / .col-xs-12 -->
+
+</div>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>用户名</th>
+        <th>邮箱</th>
+        <th>昵称</th>
+        <th>头像</th>
+        <th>注册时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <volist name="List" id="vo">
+        <tr>
+            <td>{$vo.tel}</td>
+            <td>{$vo.email}</td>
+            <td>{$vo.nickname}</td>
+            <td><img src="{:C('__DATA__')}/login_thumb/{$vo.icon}" style="width:30px;height:30px;"></td>
+            <td>{$vo.reg_time}</td>
+            <td>
+                <a target="_blank" href="{:U('User/applyContent',array('id'=>$vo['id']))}" class="btn btn-default">查看发布信息</a>
+            </td>
+
+        </tr>
+    </volist>
+    </tbody>
+</table>
+<div class="text-right">
+    <ul class="pagination pagination-sm">
+        {$page}
+    </ul>
+</div>
+<!-- / .row -->

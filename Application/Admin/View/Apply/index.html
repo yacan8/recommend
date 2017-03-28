@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="page-header to">
+            发布者申请审核
+        </h3>
+    </div>
+    <div class="col-xs-12">
+        <div class="boder-e-container">
+            共 {$all_count} 条结果
+        </div>
+    </div>
+
+
+
+    <div class="col-xs-12 m-t-md">
+        <volist name="applyList" id="vo">
+            <div class="media boder-b-dashed">
+                <div class="media-left">
+                    <a>
+                        <img class="media-object c_u_icon m-t-xs" src="{:C('__DATA__')}/login_thumb/{$vo.userInfo.icon|default='default.jpg'}" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <div class="m-b-xs">
+                        <span class="tc-gray9">姓名：</span>{$vo.name}
+                    </div>
+                    <div class="m-b-xs">
+                        <span class="tc-gray9">邮箱：</span>{$vo.email}
+                    </div>
+                    <div class="m-b-xs">
+                        <span class="tc-gray9">证件号码：</span>{$vo.id_number}
+                    </div>
+                    <div class="m-b-xs">
+                        <a href="{:C('__DATA__')}/{$vo.file}" data-lightbox="group">
+                            <img src="{:C('__DATA__')}/{$vo.file}" style="max-width: 150px; border-radius: 4px;" />
+                        </a>
+                    </div>
+                    <div class="font-12">
+                        <if condition="$vo['state'] eq '0'">
+                        <a href="{:U('Apply/check',array('state'=>1,'id'=>$vo['id']))}">通过</a>
+                        ·
+                        <a href="{:U('Apply/check',array('state'=>2,'id'=>$vo['id']))}">拒绝</a>
+                            <elseif condition="$vo['state'] eq '1'" />
+                                已通过
+                            <else />
+                                已拒绝
+                        </if>
+                    </div>
+                </div>
+            </div>
+        </volist>
+        <ul class="pagination pagination-sm m-t-md">
+            {$page}
+        </ul>
+    </div>
+</div>
+<link rel="stylesheet" href="__PUBLIC__/css/assets/lightbox.css">
+<script src="__PUBLIC__/js/assets/lightbox.min.js"></script>

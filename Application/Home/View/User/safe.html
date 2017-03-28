@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <include file="Common/header" />
+    <meta name="KeyWord" content="topic，话题，Campus，Leader，campusleader，高校领袖，高校新闻，高校达人秀。为创业者提供一个展示舞台。">
+    <meta name="description" content="Campus Leader是最校园的发声体，带你了解最新鲜的校园资讯，走近不一样的高校领袖，发掘最有意义的大学生活，玩转高逼格广视野的校园生活！">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/wait.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/account.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/u.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/comment.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/u.icon.css">
+    <link href="__PUBLIC__/assets/Font-Awesome-master/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/assets/jquery-confirm/dist/jquery-confirm.min.css">
+    <script type="text/javascript" src="__PUBLIC__/js/assets/jquery.toaster.js"></script>
+    <title>个人信息昵称-CampusLeader</title>
+</head>
+
+<body>
+
+<include file="Common/navbar" />
+
+<div class="user-header" style="background-image:url('__PUBLIC__/img/user-header.jpeg')">
+    <div class="header-info">
+        <div class="max-w-780 container">
+            <div class="m-b-md">
+                <img class="header-icon" src="{:C('__DATA__')}/login_thumb/{$user_info.icon|default='default.jpg'}">
+                <div class="user-info tc-white m-b-xs">
+                    <div class="m-b-xs font-18">{$user_info.nickname}
+                        <if condition="$user_id neq session('login')"> ·
+                            <if condition="$is_follow eq '0'">
+                                <a data-id="{$user_id}" class="follow-btn active" href="javascript:"><span class="glyphicon glyphicon-plus"></span>关注</a>
+                                <elseif condition="$is_fans eq '0'"/>
+                                <a data-id="{$user_id}" class="follow-btn active" href="javascript:"><span class="glyphicon glyphicon-ok"> </span> 已关注</a>
+                                <else/>
+                                <a data-id="{$user_id}" class="follow-btn active" href="javascript:"><span class="glyphicon glyphicon-transfer"> </span> 互相关注</a>
+                            </if>
+                        </if>
+                    </div>
+                    <div class="font-smoothing font-16" style="-webkit-font-smoothing: antialiased;">{$user_info.userinfo.shelfintroduction|default='这个人很懒，什么都没写。。。'}</div>
+                </div>
+            </div>
+            <div id="header-menu" class="header-menu">
+                <a id="dynamics-menu-item" href="__ROOT__/u/{$user_id}/#dynamics">动态<if condition="$readInfo['new_dynamics_count'] neq '0'"><span></span></if></a> ·
+                <a id="fans-menu-item" href="__ROOT__/u/{$user_id}/#fans">粉丝<if condition="$readInfo['new_fans_count'] neq '0'"><span></span></if></a> ·
+                <a id="follow-menu-item" href="__ROOT__/u/{$user_id}/#follow">关注</a> ·
+                <a id="userInfo-menu-item" class="active" href="__ROOT__/u/{$user_id}/#userinfo">资料</a></if>
+                <if condition="$user_id eq session('login')">
+                    ·
+                    <a id="message-menu-item" href="__ROOT__/u/{$user_id}/#message">消息<if condition="$readInfo['new_message_count'] neq 0"><span></span></if></a>
+                    ·
+                    <a id="collection-menu-item" href="__ROOT__/u/{$user_id}/#collection">收藏</a>
+                </if>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container max-w-780">
+    <include file ="UserContent/safe" />
+</div>
+
+
+
+
+
+
+<include file="Common/footer" />
+</body>
+
+<script type="text/javascript">
+    var DATAPATH = "{:C('__DATA__')}";
+    var login_state = <if condition="session('?login')">true<else/>false</if>;
+    var PUBLIC = "__PUBLIC__";
+    var this_url = window.location.href;
+    var login_url = "{:U('Login/index')}";
+</script>
+<script src="__PUBLIC__/assets/jquery-confirm/dist/jquery-confirm.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/assets/jquery.toaster.js"></script>
+<script type="text/javascript">
+    $(function(){
+
+        <if condition="session('?Message')">
+//        $.toaster({ priority : 'success', title : '<span class="glyphicon glyphicon-ok"> </span>', message : '<php>echo session('Message')</php>'});
+                $.alert('<php>echo session('Message')</php>!');
+        </if>
+        <if condition="session('?ErrorMessage')">
+                $.alert('<php>echo session('ErrorMessage')</php>!');
+        $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-remove"> </span>', message : '<php>echo session('ErrorMessage')</php>'});
+        </if>
+        <php>session('Message',null);session('ErrorMessage',null);</php>
+    })
+</script>
+</html>

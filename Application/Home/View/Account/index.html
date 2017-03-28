@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<include file ="Common/header" />
+
+    <link rel="stylesheet" href="__PUBLIC__/css/assets/animate.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/account.css">
+
+	<script src="__PUBLIC__/js/home/account.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			<if condition="session('?message')">
+	        alert("<php>echo session('message')</php>");
+	        <php>session('message',null);</php>
+	        </if>
+		})
+	</script>
+    <title>高校领袖资讯</title>
+
+</head>
+
+<body>
+	<include file="Common/navbar" />
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 col-sm-12 m-t-sm">
+				<include file="AccountContent/menu" /> 
+			</div>
+
+			<div class="col-md-10 col-sm-12 m-t-sm m-b-sm animated fadeInDown">
+				<include file="AccountContent/account" />
+			</div>
+		</div>
+	</div>
+	<include file="Common/footer" />
+</body>
+</html>

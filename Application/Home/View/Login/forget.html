@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <include file="Common/header" />
+    <link rel="stylesheet" href="__PUBLIC__/css/home/login.css">
+
+    <script type="text/javascript">
+        var set_time;
+        var check_SMS_url = "{:U('Service/checkSMS')}";
+        var SMS_url = "{:U('Service/sendTemplateSMS')}";
+        var sight = 0;
+        var check_verify_url = "{:U('Login/check_verify')}";
+        var check_url = "{:U('Login/check')}";
+        var verify_src = "{:U('Index/verify')}";
+        var forget_user = "{:U('Login/forget_user')}";
+        $(function(){
+            <if condition="session('?message')">
+            alert("<php>echo session('message')</php>");
+            <php>session('message',null);</php>
+            </if>
+        })
+    </script>
+    <script src="__PUBLIC__/js/forget.js"></script>
+    <script src="__PUBLIC__/js/verify.js"></script>
+    <title>账号中心丨campusleader</title>
+</head>
+
+<body>
+    <include file="Common/navbar" />
+    <div class="bg-main overflow-auto">
+        <div class="container">
+            <div class="bg-white p-lg re-container transition-all-03">
+                <form id="f_form" class="form-horizontal" method="post" action="{:U('Login/reset')}">
+                  <fieldset>
+                    <legend class="login_header">重置密码<c></c></legend>
+
+                    <div id="form_container">
+                        <!-- 第一步 -->
+                        <div class="input-g">
+                            <span class="input-icon glyphicon glyphicon-user"></span>
+                            <input class="from-input" type="text" name="tel" id="tel" placeholder="输入手机号码" />
+                            <img id="username_check" src="__PUBLIC__/img/loading.gif">
+                            <span class="help-block m-t-sm"></span>
+                        </div>
+                        
+                        <div class="input-g">
+                            <button id="first" data-loading-text="Loading..." type="button" class="btn-submit btn-danger btn-block">下一步</button>
+                        </div>
+                        <br><br><br><br><br>
+
+                    </div>
+                   
+                  </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <include file="Common/footer" />
+</body>
+</html>

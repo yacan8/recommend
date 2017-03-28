@@ -1,0 +1,61 @@
+<script type="text/template" id="news-item">
+    {{ if show_type == '1' }}
+            <div class="news-item">
+                <a target="_blank" href="{{url}}" class="list-img">
+                    <span class="mask-tags">{{type||'其他'}}</span>
+                    <img src="" data-url="{{image_thumb}}">
+                </a>
+                <div class="list-content">
+                    <div class="to2"><a target="_blank" class="title" target="_blank" href="{{url}}">{{title}}</a></div>
+                    <div class="info font-12">
+                        <span class="font-smoothing tc-gray9">
+                            <a target="_blank" href="{{ROOT}}/index.php/u/{{contributor}}"><img class="i-user-icon" src="{{DATAPATH}}/login_thumb/{{user.icon||'default.jpg'}}" ></a>
+                            <a target="_blank" href="{{ROOT}}/index.php/u/{{contributor}}">{{user.nickname}}</a> ·
+                            {{publish_time}} · {{browse}}次浏览 · {{comment_count}} 次评论
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="list-hr m-l-sm m-r-sm m-t-sm"></div>
+
+            {{ else if show_type == '0'}}
+            <div class="news-item">
+                <div class="">
+                    <div class="to2"><a target="_blank" class="title" href="{{url}}">{{title}}</a></div>
+                    <div class="info font-12">
+                        <span class="font-smoothing tc-gray9">
+                            <a target="_blank" href="{{ROOT}}/index.php/u/{{contributor}}"><img class="i-user-icon" src="{{DATAPATH}}/login_thumb/{{user.icon||'default.jpg'}}" ></a>
+                            <a target="_blank" href="{{ROOT}}/index.php/u/{{contributor}}">{{user.nickname}}</a> · <span class="mask-tag-inline">{{type||'其他'}}</span> ·
+                            {{publish_time}} · {{browse}}次浏览 · {{comment_count}} 次评论
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="list-hr m-l-sm m-r-sm m-t-sm"></div>
+            {{ else if show_type == '2'}}
+            <div class="news-item">
+
+                <div class="">
+                    <div class="to2"><a target="_blank" class="title" href="{{url}}">{{title}}</a></div>
+                </div>
+                <div class="m-t-sm">
+                    {{each image as value i}}
+                        <a target="_blank" href="{{url}}" class="list-img">
+                            <img src="" data-url="{{value}}">
+                        </a>
+                    {{/each}}
+                </div>
+                <div class="m-t-sm">
+                    <div class="info font-12">
+                        <span class="font-smoothing tc-gray9">
+                            <a target="_blank" href="{{ROOT}}/index.php/u/{{contributor}}"><img class="i-user-icon" src="{{DATAPATH}}/login_thumb/{{user.icon||'default.jpg'}}" ></a>
+                            <a target="_blank" href="{{ROOT}}/index.php/u/{{contributor}}">{{user.nickname}}</a> · <span class="mask-tag-inline">{{type||'其他'}}</span> ·
+                            {{publish_time}} · {{browse}}次浏览 · {{comment_count}} 次评论
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="list-hr m-l-sm m-r-sm m-t-sm"></div>
+
+        {{ /if }}
+</script>

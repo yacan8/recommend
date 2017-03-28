@@ -1,0 +1,16 @@
+<if condition="!session('?login')">
+<li <if condition="MODULE_NAME eq 'Login'">class="active"</if>><a href="{:U('Login/index')}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 登录/注册</a></li>
+<else/>
+
+<li class="dropdown hidden-xs">
+    <a class="user-icon hidden-xs" href="{:U('/u/'.session('login'),'',false,false)}">
+      <img src="{:C(__DATA__)}/login_thumb/{$icon}">
+    </a>
+    <ul class="dropdown-menu user">
+      <li><a href="{:U('/u/'.session('login'),'',false,false)}">我的资料</a></li>
+      <li><a href="{:U('User/fans',array('id'=>session('login')))}">我的粉丝</a></li>
+      <li><a href="{:U('Login/outlogin')}">退出登录</a></li>
+    </ul>
+ </li>
+ <li class="visible-xs"><a class="visible-xs" href="{:U('Account/index')}">我的中心</a></li>
+</if>

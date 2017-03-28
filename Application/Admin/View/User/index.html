@@ -1,0 +1,45 @@
+
+	<div class="row margin-bottom">
+		<div class="col-xs-12">
+	        <h3 class="page-header">用户查询</h3>
+	    </div>
+		<!-- / .col-xs-12 -->
+		
+	</div>
+
+	<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>用户名</th>
+          <th>邮箱</th>
+          <th>昵称</th>
+          <th>头像</th>
+          <th>注册时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <volist name="List" id="vo">
+          <tr>
+        	<td>{$vo.tel}</td>
+          <td>{$vo.email}</td>
+        	<td>{$vo.nickname}</td>
+        	<td><img src="{:C('__DATA__')}/login_thumb/{$vo.icon}" style="width:30px;height:30px;"></td>
+        	<td>{$vo.reg_time}</td>
+          <if condition="$vo['power'] eq '0'">
+          <td><a href="{:U('User/setPower',array('id'=>$vo['tel']))}" class="btn btn-default">设为管理员</a></td>
+          <elseif condition = "$vo['power'] eq '1'" />
+          <td><a href="{:U('User/setPower',array('id'=>$vo['tel']))}" class="btn btn-default">设为普通人</a></td>
+          <elseif condition = "$vo['power'] eq '2'" />
+          <td>超级管理员</td>
+          </if>
+          </tr>
+        </volist>
+      </tbody>
+    </table>
+    <div class="text-right">
+      <ul class="pagination pagination-sm">
+      {$page}
+      </ul>
+    </div>
+	<!-- / .row -->

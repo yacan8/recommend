@@ -1,0 +1,48 @@
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="__PUBLIC__/img/cl.ico" media="screen" />
+    <!-- Bootstrap Core CSS -->
+    <!--<link href="__PUBLIC__/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="__PUBLIC__/css/assets/bootstrap.min.css" rel="stylesheet">
+    <!-- Social Buttons CSS -->
+    <link href="__PUBLIC__/bower_components/bootstrap-social/bootstrap-social.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="__PUBLIC__/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <!-- admin模板 CSS -->
+    <link href="__PUBLIC__/css/assets/sb-admin-2.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="__PUBLIC__/css/admin/keyword.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/wait.css">
+
+    <!-- admin模板 Fonts -->
+    <link href="__PUBLIC__/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/css/assets/jquery.minicolors.css" rel="stylesheet">
+    <!-- 后台CSS -->
+    <link href="__PUBLIC__/css/admin/backstage.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/style.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="__PUBLIC__/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="__PUBLIC__/js/assets/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="__PUBLIC__/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <!-- admin模板 Theme JavaScript -->
+    <script src="__PUBLIC__/js/assets/sb-admin-2.js"></script>
+    <script src="__PUBLIC__/js/assets/jquery.minicolors.min.js"></script>
+    <script src="__PUBLIC__/js/assets/jquery.toaster.js"></script>
+    <script src="__PUBLIC__/js/home/wait.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var client = document.documentElement.clientWidth ;
+          //导航条
+          if(client<768){
+            $("meta[name='viewport']").attr('content','width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no');
+          }
+        })
+        var PUBLIC = "__PUBLIC__";
+        var DATAPATH = "{:C('__DATA__')}";
+        var ROOT = "__ROOT__";
+    </script>

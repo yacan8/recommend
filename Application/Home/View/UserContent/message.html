@@ -1,0 +1,98 @@
+<script id="message1" type="text/template">
+    <div class="user-item">
+        <div class="media">
+            <div class="media-left">
+                <a href="{{ROOT}}/u/{{content.user_id}}">
+                    <img class="u-icon m-r-xs" src="{{DATAPATH}}/login_thumb/{{content.user.icon||'default.jpg'}}" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <div class="U_Info m-b-sm">
+                    <a class="media-heading Un_t font-bold font-16">{{content.user.nickname}}</a>
+                    · <span class="tc-gray9 font-12 font-smoothing">{{time}}</span>
+                </div>
+                <div class="font-smoothing">
+                    点赞 <i class="fa fa-thumbs-o-up"></i> // <a class="tc-main" href="{{ROOT}}/u/{{content.user_id}}">@{{content.user.nickname}}</a>：{{content.content}} {{if content.replyContent !== ''}} // <a class="tc-main" href="{{ROOT}}/u/{{content.replyContent.user_id}}">@{{content.replyContent.nickname}}</a>：{{content.replyContent.content}}{{/if}}
+                </div>
+                <div class="dynamics-content m-t-sm">
+                    <div class="media bg-gray-f6">
+                        <div class="media-left media-middle">
+                            <a target="_blank" href="{{ROOT}}/n/{{content.news_id}}.html">
+                                <img class="u-icon" src="{{content.newsInfo.image}}" alt="..." style="border-radius:0;">
+                            </a>
+                        </div>
+                        <div class="media-body d_m_content">
+                            <a target="_blank" href="{{ROOT}}/n/{{content.news_id}}.html">{{content.newsInfo.title}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="message2" type="text/template">
+    <div class="user-item">
+        <div class="media">
+            <div class="media-left">
+                <a href="{{ROOT}}/u/{{content.user_id}}">
+                    <img class="u-icon m-r-xs" src="{{DATAPATH}}/login_thumb/{{content.user.icon||'default.jpg'}}" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <div class="U_Info m-b-sm">
+                    <a class="media-heading Un_t font-bold font-16">{{content.user.nickname}}</a>
+                    · <span class="tc-gray9 font-12 font-smoothing">{{time}}</span>
+                </div>
+                <div class="font-smoothing">
+                    {{content.content}} {{if content.replyContent !== ''}} // <a class="tc-main" href="{{ROOT}}/u/{{content.replyContent.user_id}}">@{{content.replyContent.nickanme}}</a>：{{content.replyContent.content}}{{/if}}
+                </div>
+                <div class="dynamics-content m-t-sm">
+                    <div class="media bg-gray-f6">
+                        <div class="media-left media-middle">
+                            <a target="_blank" href="{{ROOT}}/n/{{content.news_id}}.html">
+                                <img class="u-icon" src="{{content.newsInfo.image}}" alt="..." style="border-radius:0;">
+                            </a>
+                        </div>
+                        <div class="media-body d_m_content">
+                            <a target="_blank" href="{{ROOT}}/n/{{content.news_id}}.html">{{content.newsInfo.title}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="message3" type="text/template">
+    <div class="user-item">
+        <div class="media">
+            <div class="media-left">
+                <a href="{{ROOT}}/u/{{content.user_id}}">
+                    <img class="u-icon m-r-xs" src="{{DATAPATH}}/login_thumb/{{content.user.icon||'default.jpg'}}" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <div class="U_Info m-b-sm">
+                    <a class="media-heading Un_t font-bold font-16">{{content.user.nickname}}</a>
+                    · <span class="tc-gray9 font-12 font-smoothing">{{time}}</span>
+                </div>
+                <div class="font-smoothing">
+                    {{content.content}} {{if content.replyContent !== ''}} // <a class="tc-main" href="{{ROOT}}/u/{{content.replyContent.user_id}}">@{{content.replyContent.nickname}}</a>：{{content.replyContent.content}}{{/if}}
+                </div>
+                <div class="dynamics-content m-t-sm">
+                    <div class="media bg-gray-f6">
+                        <div class="media-left media-middle">
+                            <a target="_blank" href="{{ROOT}}/n/{{content.news_id}}.html">
+                                <img class="u-icon" src="{{content.newsInfo.image}}" alt="..." style="border-radius:0;">
+                            </a>
+                        </div>
+                        <div class="media-body d_m_content">
+                            <a target="_blank" href="{{ROOT}}/n/{{content.news_id}}.html">{{content.newsInfo.title}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+

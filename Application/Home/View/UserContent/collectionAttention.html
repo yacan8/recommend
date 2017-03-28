@@ -1,0 +1,35 @@
+
+<if condition="count($List) eq 0">
+    <div class="text-center bg-white" style="height:300px;line-height:300px">亲，您还没有资讯收藏哦~</div>
+    <else/>
+<volist name = "List" id="vo">
+<div class="bg-white m-b-md p-md overflow-auto box-shadow mr_-25">
+    <a href="{$vo.url}" class="list-img" style="background: url('{:C("__DATA__")}/news_thumb/{$vo.image_thumb}') no-repeat center center;background-size: cover;">
+        <span class="mask-tags" style="background-color:{$vo['type'].color}">{$vo['type'].type}</span>
+    </a>
+    <div class="list-content">
+        <div class="to">
+            <a class="title " href="{$vo.url}">{$vo.title}</a>
+        </div>
+        <div class="intro m-t-sm tc-gray6 text-over-2 hidden-xs">{$vo.intro}</div>
+        <div class="info">
+            <span class="hidden-xs">
+                <php>
+                    for($j=0;$j<count($vo['LabelName']);$j++)
+                        echo '<span class="la-info pull-left">'.$vo['LabelName'][$j].'</span>';
+                </php>
+            </span>
+            <span class="time tc-gray6">发布于{$vo.PublishTime}</span>
+            <div class="tc-gray9 info-item-continer">
+                <a href="{:U('Collection/d_new_collection',array('id'=>$vo['collection_id']))}" class="btn btn-outline btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true" target="_blank"></span>删除</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</volist>
+<ul class="pagination pagination-sm">
+    {$page}
+</ul>
+
+</if>

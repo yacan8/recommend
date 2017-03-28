@@ -1,0 +1,60 @@
+.comment-area {
+    width: 100%;
+    background: #fff;
+    border: solid 1px #ebeff5;
+    padding: 10px;
+    resize: none;
+    height: 40px;
+    font-size: 14px;
+    -webkit-appearance: none;
+    outline: none;
+    margin-bottom: 10px;
+}
+.comment-btn{
+    outline: none;
+    padding: 10px 20px;
+    font-size: 15px;
+    background-color: #31b0d5;
+    color: #fff;
+    display: none;
+}
+.comment-btn:hover,.comment-btn:focus{
+    color: #fff;
+    background-color: #2A99B9;
+}
+.media.m-b-md {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f2f2f2;
+}
+.media-object.img-circle{
+	height: 30px;
+	width: 30px;
+}
+h5.media-heading{
+	margin-bottom: 2px;
+}
+.zan-btn.active{
+    color: #F65A4A;
+    cursor: default;
+}
+.no-content{cursor: default;}
+.no-content:focus{color: #111!important;}
+.c-sections{
+    float:right;
+}
+.c-sections li{
+    float: left;
+    border-bottom: 2px solid #ccc;
+}
+.c-sections .active{
+    border-color: #F65A4A;
+}
+.c-sections li a{
+    display: inline-block;
+    padding:  5px 8px;
+    color: #999;
+    font-size: 12px;
+}
+.c-sections .active a{
+    color: #F65A4A;
+}

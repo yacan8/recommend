@@ -1,0 +1,1 @@
+$(function(){$.post(pv,{id:id});$.post(uv,{id:id});});

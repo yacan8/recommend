@@ -1,0 +1,32 @@
+<div class="bg-white u-main">
+    <div class="u_title">
+      {$self}的粉丝
+      <span class="pull-right m-t-xs tc-gray9 font-12">{$count}个粉丝</span>
+    </div>
+
+	<if condition="count($List) neq 0">
+	    <div class="fans-list">
+	    	<volist name="List" id="vo">
+		    	<div class="fans-item p-b-md m-b-md">
+		    		<a href="{:U('/u/'.$vo['id'],'',false,false)}"><img class="fans-icon" src="{:C('__DATA__')}/login_thumb/{$vo.icon|default='default.jpg'}"></a>
+		    		<a class="m-r-sm" href="{:U('/u/'.$vo['id'],'',false,false)}">{$vo.nickname}</a>
+		    		<span class="m-r-sm">粉丝：{$vo.fans_count}</span>
+		    		<span class="tc-gray9">地区：{$vo.province|default="主人不想告诉你"} {$vo.city}</span>
+		    		{:W('Follow/follow',array('follow_id'=>$vo['id']))}
+		    	</div>
+		    </volist>
+	    </div>
+    <else/>
+    <div class="text-center tc-gray9" style="height:210px;line-height:210px;">暂无粉丝</div>
+	</if>
+
+   <ul class="pager p-l-sm p-r-sm">
+	  <if condition="$p neq 1">
+	    <li class="previous" title="下一页"><a href="{:U('User/fans',array('id'=>$user_id,'p'=>$p-1))}"><<</a></li>
+	  </if>
+	  <if condition ="$p+1 elt $TotalPage">
+	  <li class="next" title="下一页"><a href="{:U('User/fans',array('id'=>$user_id,'p'=>$p+1))}">>></a></li>
+	  </if>
+	</ul>
+
+</div>

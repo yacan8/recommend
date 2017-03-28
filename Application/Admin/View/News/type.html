@@ -1,0 +1,89 @@
+<script>
+    var changetype_url = "{:U('Type/changetype')}";
+</script>
+<script src="__PUBLIC__/js/admin/ht_change_type.js"></script>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">添加分类</h4>
+      </div>
+      <form class="form-horizontal" action="{:U('Type/add')}">
+      <div class="modal-body">
+        
+      <fieldset>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">分类名</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" name="type" placeholder="输入分类名">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">颜色</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control demo" name="color" value="#F65A4A">
+          </div>
+        </div>
+      </fieldset>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="submit" class="btn btn-primary">提交</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+
+  <div class="row margin-bottom">
+    <div class="col-xs-12">
+          <h3 class="page-header">分类管理<button class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">添加分类</button></h3>
+      </div>
+
+
+  </div>
+
+<form class="form-horizontal">
+
+
+  <table class="table">
+  	<tr>
+  		<th>
+  		类型
+  		</th>
+		<th>
+  		颜色
+  		</th>
+  		<th>
+  		操作
+  		</th>
+    </tr>
+    <volist name="List" id="vo">
+	<tr>
+		<td class="type" style="max-width:100px;">
+      <input type="text" class="form-control" value="{$vo.type}">
+			
+		</td>
+		<td class="select-color">
+			<input type="text" class="form-control demo" value="{$vo.color}">
+		</td>
+		<td>
+			<button type="button" data-type="{$vo.id}" class="btn btn-default changecolor" >修改</button>
+      <if condition="$vo['type'] neq '其他'">
+      <if condition="$vo.state eq '0'">
+			<a href="{:U('Type/uplinetoggle',array('id'=>$vo['id']))}" class="btn btn-outline btn-success" >上线</a>
+      <elseif condition="$vo.state eq '1'" />
+      <a href="{:U('Type/uplinetoggle',array('id'=>$vo['id']))}" class="btn btn-outline btn-warning" >下线</a>
+      </if>
+      <a href="{:U('Type/delete',array('id'=>$vo['id']))}" class="btn btn-outline btn-danger"  onclick="return confirm('确认删除吗？')">删除</a>
+      </if>
+		</td>
+	</tr>
+	</volist>
+  </table>
+</form>

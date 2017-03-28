@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <include file="Common/header" />
+    <link rel="stylesheet" href="__PUBLIC__/css/home/List.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/detail.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/comment.css">
+    <meta name="description" content="{$List.intro}">
+
+    <title>{$List.title}</title>
+</head>
+
+<body>
+
+
+    <div class="container m-t-sm">
+        <div class="row">
+            <div class="col-sm-12 col-md-9">
+                <div class="bg-white p-md m-b-sm">
+                    <div class="detail-title">{$List.title}</div>
+                    <span class="detail-time">
+                        <span title="发布时间" class="iconfont icon-fabushijian m-r-md"> {$List.publish_time}</span>
+                         
+                         <span title="浏览" class="iconfont icon-appliulanshu tc-gray6"> {$List.browse}
+                        </span>
+                    </span>
+
+                    <div class="detail-img"><img src="{:C('__DATA__')}/news/{$List.image}"></div>
+                    <div class="detail-content">
+                        {$List.content}
+                    </div>
+
+  
+                </div>
+                
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+</body>
+    <script src="__PUBLIC__/js/home/sidefixed.js"></script>
+    <script type="text/javascript">
+    var PUBLIC="__PUBLIC__";
+    var DATA = "{:C('__DATA__')}";
+    var page = 2;
+    var id = {$id};
+    var loading_url = "{:U('News/comment_load')}";
+    var comment_url = "{:U('News/comment')}";
+    var concern_url = "{:U('News/attention')}";
+    var login_url = "{:U('Login/index')}?NewsId={$List.id}";
+    $(function(){
+            <if condition="session('?news')">
+            <php>session('news',null);</php>
+            </if>
+        })
+    $(function(){
+        $('.audio_start').on('click',function(event) {
+            var _sel = $(this);
+            audio = _sel.siblings('audio').get(0);
+            if(audio.paused){
+                _sel.find('.audio_icon').removeClass('audio-play').addClass('audio-pause');
+                audio.play();
+            }else{
+                _sel.find('.audio_icon').removeClass('audio-pause').addClass('audio-play');
+                audio.pause();
+            }
+        });
+    })
+    </script>
+    <script src="__PUBLIC__/js/home/detail.js"></script>
+</html>

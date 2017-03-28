@@ -1,0 +1,129 @@
+  <!-- css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="__PUBLIC__/assets/froalaeditor/css/froala_editor.min.css">
+  <link rel="stylesheet" href="__PUBLIC__/assets/froalaeditor/css/froala_style.min.css">
+  <link rel="stylesheet" href="__PUBLIC__/assets/froalaeditor/css/plugins/code_view.css">
+  <link rel="stylesheet" href="__PUBLIC__/assets/froalaeditor/css/plugins/colors.css">
+  <link rel="stylesheet" href="__PUBLIC__/assets/froalaeditor/css/plugins/emoticons.css">
+  <link rel="stylesheet" href="__PUBLIC__/assets/froalaeditor/css/plugins/image.css">
+  <link rel="stylesheet" href="__PUBLIC__/assets/froalaeditor/css/plugins/line_breaker.css">
+  <link rel="stylesheet" href="__PUBLIC__/assets/froalaeditor/css/plugins/table.css">
+  <link rel="stylesheet" href="__PUBLIC__/assets/froalaeditor/css/plugins/char_counter.css">
+  <link rel="stylesheet" href="__PUBLIC__/assets/froalaeditor/css/plugins/video.css">
+  <link rel="stylesheet" href="__PUBLIC__/assets/froalaeditor/css/themes/red.min.css">
+  <link rel="stylesheet" href="__PUBLIC__/css/admin/keyword.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+  <!-- js -->
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/froala_editor.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/align.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/code_beautifier.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/code_view.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/colors.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/font_size.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/image.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/line_breaker.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/link.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/lists.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/font_family.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/paragraph_format.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/paragraph_style.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/table.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/video.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/url.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/entities.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/char_counter.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/inline_style.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/save.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/languages/zh_cn.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/js/assets/jquery.form.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/js/admin/keyword.js"></script>
+  <script type="text/javascript">
+  $(function(){
+    $('textarea').froalaEditor({
+      heightMin: 200,
+      imageUploadURL: '{:U('Admin/Upload/upload')}',
+      language: 'zh_cn',
+      pasteDeniedAttrs: ['class', 'id','style']
+    });
+    $("a[href='https://froala.com/wysiwyg-editor']").remove();
+  })
+
+
+ $(document).ready(function($) {
+  //添加音频按钮
+  str='<a role="button" tabindex="-1" title="插入音频" class="fr-command fr-btn mp3" data-cmd="mp3"><i class="fa fa-volume-up"></i></a>';
+   $('.fr-toolbar.fr-ltr').append(str);
+   //音频模态框点击事件绑定
+   $('*[data-cmd="mp3"]').on('click',function(event) {
+      $('.modal-mp3').modal('toggle');
+    });
+   //判断标题是否为空
+    $('*[name="audio_file"]').click(function(event) {
+      var a_t = $('#audio_title');
+      if(a_t.val()==''){
+        a_t.focus();
+        alert('请输入标题');
+        return false;
+      }else{
+        return true;
+      }
+    });
+    //成功回调函数
+    function audio_upload(dataObj){
+      // var dataObj = $.parseJSON(data);
+      var a_t = $('#audio_title');
+      var title = a_t.val();
+      a_t.val("");
+      $(".wait-progress").hide();
+      $('.modal-mp3').modal('hide');
+      if(null == typeof(dataObj.duration)||dataObj.duration == null ||dataObj.duration=='')
+        dataObj.duration='';
+       var audio_str = '<p></p><div class="audio">'+
+      '<a class="audio_start" href="javascript:void(0)">'+
+      '<span class="tit">'+title+'</span><b class="audio-play audio_icon"> </b><span class="tit f-r">'+dataObj.duration+'</span></a><audio src="'+dataObj.name+'" controls="controls" hidden=true> </audio></div><p></p>';
+      $('textarea').froalaEditor('html.insert',audio_str, true);
+    }
+  //音频input[type=file]改变事件绑定
+   $('*[name="audio_file"]').change(function(event) {
+        $("#audioupload").ajaxSubmit({
+          dataType:  'json',
+          beforeSend: function() {
+            $(".wait-progress").show();
+            $(".progress-bar.progress-bar-striped").attr('aria-valuenow',0).width("0%").html("0%");
+          },
+          uploadProgress: function(event, position, total, percentComplete) {
+                $(".progress-bar.progress-bar-striped").attr('aria-valuenow',percentComplete).width(percentComplete+"%").html(percentComplete+"%");
+          },
+          success: function(data) {audio_upload(data);},
+          error:function(xhr){
+            $(".wait-progress").hide();
+            alert(xhr);
+          }
+        });
+   });
+ });
+  </script>
+<!-- Modal -->
+<div class="modal fade bs-example-modal-sm modal-mp3" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h5 class="modal-title" id="myModalLabel">插入音频</h5>
+      </div>
+      <div class="modal-body">
+        <form id='audioupload' action='{:U("Admin/Upload/audio_upload")}' method='post' enctype='multipart/form-data'>
+          <div class="form-group">
+          <input type="text" class="form-control" name="title" id="audio_title" placeholder="输入标题" title= "输入标题" maxlength='10' style="display:block"/>
+        </div>
+        <div class="fr-image-upload-layer fr-layer "><strong>点击上传</strong><br>
+        
+        <input type="file" class="audio-file" name="audio_file" accept="audio/*" tabindex="-1"></form></div>
+      </div>
+    </div>
+  </div>
+</div>

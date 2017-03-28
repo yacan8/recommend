@@ -1,0 +1,91 @@
+<div class="row ">
+	<div class="col-xs-12">
+        <h3 class="page-header">
+        	推荐权重配置
+        	<a href="__ROOT__/Admin/Recommend/saveOrUpdateView.html" class="pull-right btn btn-sm btn-default">新增配置</a>
+        </h3>
+    </div>
+
+    <div class="col-xs-12">
+    	<volist name="configList" id="vo">
+    	<form class="form-inline">
+    	<div class="panel <if condition="$vo.state eq '0'">panel-default<else/>panel-success</if>">
+    		<div class="panel-heading">
+    			编号：{$vo.id} · {$vo.display_name} 
+    			<if condition="$vo.state eq '0'">
+    				
+    				<a onclick="return confirm('确认删除吗?')" class="pull-right btn-xs btn btn-danger" href="__ROOT__/Admin/Recommend/deleteConfig/id/{$vo.id}.html">删除配置</a>
+    				<a class="pull-right btn-xs btn btn-success m-r-sm" href="__ROOT__/Admin/Recommend/openConfig/id/{$vo.id}.html">启用配置</a>
+    				<a href="__ROOT__/Admin/Recommend/saveOrUpdateView/id/{$vo.id}.html" class="pull-right btn-xs btn btn-info m-r-sm">编辑配置</a>
+    			<else/>
+    			   	<button class="pull-right btn-xs btn btn-success disabled" disabled="disabled">已启用</button>
+    			   	<a href="__ROOT__/Admin/Recommend/saveOrUpdateView/id/{$vo.id}.html" class="pull-right btn-xs btn btn-info m-r-sm">编辑配置</a>
+    			</if>
+    		</div>
+		    <div class="panel-body" style="position:relative;display:none">
+		    	
+		      <ul class="profile-classic">
+		        <li>
+		        	<span>配置名：</span> 
+		        	{$vo.display_name}
+		        </li>
+		        <li>
+		        	<span>可推荐时间长度（单位：天）：</span> 
+		        	{$vo.allow_recommend_time}
+				</li>
+		        <li>
+		        	<span>推荐计算时间跨度（单位：天）：</span> 
+		        	{$vo.calculate_time_span}
+		        </li>
+		        <li>
+		        	<span>浏览关键字权重：</span> 
+		        	{$vo.browse_keyword}
+		        </li>
+		        <li>
+		        	<span>评论关键字权重：</span>
+		        	{$vo.comment_keyword}
+		        </li>
+		        <li>
+		        	<span>点赞关键字权重：</span> 
+		        	{$vo.zan_keyword}
+		        </li>
+		        <li>
+		        	<span>浏览分类权重：</span> 
+		        	{$vo.browse_type}
+		        </li>
+		        <li>
+		        	<span>评论分类权重：</span> 
+		        	{$vo.comment_type}
+		        </li>
+		        <li>
+		        	<span>点赞分类权重：</span> 
+		        	{$vo.zan_type}
+		        </li>
+		        <li>
+		        	<span>关注的人喜欢推荐权重：</span> 
+		        	{$vo.follow_keyword}
+		        </li>
+		        <li>
+		        	<span>个人信息兴趣设定权重：</span> 1
+		        </li>
+		        <li>
+		        	<span>描述：</span> {$vo.description}
+		        </li>
+		      </ul>
+		    </div>
+		</div>
+	</form>
+	</volist>
+
+
+    </div>
+</div>
+<script>
+$(function(){
+	$('.panel-heading').click(function(){
+		$(this).siblings('.panel-body').stop().slideToggle();
+	})
+	$('.panel-success').find('.panel-heading').click();
+
+})
+</script>

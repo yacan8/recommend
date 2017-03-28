@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <include file="Common/header" />
+    <link rel="stylesheet" href="__PUBLIC__/css/home/InterviewFocus.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/home/List.css">
+
+    <title>搜索'{$key}'结果</title>
+</head>
+
+<body>
+    <include file="Common/navbar" />
+
+    <div class="container m-t-sm" style="max-width:980px;">
+        <div class="row">
+            <div class="col-sm-12">
+            	<div class="bg-white p-sm">
+            		搜索<font color="red">'{$key}'</font>结果
+            	</div>
+                <div id="list_container" class="bg-white">
+                    <if condition="count($List) neq 0">
+				    <volist name="List" id="vo">
+				        <div class="m-t-md p-md overflow-auto border-l-main">
+				            <a href="{$vo.url}" target="_blank" class="list-img" style="background: url('{:C('__DATA__')}/news_thumb/{$vo['image_thumb']}') no-repeat center center;background-size: cover;">
+				                <span class="mask-tags" style="background-color:{$vo['type'].color}">{$vo['type'].type}</span>
+				            </a>
+				            <div class="list-content">
+				                <div class="to"><a class="title" target="_blank" href="{$vo.url}">{$vo.title}</a></div>
+				                <div class="intro m-t-sm tc-gray6 text-over-2 hidden-xs">{$vo.intro}</div>
+				                <div class="info">
+				                    <span class="hidden-xs">
+                                        <php>
+                                            for($j=0;$j<count($vo['LabelName']);$j++)
+                                                echo '<span class="la-info pull-left">'.$vo['LabelName'][$j].'</span>';
+                                        </php>
+                                    </span>
+                                    <span class="time tc-gray9"><span title="发布时间" class="iconfont icon-fabushijian pull-left"> {$vo.PublishTime}</span>
+                                    <br class="visible-xs">
+                                    <div class="tc-gray9  info-item-continer">
+                                        <span title="浏览" class="iconfont icon-liulanliang m-r-md"> {$vo.browse}</span><span title="评论" class="iconfont icon-pingjia"> {$vo.MessageCount}</span>
+                                    </div>
+				                </div>
+				            </div>
+				        </div>
+				    </volist>
+                    <else/>
+                    <div class="p-md text-center m-t-md m-b-md">无结果</div>
+                    <script>
+                    $(function(){
+                        $("#load").hide();
+                    })</script>
+                    </if>
+				</div>
+                <button type="button" id="load" class="btn bg-main btn-sm btn-block m-b-md m-t-md">加载更多</button>
+            </div>
+        </div>
+    </div>
+
+    <include file="Common/footer" />
+</body>
+<script>
+    var DATAPATH = "{:C('__DATA__')}";
+    var url = '{:U('News/search_load')}';
+    var PUBLIC = '__PUBLIC__';
+    var page = 1;
+    var key = "{$key}";
+</script>
+<script src="__PUBLIC__/js/home/load_f.js"></script>
+<script src="__PUBLIC__/js/home/search_l.js"></script>
+</html>

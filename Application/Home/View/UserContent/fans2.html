@@ -1,0 +1,41 @@
+
+        <script type="text/template" id="fans_or_follow">
+            <div class="user-item">
+                <div class="media">
+                  <div class="media-left">
+                    <a target="_blank" href="{{ROOT}}/u/{{user_id}}">
+                      <img class="u-icon m-r-xs" src="{{DATAPATH}}/login_thumb/{{icon||'default.jpg'}}" alt="...">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                      <div class="U_Info">
+                          <a class="media-heading Un_t font-16 m-r-xs">{{nickname}}</a>
+                          {{if sex == '0' }}
+                          <i class="fa fa-mars font-12 font-bold" style="color:#5FC1FA"></i>
+                          {{ else if sex == '1'}}
+                          <i class="fa fa-venus font-12 font-bold" style="color:#F47BAD"></i>
+                          {{/if}}
+                          {{if is_follow == '1' && is_fans == '1' }}
+                          <a data-id="{{user_id}}" data-type="{{loadingType}}" class="follow-btn active pull-right" href="javascript:"><span title="取消关注" class="glyphicon glyphicon-transfer"> </span> 相互关注</a>
+                          {{ else if is_follow == '1' && is_fans != '1' }}
+                          <a data-id="{{user_id}}" data-type="{{loadingType}}" class="follow-btn active pull-right" href="javascript:"><span title="取消关注" class="glyphicon glyphicon-ok"> </span> 已关注</a>
+                          {{ else }}
+                          <a data-id="{{user_id}}" data-type="{{loadingType}}" class="follow-btn active pull-right" href="javascript:"><span title="关注" class="glyphicon glyphicon-plus"> </span> 关注</a>
+                          {{/if}}
+                      </div>
+                      <div class="font-smoothing m-t-sm">
+                          粉丝：<a target="_blank" class="tc-main" href="{{ROOT}}/u/{{user_id}}#fans">{{fans_count}}</a><span class="m-l-sm m-r-sm tc-gray9">|</span>关注：<a target="_blank" class="tc-main" href="{{ROOT}}/u/{{user_id}}#follow">{{follow_count}}</a>
+                      </div>
+                      {{ if city & province }}
+                      <div class="font-smoothing m-t-sm tc-black">
+                          {{ if province }}{{province}}{{/if}}{{ if city }} {{city}}{{/if}}
+                      </div>
+                      {{/if}}
+                      <div class="font-smoothing m-t-sm tc-black">
+                            {{ intro || '这个人很懒，什么都没写。。。'}}
+                      </div>
+
+                  </div>
+                </div>
+            </div>
+        </script>

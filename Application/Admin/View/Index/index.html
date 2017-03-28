@@ -1,0 +1,30 @@
+
+<include file="IndexContent/pv_header" />
+<div class="row margin-bottom">
+    <div class="col-xs-12">
+        
+            <if condition="CONTROLLER_NAME neq 'News'">
+                <h3 class="page-header to">欢迎使用Campus-Leader后台管理</h3>
+                <else/>
+                <h3 class="page-header">
+                    {$title}
+                </h3>
+                <div class="m-b-md pull-right">
+                <a href="{:U('News/view',array('id'=>$id))}" target="_blank" class="btn btn-default btn-xs op">
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true" target="_blank"></span>查看</a>
+                <a href="{:U('News/change',array('id'=>$id))}" class="btn btn-default btn-xs op"><span class="glyphicon glyphicon-pushpin" aria-hidden="true" target="_blank"></span>修改</a>
+                <a href="{:U('News/delete',array('id'=>$id))}" onClick="return confirm('确认删除吗？')" class="btn btn-outline btn-danger btn-xs op"><span class="glyphicon glyphicon-trash" aria-hidden="true" target="_blank"></span>删除</a>
+                </div>
+            </if>
+            <if condition="CONTROLLER_NAME neq 'News'">
+                {:W('HotNews/HotNews')}
+            </if>
+            
+            
+        
+
+             
+
+    </div>
+    <include file="IndexContent/pv" />
+</div>

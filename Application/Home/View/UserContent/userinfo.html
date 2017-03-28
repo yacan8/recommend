@@ -1,0 +1,79 @@
+<script type="text/template" id="userinfo">
+  <div class="user-item">
+    <div class="media">
+      <div class="media-left">
+        <a target="_blank" href="{{ROOT}}/u/{{user_id}}">
+          <img class="u-icon m-r-xs" src="{{DATAPATH}}/login_thumb/{{icon||'default.jpg'}}" alt="...">
+        </a>
+      </div>
+      <div class="media-body">
+        <div class="U_Info">
+           <span class="tc-gray9">昵称：</span> <span class="tc-black">{{nickname}}</span>
+        </div>
+        <div class="font-smoothing m-t-sm">
+          <span class="tc-gray9">邮箱：</span> <span class="tc-black">{{email || '未填写'}}</span>
+        </div>
+        {{ if sex != '3'}}
+        <div class="font-smoothing m-t-sm">
+          <span class="tc-gray9">性别：</span>
+          {{if sex == '0' }}
+          <i class="fa fa-mars font-12 font-bold" style="color:#5FC1FA"></i>
+          {{ else }}
+          <i class="fa fa-venus font-12 font-bold" style="color:#F47BAD"></i>
+          {{/if}}
+        </div>
+        {{ /if }}
+        {{if userinfo }}
+        <div class="font-smoothing m-t-sm">
+           <span class="tc-gray9">生日：</span> <span class="tc-black">{{userinfo.birthdate || '未填写' }}</span>
+        </div>
+        {{ if userinfo.city || userinfo.province || userinfo.area}}
+        <div class="font-smoothing m-t-sm">
+           <span class="tc-gray9">地区：</span>{{ if userinfo.province }} {{userinfo.province}}{{/if}}{{ if userinfo.city }} {{userinfo.city}}{{/if}} {{ if userinfo.area }} {{userinfo.area}}{{/if}}
+        </div>
+        {{/if}}
+
+
+
+        <div class="font-smoothing m-t-sm">
+          <span class="tc-gray9">学校：</span> <span class="tc-black">{{userinfo.schoolName || '未填写'}}</span>
+        </div>
+
+
+        <div class="font-smoothing m-t-sm">
+          <span class="tc-gray9">专业：</span> <span class="tc-black">{{userinfo.profession || '未填写'}}</span>
+        </div>
+
+
+        <div class="m-t-sm">
+          <span class="tc-gray9">兴趣：</span>
+          {{each interest as value i}}
+            <span class="tags">{{value.type.type}}</span>
+          {{/each}}
+        </div>
+
+        <div class="font-smoothing m-t-sm tc-black">
+          <span class="tc-gray9">简介：</span> {{ userinfo.shelfintroduction || '这个人很懒，什么都没写。。。'}}
+        </div>
+
+
+
+
+
+        {{ else }}
+        <div class="m-t-sm font-smoothing ">
+          该账号信息未完善
+        </div>
+
+
+
+        {{ /if }}
+        {{ if is_ower }}
+        <div class="m-t-sm">
+          <a href="{{ROOT}}/User/edit" class="btn btn-sm btn-primary">编辑资料</a>
+        </div>
+        {{ /if }}
+      </div>
+    </div>
+  </div>
+</script>

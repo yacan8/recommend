@@ -1,0 +1,91 @@
+<form id="apply-form" enctype="multipart/form-data" method="post" action="{:U('Apply/action')}">
+    <div class="form-group">
+        <label class="m-b-sm">联系人姓名</label>
+        <input type="text" class="form-control" name="name" placeholder="name">
+    </div>
+
+    <div class="form-group">
+        <label class="m-b-sm">手机号码</label>
+        <input type="text" class="form-control" name="phone"  placeholder="phone">
+    </div>
+    <div class="form-group">
+        <label class="m-b-sm">邮箱</label>
+        <input type="text" class="form-control" name="email" placeholder="email">
+    </div>
+    <div class="form-group">
+        <label class="m-b-sm">证件号码</label>
+        <input type="text" class="form-control" name="id_number" placeholder="ID Card Number">
+        <p class="help-block font-12">可为身份证号码、企业营业执照号。</p>
+    </div>
+    <div class="form-group">
+        <label class="m-b-sm">证件照片</label>
+        <div class="m-t-sm" id="img-file-container"></div>
+        <button type="button" class="btn btn-sm btn-default" id="img-file-btn">浏览</button>
+        <input type="file" name="file" style="display: none" id="img-file" />
+        <p class="help-block font-12">请上传带信息的清晰的证件照片。</p>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-sm btn-block" data-loading-text="提交中...">提交</button>
+</form>
+<script>
+    //建立一個可存取到該file的url
+    function getObjectURL(file) {
+        var url = null ;
+        if (window.createObjectURL!=undefined) { // basic
+            url = window.createObjectURL(file) ;
+        } else if (window.URL!=undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(file) ;
+        } else if (window.webkitURL!=undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(file) ;
+        }
+        return url ;
+    }
+    $(function(){
+        $("#img-file-btn").click(function(){
+            $("#img-file").click();
+        });
+        $('#img-file').change(function(){
+            var objUrl = getObjectURL($(this).get(0).files[0]) ;
+            if (objUrl) {
+                $("#img-file-container").html('<img src="'+objUrl+'" />')
+            }
+        });
+        $("#apply-form").submit(function(){
+            var email = $('input[name="email"]').val();
+            var sign = true;
+            if($('input[name="name"]').val() =='' ) {
+                $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : '请输入姓名'});
+                sign = false;
+            }
+            if($('input[name="phone"]').val() =='' ) {
+                $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : '请输入手机号码'});
+                sign = false;
+            }else if(!/^1[34578]\d{9}$/.test($('input[name="phone"]').val())){
+                $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : '请正确输入手机号码'});
+                sign = false;
+            }
+            if(!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(email)){
+                $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : '请正确输入邮箱'});
+                sign = false;
+            }
+            if($('input[name="id_number"]').val() =='' ) {
+                $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : '请输入证件号码'});
+                sign = false;
+            }
+            if($('#img-file').val() == ''){
+                $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : '请选择证件照片'});
+                sign = false;
+            }
+            if(!sign){
+                $('button[type="submit"]').button('reset');
+            }
+            return sign;
+        })
+
+    })
+</script>
+<style>
+    #img-file-container>img{
+        max-width: 100%;
+    }
+</style>

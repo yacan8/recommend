@@ -1,0 +1,13 @@
+
+
+<ul class="l-menu">
+  <li <if condition="$UserContent eq 'UserContent/userinfo'">class="active"</if>><a href="{:U('User/index',array('id'=>$user_id))}"><span class="m-r-xs i-icon icon-gerenziliao"></span> {$self}的资料</a></li>
+  <li <if condition="$UserContent eq 'UserContent/fans'">class="active"</if>><a href="{:U('User/fans',array('id'=>$user_id))}"><span class="m-r-xs i-icon icon-fans"></span> 粉丝 {$fans_count}</a></li>
+  <li <if condition="$UserContent eq 'UserContent/follow'">class="active"</if>><a href="{:U('User/follow',array('id'=>$user_id))}"><span class="m-r-xs i-icon icon-yiguanzhu"></span> 关注 {$follow_count}</a></li>
+</ul>
+<if condition ="session('login') eq $user_id">
+	<ul class="l-menu">
+	    <li <if condition="($UserContent eq 'UserContent/collectionAttention') or ($UserContent eq 'UserContent/collectionTopic')">class="active"</if>><a href="{:U('User/collection_news')}"><span class="m-r-xs i-icon icon-shoucang"></span> 我的收藏</a></li>
+	    <li><a href="{:U('Login/outlogin')}"><span class="m-r-xs i-icon icon-dengchu"></span> 退出登录</a></li>
+	</ul>
+</if>

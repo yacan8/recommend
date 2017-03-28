@@ -1,0 +1,10 @@
+
+<if condition="session('login') neq $follow_id">
+	<if condition="!$bool">
+		<a href="javascript:void(0)" class="btn btn-success btn-sm follow"  data-id='{$follow_id}'>加关注</a>
+	<else />
+		<a href="javascript:void(0)" class="btn btn-success btn-sm follow active" data-id='{$follow_id}'>已关注</a>
+	</if>
+<else />
+	<a href="{:U('User/edit','',false,false)}" class="btn btn-default btn-sm">编辑资料</a>
+</if>

@@ -1,0 +1,23 @@
+    <link href="__PUBLIC__/bower_components/morrisjs/morris.css" rel="stylesheet">
+    <!-- Flot Charts JavaScript -->
+    <script src="__PUBLIC__/bower_components/flot/excanvas.min.js"></script>
+    <script src="__PUBLIC__/bower_components/flot/jquery.flot.js"></script>
+    <script src="__PUBLIC__/bower_components/flot/jquery.flot.pie.js"></script>
+    <script src="__PUBLIC__/bower_components/flot/jquery.flot.resize.js"></script>
+    <script src="__PUBLIC__/bower_components/flot/jquery.flot.time.js"></script>
+    <script src="__PUBLIC__/bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="__PUBLIC__/bower_components/raphael/raphael-min.js"></script>
+    <script src="__PUBLIC__/bower_components/morrisjs/morris.min.js"></script>
+	<script type="text/javascript">
+    var average_url = "{:U('Browse/average_pv_uv')}";
+    var active_uv_url = "{:U('Visitor/active_uv')}";
+	var now_mouth = <php>echo date('m');</php>;
+	var now_year = <php>echo date('Y');</php>;
+    var reg_statistics_url = "{:U('User/reg_statistics')}";
+    var area_uv_url = "{:U('Visitor/area_uv')}";
+	var browse_url = "{:U('Browse/browse')}";
+	var area_browse_url = "{:U('Browse/area_browse')}";
+	var type_browse_url = "{:U('Browse/type_browse')}";
+    var id = '{$id}';
+    </script>
+    <script type="text/javascript" src="__PUBLIC__/js/admin/ht_pv.js"></script>

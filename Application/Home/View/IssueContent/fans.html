@@ -1,0 +1,57 @@
+<div class="header m-b-sm">
+    <span class="header-title">总数据</span>
+</div>
+<div class="p-sm">
+    <ul class="header-content text-center">
+        <li>
+            <div class="font-20 m-b-sm">{$cancel_follow_count}</div>
+            <div class="font-14">累计取消关注</div>
+        </li>
+        <li>
+            <div class=" font-20 m-b-sm">{$fans_count}</div>
+            <div class="font-14">累计粉丝</div>
+        </li>
+    </ul>
+</div>
+<div class="header m-b-sm">
+    <span class="header-title">数据详情</span>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        新增粉丝详情 <span class="m-l-sm label label-info" id="fans_time" style="color: #fff;cursor: pointer"></span>
+    </div>
+    <div class="panel-body">
+        <div id="fans-index">
+
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        取消关注粉丝详情 <span class="m-l-sm label label-info" id="cancel_follow_time" style="color: #fff;cursor: pointer"></span>
+    </div>
+    <div class="panel-body">
+        <div id="cancel-follow-index">
+
+        </div>
+    </div>
+</div>
+<style>
+    #fans-index,#cancel-follow-index{
+        height: 300px;
+        padding: 10px;
+    }
+</style>
+<link rel="stylesheet" href="__PUBLIC__/assets/daterangepicker/css/daterangepicker-bs3.css">
+<include file="IssueContent/pv_header" />
+<script src="__PUBLIC__/assets/daterangepicker/js/moment.min.js"></script>
+<script src="__PUBLIC__/assets/daterangepicker/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="__PUBLIC__/assets/daterangepicker/js/daterangepicker.js"></script>
+<script>
+    var cancel_follow_index_url = "{:U('Apply/cancelFollowLoading')}";
+    var fans_index_url = "{:U('Apply/fansIndexLoading')}";
+
+</script>
+<script src="__PUBLIC__/js/home/apply-fans.js"></script>
+

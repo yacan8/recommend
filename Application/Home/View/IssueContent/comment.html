@@ -1,0 +1,78 @@
+<div class="header m-b-sm">
+    <span class="header-title">总数据</span>
+</div>
+<div class="p-sm">
+    <ul class="header-content text-center">
+        <li>
+            <div class="font-20 m-b-sm">{$all_count}</div>
+            <div class="font-14">评论数</div>
+        </li>
+        <li>
+            <div class=" font-20 m-b-sm">{$zan_count}</div>
+            <div class="font-14">点赞数</div>
+        </li>
+    </ul>
+</div>
+<div class="header m-b-sm">
+    <span class="header-title">评论内容</span>
+    <span class="pull-right m-t-sm m-r-sm">
+        <a href="{:U('Apply/comment',array('order'=>'newest'))}" class="label label-default comment-order <if condition="$order eq 'newest'">active</if>" data-order="newest" style="color: #fff;;">最新</a>
+        <a href="{:U('Apply/comment',array('order'=>'hot'))}" class="label label-default comment-order <if condition="$order eq 'hot'">active</if>" data-order="hot" style="color: #fff;;">最热</a>
+    </span>
+</div>
+<div id="comment-manage-container">
+
+</div>
+<div id="loading-img" class="text-center m-t-md font-smoothing" style="display: none">
+    <img style="width:20px;height:20px;opacity: .8;" src="__PUBLIC__/img/loading.gif" class="m-r-xs">加载中...
+</div>
+<ul class="pagination pagination-sm m-t-md">
+    {$page}
+</ul>
+<link rel="stylesheet" href="__PUBLIC__/css/home/u.css">
+<link rel="stylesheet" href="__PUBLIC__/css/home/comment.css">
+
+
+<script type="text/template" id="comment-manage">
+    <div class="user-item">
+        <div class="media">
+            <div class="media-left">
+                <a  target="_blank" href="{{ROOT}}/u/{{user_id}}">
+                    <img class="u-icon m-r-xs" src="{{DATAPATH}}/login_thumb/{{user.icon||'default.jpg'}}" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <div class="U_Info m-b-sm">
+                    <a class="media-heading Un_t font-bold font-16">{{user.nickname}}</a>
+                    · <span class="tc-gray9 font-12 font-smoothing">{{time}}</span>
+                </div>
+                <div class="font-smoothing">
+                    {{content}} {{if replyContent != ''}} // <a class="tc-main"  target="_blank" href="{{ROOT}}/u/{{replyContent.user_id}}">@{{replyContent.nickname}}</a>：{{replyContent.content}}{{/if}}
+                </div>
+                <div class="dynamics-content m-t-sm">
+                    <div class="media bg-gray-f6">
+                        <div class="media-left media-middle">
+                            <a  target="_blank" href="{{ROOT}}/n/{{news_id}}.html">
+                                <img class="u-icon" src="{{newsInfo.image}}" alt="..." style="border-radius:0;">
+                            </a>
+                        </div>
+                        <div class="media-body d_m_content">
+                            <a  target="_blank" href="{{ROOT}}/n/{{news_id}}.html">{{newsInfo.title}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-t-sm font-smoothing font-12 tc-gray9">
+                    <span class="fa fa-thumbs-o-up"></span> <span>{{zan_count}}</span> · <a data-id="{{id}}" class="comment-delete" target="_blank" href="javascript:">删除</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script>
+    var commentManagePage = {$p};
+    var comment_manage_loading_url = "{:U('Comment/comment_get_list_load')}";
+    var order = "{$order}";
+    var comment_delete_url = "{:U('Comment/delete')}";
+</script>
+<script src="__PUBLIC__/js/home/apply-comment.js"></script>
+

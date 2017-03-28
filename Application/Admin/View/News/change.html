@@ -1,0 +1,76 @@
+
+<script type="text/javascript">
+var PUBLIC = "__PUBLIC__";
+var dd_load_url = "{:U('NewsKeyword/loading')}";
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/admin/admin.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/admin/keyword.js"></script>
+<include file="Common:edhead" />
+
+<div class="row margin-bottom">
+	<div class="col-xs-12">
+        <h3 class="page-header">发表新闻</h3>
+    </div>
+</div>
+
+
+<form class="form-horizontal" id='new-form' method="post" action="{:U('News/changeNews',array('id'=>$detail['id'],'p'=>$p))}" enctype="multipart/form-data">
+<div class="form-group">
+    <div class="col-sm-12">
+        <input type="text" class="form-control" id="title" name="title" placeholder="输入标题" value="{$detail.title}" required />
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-12">
+        <div id="dd-container" class="dd-container form-control">
+            <input type="hidden" id="keyword"  name="keyword"/>
+            <volist name="keywordList" id="vo">
+                <span data-id="{$vo.keyword_id}" class="dd-item">{$vo.keyword}<span data-role="remove">×</span></span>
+            </volist>
+            <input type="text" data-role="dd-input" class="dd-input" placeholder="输入关键字" style="width: 20em;">
+            <ul class="dd-load-list dropdown-menu" style="display:none;"></ul>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-6">
+        <select class="form-control" id="type" name="type">
+          <volist name="TypeList" id="vo">
+              <option value="{$vo.id}" <if condition="$vo['id'] eq $detail['type']"> selected</if>>{$vo.type}</option>
+          </volist>
+        </select>
+    </div>
+    <div class="col-sm-6">
+        <select class="form-control" id="sections" name='sections'>
+            <option value="1">文章</option>
+            <option value="2">图片</option>
+        </select>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-12">
+        <textarea name="content" class="form-control">{$detail.content}</textarea>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-12">
+        <button type="submit" class="btn btn-success btn-sm">提交保存</button>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-12">
+        <if condition="$detail['image']">
+        <img id="file-img" class="img-thumbnail" alt="" src="{:C('__DATA__')}/{$detail.image}">
+            <else/>
+            <img id="file-img" class="img-thumbnail" alt="" src="">
+
+        </if>
+        <input name="file" type="file" id="file" style="display:none" />
+        <button type="button" class="btn btn-default btn-sm btn-file">浏览</button>
+    </div>
+</div>
+
+</form>

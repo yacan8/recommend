@@ -1,0 +1,328 @@
+@media (max-width:768px){.uu-row{margin-left: -15px;margin-right: -15px}.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9{padding-left: 15px;padding-right: 15px}}
+.mr_-25{
+	margin-right: -25px;
+}
+.user_icon{
+	margin: 20px auto;
+	width: 100px;
+	height: 100px;
+	display: block;
+}
+.autograph{
+	background-color: #FFE8E8;
+	border-left: 3px solid #FFA298;
+	padding: 8px 10px;
+	margin-bottom: 10px;
+}
+.f-mt{
+	margin-top: 30px;
+}
+.border-b5{
+	border-bottom: 5px solid #FFA298;
+}
+.u-row{
+	margin-top: 20px;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+.row .i_h3{
+	font-size: 18px;
+	color: #444;
+	display: block;
+}
+.row .i_text{
+	font-size: 14px;
+	color: #999!important;
+}
+.l-menu{
+	margin-bottom: 15px;
+}
+.l-menu li{
+    line-height: 35px;
+    border-radius: 3px;
+    margin-bottom: 3px;
+}
+
+.l-menu li a{
+	color: #7d7771;
+    font-size: 14px;
+    padding-left: 10px;
+    display: block;
+    border-radius: 3px;
+    font-size: 14px;
+}
+.l-menu li:hover{
+	background-color: #fff;
+}
+.l-menu .active{
+	background-color: #fff;
+}
+.l-menu .active a{
+	color: #F65A4A;
+}
+.l-menu .active:hover{
+	background-color: #F65A4A;
+}
+.l-menu .active:hover a{
+	color: #fff;
+}
+.u-main{
+	border-top: 5px solid #FFA298;
+	padding: 10px 20px;
+	padding-bottom: 30px;
+	margin-right: -25px;
+	min-height: 350px;
+}
+.u_title{
+	border-bottom: 1px solid #f1f1f1;
+	padding-bottom: 13px;
+	font-size: 20px;
+	color: #000;
+	margin-bottom: 20px;
+}
+
+.main_c{
+	font-size: 15px;
+}
+.fans-item,
+.c-item{
+	overflow: hidden;
+	border-bottom: 1px solid #f1f1f1;
+}
+
+
+
+/*粉丝*/
+.fans-icon{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+}
+
+.fr-emoticon.fr-emoticon-img{
+	display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+/*收藏*/
+.c-sections{
+	margin-bottom: 15px;
+}
+.c-sections li{
+	float: left;
+	border-bottom: 2px solid #ccc;
+}
+.c-sections .active{
+	border-color: #F65A4A;
+}
+.c-sections li a{
+	display: inline-block;
+	padding:  7px 10px;
+	color: #999;
+}
+.c-sections .active a{
+	color: #F65A4A;
+}
+
+.u-message{
+	padding:15px;
+}
+
+@media (max-width: 768px){
+	.user_icon{
+		margin: 10px 0 0 0;
+	}
+	.u-nickname{
+		font-size: 18px;
+		margin-top: 0;
+	}
+	.f-mt{
+		margin-top: 10px;
+	}
+	.autograph{
+		padding: 5px 8px;
+		font-size: 13px;
+
+	}
+	.u-row{
+		margin: 0;
+		margin-top: 10px;
+	}
+	.m_center{
+		text-align: center;
+	}
+	.u-main{
+		margin: 10px -15px;
+		padding: 10px;
+		min-height: inherit;
+	}
+	.mr_-25{
+		margin-right: 0;
+	}
+
+}
+
+
+
+.user-header{
+	width: 100%;
+	height: 350px;
+	position: relative;
+	margin: 0 auto;
+	overflow: hidden;
+	background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+	margin-bottom: 40px;
+	margin-top: -20px;
+}
+.user-header:before{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    background-color: rgba(0,0,0,0);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(#000));
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0), #000);
+    background: -ms-linear-gradient(top, rgba(0,0,0,0), #000);
+    content: " ";
+    z-index: 30;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.user-header  .header-info{
+	position: absolute;
+	bottom:20px;
+	left:0;
+	width: 100%;
+	z-index: 31;
+}
+.user-header  .header-icon{
+	width: 80px;
+	height: 80px;
+	vertical-align: top;
+	border-radius: 50%;
+}
+.user-header  .header-icon img{
+	width: 100%;
+	height: 100%;
+}
+.user-header  .header-info .header-menu{
+	text-align: right;
+	color:#fff;
+	font-size: 18px;
+}
+.cancel-collection,
+.follow-btn,
+.user-header  .header-info .header-menu a{
+	display: inline-block;
+	-webkit-font-smoothing: antialiased;
+	color:#fff;
+	font-size: 18px;
+	padding: 5px 10px;
+	position: relative;
+	border-radius: 15px;
+}
+.cancel-collection,
+.follow-btn{
+	font-size: 14px;
+}
+.user-header  .header-info .header-menu a span{
+	position: absolute;
+	top: 3px;
+	right : 3px;
+	width: 8px;
+	height: 8px;
+	border-radius: 6px;
+	display: block;
+	background-color: rgb(255, 106, 0);
+}
+.cancel-collection,
+.follow-btn.active,.follow-btn:hover{
+	color: #fff;
+	background: rgba(60, 60, 60, 0.6);
+}
+.cancel-collection:hover,
+.follow-btn:hover{
+	color:#fff;
+	background: rgba(60, 60, 60, 0.9);
+}
+.user-header  .header-info .header-menu a.active,.user-header  .header-info .header-menu a:hover{
+	background: rgba(60, 60, 60, 0.8);
+}
+.max-w-780{
+	max-width: 780px;
+}
+
+.user-info{
+	display: inline-block;
+	vertical-align: bottom;
+	width: 660px;
+}
+.user-item{
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid #eee;
+}
+.d_m_content{
+	padding: 15px;
+    vertical-align: middle;
+}
+@media (max-width:768px){
+	.user-info{
+		display: inline-block;
+		vertical-align: bottom;
+		width: 300px;
+	}
+	.user-header  .header-info .header-menu a{
+		font-size: 14px;
+		padding: 3px 7px;
+		border-radius: 10px;
+	}
+	.user-header{
+		margin-top: 0;
+	}
+	.d_m_content{
+		padding: 5px;
+	}
+}
+.tags {
+	color: #fff;
+	padding: 3px 8px;
+	font-size: 12px;
+	display: inline-block;
+	margin-right: 7px;
+	border-radius: 15px;
+	font-family: PingFang SC,Lantinghei SC,Helvetica Neue,Helvetica,Arial,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,STHeitiSC-Light,simsun,\\5B8B\4F53,WenQuanYi Zen Hei,WenQuanYi Micro Hei,"sans-serif";;
+	background: rgba(0, 0, 0, 0.3);
+	font-weight: 100;
+}
+.select-interest {
+	padding: 3px 10px;
+	display: block;
+	font-size: 13px;
+	border: 1px solid #eee;
+	margin: 0 5px 5px 0;
+	cursor: pointer;
+	border-radius: 3px;
+	position: relative;
+	float: left;
+}
+.select-interest.active {
+	color: #F84B3A;
+	border-color: #F84B3A;
+}
+.select-interest.active:after {
+	content: '●';
+	font-size: 8px;
+	color: #F84B3A;
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	right: 0;
+	top: 0;
+}
