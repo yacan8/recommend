@@ -1,295 +1,286 @@
 <?php
-namespace Home\Controller;
+
+namespace Admin\Controller;
 use Think\Controller;
-//推荐引擎
-class RecommendController extends Controller{
+
+class CrawlerController extends Controller{
+
+	public function _initialize(){
+		if (!isset($_SESSION['Adminlogin'])) {
+			$this->redirect('Login/index');
+		}
+	}
+	public function crawler(){
+		$crawlerFromModel = M('CrawlerFrom');
+		$time = $crawlerFromModel->order('last_time asc')->getField('last_time');
+
+		$this->assign('lastTime',$time);
+		$this->assign('title','新闻抓取');
+		$this->display();
+	}
 
 
-	public function recommend($user_id){
-		$start = microtime(true);
-		header("Content-type: text/html; charset=utf-8");
-		$recommendConfigModel = M('RecommendConfig');
-		//获取推荐配置信息
-		$recommendConfig = $recommendConfigModel->where(array('state' => array('neq','0')))->find();
-		$calculateTimeSpan = $recommendConfig['calculate_time_span'];
-		$timestamp = time();
-		$calculateTimeSpanStamp = $timestamp - 60 * 60 * 24 * (int)$calculateTimeSpan;
-		$calculateTimeSpanBeginTime = date('Y-m-d H:i:s', $calculateTimeSpanStamp );
+	public function sinaNews(){
+		$last_time = I('get.time','');
+		$last_time = substr($last_time, 0, -3);
+		$time = date('Y-m-d H:i:s',time());
+		$crawlerFromModel = M('CrawlerFrom');
+		$crawlerFromModel->where(array('display_name'=>'新浪'))->save(array('last_time'=>$time));
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, "http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=89&spec=&type=&ch=01&k=&offset_page=0&offset_num=0&num=2000&asc=&page=1&last_time={$last_time}");
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_ENCODING, 'gzip');
+		$output = curl_exec($ch);
+		curl_close($ch);
+		$output = mb_convert_encoding($output, 'utf-8', 'gbk');
+		$this->ajaxReturn($output,'EVAL');
+	}
 
-		$isLogin = session('?login');
-		$user_id = session('login');
-		$recommendModel = M('Recommend');
-		$visitorModel = D('VisitorNews');
-		$keywordBelongModel = D('NewsKeywordBelong');
-		$zanModel = D('Zan');
-		$commentModel = D('Comment');
-		if ( $isLogin ) {
-			$browseList = $visitorModel -> getVisitorListByUserIdAndBeginTime($user_id,$calculateTimeSpanBeginTime);
-			$commentList = $commentModel -> getCommentListByUserIdAndBeginTime($user_id,$calculateTimeSpanBeginTime);
-			$zanList = $zanModel -> getZanListByUserIdAndBeginTime($user_id,$calculateTimeSpanBeginTime);
+	public function news163(){
+		$ch = curl_init();
+		$crawlerFromModel = M('CrawlerFrom');
+		$time = date('Y-m-d H:i:s',time());
 
-			$portrayalInfo = array(
-					'browseInfo' => $browseList,
-					'commentInfo' => $commentList,
-					'zanInfo' => $zanList
+		$crawlerFromModel->where(array('display_name'=>'网易'))->save(array('last_time'=>$time));
+		curl_setopt($ch, CURLOPT_URL, "http://news.163.com/special/0001220O/news_json.js");
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_ENCODING, 'gzip');
+		$output = curl_exec($ch);
+		curl_close($ch);
+		$output = mb_convert_encoding($output, 'utf-8', 'gbk');
+		$this->ajaxReturn($output,'EVAL');
+	}
+
+	//爬虫写入
+	public function crawlerIn(){
+		$crawlerModel = M('Crawler');
+		$crawlerFromModel = M('CrawlerFrom');
+		$from = I('post.from');
+		$from_id = I('post.from_id');
+		$from_site_id = $crawlerFromModel->where(array('display_name'=>$from))->getField('id');
+		$is_crawler = $crawlerModel -> where(array('from_id'=>$from_id ,'form'=>$from_site_id))->find();
+		if( $is_crawler ) {
+			$json['success'] = false;
+			$json['code'] = 300;
+			$json['message'] = '内容已存在';
+		}else{
+			$model = M('');
+			$model->startTrans(); //开启事务
+
+			$url = I('post.url');
+			$time = I('post.time');
+			$type = I('post.type');
+
+
+
+
+			vendor('phpquery.phpQuery.phpQuery');
+			$urlInfo = parse_url($url);
+			$document = \phpQuery::newDocumentFile($url);
+
+
+			//站点结构  储存标题与文章内容dom
+			$structures = array(
+					'news.sina.com.cn' => '#artibodyTitle,#artibody',
+					'sports.sina.com.cn' => '#j_title,#artibody',
+					'finance.sina.com.cn' => '#artibodyTitle,#artibody',
+					'tech.sina.com.cn' => '#main_title,#artibody',
+					'ent.sina.com.cn' => '#main_title,#artibody',
+					'news.163.com' => '#epContentLeft>h1:first,#endText',
+					'money.163.com' => '#epContentLeft>h1:first,#endText',
+					'mil.news.sina.com.cn' => '#main_title,#artibody',
 			);
-			$recommendNum = count($browseList) > 10 ? 10 : count($browseList) ;
-			foreach( $portrayalInfo as $key => &$item ) {
-				foreach( $item as &$_item ) {
-					$_item['keywords'] = $keywordBelongModel -> getKeywordByNewsId($_item['news_id']);
+
+			$remove = array(  //需要过滤的dom节点
+					'.caijing_bq',
+					'style',
+					'.special_tag_wrap',
+					'pre',
+					'.ep-source',
+					'.article-editor',
+					'.show_author',
+					'script',
+					'.ct_hqimg',
+					'.fin_reference',
+					'.finance_app_zqtg',
+					'link',
+					'#j_album_1',
+					'#blk_weiboBox_01'
+			);
+			$structure = $urlInfo['host'];
+			$structureArr = explode(',',$structures[$structure]);
+			$document->find($structureArr[1])->find(join(',',$remove))->remove(); //过滤一些广告信息
+			$title = $document->find($structureArr[0])->text();//标题
+			$content = $document->find($structureArr[1])->html();//内容
+			if ($structure == 'news.163.com' || $structure == 'money.163.com') { //解决网易抓取的中文乱码问题
+				$title = mb_convert_encoding($title, 'ISO-8859-1', 'utf-8');
+				$title = mb_convert_encoding($title, 'utf-8', 'GBK');
+				$content = mb_convert_encoding($content, 'ISO-8859-1', 'utf-8');
+				$content = mb_convert_encoding($content, 'utf-8', 'GBK');
+			}
+			if ($structure == 'tech.sina.com.cn' && !$title) {
+				$title = $document->find('#artibodyTitle')->text();
+			}
+			if( $title != '' || trim($content) != '' || trim($content) != null) {
+
+				$user_id = session('Adminlogin');
+				//相似度计算
+				// *** code
+
+				$typeModel = M('Type');
+				if( trim($type) != '' ){
+					$type_id = $typeModel->where(array('type' => $type))->getField('id');
+					if (!$type_id) {
+						$typeResult = $typeModel->add(array('type' => $type));
+						$type_id = $typeModel->getLastInsID();
+					} else {
+						$typeResult = 1;
+					}
+				}else{
+					$type_id = 0;
+					$typeResult = false;
 				}
-			}
-			$portrayal = $this->portrayal($portrayalInfo);
-			$data = $this->getRecommendWeight($portrayal,$recommendConfig);
-			$read = $recommendModel -> where(array('user_id'=>$user_id))->field('id')->select(false);
-		} else {
-			$cookieRecommendedString = cookie('recommend');
-			if ( $cookieRecommendedString ) {
-				$portrayalInfo = json_decode($cookieRecommendedString);
-			} else {
-				$portrayalInfo = array();
-			}
-			$recommendNum = count($portrayalInfo['browseInfo']) > 10 ? 10 : count($portrayalInfo['browseInfo']) ;
-			$browseList = $portrayalInfo['browseInfo'];
-			$browseIdArray = array();
-			foreach($browseList as $item){
-				array_push($browseIdArray,$item['news_id']);
-			}
-			$read = join(',',$browseIdArray);
-			$portrayal = $this->portrayal($portrayalInfo);
-			$data = $this->getRecommendWeight($portrayal,$recommendConfig);
-		}
+
+				//写入
+
+				$crawlerData = array(
+						'from_id' => $from_id,
+						'from' => $from_site_id,
+						'url' => $url,
+						'time' => $time,
+						'title' => $title
+				);
+
+				$crawlerResult = $crawlerModel->add($crawlerData);
 
 
-		$recommendArray = $this -> getRecommendNum($data,$recommendNum);
+				$newsModel = M('News');
+				$content = $this->saveImageByContent($content);
+				$newsData['title'] = $title;
+				$newsData['content'] = $content;
+				$newsData['contributor'] = $user_id;
+				$newsData['title'] = $title;
+				$newsData['type'] = $type_id;
+				$newsData['publish_time'] = $time;
 
-		$recommendList = $this->getRecommendData($read,$recommendArray,$recommendConfig,$recommendNum);
-		dump($recommendList);
-		$end = microtime(true);
-		dump($end - $start);
-	}
+				$newsResult = $newsModel->add($newsData);
+				$news_id = $newsModel->getLastInsId();
 
-	public function getRecommendData($read,$recommendArray,$recommendConfig,$recommendNum = 10){
+				$dynamicsModel = M('Dynamics');
+				$dynamicsData['content_id'] = $news_id;
+				$dynamicsData['user_id'] = $user_id;
+				$dynamicsData['time'] = $time;
+				$dynamicsData['type'] = 4;
 
-		$newsModel = D('News');
+				$dynamicsResult = $dynamicsModel->add($dynamicsData);
+				$keywordsArr = array();
+				$keywords = $document->find('.art_keywords')->find('a');
+				foreach( $keywords as $articleList ) {
+					array_push($keywordsArr,pq($articleList)->text());
+				}
 
-//		$keywordArr = array();
-//		$typeArr = array();
-//		foreach ($recommendArray as $item) {
-//			if ( $item['type'] == 1 ) {
-//				array_push($keywordArr,$item);
-//			} else {
-//				array_push($typeArr,$item);
-//			}
-//		}
-		$allowRecommendTime = $recommendConfig['allow_recommend_time'];
-		$timestamp = time();
-		$allowRecommendTimeStamp = $timestamp - 60 * 60 * 24 * (int)$allowRecommendTime;
-		$allowRecommendBeginTime = date('Y-m-d H:i:s', $allowRecommendTimeStamp );
-		$result = array();
 
-		foreach ( $recommendArray as $item ) {
-			if ( $item['type'] == 1 ) {
-				$recommendList = $newsModel -> getByKeywordId($item['id'],$allowRecommendBeginTime,$item['num'],$read);
-			} else {
-				$recommendList = $newsModel -> getByTypeId($item['id'],$allowRecommendBeginTime,$item['num'],$read);
-			}
+				$keywordController = A('Keyword');
+				$KeywordResult = $keywordController->keywordInByNewsId($news_id,$keywordsArr);
 
-			foreach ( $recommendList as $_item ) {
-				if ( count($result) < $recommendNum  ) {
-					array_push($result, $_item);
+
+
+				if ($KeywordResult === false || $newsResult === false || $dynamicsResult === false || $crawlerResult === false || $typeResult === false) {
+					$json['success'] = false;
+					$json['code'] = 500;
+					$json['message'] = '写入失败';
+					$model->rollback();
 				} else {
-					break;
+					$json['success'] = true;
+					$json['code'] = 200;
+					$json['message'] = '写入成功';
+					$model->commit();
 				}
+			}else{
+				$json['success'] = false;
+				$json['code'] = 500;
+				$json['message'] = '爬取失败';
+				$model->rollback();
 			}
 
-			if ( count($result) >= $recommendNum  ) {
-				break;
-			}
 
 		}
-
-
-//		$start  = microtime(true);
-//		$typeListIdNotIn = $recommendKeywordList = $newsModel->getRecommendByKeyword($keywordArr,$read,$allowRecommendBeginTime);
-//
-//		foreach( explode(',',$read) as $item ){
-//	 		if ( !in_array($item,$typeListIdNotIn) ){
-//				array_push($typeListIdNotIn,$item);
-//			}
-//		}
-//		$end = microtime(true);
-//		dump($end - $start);
-//		$start  = microtime(true);
-//		$recommendTypeList = $newsModel->getRecommendByType($keywordArr,$typeListIdNotIn,$allowRecommendBeginTime);
-//		$end = microtime(true);
-//		dump($end - $start);
-//		dump($recommendTypeList);
-//		dump($recommendKeywordList);
-
-		return $result;
+		$this->ajaxReturn($json);
 	}
 
-
-	public function getRecommendNum($data,$recommendNum){
-		$recommendArray = array();
-		for( $index = 0 ; $index < count($data) ; $index++){
-			if( $data[$index] ) {
-				$item = array('type' => $data[$index]['type'], 'id' => $data[$index]['id']);
-				$num = (int)round($data[$index]['weightScore'] * $recommendNum);
-				if ($num == 0) {
-					$num = 1;
+	public function saveImageByContent($content){
+		preg_match_all('/<img.*?src="(.*?)".*?>/is',$content,$array);
+		$date = date('Y-m-d');
+		if( $array[1] ) {
+			foreach ($array[1] as $src) {
+				$result = getImage($src,'./Data/news/'.$date);
+				if( $result['error'] == 0){
+					$content = str_replace($src, __ROOT__."/Data/news/".$date.'/'.$result['file_name'], $content);
 				}
-				$item['num'] = $num;
-				array_push($recommendArray, $item);
 			}
 		}
-		return $recommendArray;
+		return $content;
 	}
+	public function test(){
+		header("Content-type: text/html; charset=utf-8");
+		$url = 'http://tech.sina.com.cn/i/2017-03-28/doc-ifycstww1669624.shtml';
+		vendor('phpquery.phpQuery.phpQuery');
+		$urlInfo = parse_url($url);
+		$document = \phpQuery::newDocumentFile($url);
 
-	public function getRecommendWeight($portrayal,$recommendConfig){
-		$keywordData = array();
-		$typeData = array();
-		$dataType = array(
-				'browse_keyword' => 1,
-				'comment_keyword' => 1,
-				'zan_keyword' => 1,
-				'browse_type' => 2,
-				'comment_type' => 2,
-				'zan_type' => 2,
+
+		//站点结构  储存标题与文章内容dom
+		$structures = array(
+				'news.sina.com.cn' => '#artibodyTitle,#artibody',
+				'sports.sina.com.cn' => '#j_title,#artibody',
+				'finance.sina.com.cn' => '#artibodyTitle,#artibody',
+				'tech.sina.com.cn' => '#main_title,#artibody',
+				'ent.sina.com.cn' => '#main_title,#artibody',
+				'news.163.com' => '#epContentLeft>h1:first,#endText',
+				'money.163.com' => '#epContentLeft>h1:first,#endText',
+				'mil.news.sina.com.cn' => '#main_title,#artibody',
 		);
-		$weightSum = 0;
-		$typeArray = array();
-		foreach ($portrayal as $key => $info) {
-			$type = $dataType[$key];
-			$weight = $recommendConfig[$key];
-			foreach( $info as $_key => $value) {
-				$itemWeight = $value*(int)$weight;
-				$item = array();
-				$item['type'] = $type;
-				$weightSum += $itemWeight;
-				$item['id'] = $_key;
-				if( $type == 1) {
-					$isExit = false;
-					foreach($keywordData as &$keywordItem){
-						if( $keywordItem['id'] == $_key ) {
-							$isExit = true;
-							$keywordItem['weight'] += $itemWeight;
-						}
-					}
-					if ( !$isExit ){
-						$item['weight'] = $itemWeight;
-						array_push($keywordData,$item);
-					}
-				} else {
-					$isExit = false;
-					foreach($typeData as &$typeItem){
-						if( $typeItem['id'] == $_key ) {
-							$isExit = true;
-							$typeItem['weight'] += $itemWeight;
-						}
-					}
-					if ( !$isExit ){
-						$typeItem['weight'] = $itemWeight;
-						array_push($typeData,$item);
-					}
-					if ( !in_array($key,$typeArray) ){
-						array_push($typeArray,$key);
-					}
-				}
-			}
-		}
 
-		$data = array_merge($keywordData,$typeData);
-		$typeCount = count($typeArray);
-		foreach ( $data as $key => &$item){
-			if( $item['type'] == 1 ){
-				$item['weightScore'] = $item['weight'] * $typeCount / $weightSum;
-			} else {
-				$item['weightScore'] = $item['weight'] / $weightSum;
-			}
-		}
-		$data = $this->multi_array_sort($data,'weightScore');
-		return $data;
-
-
-	}
-	//根据键值排序
-	function multi_array_sort($arr,$key,$type=SORT_REGULAR,$short=SORT_DESC){
-		foreach ($arr as $k => $v){
-			$name[$k] = $v[$key];
-		}
-		array_multisort($name,$type,$short,$arr);
-		return $arr;
-	}
-
-
-	//用户画像
-	public function portrayal($portrayalInfo){
-		$browse_type = array();
-		$browse_keyword = array();
-		$browseInfo = $portrayalInfo['browseInfo'];
-		foreach($browseInfo as $item){
-			if( $browse_type[$item['type']]){
-				$browse_type[$item['type']] += 1;
-			}else{
-				$browse_type[$item['type']] = 1;
-			}
-
-			foreach($item['keywords'] as $_keyword){
-				if( $browse_keyword[$_keyword['keyword_id']]){
-					$browse_keyword[$_keyword['keyword_id']] += 1;
-				}else{
-					$browse_keyword[$_keyword['keyword_id']] = 1;
-				}
-			}
-		}
-		$comment_type = array();
-		$comment_keyword = array();
-		$commentInfo = $portrayalInfo['commentInfo'];
-		foreach($commentInfo as $item){
-			if( $comment_type[$item['type']]){
-				$comment_type[$item['type']] += 1;
-			}else{
-				$comment_type[$item['type']] = 1;
-			}
-
-			foreach($item['keywords'] as $_keyword){
-				if( $comment_keyword[$_keyword['keyword_id']]){
-					$comment_keyword[$_keyword['keyword_id']] += 1;
-				}else{
-					$comment_keyword[$_keyword['keyword_id']] = 1;
-				}
-			}
-		}
-
-		$zan_type = array();
-		$zan_keyword = array();
-		$zanInfo = $portrayalInfo['zanInfo'];
-		foreach($zanInfo as $item){
-			if( $zan_type[$item['type']]){
-				$zan_type[$item['type']] += 1;
-			}else{
-				$zan_type[$item['type']] = 1;
-			}
-
-			foreach($item['keywords'] as $_keyword){
-				if( $zan_keyword[$_keyword['keyword_id']]){
-					$zan_keyword[$_keyword['keyword_id']] += 1;
-				}else{
-					$zan_keyword[$_keyword['keyword_id']] = 1;
-				}
-			}
-		}
-		$result = array(
-				'browse_type' => $browse_type,
-				'browse_keyword' => $browse_keyword,
-				'comment_type' => $comment_type,
-				'comment_keyword' => $comment_keyword,
-				'zan_type' => $zan_type,
-				'zan_keyword' => $zan_keyword
+		$remove = array(  //需要过滤的dom节点
+				'.caijing_bq',
+				'style',
+				'.special_tag_wrap',
+				'pre',
+				'.ep-source',
+				'.article-editor',
+				'.show_author',
+				'script',
+				'.ct_hqimg',
+				'.fin_reference',
+				'.finance_app_zqtg',
+				'link',
+				'#j_album_1',
+				'#blk_weiboBox_01'
 		);
-		return $result;
+		$structure = $urlInfo['host'];
+		$structureArr = explode(',',$structures[$structure]);
+		$document->find($structureArr[1])->find(join(',',$remove))->remove(); //过滤一些广告信息
+		$title = $document->find($structureArr[0])->text();//标题
+		$content = $document->find($structureArr[1])->html();//内容
+		if ($structure == 'news.163.com' || $structure == 'money.163.com') { //解决网易抓取的中文乱码问题
+			$title = mb_convert_encoding($title, 'ISO-8859-1', 'utf-8');
+			$title = mb_convert_encoding($title, 'utf-8', 'GBK');
+			$content = mb_convert_encoding($content, 'ISO-8859-1', 'utf-8');
+			$content = mb_convert_encoding($content, 'utf-8', 'GBK');
+		}
+		if ($structure == 'tech.sina.com.cn' && !$title) {
+			$title = $document->find('#artibodyTitle')->text();
+		}
+		$keywords = $document->find('.art_keywords')->find('a');
+		foreach( $keywords as $articleList ) {
+			pq($articleList)->text();
+		}
+
 	}
+
+
+
 
 }
