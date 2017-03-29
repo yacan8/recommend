@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/recommend.iml" filepath="$PROJECT_DIR$/.idea/recommend.iml" />
-=======
-      <module fileurl="file://$USER_HOME$/ROOT_FRO_PHP/recommend/.idea/recommend.iml" filepath="$USER_HOME$/ROOT_FRO_PHP/recommend/.idea/recommend.iml" />
->>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
     </modules>
   </component>
 </project>

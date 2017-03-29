@@ -24,10 +24,6 @@ class VisitorNewsModel extends RelationModel{
 
 
 	public function getVisitorListByUserIdAndBeginTime($user_id,$allowRecommendBeginTime){
-<<<<<<< HEAD
 		return $this->relation('type')-> where(array( 'user_id' => $user_id ,'date'=> array('gt',$allowRecommendBeginTime))) ->order('date desc') -> field('news_id,date') -> select();
-=======
-		return $this->relation('type')-> where(array( 'user_id' => $user_id ,'date'=> array('gt',$allowRecommendBeginTime))) ->order('date desc') -> field('news_id,date,area') -> select();
->>>>>>> e69727a6c801229bcb1930b5efa8b4da42b883cc
 	}
 }
