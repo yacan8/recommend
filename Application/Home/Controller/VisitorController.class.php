@@ -23,7 +23,7 @@ class VisitorController extends Controller{
                         $VisitorData['ip'] = $ip_value;
                         $VisitorModel = M('Visitor');
                         $VisitorData['area'] = $area['country'];
-                        $VisitorModel->add($VisitorData); //添加到数据库
+                        $VisitorModel->add($VisitorData);
                         $insert_id = $VisitorModel->getLastInsID();
                         cookie('campusleader_visitor',$insert_id.',1',$expire);
                     }else{
@@ -39,6 +39,8 @@ class VisitorController extends Controller{
                     }
                     if(cookie($cookie_name)==''){
                         // $config = array('expire'=>$expire,'path'=>'/','domain'=>'.campusleader.cn');
+
+
                         cookie($cookie_name,"true",$expire);
                         $data['ip'] = $ip_value;//ip
                         $data['date'] = date('Y-m-d H:i:s',time());//时间

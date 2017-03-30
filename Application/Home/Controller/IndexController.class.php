@@ -13,7 +13,7 @@ class IndexController extends Controller {
         $this->assign('HeadLines',$HeadLines);
 
         $this->assign('List',$List);
-    	$this->assign('title',"campusleader_打造最强高校领袖");
+    	$this->assign('title',"campusLeader_打造最强高校领袖");
 
         $this->display();
     }

@@ -175,11 +175,23 @@ class CrawlerController extends Controller{
 				$dynamicsData['type'] = 4;
 
 				$dynamicsResult = $dynamicsModel->add($dynamicsData);
+                $keywordStructures = array(
+                    'news.sina.com.cn' => '.article-keywords',
+                    'sports.sina.com.cn' => '.article-a_keywords',
+                    'finance.sina.com.cn' => '.article-keywords',
+                    'tech.sina.com.cn' => '.art_keywords',
+                    'ent.sina.com.cn' => '.art_keywords',
+                    'news.163.com' => '',
+                    'money.163.com' => '',
+                    'mil.news.sina.com.cn' => '.art_keywords',
+                );
 				$keywordsArr = array();
-				$keywords = $document->find('.art_keywords')->find('a');
-				foreach( $keywords as $articleList ) {
-					array_push($keywordsArr,pq($articleList)->text());
-				}
+                if ( $keywordStructures[$structure] ) {
+                    $keywords = $document->find($keywordStructures[$structure])->find('a');
+                    foreach( $keywords as $articleList ) {
+                        array_push($keywordsArr,pq($articleList)->text());
+                    }
+                }
 
 
 				$keywordController = A('Keyword');
@@ -225,7 +237,7 @@ class CrawlerController extends Controller{
 	}
 	public function test(){
 		header("Content-type: text/html; charset=utf-8");
-		$url = 'http://tech.sina.com.cn/i/2017-03-28/doc-ifycstww1669624.shtml';
+		$url = 'http://ent.sina.com.cn/m/c/2017-03-30/doc-ifycwunr8146094.shtml';
 		vendor('phpquery.phpQuery.phpQuery');
 		$urlInfo = parse_url($url);
 		$document = \phpQuery::newDocumentFile($url);
@@ -259,6 +271,17 @@ class CrawlerController extends Controller{
 				'#j_album_1',
 				'#blk_weiboBox_01'
 		);
+        $keywordStructures = array(
+            'news.sina.com.cn' => '.article-keywords',
+            'sports.sina.com.cn' => '.article-a_keywords',
+            'finance.sina.com.cn' => '.article-keywords',
+            'tech.sina.com.cn' => '.art_keywords',
+            'ent.sina.com.cn' => '.art_keywords',
+            'news.163.com' => '',
+            'money.163.com' => '',
+            'mil.news.sina.com.cn' => '.art_keywords',
+        );
+
 		$structure = $urlInfo['host'];
 		$structureArr = explode(',',$structures[$structure]);
 		$document->find($structureArr[1])->find(join(',',$remove))->remove(); //过滤一些广告信息
@@ -273,10 +296,16 @@ class CrawlerController extends Controller{
 		if ($structure == 'tech.sina.com.cn' && !$title) {
 			$title = $document->find('#artibodyTitle')->text();
 		}
-		$keywords = $document->find('.art_keywords')->find('a');
-		foreach( $keywords as $articleList ) {
-			pq($articleList)->text();
-		}
+
+		$keywordsArr = array();
+		if ( $keywordStructures[$structure] ) {
+            $keywords = $document->find($keywordStructures[$structure])->find('a');
+            foreach( $keywords as $articleList ) {
+                array_push($keywordsArr,pq($articleList)->text());
+            }
+        }
+
+        dump($keywordsArr);
 
 	}
 
