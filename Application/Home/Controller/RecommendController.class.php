@@ -2,82 +2,89 @@
 namespace Home\Controller;
 use Think\Controller;
 //推荐引擎
-class RecommendController extends Controller
-{
+class RecommendController extends Controller{
 
-
-    public function recommend($user_id)
-    {
+    public function recommend($user_id){
 
         header("Content-type: text/html; charset=utf-8");
         $recommendConfigModel = M('RecommendConfig');
         //获取推荐配置信息
         $recommendConfig = $recommendConfigModel->where(array('state' => array('neq', '0')))->find();
-
-        $calculateTimeSpan = $recommendConfig['calculate_time_span'];
-        $timestamp = time();
-        $calculateTimeSpanStamp = $timestamp - 60 * 60 * 24 * (int)$calculateTimeSpan;
-        $calculateTimeSpanBeginTime = date('Y-m-d H:i:s', $calculateTimeSpanStamp);
-
-
         $isLogin = session('?login');
         $user_id = session('login');
         $recommendModel = M('Recommend');
-        $visitorModel = D('VisitorNews');
-        $keywordBelongModel = D('NewsKeywordBelong');
-        $zanModel = D('Zan');
-        $commentModel = D('Comment');
+        $timestamp = time();
+        $alreadyRecommendCookie = $this->getAlreadyRecommendCookie();
+        $alreadyRecommendCookie = $alreadyRecommendCookie['alreadyRecommendCookie'];
+        $read = join(',', $alreadyRecommendCookie['alreadyRecommendId']);
         if ($isLogin) {
-
-            $browseList = $visitorModel->getVisitorListByUserIdAndBeginTime($user_id, $calculateTimeSpanBeginTime);
-            $commentList = $commentModel->getCommentListByUserIdAndBeginTime($user_id, $calculateTimeSpanBeginTime);
-            $zanList = $zanModel->getZanListByUserIdAndBeginTime($user_id, $calculateTimeSpanBeginTime);
-
-            $portrayalInfo = array(
-                'browseInfo' => $browseList,
-                'commentInfo' => $commentList,
-                'zanInfo' => $zanList
-            );
-            dump($portrayalInfo);
+            $portrayalData = $this->getPortrayal($user_id);
+            $portrayalInfo = $portrayalData['data'];
+            $browseList = $portrayalInfo['browseInfo'];
+            $dataSaveResult = $portrayalInfo['dataSaveResult'];
             $recommendNum = count($browseList) > 10 ? 10 : count($browseList);
-
-            foreach ($portrayalInfo as $key => &$item) {
-                foreach ($item as &$_item) {
-                    $_item['keywords'] = $keywordBelongModel->getKeywordByNewsId($_item['news_id']);
-                }
-            }
             $portrayal = $this->portrayal($portrayalInfo);
             $data = $this->getRecommendWeight($portrayal, $recommendConfig);
-
             $read = $recommendModel->where(array('user_id' => $user_id))->field('id')->select(false);
         } else {
+            $dataSaveResult = 1;
             $cookieRecommendedString = cookie('recommend');
-            if ($cookieRecommendedString) {
-                $portrayalInfo = json_decode($cookieRecommendedString);
-            } else {
-                $portrayalInfo = array();
-            }
+            $portrayalInfo = $cookieRecommendedString ?  json_decode($cookieRecommendedString) : array();
             $recommendNum = count($portrayalInfo['browseInfo']) > 10 ? 10 : count($portrayalInfo['browseInfo']);
-            $browseList = $portrayalInfo['browseInfo'];
-            $browseIdArray = array();
-            foreach ($browseList as $item) {
-                array_push($browseIdArray, $item['news_id']);
-            }
-            $read = join(',', $browseIdArray);
             $portrayal = $this->portrayal($portrayalInfo);
-
             $data = $this->getRecommendWeight($portrayal, $recommendConfig);
         }
 
 
         $recommendArray = $this->getRecommendNum($data, $recommendNum);
-
         $recommendList = $this->getRecommendData($read, $recommendArray, $recommendConfig, $recommendNum);
-        dump($recommendList);
+
+
+
+        if ( count($recommendList) < 10 ) {
+            //推荐个数不够,补充推荐个数(以热度为准或以相似好友喜欢为准)
+
+        }
+
+
+        $recommendModel = M('Recommend');
+        $time = date('Y-m-d H:i:s' ,$timestamp);
+        $recommendDataList = array();
+
+        foreach ( $recommendList as $item ) {
+
+            array_push($alreadyRecommendCookie,array(
+                't'=> $time,
+                'id' => $item['news_id']
+            ));
+            if ( $isLogin ) {
+                array_push($recommendDataList, array(
+                    'news_id' => $item['id'],
+                    'user_id' => $user_id,
+                    'time' => $time
+                ));
+            }
+        }
+        if ( $isLogin ) {
+            $recommendResult = $recommendModel->addAll($recommendDataList);
+        } else {
+            $recommendResult = 1;
+        }
+
+        cookie('already_recommend',$alreadyRecommendCookie);
+
+
+
+
+
+
+
+
+//        dump($recommendList);
+//        return $recommendResult === false ? false : $recommendList;
     }
 
-    public function getRecommendData($read, $recommendArray, $recommendConfig, $recommendNum = 10)
-    {
+    public function getRecommendData($read, $recommendArray, $recommendConfig, $recommendNum = 10){
 
         $newsModel = D('News');
 
@@ -110,8 +117,7 @@ class RecommendController extends Controller
     }
 
 
-    public function getRecommendNum($data, $recommendNum)
-    {
+    public function getRecommendNum($data, $recommendNum) {
         $recommendArray = array();
         for ($index = 0; $index < count($data); $index++) {
             if ($data[$index]) {
@@ -127,8 +133,7 @@ class RecommendController extends Controller
         return $recommendArray;
     }
 
-    public function getRecommendWeight($portrayal, $recommendConfig)
-    {
+    public function getRecommendWeight($portrayal, $recommendConfig){
         $keywordData = array();
         $typeData = array();
         $dataType = array(
@@ -208,8 +213,7 @@ class RecommendController extends Controller
 
 
     //用户画像
-    public function portrayal($portrayalInfo)
-    {
+    public function portrayal($portrayalInfo){
         $browse_type = array();
         $browse_keyword = array();
         $browseInfo = $portrayalInfo['browseInfo'];
@@ -276,19 +280,36 @@ class RecommendController extends Controller
         return $result;
     }
 
-	public function test(){
-	    $beginTime = '2017-03-15 13:39:19';
-        $data = array(
-            'news_id' => '2301',
-            'date' => '2017-03-15 00:00:00',
-            'type' => '2'
+
+    //未登陆获取过滤过期的推荐过的信息的cookie
+    public function getAlreadyRecommendCookie(){
+        $recommendConfigModel = M('RecommendConfig');
+        $calculateTimeSpan = $recommendConfigModel->where(array('state' => array('neq', '0')))->getField('calculate_time_span');
+        $timestamp = time();
+        $beginTimeStamp = $timestamp - 60 * 60 * 24 * (int)$calculateTimeSpan;
+        $alreadyRecommend = json_encode(cookie('already_recommend'));
+        if ( !$alreadyRecommend ) {
+            $alreadyRecommend = array();
+        }
+        $result = array();
+        $alreadyRecommendId = array();
+        foreach ( $alreadyRecommend as $item ) {
+            if ( strtotime($item['t']) > $beginTimeStamp ) {
+                array_push($alreadyRecommendId,$item['id']);
+                array_push($result,$item);
+            }
+        }
+        return array(
+            'alreadyRecommendId' => join(',',$alreadyRecommendId),
+            'alreadyRecommendCookie' => $result
         );
-        $cookie = $this->recommendCookie($beginTime,$data,'commentInfo');
-        dump($cookie);
     }
-	public function recommendCookie($beginTime,$data,$key){
-        $beginTimeStamp = strtotime($beginTime);
-	    $recommendCookie = json_decode(cookie('recommend'),true);
+
+
+
+    //获取之前保存的用户画像cookie
+    public function getRecommendCookie(){
+        $recommendCookie = json_decode(cookie('recommend'),true);
 
         if( !$recommendCookie ) {
             $recommendCookie = array(
@@ -297,17 +318,34 @@ class RecommendController extends Controller
                 'zanInfo' => array()
             );
         }
-//        dump($recommendCookie);
+        return $recommendCookie;
+    }
+    //浏览信息或操作时设置用户画像cookie
+    public function setRecommendCookie($data,$key){
+        $recommendCookie = $this->recommendCookie($data,$key);
+        $cookieInfo = $recommendCookie['cookieInfo'];
+        cookie('recommend',$cookieInfo);
+        return $recommendCookie['isBrowse'];
+    }
+    //未登陆状况下获取cookie保存并过滤过期信息后的用户画像
+	public function recommendCookie($data,$key){
+        $recommendConfigModel = M('RecommendConfig');
+        //获取推荐配置信息
+        $calculateTimeSpan = $recommendConfigModel->where(array('state' => array('neq', '0')))->getField('calculate_time_span');
+        $timestamp = time();
+        $beginTimeStamp = $timestamp - 60 * 60 * 24 * (int)$calculateTimeSpan;
 
+
+        $recommendCookie = $this->getRecommendCookie();
         $recommendCookieFilter = array(
             'browseInfo' => $this->infoFilter($recommendCookie['browseInfo'],$beginTimeStamp),
             'commentInfo' => $this->infoFilter($recommendCookie['commentInfo'],$beginTimeStamp),
             'zanInfo' => $this->infoFilter($recommendCookie['zanInfo'],$beginTimeStamp),
         );
+        $sign = false;
         if ( $data  && $key ) {
             $pushArr = $recommendCookieFilter[$key];
             if ( $key == 'browseInfo') {
-                $sign = false;
                 foreach ( $pushArr as &$item) {
                     if( strtotime($item['date']) < strtotime($data['date']) && $data['news_id'] == $item['news_id'] ) {
                         $item['date'] = $data['date'];
@@ -322,8 +360,58 @@ class RecommendController extends Controller
             }
             $recommendCookieFilter[$key] = $pushArr;
         }
+        return array(
+            'cookieInfo' => $recommendCookieFilter,
+            'isBrowse' => $sign
+        );
+    }
+    //根据用户Id获取用户花香 并更新数据库
+    public function getPortrayal($user_id){
+        $recommendConfigModel = M('RecommendConfig');
+        $recommendConfig = $recommendConfigModel->where(array('state' => array('neq', '0')))->find();
+        $calculateTimeSpan = $recommendConfig['calculate_time_span'];
+        $timestamp = time();
+        $time = date('Y-m-d H:i:s',$timestamp);
+        $beginTimeStamp = $timestamp - 60 * 60 * 24 * (int)$calculateTimeSpan;
+        $portrayalModel = M('Portrayal');
+        $portrayal = $portrayalModel->where(array('user_id'=>$user_id))->getField('portrayal');
+        if ( $portrayal ) {
+            $portrayal = array(
+                'browseInfo' => $this->infoFilter($portrayal['browseInfo'],$beginTimeStamp),
+                'commentInfo' => $this->infoFilter($portrayal['commentInfo'],$beginTimeStamp),
+                'zanInfo' => $this->infoFilter($portrayal['zanInfo'],$beginTimeStamp),
+            );
+            $portrayalResult = $portrayalModel->where(array('user_id'=>$user_id))->save(array(
+                'portrayal' => json_encode($portrayal),
+                'last_modify_time' => $time
+            ));
+        } else {
+            $visitorModel = D('VisitorNews');
+            $keywordBelongModel = D('NewsKeywordBelong');
+            $zanModel = D('Zan');
+            $commentModel = D('Comment');
+            $browseList = $visitorModel->getVisitorListByUserIdAndBeginTime($user_id, $beginTimeStamp);
+            $commentList = $commentModel->getCommentListByUserIdAndBeginTime($user_id, $beginTimeStamp);
+            $zanList = $zanModel->getZanListByUserIdAndBeginTime($user_id, $beginTimeStamp);
+            $portrayal = array(
+                'browseInfo' => $browseList,
+                'commentInfo' => $commentList,
+                'zanInfo' => $zanList
+            );
 
-        return $recommendCookieFilter;
+            foreach ($portrayal as $key => &$item) {
+                foreach ($item as &$_item) {
+                    $_item['keywords'] = $keywordBelongModel->getKeywordByNewsId($_item['news_id']);
+                }
+            }
+            $portrayalResult = $portrayalModel->add(array('user_id'=>$user_id,'portrayal'=>json_encode($portrayal),'last_modify_time'=>$time));
+
+        }
+        return array(
+            'dataSaveResult' => $portrayalResult,
+            'data' => $portrayal
+        );
+
 
     }
 

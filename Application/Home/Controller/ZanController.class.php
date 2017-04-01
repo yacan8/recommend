@@ -12,7 +12,7 @@ class ZanController extends Controller{
 
 
 
-            $zanModel = M('Zan');
+            $zanModel = D('Zan');
             if($zanModel->where(array('comment_id'=>$comment_id,'user_id'=>$user_id))->count()==0){
                 $zanData = array(
                     'comment_id' => $comment_id,
@@ -54,6 +54,14 @@ class ZanController extends Controller{
 
 
                 if ( $dynamicsResult !== false && $messageResult !== false && $zanResult !== false && $zanCountResult !== false){
+                    //执行写cookie操作
+                    $newsModel = M('News');
+                    $cookieData = $zanModel->relation('commentNewsIdAndType')->where(array( 'id' => $zan_id)) ->find();
+                    $cookieData['type'] = $newsModel->where(array('id'=>$cookieData['news_id']))->getField('type');
+                    $recommendController = A('Recommend');
+                    $recommendController->setRecommendCookie($cookieData,'zanInfo');
+
+
                     $model -> commit();
                     $json['success'] = true;
                     $json['code'] = 200;
@@ -76,4 +84,6 @@ class ZanController extends Controller{
         }
         $this->ajaxReturn($json);
     }
+
+
 }

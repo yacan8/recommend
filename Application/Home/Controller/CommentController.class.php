@@ -7,7 +7,7 @@ class CommentController extends Controller{
     public function comment(){
         $news_id = I('post.news_id',0);
         $replyId = I('post.reply',0);
-        $commentModel = M('Comment');
+        $commentModel = D('Comment');
         $reply = $commentModel -> where(array('id'=>$replyId))->getField('user_id');
         $content = I('post.content','');
         $user_id = session('login');
@@ -84,6 +84,14 @@ class CommentController extends Controller{
                 $newsResult = M('News')->where(array('id'=>$news_id))->setInc('comment_count',1);
 
                 if ( $newsResult !== false && $dynamicsResult !== false && $replyMessageResult !== false && $authorMessageResult !== false && $commentResult !== false ) {
+                    $newsModel = M('News');
+                    $cookieData = array(
+                        'news_id' => $news_id,
+                        'date' => $time,
+                        'type' => $newsModel->where(array('id'=>$news_id))->getField('type')
+                    );
+                    $recommendController = A('Recommend');
+                    $recommendController->setRecommendCookie($cookieData,'commentInfo');
                     $model->commit();
                     $json['code'] = 200;
                     $json['message'] = '评论成功';
