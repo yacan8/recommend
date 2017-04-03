@@ -10,7 +10,10 @@ return array(
 	'DB_PORT' => '3306',
 	'URL_MODEL'=>'1',
 	'ERROR_PAGE'=>'/Home/view/Common/404.html',
-
+	'COOKIE_CONFIG' => array(
+		'path'=> __ROOT__,
+		'domain'=> $_SERVER['SERVER_NAME']
+	),
 	//调试
 	'URL_PATHINFO_DEPR'     =>  '/',
 	'__DATA__' => __ROOT__.'/Data',

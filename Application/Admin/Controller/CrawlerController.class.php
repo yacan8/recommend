@@ -256,20 +256,21 @@ class CrawlerController extends Controller{
 		);
 
 		$remove = array(  //需要过滤的dom节点
-				'.caijing_bq',
-				'style',
-				'.special_tag_wrap',
-				'pre',
-				'.ep-source',
-				'.article-editor',
-				'.show_author',
-				'script',
-				'.ct_hqimg',
-				'.fin_reference',
-				'.finance_app_zqtg',
-				'link',
-				'#j_album_1',
-				'#blk_weiboBox_01'
+            '.caijing_bq',
+            'style',
+            '.special_tag_wrap',
+            'pre',
+            '.ep-source',
+            '.article-editor',
+            '.show_author',
+            'script',
+            '.ct_hqimg',
+            '.fin_reference',
+            '.finance_app_zqtg',
+            'link',
+            '#j_album_1',
+            '#blk_weiboBox_01',
+            '.xb_new_finance_app'
 		);
         $keywordStructures = array(
             'news.sina.com.cn' => '.article-keywords',

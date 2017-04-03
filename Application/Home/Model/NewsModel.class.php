@@ -284,50 +284,7 @@ class NewsModel extends RelationModel{
 
 
 
-	public function getRecommendByKeyword($keyword_id_arr,$read,$begin_time){
 
-		$DB_PREFIX = C('DB_PREFIX');
-		if( $read ){
-			$condition['_string'] = 'n.id not in ('.$read.')';
-		}
-		if( count($keyword_id_arr) ) {
-			$condition['_string'] = 'nkb.keyword_id in ('.join(',',$keyword_id_arr).')';
-		}
-		$condition['_string'] = 'n.id = nkb.news_id';
-		$condition['publish_time'] = array('gt',$begin_time);
-		$result = $this	-> field('n.id')
-						-> table($DB_PREFIX.'news n,'.$DB_PREFIX.'news_keyword_belong nkb')
-//						-> field('n.id id,n.title title ,n.publish_time publish_time,n.browse browse,n.type type,n.image image,n.image_thumb image_thumb,n.contributor contributor,n.comment_count comment_count,n.content content')
-						-> where($condition)
-						-> select();
-//		dump($this->getLastSql());
-//		$result = $this->GenerateNews($result);
-		$resultArr = array();
-//		$start  = microtime(true);
-		foreach($result as $item){
-			array_push($resultArr,$item['id']);
-		}
-//		$end = microtime(true);
-//		dump($end - $start);
-		return $resultArr;
-	}
-
-	public function getRecommendByType($type_arr,$not_in,$begin_time){
-		if( count($not_in) ) {
-			$condition['_string'] = 'id not in ('.join(',',$not_in).')';
-		}
-		if( count($type_arr) ) {
-			$condition['_string'] = 'type in ('.join(',',$type_arr).')';
-			$condition['publish_time'] = array('gt',$begin_time);
-			$result = $this
-//					-> field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')
-					-> where($condition)
-					-> getField('id',true);
-		} else {
-			$result = array();
-		}
-		return $result;
-	}
 
 	public function getByKeywordId($keyword_id,$begin_time,$num,$not_in){
 		$DB_PREFIX = C('DB_PREFIX');
@@ -361,13 +318,32 @@ class NewsModel extends RelationModel{
 					-> field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')
 					-> where($condition)
 					-> limit($num)
-					-> selsct();
+					-> select();
 			$result = $this->GenerateNews($result);
 		} else {
 			$result = array();
 		}
 		return $result;
 	}
+
+	public function getByBeginTimeAndNum($begin_time,$num,$not_in){
+	    foreach ($not_in as $item) {
+	        if ( $item ){
+                $condition['_string'] = 'id not in ('.$item.')';
+            }
+        }
+        $condition['publish_time'] = array('gt',$begin_time);
+        $result = $this
+            ->relation(['type','user'])
+            -> field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')
+            -> where($condition)
+            -> limit($num)
+            -> order('browse desc,publish_time desc')
+            -> select();
+        $result = $this->GenerateNews($result);
+        return $result;
+    }
+
 
 
 }

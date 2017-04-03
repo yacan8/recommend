@@ -4,84 +4,84 @@ use Think\Controller;
 //推荐引擎
 class RecommendController extends Controller{
 
-    public function recommend($user_id){
-
-        header("Content-type: text/html; charset=utf-8");
-        $recommendConfigModel = M('RecommendConfig');
-        //获取推荐配置信息
-        $recommendConfig = $recommendConfigModel->where(array('state' => array('neq', '0')))->find();
+    public function recommend(){
         $isLogin = session('?login');
-        $user_id = session('login');
-        $recommendModel = M('Recommend');
-        $timestamp = time();
-        $alreadyRecommendCookie = $this->getAlreadyRecommendCookie();
-        $alreadyRecommendCookie = $alreadyRecommendCookie['alreadyRecommendCookie'];
-        $read = join(',', $alreadyRecommendCookie['alreadyRecommendId']);
+
         if ($isLogin) {
+            $user_id = session('login');
+
+            header("Content-type: text/html; charset=utf-8");
+            $model = M('');
+            $model->startTrans();
+            $recommendConfigModel = M('RecommendConfig');
+            //获取推荐配置信息
+            $recommendConfig = $recommendConfigModel->where(array('state' => array('neq', '0')))->find();
+
+            $recommendModel = M('Recommend');
+            $timestamp = time();
+
+
             $portrayalData = $this->getPortrayal($user_id);
-            $portrayalInfo = $portrayalData['data'];
+            $portrayalInfo = $portrayalData['data'];  //用户画像数据
+            $dataSaveResult = $portrayalData['dataSaveResult']; //用户画像信息是否保存成功
             $browseList = $portrayalInfo['browseInfo'];
-            $dataSaveResult = $portrayalInfo['dataSaveResult'];
             $recommendNum = count($browseList) > 10 ? 10 : count($browseList);
             $portrayal = $this->portrayal($portrayalInfo);
-            $data = $this->getRecommendWeight($portrayal, $recommendConfig);
+            $similarityUserKeyword = $this->getSimilarityUserKeyword($user_id);//相似用户的关联度
+            $data = $this->getRecommendWeight($portrayal, $recommendConfig,$similarityUserKeyword);
+            $data = $this->multi_array_sort($data,'weightScore');
+
             $read = $recommendModel->where(array('user_id' => $user_id))->field('id')->select(false);
-        } else {
-            $dataSaveResult = 1;
-            $cookieRecommendedString = cookie('recommend');
-            $portrayalInfo = $cookieRecommendedString ?  json_decode($cookieRecommendedString) : array();
-            $recommendNum = count($portrayalInfo['browseInfo']) > 10 ? 10 : count($portrayalInfo['browseInfo']);
-            $portrayal = $this->portrayal($portrayalInfo);
-            $data = $this->getRecommendWeight($portrayal, $recommendConfig);
-        }
+            $recommendArray = $this->getRecommendNum($data, $recommendNum);
+            $recommendList = $this->getRecommendData($read, $recommendArray, $recommendConfig, $recommendNum);
 
 
-        $recommendArray = $this->getRecommendNum($data, $recommendNum);
-        $recommendList = $this->getRecommendData($read, $recommendArray, $recommendConfig, $recommendNum);
+            $recommendLength = count($recommendList);
+            if ( $recommendLength < 10 ) {
+                //推荐个数不够,补充推荐个数(以热度为准)
+                $notInArray = array();
+                foreach ($recommendList as $item) {
+                    array_push($notInArray,$item['id']);
+                }
+                $count = 10 - $recommendLength;
+                $newsModel = D('News');
+                $allow_recommend_time = $timestamp -  60 * 60 * 24 * (int)$recommendConfig['allow_recommend_time'];
+                $supplement = $newsModel->getByBeginTimeAndNum(date('Y-m-d H:i:s',$allow_recommend_time),$count,array($read,join(',',$notInArray)));
+                $recommendList = array_merge($recommendList,$supplement);
+            }
 
 
+            $recommendModel = M('Recommend');
+            $time = date('Y-m-d H:i:s' ,$timestamp);
+            $recommendDataList = array();
 
-        if ( count($recommendList) < 10 ) {
-            //推荐个数不够,补充推荐个数(以热度为准或以相似好友喜欢为准)
-
-        }
-
-
-        $recommendModel = M('Recommend');
-        $time = date('Y-m-d H:i:s' ,$timestamp);
-        $recommendDataList = array();
-
-        foreach ( $recommendList as $item ) {
-
-            array_push($alreadyRecommendCookie,array(
-                't'=> $time,
-                'id' => $item['news_id']
-            ));
-            if ( $isLogin ) {
+            foreach ( $recommendList as $item ) {
                 array_push($recommendDataList, array(
                     'news_id' => $item['id'],
                     'user_id' => $user_id,
                     'time' => $time
                 ));
             }
-        }
-        if ( $isLogin ) {
+
             $recommendResult = $recommendModel->addAll($recommendDataList);
-        } else {
-            $recommendResult = 1;
+
+
+
+
+            if ( $dataSaveResult !== false && $recommendResult !== false) {
+                $model->commit();
+                echo 'success';
+
+            }
+
+
         }
 
-        cookie('already_recommend',$alreadyRecommendCookie);
+        dump($recommendResult);
+        dump($dataSaveResult);
+        dump($recommendList);
 
 
-
-
-
-
-
-
-//        dump($recommendList);
-//        return $recommendResult === false ? false : $recommendList;
     }
 
     public function getRecommendData($read, $recommendArray, $recommendConfig, $recommendNum = 10){
@@ -133,7 +133,7 @@ class RecommendController extends Controller{
         return $recommendArray;
     }
 
-    public function getRecommendWeight($portrayal, $recommendConfig){
+    public function getRecommendWeight($portrayal, $recommendConfig,$similarityUserKeyword){
         $keywordData = array();
         $typeData = array();
         $dataType = array(
@@ -150,6 +150,9 @@ class RecommendController extends Controller{
             $type = $dataType[$key];
             $weight = $recommendConfig[$key];
             foreach ($info as $_key => $value) {
+                if( $similarityUserKeyword ) {
+                    $weight = $recommendConfig['follow_keyword'];
+                }
                 $itemWeight = $value * (int)$weight;
                 $item = array();
                 $item['type'] = $type;
@@ -185,7 +188,10 @@ class RecommendController extends Controller{
                 }
             }
         }
-
+        if ( $similarityUserKeyword ) {
+            $weightSum += $similarityUserKeyword['weight'];
+            array_push($data,$similarityUserKeyword);
+        }
         $data = array_merge($keywordData, $typeData);
         $typeCount = count($typeArray);
         foreach ($data as $key => &$item) {
@@ -195,15 +201,11 @@ class RecommendController extends Controller{
                 $item['weightScore'] = $item['weight'] / $weightSum;
             }
         }
-        $data = $this->multi_array_sort($data, 'weightScore');
         return $data;
-
-
     }
 
     //根据键值排序
-    function multi_array_sort($arr, $key, $type = SORT_REGULAR, $short = SORT_DESC)
-    {
+    function multi_array_sort($arr, $key, $type = SORT_REGULAR, $short = SORT_DESC){
         foreach ($arr as $k => $v) {
             $name[$k] = $v[$key];
         }
@@ -324,7 +326,7 @@ class RecommendController extends Controller{
     public function setRecommendCookie($data,$key){
         $recommendCookie = $this->recommendCookie($data,$key);
         $cookieInfo = $recommendCookie['cookieInfo'];
-        cookie('recommend',$cookieInfo);
+        cookie('recommend',$cookieInfo,C('COOKIE_CONFIG'));
         return $recommendCookie['isBrowse'];
     }
     //未登陆状况下获取cookie保存并过滤过期信息后的用户画像
@@ -365,6 +367,42 @@ class RecommendController extends Controller{
             'isBrowse' => $sign
         );
     }
+
+    public function getSimilarityUserKeyword($user_id){
+        $similarityModel = M('Similarity');
+        $followModel = M('Follow');
+        $subQuery = $followModel->where(array('user_id'=>$user_id))->field('follow_id')->select(false);
+        $condition['_string'] = "(user_id1 = $user_id and user_id2 in ($subQuery) )";
+        $similarityResult = $similarityModel -> where($condition) -> order('similarity desc') -> find();
+        $similarityUser = 0;
+        $result = null;
+
+        if ( $similarityResult ) {
+            $similarityUser = $similarityResult['user_id2'];
+        }
+        if ( $similarityUser !== 0 ) {
+            $similarityPortrayal = $this->getPortrayal($similarityUser);
+            $portrayalInfo = $similarityPortrayal['data'];
+            $portrayal = $this->portrayal($portrayalInfo);
+            $recommendConfigModel = M('RecommendConfig');
+            //获取推荐配置信息
+            $recommendConfig = $recommendConfigModel->where(array('state' => array('neq', '0')))->find();
+            $data = $this->getRecommendWeight($portrayal, $recommendConfig,null);
+            $data = $this->multi_array_sort($data, 'weightScore');
+            if ( $data ) {
+                foreach ($data as $item) {
+                    if( $item['type'] == 1) {
+                        $result = $item;
+                        break;
+                    }
+                }
+            }
+        }
+        return $result;
+
+
+    }
+
     //根据用户Id获取用户花香 并更新数据库
     public function getPortrayal($user_id){
         $recommendConfigModel = M('RecommendConfig');
@@ -373,16 +411,17 @@ class RecommendController extends Controller{
         $timestamp = time();
         $time = date('Y-m-d H:i:s',$timestamp);
         $beginTimeStamp = $timestamp - 60 * 60 * 24 * (int)$calculateTimeSpan;
+        $beginTime = date('Y-m-d H:i:s',$beginTimeStamp);
         $portrayalModel = M('Portrayal');
-        $portrayal = $portrayalModel->where(array('user_id'=>$user_id))->getField('portrayal');
-        if ( $portrayal ) {
-            $portrayal = array(
-                'browseInfo' => $this->infoFilter($portrayal['browseInfo'],$beginTimeStamp),
-                'commentInfo' => $this->infoFilter($portrayal['commentInfo'],$beginTimeStamp),
-                'zanInfo' => $this->infoFilter($portrayal['zanInfo'],$beginTimeStamp),
+        $portrayal = $portrayalModel->where(array('user_id'=>$user_id))->find();
+        if ( $portrayal && strtotime($portrayal['last_modify_time']) > $timestamp - 60 * 60 * 24 && count($portrayal['browseInfo']) > 10 ) { //如果超过一天未更新用户画像,则重新计算画像
+            $portrayalSave = array(
+                'browseInfo' => $this->infoFilter($portrayal['portrayal']['browseInfo'],$beginTime),
+                'commentInfo' => $this->infoFilter($portrayal['portrayal']['commentInfo'],$beginTime),
+                'zanInfo' => $this->infoFilter($portrayal['portrayal']['zanInfo'],$beginTime),
             );
             $portrayalResult = $portrayalModel->where(array('user_id'=>$user_id))->save(array(
-                'portrayal' => json_encode($portrayal),
+                'portrayal' => json_encode($portrayalSave),
                 'last_modify_time' => $time
             ));
         } else {
@@ -390,26 +429,36 @@ class RecommendController extends Controller{
             $keywordBelongModel = D('NewsKeywordBelong');
             $zanModel = D('Zan');
             $commentModel = D('Comment');
-            $browseList = $visitorModel->getVisitorListByUserIdAndBeginTime($user_id, $beginTimeStamp);
-            $commentList = $commentModel->getCommentListByUserIdAndBeginTime($user_id, $beginTimeStamp);
-            $zanList = $zanModel->getZanListByUserIdAndBeginTime($user_id, $beginTimeStamp);
-            $portrayal = array(
+            $browseList = $visitorModel->getVisitorListByUserIdAndBeginTime($user_id, $beginTime);
+            $commentList = $commentModel->getCommentListByUserIdAndBeginTime($user_id, $beginTime);
+            $zanList = $zanModel->getZanListByUserIdAndBeginTime($user_id, $beginTime);
+            $portrayalSave = array(
                 'browseInfo' => $browseList,
                 'commentInfo' => $commentList,
                 'zanInfo' => $zanList
             );
 
-            foreach ($portrayal as $key => &$item) {
+            foreach ($portrayalSave as $key => &$item) {
                 foreach ($item as &$_item) {
                     $_item['keywords'] = $keywordBelongModel->getKeywordByNewsId($_item['news_id']);
                 }
             }
-            $portrayalResult = $portrayalModel->add(array('user_id'=>$user_id,'portrayal'=>json_encode($portrayal),'last_modify_time'=>$time));
-
+            if ( $portrayal ) {
+                $portrayalResult = $portrayalModel->where(array('user_id'=>$user_id))->save(array(
+                    'portrayal' => json_encode($portrayalSave),
+                    'last_modify_time' => $time
+                ));
+            } else {
+                $portrayalResult = $portrayalModel->add(array(
+                    'user_id' => $user_id,
+                    'portrayal' => json_encode($portrayalSave),
+                    'last_modify_time' => $time
+                ));
+            }
         }
         return array(
             'dataSaveResult' => $portrayalResult,
-            'data' => $portrayal
+            'data' => $portrayalSave
         );
 
 
