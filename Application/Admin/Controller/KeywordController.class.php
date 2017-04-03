@@ -188,36 +188,5 @@ class KeywordController extends Controller{
 	}
 
 
-	public function xsd($words1,$words2){
-		//初始化单词个数
-		foreach ($words1 as $key => $num) {
-			if( !$words2[$key] ){
-				$words2[$key] = 0;
-			}
-		}
-		foreach ($words2 as $key => $num) {
-			if( !$words1[$key] ){
-				$words1[$key] = 0;
-			}
-		}
-		$fz = 0;
-		foreach ($words1 as $key => $num) {
-			$fz += $words1[$key] * $words2[$key];
-			
-		}
-		$fm1 = 0.0 ;
-		foreach ($words1 as $key => $num) {
-			$fm1 += $num * $num;
-		}
-		$fm2 = 0.0;
-		foreach ($words2 as $key => $num) {
-			$fm2 += $num*$num;
-		}
-		$fm = sqrt($fm1) * sqrt($fm2) ;
-
-		return $fz/$fm;
-
-
-	}
 
 }

@@ -38,7 +38,7 @@ class RecommendController extends Controller{
 
             $recommendLength = count($recommendList);
             if ( $recommendLength < 10 ) {
-                //推荐个数不够,补充推荐个数(以热度为准)
+                //推荐个数不够,补充推荐个数(以热度为准 或者兴趣爱好为准)
                 $notInArray = array();
                 foreach ($recommendList as $item) {
                     array_push($notInArray,$item['id']);
@@ -65,22 +65,32 @@ class RecommendController extends Controller{
 
             $recommendResult = $recommendModel->addAll($recommendDataList);
 
-
-
-
             if ( $dataSaveResult !== false && $recommendResult !== false) {
+
                 $model->commit();
-                echo 'success';
+                $json =  array(
+                    'success' => true,
+                    'code' => 200,
+                    'message' => '操作成功',
+                    'attr' => $recommendList,
+                    'has_more' => count($recommendList) == 10 ? true : false
+                );
 
+            } else {
+                $json = array(
+                    'success' => false,
+                    'code' => 500,
+                    'message' => '服务器错误'
+                );
             }
-
-
+        } else {
+            $json = array(
+                'success' => false,
+                'code' => 199,
+                'message' => '你还没登陆'
+            );
         }
-
-        dump($recommendResult);
-        dump($dataSaveResult);
-        dump($recommendList);
-
+        $this->ajaxReturn($json);
 
     }
 
@@ -403,7 +413,7 @@ class RecommendController extends Controller{
 
     }
 
-    //根据用户Id获取用户花香 并更新数据库
+    //根据用户Id获取用户画像 并更新数据库
     public function getPortrayal($user_id){
         $recommendConfigModel = M('RecommendConfig');
         $recommendConfig = $recommendConfigModel->where(array('state' => array('neq', '0')))->find();
@@ -414,11 +424,21 @@ class RecommendController extends Controller{
         $beginTime = date('Y-m-d H:i:s',$beginTimeStamp);
         $portrayalModel = M('Portrayal');
         $portrayal = $portrayalModel->where(array('user_id'=>$user_id))->find();
-        if ( $portrayal && strtotime($portrayal['last_modify_time']) > $timestamp - 60 * 60 * 24 && count($portrayal['browseInfo']) > 10 ) { //如果超过一天未更新用户画像,则重新计算画像
+        if( $portrayal ) {
+            $portrayalInfo = json_decode($portrayal['portrayal'],true);
+        } else {
+            $portrayalInfo = array(
+                'browseInfo' => array(),
+                'commentInfo' => array(),
+                'zanInfo' => array()
+            );
+        }
+
+        if ( $portrayal && strtotime($portrayal['last_modify_time']) > $timestamp - 60 * 60 * 24 && count($portrayalInfo['browseInfo']) > 10 ) { //如果超过一天未更新用户画像,则重新计算画像
             $portrayalSave = array(
-                'browseInfo' => $this->infoFilter($portrayal['portrayal']['browseInfo'],$beginTime),
-                'commentInfo' => $this->infoFilter($portrayal['portrayal']['commentInfo'],$beginTime),
-                'zanInfo' => $this->infoFilter($portrayal['portrayal']['zanInfo'],$beginTime),
+                'browseInfo' => $this->infoFilter($portrayalInfo['browseInfo'],$beginTime),
+                'commentInfo' => $this->infoFilter($portrayalInfo['commentInfo'],$beginTime),
+                'zanInfo' => $this->infoFilter($portrayalInfo['zanInfo'],$beginTime),
             );
             $portrayalResult = $portrayalModel->where(array('user_id'=>$user_id))->save(array(
                 'portrayal' => json_encode($portrayalSave),

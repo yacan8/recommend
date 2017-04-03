@@ -47,6 +47,8 @@ class VisitorController extends Controller{
                     $data['news_id'] = $id;//文章Id$data['ip'] = $ip_value;//ip
                     $data['date'] = $time;//时间
                     $data['area'] = $area['country'];//地区
+                    $data['ip'] = $ip_value;//地区
+                    $data['user_id'] = session('?login')?session('login'):0;//地区
                     M('VisitorNews')->add($data);
                 }
             }
