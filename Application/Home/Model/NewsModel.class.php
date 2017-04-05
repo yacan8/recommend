@@ -198,18 +198,14 @@ class NewsModel extends RelationModel{
 	 * [GetSelectType 通过类型和页数和栏目获取获取10条新闻，若栏目为空，则无栏目限制]
 	 * @param [Integer] $type [传入的类型的ID]
 	 * @param [Integer] $page [传入的页数]
-	 * @param [bool] $in_index [是否在主页]
-	 * @param [string] $sections [传入的栏目值]
+	 * @param [Integer] $count [加载数量]
 	 * @return [List] [查询到的列表]
 	 */
-	public function getSelectType($type,$page,$in_index=false,$sections=''){
+	public function getSelectType($type,$page,$count){
 		if($type!=0)
 			$condition['type'] = $type;
-		if($sections !='')
-			$condition['sections'] = $sections;
 		$condition['delete_tag'] = false;
-		$page = ($page-1)*10;
-		$List =  $this->relation(['type','user']) ->where($condition)->limit("$page,10")->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order('publish_time desc')->select();
+		$List = $this->relation(['type','user']) ->page($page,$count)->where($condition)->limit("$page,10")->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order('publish_time desc')->select();
 		$List = $this->GenerateNews($List);
 		return $List;
 	}
@@ -288,10 +284,12 @@ class NewsModel extends RelationModel{
 
 	public function getByKeywordId($keyword_id,$begin_time,$num,$not_in){
 		$DB_PREFIX = C('DB_PREFIX');
+        $condition['_string'] = ' n.id = nkb.news_id ';
 		if( $not_in ){
-			$condition['_string'] = 'n.id not in ('.$not_in.')';
+			$condition['_string'] .= ' and n.id not in ('.$not_in.')';
 		}
-		$condition['_string'] = 'n.id = nkb.news_id';
+
+
 		$condition['nkb.keyword_id'] = $keyword_id;
 		$condition['n.publish_time'] = array('gt',$begin_time);
 		$result = $this
@@ -302,6 +300,7 @@ class NewsModel extends RelationModel{
 				-> order('n.publish_time')
 				-> limit($num)
 				-> select();
+        $sql = $this->getLastSql();
 		$result = $this->GenerateNews($result);
 		return $result;
 	}
@@ -327,9 +326,10 @@ class NewsModel extends RelationModel{
 	}
 
 	public function getByBeginTimeAndNum($begin_time,$num,$not_in){
+        $condition['_string'] = '1 = 1';
 	    foreach ($not_in as $item) {
 	        if ( $item ){
-                $condition['_string'] = 'id not in ('.$item.')';
+                $condition['_string'] .= 'and id not in ('.$item.')';
             }
         }
         $condition['publish_time'] = array('gt',$begin_time);

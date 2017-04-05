@@ -16,7 +16,10 @@
   <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/plugins/lists.min.js"></script>
   <script type="text/javascript" src="__PUBLIC__/assets/froalaeditor/js/languages/zh_cn.js"></script>
   <script type="text/javascript">
-  $(function(){
+    var ROOT = '__ROOT__';
+    var PUBLIC = '__PUBLIC__';
+    var DATAPATH = '{:C("__DATA__")}';
+    $(function(){
     $('textarea[name="content"]').froalaEditor({
       placeholderText: '亲，说说你的看法吧^_^',
       heightMin: 200,

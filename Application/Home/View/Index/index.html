@@ -7,18 +7,20 @@
 
     <link rel="stylesheet" href="__PUBLIC__/css/home/IndexFocus.css">
     <link rel="stylesheet" href="__PUBLIC__/css/home/List.css?v=20160323">
+    <link href="__PUBLIC__/assets/Font-Awesome-master/css/font-awesome.min.css" rel="stylesheet">
     <php>session('Message',null);session('ErrorMessage',null);//去除注册完善信息时的session</php>
     <script>
     var DATAPATH = "{:C('__DATA__')}";
-    var url = '{:U('News/load')}';
-    var PUBLIC = '__PUBLIC__';
     var page = 1;
-    var sections = '';
     $(function(){
         fixed(".category");
     })
     </script>
-
+    <style>
+        #load,#load:active,#load:focus{
+            outline: none;
+        }
+    </style>
     <title>CampusLeader-最校园的发声体</title>
 </head>
 
@@ -38,7 +40,7 @@
 
                 <include file="IndexContent/List" />
                 <!-- /列表 -->
-                <button type="button" id="load" class="btn bg-main btn-sm btn-block m-b-md m-t-md">加载更多</button>
+                <button type="button" id="load" class="btn bg-main btn-sm btn-block m-b-md m-t-md">查看更多内容</button>
             </div>
 
             <div class="col-sm-12 col-md-3">
@@ -58,9 +60,6 @@
 <script src="__PUBLIC__/js/assets/jquery.scrollLoading.js"></script>
 
 <script>
-    var ROOT = '__ROOT__';
-    var DATAPATH = '{:C("__DATA__")}';
-    var PUBLIC = "__PUBLIC__";
 
     $(function(){
         $('.list-img>img').scrollLoading();

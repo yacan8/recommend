@@ -1,7 +1,12 @@
 <ul class="category">
-    <li class="active"><a href="javascript:;">推荐</a></li>
+    <if condition="session('?login')">
+        <li class="active" data-type="-1" data-Loading-fun="recommend"><a href="javascript:;">推荐</a></li>
+        <li data-type="0" data-Loading-fun="loading"><a href="javascript:;">全部</a></li>
+    <else/>
+        <li class="active" data-type="0" data-Loading-fun="loading"><a href="javascript:;">全部</a></li>
+    </if>
     <volist name="TypeList" id="vo">
-        <li data-type='{$vo.id}'>
+        <li data-type='{$vo.id}' data-Loading-fun="loading">
 		<a href="javascript:;">{$vo.type}</a>
         </li>
 	</volist>

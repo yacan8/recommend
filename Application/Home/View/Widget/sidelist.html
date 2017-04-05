@@ -1,4 +1,30 @@
-
+<if condition="session('?login') and count($userRecommendList)">
+    <div class="bg-white p-md overflow-hidden" style="margin-bottom: -15px;">
+        <h4 class="side_list_header">好友推荐</h4>
+        <div class="side-list">
+            <volist name="userRecommendList" id="vo">
+                <div class="side-list-item m-t-md">
+                    <a class="side-item-img" target="_blank" href="{:U('/u/'.$vo['user_id2'],'',false,false)}" style="background-image: url('{:C('__DATA__')}/login_thumb/{$vo.userInfo.icon|default="default.jpg"}');border-radius: 4px;"></a>
+                    <div class="side-item-right text-over-3">
+                        <div class="to m-t-xs">
+                            <a target="_blank" href="{:U('/u/'.$vo['user_id2'],'',false,false)}">
+                                <span class="m-r-xs">{$vo.userInfo.nickname}</span>
+                                <if condition="$vo['sex'] neq '3'">
+                                    <if condition="$vo['sex'] eq '0'">
+                                        <i class="fa fa-mars font-12 font-bold" style="color:#5FC1FA"></i>
+                                        <else/>
+                                        <i class="fa fa-venus font-12 font-bold" style="color:#F47BAD"></i>
+                                    </if>
+                                </if>
+                            </a>
+                        </div>
+                        <div class="m-t-sm tc-gray9">相似度:{$vo.similarity}</div>
+                    </div>
+                </div>
+            </volist>
+        </div>
+    </div>
+</if>
 <div class="bg-white p-md m-b-sm overflow-hidden" id="side-list">
     <h4 class="side_list_header">热门资讯</h4>
     <div class="side-list">
@@ -12,6 +38,5 @@
                 </div>
             </div>
         </volist>
-
     </div>
 </div>

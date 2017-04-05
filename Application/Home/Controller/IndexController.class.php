@@ -4,14 +4,23 @@ use Think\Controller;
 class IndexController extends Controller {
     public function index(){
         session('app_nav',null);
-    	$Model = D('News');
+
         $TypeModel = D('Type');
         $TypeList = $TypeModel ->getOnType();
-        $HeadLines = $Model ->getHeadLines();
-        $List = $Model -> getTop10();
         $this->assign('TypeList',$TypeList);
-        $this->assign('HeadLines',$HeadLines);
-
+        $newsModel = D('News');
+//        $HeadLines = $newsModel ->getHeadLines();
+//        $this->assign('HeadLines',$HeadLines);
+        if( !session('?login') ) { //未登录,显示全部
+            $List = $newsModel -> getSelectType(0,1,10);
+        } else {  //已登录 做推荐
+            $recommendResult = A('Recommend')->recommendEngine();
+            if( $recommendResult['success'] ) {
+                $List = $recommendResult['attr'];
+            } else {
+                $List = array();
+            }
+        }
         $this->assign('List',$List);
     	$this->assign('title',"campusLeader_打造最强高校领袖");
 

@@ -41,6 +41,9 @@
             </a>
           </li>
           <li <if condition="CONTROLLER_NAME eq 'Index'">class="active"</if>><a href="{:U('Index/index')}">首页</a></li>
+          <if condition="session('?login')">
+          <li ><a href="{:U('Apply/content')}">发布者中心</a></li>
+          </if>
           <li class='dropdown'>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">app下载 <!-- <span class="caret"></span> --></a>
             <ul class="dropdown-menu crawler">

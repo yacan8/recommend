@@ -47,7 +47,7 @@ class SimilarityController extends Controller{
                 $commentKeywordSimilarity = 0;
                 $zanTypeSimilarity = 0;
                 $zanKeywordSimilarity = 0;
-                if ( $browseLength > 10 ) {
+                if ( $browseLength > 6 ) {
                     $calculateBrowseList = $calculatePortrayal['browseInfo'];
                     if( count($calculateBrowseList) > 10 ) {
                         $browseTypeSimilarity = $this->similarity($browseType,$calculatePortrayalInfo['browse_type']);
@@ -107,6 +107,7 @@ class SimilarityController extends Controller{
         }
 
     }
+    //计算两个两个数组的相似度
     public function similarity($words1,$words2){
         //初始化单词个数
         foreach ($words1 as $key => $num) {
@@ -135,6 +136,18 @@ class SimilarityController extends Controller{
         $fm = sqrt($fm1) * sqrt($fm2) ;
 
         return $fz/$fm;
+    }
+
+    public function getSimilarityUserInfo($user_id){
+        header("Content-type: text/html; charset=utf-8");
+        $similarityModel = D('Similarity');
+        $result = $similarityModel->getByUserId1($user_id,3);
+        if (count($result)) {
+            foreach ($result as &$item) {
+                $item['similarity'] = round((float)$item['similarity'] * 100).'%';
+            }
+        }
+        return $result;
     }
 
 

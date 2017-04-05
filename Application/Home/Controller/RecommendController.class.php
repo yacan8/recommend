@@ -5,6 +5,10 @@ use Think\Controller;
 class RecommendController extends Controller{
 
     public function recommend(){
+        $json = $this->recommendEngine();
+        $this->ajaxReturn($json);
+    }
+    public function recommendEngine(){
         $isLogin = session('?login');
 
         if ($isLogin) {
@@ -31,7 +35,7 @@ class RecommendController extends Controller{
             $data = $this->getRecommendWeight($portrayal, $recommendConfig,$similarityUserKeyword);
             $data = $this->multi_array_sort($data,'weightScore');
 
-            $read = $recommendModel->where(array('user_id' => $user_id))->field('id')->select(false);
+            $read = $recommendModel->where(array('user_id' => $user_id))->field('news_id')->select(false);
             $recommendArray = $this->getRecommendNum($data, $recommendNum);
             $recommendList = $this->getRecommendData($read, $recommendArray, $recommendConfig, $recommendNum);
 
@@ -80,7 +84,7 @@ class RecommendController extends Controller{
                 $json = array(
                     'success' => false,
                     'code' => 500,
-                    'message' => '服务器错误'
+                    'message' => '服务器内部错误'
                 );
             }
         } else {
@@ -90,7 +94,9 @@ class RecommendController extends Controller{
                 'message' => '你还没登陆'
             );
         }
-        $this->ajaxReturn($json);
+        return $json;
+
+
 
     }
 
@@ -434,7 +440,7 @@ class RecommendController extends Controller{
             );
         }
 
-        if ( $portrayal && strtotime($portrayal['last_modify_time']) > $timestamp - 60 * 60 * 24 && count($portrayalInfo['browseInfo']) > 10 ) { //如果超过一天未更新用户画像,则重新计算画像
+        if ( $portrayal && strtotime($portrayal['last_modify_time']) > $timestamp - 60 * 60 * 24 && count($portrayalInfo['browseInfo']) > 6 ) { //如果超过一天未更新用户画像,则重新计算画像
             $portrayalSave = array(
                 'browseInfo' => $this->infoFilter($portrayalInfo['browseInfo'],$beginTime),
                 'commentInfo' => $this->infoFilter($portrayalInfo['commentInfo'],$beginTime),

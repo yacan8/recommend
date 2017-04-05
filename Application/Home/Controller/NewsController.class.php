@@ -58,12 +58,27 @@ class NewsController extends Controller {
 	 * @return [json] [查询到的内容]
 	 */
 	public function load(){
-		$Model = D('News');
-		$type = I('get.type');
-		$page = I('get.page');
-		$sections = I('get.sections');
-		$json = $Model->getSelectType($type,$page,ture,$sections);
-		echo json_encode($json);
+	    try{
+            $Model = D('News');
+            $type = I('get.type',0);
+            $page = I('get.page',1);
+            $count = 10;
+            $result = $Model->getSelectType($type,$page,$count);
+            $json = array(
+                'success' => true,
+                'code' => 200,
+                'message' => '加载成功',
+                'attr' => $result
+            );
+        } catch (Exception $e) {
+            $json = array(
+                'success' => true,
+                'code' => 500,
+                'message' => '服务器内部错误',
+                'attr' => array()
+            );
+        }
+		$this->ajaxReturn($json);
 	}
 	/**
 	 * [comment_load ajax加载评价内容]

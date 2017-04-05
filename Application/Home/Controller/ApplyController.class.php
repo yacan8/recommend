@@ -163,7 +163,6 @@ class ApplyController extends Controller{
 
 
 	public function info(){
-		session('login',41);
 		$user_id = session('login');
 		$applyModel = M('Apply');
 		$condition['state'] = 1;

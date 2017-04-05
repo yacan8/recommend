@@ -1,5 +1,43 @@
 // 文章列表改变显示方法js
 
+var loadingFunction = {
+	recommend:function(params,beforeSend){
+		var url = ROOT + '/index.php/Recommend/recommend.html';
+		return loadingFunction.loadingFun(url,params,beforeSend).then(function(result){
+			if ( result.success ) {
+				result.html = loadingFunction.dataHandle(result.attr);
+			}
+			return result;
+		})
+	},
+	loading:function(params,beforeSend) {
+		var url = ROOT + '/index.php/News/load.html';
+		return loadingFunction.loadingFun(url,params,beforeSend).then(function(result){
+			if ( result.success ) {
+				result.html = loadingFunction.dataHandle(result.attr);
+			}
+			return result;
+		})
+	},
+	loadingFun:function(url,params,beforeSend){
+		var params = Object.keys(params).map(function(key){return key+'='+params[key]}).join('&');
+		if(beforeSend){beforeSend();}
+		window.ajax_loading = true;
+		return fetch(url+'?'+params, {credentials: "include"}).then(function(res){window.ajax_loading = false;return res.json()});
+	},
+	dataHandle:function(data){
+		var result = '';
+		for (var i = 0 ; i < data.length; i++) {
+			data[i].ROOT = ROOT;
+			data[i].DATAPATH = DATAPATH;
+			result += template('news-item',data[i]);
+		}
+		return result;
+	}
+}
+
+
+
 			;function getList(type,page,url,object,sections){
 				var BtnLoad;
 				if(object.hasClass('btn')){
@@ -28,7 +66,7 @@
 	                        	object.html('加载更多');
 	                        }
 	                	}else{
-		                	str = '';
+		                	var str = '';
 		                    var dataObj = $.parseJSON(data);
 		                    if(!BtnLoad){
 	                        	object.siblings().removeClass('active');
@@ -62,26 +100,4 @@
 	                    alert("请求失败");
 	                }
 	            });
-			}
-			function generate(data){
-				data.type = data.type || '其他';
-				data.user.icon = data.user.icon || 'default.jpg';
-				var str ='<div class="m-t-sm p-l-sm p-l-sm  border-l-main">'+
-	        				'<a href="'+data.url+'" class="list-img" style="background-image: url(\''+DATAPATH+'/news_thumb/'+data.image_thumb+'\')">'+
-	            				'<span class="mask-tags" >'+data.type+'</span>' +
-							'</a>'+
-							'<div class="list-content">'+
-	            				'<div class="to2">' +
-									'<a class="title" href="'+data.url+'">'+data.title+'</a>' +
-								'</div>'+
-	            				'<div class="info">'+
-	                				'<span class="font-smoothing tc-gray9"> ' +
-					'<a href="#"><img class="i-user-icon" src="'+DATAPATH+'/login_thumb/'+data.user.icon+'" > ' +
-					'</a><a href="#">'+data.user.nickname+'</a> ·' +' '+
-					data.PublishTime+' · '+data.browse+'次浏览 · '+data.comment_count+' 次评论 ' +
-					'</span>'+
-								'</div>' +
-							'</div>' +
-						'</div><div class="list-hr m-l-sm m-r-sm m-t-sm"></div>';
-	            return str;
 			}

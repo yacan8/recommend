@@ -4,8 +4,9 @@ use Think\Controller;
 class VisitorController extends Controller{
 
     public function uv(){
+        $time = date('Y-m-d H:i:s',time());
+        $id = I('post.id');
         if(!isCrawler()){//如果不为网页爬虫
-            $id = I('post.id');
             if(is_numeric($id)){
                 $cookie_name = "news".$id;
                 // 导入IpLocation类
@@ -13,7 +14,6 @@ class VisitorController extends Controller{
                 $ip_value = get_client_ip();
                 $area = $Ip->getlocation($ip_value); // 获取某个IP地址所在的位置
                 area_change($area);//地区字段转换
-                $time = date('Y-m-d H:i:s',time());
 
                 $second = date('s');
                 $minute = date('i');
@@ -53,6 +53,41 @@ class VisitorController extends Controller{
                 }
             }
 
-        }    
+        }
+        //修改用户画像
+        if( session('?login')) {
+            $user_id = session('login');
+            $portrayalModel = M('Portrayal');
+            $portrayalInfoString = $portrayalModel->where(array('user_id'=>$user_id))->find();
+            if ($portrayalInfoString) {
+                $portrayal = json_decode($portrayalInfoString['portrayal'],true);
+                $browseInfo = $portrayal['browseInfo'];
+                $browseItem = array(
+                    'news_id' => $id,
+                    'date' => $time
+                );
+                if( count($browseInfo) > 6){
+                    $sign = true;
+                    $date = date('Y-m-d',time());
+                    foreach ($browseInfo as $item) {
+                        if( substr($item['date'],0,9) == $date && $item['news_id'] == $id) {
+                            $sign = false;
+                            break;
+                        }
+                    }
+                    if( $sign ) {
+                        $keywordBelongModel = D('NewsKeywordBelong');
+                        $browseItem['keywords'] = $keywordBelongModel->getKeywordByNewsId($id);
+                        array_push($portrayal['browseInfo'],$browseItem);
+                        $portrayalModel->where(array('user_id'=>$user_id))->save(array(
+                            'portrayal' => json_encode($portrayal),
+                            'last_modify_time' => $time
+                        ));
+                    }
+                }
+
+            }
+
+        }
     }
 }

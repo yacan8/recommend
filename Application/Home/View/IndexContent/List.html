@@ -1,66 +1,76 @@
 <div id="list_container" class=" bg-white" style="padding-top:0.1px">
-    <volist name="List" id="vo">
-        <if condition="$vo['show_type'] eq '1'">
+    <if condition="count($List) neq 0">
+        <volist name="List" id="vo">
+            <if condition="$vo['show_type'] eq '1'">
 
-            <div class="news-item">
-                <a target="_blank" href="{$vo.url}" class="list-img">
-                    <span class="mask-tags">{$vo.type||default="其他"}</span>
-                    <img src="" data-url="{$vo.image_thumb}">
-                </a>
-                <div class="list-content">
-                    <div class="to2"><a target="_blank" class="title" href="{$vo.url}">{$vo.title}</a></div>
-                    <div class="info font-12">
-                        <span class="font-smoothing tc-gray9">
-                            <a target="_blank" href="__ROOT__/index.php/u/{$vo.contributor}"><img class="i-user-icon" src="{:C('__DATA__')}/login_thumb/{$vo.user.icon|default='default.jpg'}" ></a>
-                            <a target="_blank" href="__ROOT__/index.php/u/{$vo.contributor}" href="#">{$vo.user.nickname}</a> ·
-                            {$vo.publish_time} · {$vo.browse}次浏览 · {$vo.comment_count} 次评论
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="list-hr m-l-sm m-r-sm m-t-sm"></div>
-
-            <elseif condition="$vo['show_type'] eq '0'" />
-            <div class="news-item">
-
-                <div class="">
-                    <div class="to2"><a target="_blank" class="title" href="{$vo.url}">{$vo.title}</a></div>
-                    <div class="info font-12">
-                        <span class="font-smoothing tc-gray9">
-                            <a target="_blank" href="__ROOT__/index.php/u/{$vo.contributor}"><img class="i-user-icon" src="{:C('__DATA__')}/login_thumb/{$vo.user.icon|default='default.jpg'}" ></a>
-                            <a target="_blank" href="__ROOT__/index.php/u/{$vo.contributor}">{$vo.user.nickname}</a> · <span class="mask-tag-inline">{$vo.type||default="其他"}</span> ·
-                            {$vo.publish_time} · {$vo.browse}次浏览 · {$vo.comment_count} 次评论
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="list-hr m-l-sm m-r-sm m-t-sm"></div>
-
-            <elseif condition="$vo['show_type'] eq '2'" />
-            <div class="news-item">
-
-                <div class="">
-                    <div class="to2"><a target="_blank" class="title" href="{$vo.url}">{$vo.title}</a></div>
-                </div>
-                <div class="m-t-sm">
-                    <foreach name="vo.image" item="_vo">
+                <div class="news-item">
                     <a target="_blank" href="{$vo.url}" class="list-img">
-                        <img src="" data-url="{$_vo}">
+                        <span class="mask-tags">{$vo.type||default="其他"}</span>
+                        <img src="" data-url="{$vo.image_thumb}">
                     </a>
-                    </foreach>
-                </div>
-                <div class="m-t-sm">
-                    <div class="info font-12">
-                        <span class="font-smoothing tc-gray9">
-                            <a target="_blank" href="__ROOT__/index.php/u/{$vo.contributor}"><img class="i-user-icon" src="{:C('__DATA__')}/login_thumb/{$vo.user.icon|default='default.jpg'}" ></a>
-                            <a target="_blank" href="__ROOT__/index.php/u/{$vo.contributor}">{$vo.user.nickname}</a> · <span class="mask-tag-inline">{$vo.type||default="其他"}</span> ·
-                            {$vo.publish_time} · {$vo.browse}次浏览 · {$vo.comment_count} 次评论
-                        </span>
+                    <div class="list-content">
+                        <div class="to2"><a target="_blank" class="title" href="{$vo.url}">{$vo.title}</a></div>
+                        <div class="info font-12">
+                            <span class="font-smoothing tc-gray9">
+                                <a target="_blank" href="__ROOT__/index.php/u/{$vo.contributor}"><img class="i-user-icon" src="{:C('__DATA__')}/login_thumb/{$vo.user.icon|default='default.jpg'}" ></a>
+                                <a target="_blank" href="__ROOT__/index.php/u/{$vo.contributor}" href="#">{$vo.user.nickname}</a> ·
+                                {$vo.publish_time} · {$vo.browse}次浏览 · {$vo.comment_count} 次评论
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="list-hr m-l-sm m-r-sm m-t-sm"></div>
+                <div class="list-hr m-l-sm m-r-sm m-t-sm"></div>
 
-        </if>
-    </volist>
+                <elseif condition="$vo['show_type'] eq '0'" />
+                <div class="news-item">
+
+                    <div class="">
+                        <div class="to2"><a target="_blank" class="title" href="{$vo.url}">{$vo.title}</a></div>
+                        <div class="info font-12">
+                            <span class="font-smoothing tc-gray9">
+                                <a target="_blank" href="__ROOT__/index.php/u/{$vo.contributor}"><img class="i-user-icon" src="{:C('__DATA__')}/login_thumb/{$vo.user.icon|default='default.jpg'}" ></a>
+                                <a target="_blank" href="__ROOT__/index.php/u/{$vo.contributor}">{$vo.user.nickname}</a> · <span class="mask-tag-inline">{$vo.type||default="其他"}</span> ·
+                                {$vo.publish_time} · {$vo.browse}次浏览 · {$vo.comment_count} 次评论
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-hr m-l-sm m-r-sm m-t-sm"></div>
+
+                <elseif condition="$vo['show_type'] eq '2'" />
+                <div class="news-item">
+
+                    <div class="">
+                        <div class="to2"><a target="_blank" class="title" href="{$vo.url}">{$vo.title}</a></div>
+                    </div>
+                    <div class="m-t-sm">
+                        <foreach name="vo.image" item="_vo">
+                        <a target="_blank" href="{$vo.url}" class="list-img">
+                            <img src="" data-url="{$_vo}">
+                        </a>
+                        </foreach>
+                    </div>
+                    <div class="m-t-sm">
+                        <div class="info font-12">
+                            <span class="font-smoothing tc-gray9">
+                                <a target="_blank" href="__ROOT__/index.php/u/{$vo.contributor}"><img class="i-user-icon" src="{:C('__DATA__')}/login_thumb/{$vo.user.icon|default='default.jpg'}" ></a>
+                                <a target="_blank" href="__ROOT__/index.php/u/{$vo.contributor}">{$vo.user.nickname}</a> · <span class="mask-tag-inline">{$vo.type||default="其他"}</span> ·
+                                {$vo.publish_time} · {$vo.browse}次浏览 · {$vo.comment_count} 次评论
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-hr m-l-sm m-r-sm m-t-sm"></div>
+
+            </if>
+        </volist>
+
+        <else/>
+        <div class="m-t-md m-b-md text-center" style="line-height: 300; height: 300px;background: #fff;color:#999;">暂无推荐</div>
+        <script>
+            $(function(){
+                $('#load').html('暂无更多内容');
+            })
+        </script>
+    </if>
 </div>

@@ -130,7 +130,7 @@ class CommentModel extends RelationModel{
         }else{
             $result['newsInfo']['image'] = __ROOT__.'/Public/img/链接.png';
         }
-        if($result['reply'] != '0'){
+        if( (int)$result['reply'] ){
             $reply_content = $this->query('select c.user_id user_id, l.nickname nickname,c.content content from '.$DB_PREFIX.'comment c,'.$DB_PREFIX.'login l where l.id = c.user_id and c.id = '.$result['reply']);
             $result['replyContent'] = $reply_content[0];
         }else{
