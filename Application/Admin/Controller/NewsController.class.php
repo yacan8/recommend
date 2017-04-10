@@ -1,6 +1,8 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
+use Think\Exception;
+
 class NewsController extends Controller{
 	public function _initialize(){
         if (!session('?Adminlogin')) {
@@ -266,5 +268,27 @@ class NewsController extends Controller{
 		$List = $TypeModel->relation('sections')->field('id,type')->select();
 		$this ->assign('List',$List);
 		$this->display();
+	}
+
+
+	public function getCalculateSimilarityNews(){
+	    try{
+            $date = I('get.date',date('Y-m-d',time()));
+            $newsModel = M('News');
+            $result = $newsModel->where(array('DATE_FORMAT(publish_time,\'%Y-%m-%d\')'=>$date,'delete_tag'=>false))->field('id,title,publish_time time')->order('publish_time desc')->select();
+            $json = array(
+                'success' => true,
+                'code' => 200,
+                'message' => '获取成功',
+                'attr'=>$result
+            );
+        }catch (Exception $e){
+            $json = array(
+                'success' => false,
+                'code' => 500,
+                'message' => '服务器错误'
+            );
+        }
+        $this->ajaxReturn($json);
 	}
 }

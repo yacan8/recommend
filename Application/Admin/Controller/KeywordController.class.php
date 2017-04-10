@@ -58,7 +58,6 @@ class KeywordController extends Controller{
 				}
 			}
 		}
-		// dump($finallyKeywordsInfo[0]['keyword']);
 		return $finallyKeywordsInfo;
 	}
 

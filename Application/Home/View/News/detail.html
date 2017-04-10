@@ -142,7 +142,7 @@
             </div>
 
             <div class="col-sm-12 col-md-3">
-                {:W('Sidelist/side')}
+                {:W('NewsSimilarity/newsSimilarity',array('news_id'=>$id))}
             </div>
         </div>
     </div>
@@ -154,8 +154,6 @@
     var pv = "{:U('Browse/pv')}";
     var uv = "{:U('Visitor/uv')}";
     var zan_url = "{:U('Zan/zan')}";
-    var PUBLIC="__PUBLIC__";
-    var DATA = "{:C('__DATA__')}";
     var page = 2;
     var id = {$id};
     var author = {$List.contributor};

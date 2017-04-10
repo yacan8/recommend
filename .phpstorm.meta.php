@@ -8,7 +8,8 @@
 			'Mongo' instanceof Think\Model\MongoModel,
 			'Apply' instanceof Home\Model\ApplyModel,
 			'NewsKeywordBelong' instanceof Home\Model\NewsKeywordBelongModel,
-			'Report' instanceof Home\Model\ReportModel,
+			'Similarity' instanceof Home\Model\SimilarityModel,
+			'Report' instanceof Admin\Model\ReportModel,
 			'Dynamics' instanceof Home\Model\DynamicsModel,
 			'Relation' instanceof Think\Model\RelationModel,
 			'User' instanceof Home\Model\UserModel,
@@ -30,7 +31,7 @@
 			'Follow' instanceof Home\Model\FollowModel,
 			'Zan' instanceof Home\Model\ZanModel,
 			'Merge' instanceof Think\Model\MergeModel,
-			'Sections' instanceof Home\Model\SectionsModel,
+			'Sections' instanceof Admin\Model\SectionsModel,
 		],
 	];
 }

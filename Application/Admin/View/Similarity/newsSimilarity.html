@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="page-header">相似度可视化计算</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 m-b-sm">
+        <form class="form-inline">
+            <!--<label>选择来源：</label>-->
+            <!--<label class="checkbox-inline" data-toggle="tooltip" data-placement="top" title="最多只能2000条数据" style="margin-right:10px">-->
+                <!--<input type="checkbox" class="from" value="sina" checked> 新浪-->
+            <!--</label>-->
+            <!--<label class="checkbox-inline" data-toggle="tooltip" data-placement="top" title="最多只能800条数据" style="margin-left:0">-->
+                <!--<input type="checkbox" class="from" value="_163" checked> 网易-->
+            <!--</label>-->
+            <div class="form-group">
+                <label>选择发布日期：</label>
+                <input type="text" class="form-control input-sm" id="time" placeholder="选择抓取时间" />
+            </div>
+            <button type="button" class='m-l-lg btn btn-sm btn-primary' id="news-get" data-loading-text="获取中...">开始获取</button>
+        </form>
+
+
+    </div>
+    <div class="col-xs-12" id="data-table">
+
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="similarity-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modal-title">内容相似度查看</h4>
+            </div>
+            <div class="modal-body" >
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript" src="__PUBLIC__/assets/artTemplate/js/artTemplate.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/assets/bootstrap-daterangepicker/daterangepicker.css">
+<script src="__PUBLIC__/assets/bootstrap-daterangepicker/moment.min.js"></script>
+<script src="__PUBLIC__/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="__PUBLIC__/js/admin/newsSimilarity.js"></script>
+
+
+
+
+
+<script id="similarity-data" type="text/template">
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>标题</th>
+            <th>时间</th>
+            <th>相似度</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{each list as value i}}
+        <tr>
+            <td class="id">{{value.id}}</td>
+            <td class="title"><a class="tc-main" href="{{ROOT}}/n/{{value.id}}.html" target="_blank">{{value.title}}</a></td>
+            <td class="time">{{value.time}}</td>
+            <td class="similarity">{{percent(value.similarity)}}</td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</script>
+<script id="news-list" type="text/template">
+    <div class="m-b-sm" id="fixed-container">
+        总共 <span class="tc-main"> {{list.length}} </span> 条数据
+        <button type="button" class='m-l-lg btn btn-sm btn-success' id="calculate-in-begin" data-loading-text="队列进行中...">开始计算</button>
+        <!--<button type="button" class='m-l-sm btn btn-sm btn-default' id="calculate-reset" >重置</button>-->
+    </div>
+    <div class="table-responsive" style="font-size:12px">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>标题</th>
+                <th>时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{each list as value i}}
+            <tr>
+                <td class="id">{{value.id}}</td>
+                <td class="title"><a class="tc-main" href="{{ROOT}}/n/{{value.id}}.html" target="_blank">{{value.title}}</a></td>
+                <td class="time">{{value.time}}</td>
+                <td class="operate"><a class="crawler-delete fa-times fa tc-main" data-toggle="tooltip" data-placement="top" title="移除该项" href="javascript:;"></a></td>
+            </tr>
+            {{/each}}
+            </tbody>
+
+        </table>
+    </div>
+</script>

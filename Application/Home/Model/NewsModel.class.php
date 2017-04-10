@@ -285,9 +285,23 @@ class NewsModel extends RelationModel{
 	public function getByKeywordId($keyword_id,$begin_time,$num,$not_in){
 		$DB_PREFIX = C('DB_PREFIX');
         $condition['_string'] = ' n.id = nkb.news_id ';
-		if( $not_in ){
-			$condition['_string'] .= ' and n.id not in ('.$not_in.')';
-		}
+
+        if ( strtolower(gettype($not_in)) == 'array' ) {
+            foreach ($not_in as $item) {
+                if(strtolower(gettype($item)) == 'array' && count($item) ){
+                    $condition['_string'] .= ' and n.id not in ('.join(',',$item).')';
+                } else {
+                    if ($item){
+                        $condition['_string'] .= ' and n.id not in ('.$item.')';
+                    }
+                }
+            }
+        } else {
+            if( $not_in ){
+                $condition['_string'] .= ' and n.id not in ('.$not_in.')';
+            }
+        }
+
 
 
 		$condition['nkb.keyword_id'] = $keyword_id;
@@ -300,16 +314,28 @@ class NewsModel extends RelationModel{
 				-> order('n.publish_time')
 				-> limit($num)
 				-> select();
-        $sql = $this->getLastSql();
 		$result = $this->GenerateNews($result);
 		return $result;
 	}
 
 	public function getByTypeId($type_id,$begin_time,$num,$not_in){
 		$condition['publish_time'] = array('gt',$begin_time);
-		if ( $not_in ) {
-			$condition['_string'] = 'id not in ('.$not_in.')';
-		}
+        $condition['_string'] = '1 = 1 ';
+        if ( strtolower(gettype($not_in)) == 'array' ) {
+            foreach ($not_in as $item) {
+                if(strtolower(gettype($item)) == 'array' && count($item) ){
+                    $condition['_string'] .= ' and id not in ('.join(',',$item).')';
+                } else {
+                    if ($item){
+                        $condition['_string'] .= ' and id not in ('.$item.')';
+                    }
+                }
+            }
+        } else {
+            if( $not_in ){
+                $condition['_string'] .= ' and id not in ('.$not_in.')';
+            }
+        }
 		if ( $type_id ) {
 			$condition['type'] = $type_id;
 			$result = $this
@@ -345,5 +371,59 @@ class NewsModel extends RelationModel{
     }
 
 
+    public function getRelationNewsByNewsId($news_id,$begin_time){
+        $DB_PREFIX = C('DB_PREFIX');
+        $result = $this ->table("{$DB_PREFIX}news n,{$DB_PREFIX}news_keyword_belong nkb")
+                        ->field('n.id id,n.content content,title title,publish_time time')
+                        ->distinct('n.id')
+                        ->where(array(
+                            '_string' => "n.id = nkb.news_id and nkb.keyword_id in (select keyword_id from {$DB_PREFIX}news_keyword_belong where news_id = $news_id)",
+                            'n.publish_time' => array('gt',$begin_time),
+                            'n.delete_tag' => false,
+                            'n.id' => array('neq',$news_id)
+                        ))->select();
 
+        return $result;
+    }
+
+    public function getSimilarityContent($news_id,$show_content){
+        $DB_PREFIX = C('DB_PREFIX');
+        $field = 'n.id id,n.title title,n.publish_time time,ns.similarity similarity';
+        if ( $show_content ) {
+            $field .= ',n.content content,n.image image,n.image_thumb image_thumb';
+        }
+        $this->table("{$DB_PREFIX}news n,{$DB_PREFIX}news_similarity ns")
+                        ->field($field)
+                        ->where('n.id = ns.news_id2 and n.delete_tag = 0 and ns.news_id1 ='.$news_id)
+                        ->order('ns.similarity desc,n.publish_time desc');
+        if( $show_content ) {
+            $this->limit(8);
+        }
+        $result = $this->select();
+        return $result;
+    }
+    public function getRelationNewsContentByNewsId($news_id,$num,$not_in){
+        $condition['_string'] = '1 = 1 ';
+        if ( strtolower(gettype($not_in)) == 'array' ) {
+            foreach ($not_in as $item) {
+                if(strtolower(gettype($item)) == 'array' && count($item) ){
+                    $condition['_string'] .= ' and id not in ('.join(',',$item).')';
+                } else {
+                    if ($item){
+                        $condition['_string'] .= ' and id not in ('.$item.')';
+                    }
+                }
+            }
+        } else {
+            if( $not_in ){
+                $condition['_string'] .= ' and id not in ('.$not_in.')';
+            }
+        }
+        $type = $this->where(array('id'=>$news_id))->getField('type');
+        $condition['type'] = $type;
+        $condition['id'] = array('neq',$news_id);
+        $condition['publish_time'] = array('gt',date("Y-m-d H:i:s",strtotime("-7 day")));
+        $result = $this->where($condition)->limit($num)->order('browse desc')->field('id,title,publish_time time,content,image,image_thumb')->select();
+        return $result;
+    }
 }

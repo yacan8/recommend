@@ -90,7 +90,7 @@ Date.prototype.format2 = function(){
 };
 Date.prototype.oneDayAgo = function() {
     return new Date(this.getTime() - 1000 * 60 * 60 * 24 ); 
-}
+};
 
 var crawlerCallBack = {
     sina : function(result,time){
@@ -154,9 +154,6 @@ var fetchLoading = function(url,params,beforeSend){
 $(function(){
     var crawlerTable = $('#crawler-table');
     $('[data-toggle="tooltip"]').tooltip();
-    $(document).scroll(function(){
-
-    });
     $('#time').datetimepicker({
         format: 'yyyy-mm-dd hh:ii'
     });
@@ -198,10 +195,8 @@ $(function(){
                 from_id : trRow.children('.from_id').text(),
                 type : trRow.children('.type').text()
             };
-
             return crawler.crawlerIn( params );
-            
-        }
+        };
 
         var aysncFun = async function ( trList ) {
             for( var i = 0 ; i< trList.length ; i++ ){

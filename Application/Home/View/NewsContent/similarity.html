@@ -1,0 +1,17 @@
+<div class="bg-white p-md m-b-sm overflow-hidden" id="side-list">
+    <h4 class="side_list_header">相关推荐</h4>
+    <div class="side-list">
+        <volist name="List" id="vo">
+            <div class="side-list-item m-t-md">
+                <a class="side-item-img" target="_blank" href="{:U('/n/'.$vo['id'])}">
+                    <img src="{$vo.image}">
+                </a>
+                <div class="side-item-right text-over-3">
+                    <a target="_blank" href="{:U('/n/'.$vo['id'])}">
+                        {$vo.title}
+                    </a>
+                </div>
+            </div>
+        </volist>
+    </div>
+</div>

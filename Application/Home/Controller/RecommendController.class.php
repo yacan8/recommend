@@ -109,21 +109,23 @@ class RecommendController extends Controller{
         $allowRecommendTimeStamp = $timestamp - 60 * 60 * 24 * (int)$allowRecommendTime;
         $allowRecommendBeginTime = date('Y-m-d H:i:s', $allowRecommendTimeStamp);
         $result = array();
-
+        $not_in = array($read);
         foreach ($recommendArray as $item) {
             if ($item['type'] == 1) {
-                $recommendList = $newsModel->getByKeywordId($item['id'], $allowRecommendBeginTime, $item['num'], $read);
+                $recommendList = $newsModel->getByKeywordId($item['id'], $allowRecommendBeginTime, $item['num'], $not_in);
             } else {
-                $recommendList = $newsModel->getByTypeId($item['id'], $allowRecommendBeginTime, $item['num'], $read);
+                $recommendList = $newsModel->getByTypeId($item['id'], $allowRecommendBeginTime, $item['num'], $not_in);
             }
-
+            $not_in_item = array();
             foreach ($recommendList as $_item) {
+                array_push($not_in_item,$_item['id']);
                 if (count($result) < $recommendNum) {
                     array_push($result, $_item);
                 } else {
                     break;
                 }
             }
+            array_push($not_in,$not_in_item);
             if (count($result) >= $recommendNum) {
                 break;
             }
