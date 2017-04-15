@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h3 class="page-header">用户相似度可视化查询</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 m-b-sm">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" class="form-control input-sm" placeholder="请输入昵称或者手机号码" style="width: 200px;" />
+            </div>
+            <button type="button" class='btn btn-sm btn-info'>搜索</button>
+        </form>
+    </div>
+    <div class="col-xs-12">
+        <volist name="list" id="vo">
+            <div class="user-similarity-item m-r-sm">
+                <div class="media">
+                    <div class="media-left">
+                        <a href="{:U('Similarity/userSimilarityDetail',array('id'=>$vo['id']))}">
+                            <img class="media-object" src="{:C('__DATA__')}/login_thumb/{$vo.icon|default="default.jpg"}" alt="..." style="width: 50px;height: 50px;">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <div class="to m-t-xs">{$vo.nickname}</div>
+                        <div class="tc-gray9 font-12 m-t-xs">
+                            {$vo.last_modify_time}
+                            <a href="{:U('Similarity/userSimilarityDetail',array('id'=>$vo['id']))}" class="m-l-xs tc-main">查看</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </volist>
+    </div>
+    <div class="text-right">
+        <ul class="pagination pagination-sm">
+            {$page}
+        </ul>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="similarity-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modal-title">内容相似度查看</h4>
+            </div>
+            <div class="modal-body" >
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="__PUBLIC__/js/admin/userSimilarity.js"></script>
+
+
+
+

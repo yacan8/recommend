@@ -1,7 +1,7 @@
 <?php
 namespace Home\Widget;
 use Think\Controller;
-class NewsSimilarityWidget extends Controller{
+class SimilarityWidget extends Controller{
 
     public function newsSimilarity($news_id){
         $newsModel = D('News');
@@ -39,5 +39,14 @@ class NewsSimilarityWidget extends Controller{
         $this->display('NewsContent:similarity');
 
 
+    }
+
+    public function userSimilarity(){
+        if( session('?login') ) {
+            $similarityController = A('Similarity');
+            $userRecommendList = $similarityController->getSimilarityUserInfo(session('login'));
+            $this->assign('userRecommendList',$userRecommendList);
+        }
+        $this->display('IndexContent/userSimilarity');
     }
 }

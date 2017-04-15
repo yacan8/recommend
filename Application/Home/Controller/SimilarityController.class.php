@@ -366,12 +366,5 @@ class SimilarityController extends Controller{
 
     }
 
-    public function test(){
-        $a = array(
-            'sds' => 'dsadsa'
-        );
-        echo gettype($this);
-    }
-
 
 }

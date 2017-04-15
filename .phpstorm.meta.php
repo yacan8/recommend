@@ -6,10 +6,10 @@
 
 		\D('') => [
 			'Mongo' instanceof Think\Model\MongoModel,
+			'Portrayal' instanceof Admin\Model\PortrayalModel,
 			'Apply' instanceof Home\Model\ApplyModel,
 			'NewsKeywordBelong' instanceof Home\Model\NewsKeywordBelongModel,
 			'Similarity' instanceof Home\Model\SimilarityModel,
-			'Report' instanceof Admin\Model\ReportModel,
 			'Dynamics' instanceof Home\Model\DynamicsModel,
 			'Relation' instanceof Think\Model\RelationModel,
 			'User' instanceof Home\Model\UserModel,

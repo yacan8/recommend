@@ -176,6 +176,7 @@ class RecommendController extends Controller{
                 $item['type'] = $type;
                 $weightSum += $itemWeight;
                 $item['id'] = $_key;
+
                 if ($type == 1) {
                     $isExit = false;
                     foreach ($keywordData as &$keywordItem) {

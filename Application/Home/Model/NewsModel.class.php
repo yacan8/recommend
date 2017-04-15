@@ -84,9 +84,9 @@ class NewsModel extends RelationModel{
 	 * @return [List] [返回查询到的七条新闻]
 	 */
 	public function getHotTop7(){
-		// $data = date("Y-m-d H:i:s",strtotime("-1 month"));
-		$data = date("Y-m-d H:i:s",strtotime("-2 year"));
-		$List = $this->order('browse desc')-> where("publish_time >= '$data' and delete_tag = 0") -> field('id,image,title,type,image_thumb')->limit('0,7')->relation('type')->select();
+		$data = date("Y-m-d H:i:s",strtotime("-1 month"));
+//		$data = date("Y-m-d H:i:s",strtotime("-2 year"));
+		$List = $this->order('browse desc')-> where("publish_time >= '$data' and delete_tag = 0") -> field('id,image,title,type,image,image_thumb,content')->limit('0,7')->relation('type')->select();
 		return $List;
 	}
 

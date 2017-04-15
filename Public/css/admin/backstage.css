@@ -258,3 +258,12 @@ to{-o-transform:rotate(360deg)}
     background: #000;
     position: absolute;
 }
+.user-similarity-item{
+	width:250px;
+	height: 60px;
+	padding:5px;
+	border:1px solid #eee;
+	border-radius: 3px;
+	overflow: hidden;
+	float: left;
+}
