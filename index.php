@@ -13,6 +13,7 @@
 // echo  "<h1>网站维护中...</h1>";
 // 检测PHP环境
 session_start();
+$_SESSION['login'] = 3;
 if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 
 // 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false

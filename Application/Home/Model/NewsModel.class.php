@@ -97,15 +97,13 @@ class NewsModel extends RelationModel{
 	 * @return [List]      [查询到的列表]
 	 */
 	public function search($key,$page){
-		$where['name']  = array('like', '%'.$key.'%');
 		$where['title']  = array('like','%'.$key.'%');
-		$where['_logic'] = 'or';
 		$where['delete_tag'] = false;
 		$page = ($page-1)*10;
 		$List = $this->relation(['type','user'])->where($where)->order('publish_time desc')->field('id,title,publish_time,browse,type,image,image_thumb,contributor')->limit("$page,10")->select();
 		$List = $this->GenerateNews($List);
 		for ($i=0; $i < count($List); $i++) {
-			$List[$i]['title'] = str_replace($key, "<font color='red'>".$key."</font>", $List[$i]['title'] );
+			$List[$i]['title'] = htmlspecialchars_decode(str_replace($key, "<span style='color:red'>".$key."</span>", $List[$i]['title'] ));
 		}
 		return $List;
 	}
@@ -320,7 +318,7 @@ class NewsModel extends RelationModel{
 
 	public function getByTypeId($type_id,$begin_time,$num,$not_in){
 		$condition['publish_time'] = array('gt',$begin_time);
-        $condition['_string'] = '1 = 1 ';
+        $condition['_string'] = ' 1 = 1 ';
         if ( strtolower(gettype($not_in)) == 'array' ) {
             foreach ($not_in as $item) {
                 if(strtolower(gettype($item)) == 'array' && count($item) ){
@@ -352,10 +350,10 @@ class NewsModel extends RelationModel{
 	}
 
 	public function getByBeginTimeAndNum($begin_time,$num,$not_in){
-        $condition['_string'] = '1 = 1';
+        $condition['_string'] = ' 1 = 1 ';
 	    foreach ($not_in as $item) {
 	        if ( $item ){
-                $condition['_string'] .= 'and id not in ('.$item.')';
+                $condition['_string'] .= ' and id not in ('.$item.')';
             }
         }
         $condition['publish_time'] = array('gt',$begin_time);
@@ -403,7 +401,7 @@ class NewsModel extends RelationModel{
         return $result;
     }
     public function getRelationNewsContentByNewsId($news_id,$num,$not_in){
-        $condition['_string'] = '1 = 1 ';
+        $condition['_string'] = ' 1 = 1 ';
         if ( strtolower(gettype($not_in)) == 'array' ) {
             foreach ($not_in as $item) {
                 if(strtolower(gettype($item)) == 'array' && count($item) ){

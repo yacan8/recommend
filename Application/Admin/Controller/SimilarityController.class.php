@@ -31,7 +31,11 @@ class SimilarityController extends Controller{
     }
     public function userSimilarityDetail(){
         $id = I('get.id',0);
+
         if( $id != 0  && is_numeric($id)) {
+
+
+
             $this->assign('user_id',$id);
             $this->assign('title','用户相似度可视化展示');
             $this->display();

@@ -77,6 +77,7 @@ class VisitorController extends Controller{
                     }
                     if( $sign ) {
                         $keywordBelongModel = D('NewsKeywordBelong');
+                        $browseItem['type'] = M('News')->where(array('id'=>$id))->getField('type');
                         $browseItem['keywords'] = $keywordBelongModel->getKeywordByNewsId($id);
                         array_push($portrayal['browseInfo'],$browseItem);
                         $portrayalModel->where(array('user_id'=>$user_id))->save(array(

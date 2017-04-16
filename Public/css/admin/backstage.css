@@ -267,3 +267,6 @@ to{-o-transform:rotate(360deg)}
 	overflow: hidden;
 	float: left;
 }
+.user-similarity-item.active{
+	border-color: #ce797b;
+}

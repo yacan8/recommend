@@ -14,7 +14,7 @@ class SimilarityModel extends RelationModel{
     );
 
     public function getByUserId1($user_id1,$num){
-        $result = $this->relation('userInfo')->where(array('user_id1'=>$user_id1))->limit($num)->select();
+        $result = $this->relation('userInfo')->where(array('user_id1'=>$user_id1))->order('similarity desc')->limit($num)->select();
         if ( count($result) ) {
             $userModel = M('User');
             foreach ($result as &$item) {

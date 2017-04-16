@@ -83,8 +83,9 @@ class SimilarityController extends Controller{
                             'similarity' => $similarity,
                             'last_modify_time' => $time
                         );
+                        array_push($similarityList,$resultItem);
                     }
-                    array_push($similarityList,$resultItem);
+
                 }
                 $similarityModel = M('Similarity');
                 $sign = true;

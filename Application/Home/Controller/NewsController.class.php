@@ -40,7 +40,7 @@ class NewsController extends Controller {
 		$NewsModel = D('News');
 		$List = $NewsModel->search($key,$page);
 		$this ->assign('List',$List);
-		$this ->assign('key',addslashes($key));
+		$this ->assign('keyword',$key);
 		$this->display();
 	}
 
@@ -50,7 +50,7 @@ class NewsController extends Controller {
 		$page = I('get.page',1);
 		$NewsModel = D('News');
 		$List = $NewsModel->search($key,$page);
-		echo json_encode($List);
+		$this->ajaxReturn($List);
 		// echo $key."+".$page;
 	}
 	/**
