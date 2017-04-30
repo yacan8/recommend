@@ -76,4 +76,5 @@ class IndexController extends Controller {
             echo '<h1>无法识别手机操作系统，请使用qq扫一扫获取其他二维码扫描器。</h1>';
         }
     }
+    
 }

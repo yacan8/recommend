@@ -4,8 +4,7 @@ namespace Admin\Controller;
 use Think\Controller;
 
 class KeywordController extends Controller{
-
-
+    //语料库更新与计算TD-IDF获取关键字
 	public function keywordCalculate($content){
 		//去除html中的特殊字符
 		$content = str_replace('&nbsp;', '', $content);
@@ -16,25 +15,25 @@ class KeywordController extends Controller{
 		$content = str_replace('&middot;', '', $content);
 		$wordsAndKeyword = $this->getWords(trim(strip_tags($content)));
 
-		$wordLibrarlyModel = M('WordLibrary');
+		$wordLibraryModel = M('WordLibrary');
 		$newsCount = M('News')->count(); //文档总数
 		$words = $wordsAndKeyword['words'];
 		$keywordsStr = $wordsAndKeyword['keywords'];
 		$keywords = explode(',',$keywordsStr);
 		$keywordsObject = array(); //用于保存出现该词的文档数
 		foreach($words as $word => $num){ //写入词料库
-			$wordInfo = $wordLibrarlyModel -> where(array('word'=>$word)) -> find();
+			$wordInfo = $wordLibraryModel -> where(array('word'=>$word)) -> find();
 			if( $wordInfo ) {
 				$wordInfo['num'] = (int)$wordInfo['num']+1;
 				if( in_array( $word , $keywords)) { //保存出现该关键字的文档次数
 					$keywordsObject[$word] = $wordInfo['num'];
 				}
-				$wordResult = $wordLibrarlyModel -> where(array('id'=> $wordInfo['id'])) -> save($wordInfo);
+				$wordResult = $wordLibraryModel -> where(array('id'=> $wordInfo['id'])) -> save($wordInfo);
 			}else{
 				if( in_array( $word , $keywords ) ) {
 					$keywordsObject[$word] = 1;
 				}
-				$wordResult = $wordLibrarlyModel -> add(array('word'=>$word,'num'=> 1));
+				$wordResult = $wordLibraryModel -> add(array('word'=>$word,'num'=> 1));
 			}
 		}
 
@@ -140,17 +139,11 @@ class KeywordController extends Controller{
 	    $do_unit = true ;
 	    //多元切分
 	    $do_multi = true ;
-	    //词性标注
-	    $do_prop =  false ;
-	    //是否预载全部词条
-	    $pri_dict = true ;
-	    $tall = microtime(true);
 	    //初始化类
 	    \PhpAnalysis::$loadInit = false;
 	    $pa = new \PhpAnalysis('utf-8', 'utf-8', $pri_dict);
 	    //载入词典
 	    $pa->LoadDict();
-
 	    //执行分词
 	    $pa->SetSource($content);
 	    $pa->differMax = $do_multi;

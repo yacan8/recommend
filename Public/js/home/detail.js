@@ -181,15 +181,19 @@
                 if(data.reply_count) {
                     result += '<a class="tc-main" href="'+data.reply_count.reply_user_url+'">@data.reply_content.nickname</a>：data.reply_content.content';
                 }
-                result += '</div> ' +
-                    '<div class="m-t-xs" style="font-size:12px;"> ' +
-                    '<a href="javascript:void(0)" class="font-smoothing"><span class="m-r-sm reply" data-sender="'+data.id+'">回复</a>';
-                if(data.is_zan){
-                    result += '<a class="tc-gray9 zan-btn" href="javascript:;" data-comment-id="'+data.id+'"> <span class="glyphicon glyphicon-thumbs-up"></span> <span class="zan">'+data.zan_count+'</span> </a>';
-                }else{
-                    result += '<a class="tc-gray9 zan-btn active" href="javascript:;" data-comment-id="'+data.id+'"> <span class="glyphicon glyphicon-thumbs-up"></span> <span class="zan">'+data.zan_count+'</span> </a>';
+
+                result += '</div> ';
+                if(isLogin){
+                    result += '<div class="m-t-xs" style="font-size:12px;"> ' +
+                        '<a href="javascript:void(0)" class="font-smoothing"><span class="m-r-sm reply" data-sender="'+data.id+'">回复</a>';
+                    if(data.is_zan){
+                        result += '<a class="tc-gray9 zan-btn" href="javascript:;" data-comment-id="'+data.id+'"> <span class="glyphicon glyphicon-thumbs-up"></span> <span class="zan">'+data.zan_count+'</span> </a>';
+                    }else{
+                        result += '<a class="tc-gray9 zan-btn active" href="javascript:;" data-comment-id="'+data.id+'"> <span class="glyphicon glyphicon-thumbs-up"></span> <span class="zan">'+data.zan_count+'</span> </a>';
+                    }
+                    result += '</div>';
                 }
-                result+= '</div></div></div>';
+                result+= '</div></div>';
             }
 
             return result;
@@ -197,6 +201,7 @@
 
         //回复
         function comment(id,content,reply,button){
+            button.button('loading');
             $.ajax({
                 url: comment_url,
                 data:{news_id:id,content:$.trim(content),reply:reply},
@@ -217,6 +222,7 @@
                             if(button) button.button('reset');
                             $("#reply").modal("hide");
                             $.toaster({ priority : 'danger', title : '<span class="glyphicon glyphicon-info-sign"></span>', message : '不能回复自己'});
+                            button.button('reset');
                         }
                     }else{
                         if(button) button.button('reset');

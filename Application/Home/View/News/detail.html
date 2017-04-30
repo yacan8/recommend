@@ -123,10 +123,12 @@
                                     <div class="font-14">
                                     {$vo.content} <if condition="$vo['reply_content']">// <a class="tc-main" href="{:U('/u/'.$vo['reply_content']['user_id'],'',false,false)}">@{$vo.reply_content.nickname}</a>：{$vo.reply_content.content}</if>
                                     </div>
-                                    <div class="m-t-xs" style="font-size:12px;">
-                                        <a href="javascript:void(0)" class="font-smoothing"><span class="m-r-sm reply" data-sender="{$vo.id}">回复</a>
-                                        {:W('Zan/zan',array('comment_id'=>$vo['id'],'zan_count'=>$vo['zan_count']))}
-                                    </div>
+                                    <if condition="session('?login')">
+                                        <div class="m-t-xs" style="font-size:12px;">
+                                            <a href="javascript:void(0)" class="font-smoothing"><span class="m-r-sm reply" data-sender="{$vo.id}">回复</a>
+                                            {:W('Zan/zan',array('comment_id'=>$vo['id'],'zan_count'=>$vo['zan_count']))}
+                                        </div>
+                                    </if>
                                 </div>
                             </div>
                         </volist>
@@ -154,6 +156,7 @@
     var pv = "{:U('Browse/pv')}";
     var uv = "{:U('Visitor/uv')}";
     var zan_url = "{:U('Zan/zan')}";
+    var isLogin = <if condition="session('login')">true<else/>false</if> ;
     var page = 2;
     var id = {$id};
     var author = {$List.contributor};

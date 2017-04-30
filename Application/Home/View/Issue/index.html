@@ -21,8 +21,8 @@
 
         <div class="col-sm-12 col-md-2 m-t-sm">
             <ul class="sidelist-group bg-white">
-                <if condition="$power eq '0'">
-                    <li class="border-l-main active"><a href="{:U('Apply/apply')}"><i class="fa fa-edit"></i> 发布者申请</a></li>
+                <if condition="$power eq 0">
+                    <li class="border-l-main active"><a href="{:U('Apply/apply')}"><i class="fa fa-edit"></i> 发布者申请{$power}</a></li>
                 <else/>
                 <li class="border-l-main <if condition="ACTION_NAME eq 'content'">active</if>"><a href="{:U('Apply/content')}"><i class="fa fa-sticky-note-o"></i> 内容管理</a></li>
                 <li class="border-l-main <if condition="ACTION_NAME eq 'fans'">active</if>"><a href="{:U('Apply/fans')}"><i class="fa fa-user-o"></i> 粉丝</a></li>

@@ -20,7 +20,7 @@ class CommentController extends Controller{
             $json['success'] = true;
 
             $author = M('News')->where(array('id'=>$news_id))->getField('contributor');
-            if( $reply == $author ){
+            if( $reply == $user_id ){
                 $json['code'] = 199;
                 $json['message'] = '不能回复自己';
             }else{

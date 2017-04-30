@@ -1,28 +1,33 @@
 // 注册JS
 ;$(function(){
 
-	//昵称检查
-	// $("#nickname").blur(function(event) {
-	// 	var _self = $(this);
-	// 	var nickname = _self.val();
-	// 	$.ajax({
-	// 		url: check_nickname_url,
-	// 		type: 'get',
-	// 		dataType: 'text',
-	// 		data: {nickname: nickname},
-	// 		success:function(data){
-	// 			var result = $.parseJSON(data);
-	// 			if(result.Code != '200'){
-	// 				_self.addClass('has-error').siblings('.help-block').css("color","red").html(result.Message);
-	// 			}else{
-	// 				_self.removeClass('has-error').siblings('.help-block').html('');
-	// 			}
-	// 		},
-	// 		error:function(data){
-	// 			alert('请求失败');
-	// 		}
-	// 	})
-	// });
+	昵称检查
+	$("#nickname").blur(function(event) {
+		var _self = $(this);
+		var nickname = _self.val();
+		if(nickname.length>10){
+			_self.addClass('has-error').siblings('.help-block').css("color","red").html("昵称长度必须小于等于10");
+		} else {
+			_self.removeClass('has-error').siblings('.help-block').html('');
+		}
+		// $.ajax({
+		// 	url: check_nickname_url,
+		// 	type: 'get',
+		// 	dataType: 'text',
+		// 	data: {nickname: nickname},
+		// 	success:function(data){
+		// 		var result = $.parseJSON(data);
+		// 		if(result.Code != '200'){
+		// 			_self.addClass('has-error').siblings('.help-block').css("color","red").html(result.Message);
+		// 		}else{
+		// 			_self.removeClass('has-error').siblings('.help-block').html('');
+		// 		}
+		// 	},
+		// 	error:function(data){
+		// 		alert('请求失败');
+		// 	}
+		// })
+	});
 	//提交按钮检测验证码正确性
 	$('#form_submit').on('click',function(event) {
 		var _self = $(this);

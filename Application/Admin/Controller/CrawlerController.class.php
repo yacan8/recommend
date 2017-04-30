@@ -68,19 +68,12 @@ class CrawlerController extends Controller{
 		}else{
 			$model = M('');
 			$model->startTrans(); //开启事务
-
 			$url = I('post.url');
 			$time = I('post.time');
 			$type = I('post.type');
-
-
-
-
 			vendor('phpquery.phpQuery.phpQuery');
 			$urlInfo = parse_url($url);
-			$document = \phpQuery::newDocumentFile($url);
-
-
+			$document = \phpQuery::newDocumentFile($url);//打开目标地址
 			//站点结构  储存标题与文章内容dom
 			$structures = array(
 					'news.sina.com.cn' => '#artibodyTitle,#artibody',
@@ -124,11 +117,7 @@ class CrawlerController extends Controller{
 				$title = $document->find('#artibodyTitle')->text();
 			}
 			if( $title != '' || trim($content) != '' || trim($content) != null) {
-
 				$user_id = session('Adminlogin');
-				//相似度计算
-				// *** code
-
 				$typeModel = M('Type');
 				if( trim($type) != '' ){
 					$type_id = $typeModel->where(array('type' => $type))->getField('id');
@@ -142,7 +131,6 @@ class CrawlerController extends Controller{
 					$type_id = 0;
 					$typeResult = false;
 				}
-
 				//写入
 
 				$crawlerData = array(

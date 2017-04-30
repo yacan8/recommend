@@ -6,7 +6,7 @@ use Think\Controller;
 class ApplyController extends Controller{
 
 	public function _initialize(){
-		if(ACTION_NAME != 'apply'){
+		if(ACTION_NAME != 'apply' && ACTION_NAME != 'action'){
 			$user_id = session('login');
 			$loginModel = M('Login');
 			$power = $loginModel->where(array('id'=>$user_id))->getField('power');

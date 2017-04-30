@@ -132,34 +132,32 @@ class SimilarityController extends Controller{
 
 
     }
-    //计算两个两个数组的相似度
-    public function similarity($words1,$words2){
+    //计算两个向量的相似度
+    public function similarity($vector1,$vector2){
         //初始化单词个数
-        foreach ($words1 as $key => $num) {
-            if( !$words2[$key] ){
-                $words2[$key] = 0;
+        foreach ($vector1 as $key => $num) {
+            if( !$vector2[$key] ){
+                $vector2[$key] = 0;
             }
         }
-        foreach ($words2 as $key => $num) {
-            if( !$words1[$key] ){
-                $words1[$key] = 0;
+        foreach ($vector2 as $key => $num) {
+            if( !$vector1[$key] ){
+                $vector1[$key] = 0;
             }
         }
         $fz = 0;
-        foreach ($words1 as $key => $num) {
-            $fz += $words1[$key] * $words2[$key];
-
+        foreach ($vector1 as $key => $num) {
+            $fz += $vector1[$key] * $vector2[$key];
         }
         $fm1 = 0.0 ;
-        foreach ($words1 as $key => $num) {
+        foreach ($vector1 as $key => $num) {
             $fm1 += $num * $num;
         }
         $fm2 = 0.0;
-        foreach ($words2 as $key => $num) {
+        foreach ($vector2 as $key => $num) {
             $fm2 += $num*$num;
         }
         $fm = sqrt($fm1) * sqrt($fm2) ;
-
         return $fz/$fm;
     }
 

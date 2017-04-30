@@ -9,10 +9,10 @@ class UserController extends Controller{
  	}
 	public function index(){
 		$LoginModel = M('Login');
-		$count      = $LoginModel->where(array('power'=>0))->count();
+		$count      = $LoginModel->where('power = 2 or power = 1 or power = 0')->count();
 		$Page       = new \Think\Page($count,10);
 		$show       = $Page->show();
-		$List = $LoginModel->where(array('power'=>0))->order('reg_time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+		$List = $LoginModel->where('power = 2 or power = 1 or power = 0')->order('reg_time desc')->limit($Page->firstRow.','.$Page->listRows)->select();
 		for ($i=0; $i < count($List); $i++) { 
 			if($List[$i]['icon'] == '')
 				$List[$i]['icon'] = 'default.jpg';
@@ -43,7 +43,7 @@ class UserController extends Controller{
 	public function setPower(){
 		$tel = I('get.id');
 		$LoginModel = D('Login');
-		$login = $LoginModel->where("tel ='".session('Adminlogin')."'")->getField('power');
+		$login = $LoginModel->where("id ='".session('Adminlogin')."'")->getField('power');
 		if($login == '2'){
 			$result = $LoginModel->setPower($tel);
 			if($result)

@@ -34,12 +34,9 @@ class RecommendController extends Controller{
             $similarityUserKeyword = $this->getSimilarityUserKeyword($user_id);//相似用户的关联度
             $data = $this->getRecommendWeight($portrayal, $recommendConfig,$similarityUserKeyword);
             $data = $this->multi_array_sort($data,'weightScore');
-
             $read = $recommendModel->where(array('user_id' => $user_id))->field('news_id')->select(false);
             $recommendArray = $this->getRecommendNum($data, $recommendNum);
             $recommendList = $this->getRecommendData($read, $recommendArray, $recommendConfig, $recommendNum);
-
-
             $recommendLength = count($recommendList);
             if ( $recommendLength < 10 ) {
                 //推荐个数不够,补充推荐个数(以热度为准 或者兴趣爱好为准)
