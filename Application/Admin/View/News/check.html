@@ -1,0 +1,44 @@
+
+<div class="row margin-bottom">
+    <div class="col-xs-12">
+        <h3 class="page-header">新闻审核</h3>
+    </div>
+</div>
+
+<ul class="list-group">
+    <volist name="List" id="vo">
+        <li class="p-sm">
+            <div class="row">
+                <if condition="$vo['image_thumb']">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="list-item-img" style="background: url('{:C('__DATA__')}/{$vo.image_thumb}') no-repeat center center;background-size: cover;">
+                        </div>
+                    </div>
+                </if>
+                <div class="col-sm-6 col-md-9">
+                    <div class="overflow-ellipsis">
+                        <a target="_blank" href="{:U('User/applyContent',array('id'=>$vo['contributor']))}"><img class="user-icon"  src="{:C('__DATA__')}/login_thumb/{$vo.user.icon|default='default.jpg'}" alt="提交者" title="提交者"></a>
+                        <a target="_blank" href="{:U('User/applyContent',array('id'=>$vo['contributor']))}" class="user-name">{$vo.user.nickname}</a>
+                        <span class="user-name" style="margin-left:0">发布于{$vo.publish_time}</span>
+                    </div>
+                    <div class="list-item-title to">
+                        【{$vo.type}】{$vo.title}
+                    </div>
+
+                    </span>
+                    <a href="{:U('News/checkAction',array('id'=>$vo['id'],'operate'=>'pass'))}" class="btn btn-default btn-xs op">通过</a>
+                    <a href="{:U('News/checkAction',array('id'=>$vo['id'],'operate'=>'reject'))}" class="btn btn-default btn-xs op">拒绝</a>
+                </div>
+                <!-- / .col-sm-6 .col-md-9 -->
+            </div>
+            <!-- / .row -->
+        </li>
+    </volist>
+</ul>
+<div class="col-xs-12">
+    <div class="text-right">
+        <ul class="pagination pagination-sm">
+            {$page}
+        </ul>
+    </div>
+</div>

@@ -45,6 +45,7 @@ class NewsModel extends RelationModel{
 	 */
 	public function getList($type,$upline,$page,&$count){
 		$data['delete_tag'] = false;
+		$data['state'] = 0;
 		if($type!=0)
 			$data['type'] = $type;
 		if($upline){
@@ -71,7 +72,8 @@ class NewsModel extends RelationModel{
 
 	public function getListByUserId($user_id,$page,&$count){
 		$data['delete_tag'] = false;
-		$data['contributor'] = $user_id;
+        $data['state'] = 0;
+        $data['contributor'] = $user_id;
 		$List = $this->where($data) ->order('publish_time desc')->relation(true)->page($page,$count)->select();
 		$count = $this->where($data)->count();
 		for ($i=0; $i < count($List); $i++) {
@@ -96,8 +98,8 @@ class NewsModel extends RelationModel{
 	 */
 	public function search($key,$page,&$count){
 		$page = ($page-1)*10;
-		$List = $this->where("title like '%$key%' and delete_tag=0")->limit("$page,10")->field('id,title,image,image_thumb,type,publish_time,contributor,sections')->order('publish_time desc')->relation(true)->select();
-		$count = $this->where("title like '%$key% and delete_tag=0'")->count();
+		$List = $this->where("title like '%$key%' and delete_tag=0 and state = 0")->limit("$page,10")->field('id,title,image,image_thumb,type,publish_time,contributor,sections')->order('publish_time desc')->relation(true)->select();
+		$count = $this->where("title like '%$key% and delete_tag=0 and state = 0'")->count();
 		return $List;
 	}
 	/**
@@ -109,7 +111,7 @@ class NewsModel extends RelationModel{
 	public function setType($o_id,$n_id){
 		$data['type']=$n_id;
 		$this->where("type = $o_id")->save($data);
-		$result = $this->where("type = $o_id  and delete_tag=0")->count();
+		$result = $this->where("type = $o_id  and delete_tag=0 and state = 0")->count();
 		if($result==0) return true;
 		return false;
 	}
@@ -120,7 +122,7 @@ class NewsModel extends RelationModel{
 	 * @return [Boolean]     [删除是否成功]
 	 */
 	public function deleteById($id){
-		$result = $this->where("id = $id and delete_tag=0")->delete();
+		$result = $this->where("id = $id and delete_tag=0 and state = 0")->delete();
 		if($result!=0) return true;
 		else return false;
 	}

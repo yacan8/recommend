@@ -86,7 +86,7 @@ class NewsModel extends RelationModel{
 	public function getHotTop7(){
 		$data = date("Y-m-d H:i:s",strtotime("-1 month"));
 //		$data = date("Y-m-d H:i:s",strtotime("-2 year"));
-		$List = $this->order('browse desc')-> where("publish_time >= '$data' and delete_tag = 0") -> field('id,image,title,type,image,image_thumb,content')->limit('0,7')->relation('type')->select();
+		$List = $this->order('browse desc')-> where("publish_time >= '$data' and delete_tag = 0 and state = 0") -> field('id,image,title,type,image,image_thumb,content')->limit('0,7')->relation('type')->select();
 		return $List;
 	}
 
@@ -99,6 +99,7 @@ class NewsModel extends RelationModel{
 	public function search($key,$page){
 		$where['title']  = array('like','%'.$key.'%');
 		$where['delete_tag'] = false;
+		$where['state'] = 0;
 		$page = ($page-1)*10;
 		$List = $this->relation(['type','user'])->where($where)->order('publish_time desc')->field('id,title,publish_time,browse,type,image,image_thumb,contributor')->limit("$page,10")->select();
 		$List = $this->GenerateNews($List);
@@ -135,6 +136,7 @@ class NewsModel extends RelationModel{
 	 */
 	public function getTop10(){
 		$condition['delete_tag'] = (bool)0;
+		$condition['state'] = 0;
 		$List = $this->relation(['type','user'])->where($condition)->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order('publish_time desc')->limit('0,10')->select();
 		$List = $this->GenerateNews($List);
 		return $List;
@@ -142,6 +144,7 @@ class NewsModel extends RelationModel{
 
 	public function getNewsById($id){
 		$condition['delete_tag'] = false;
+        $condition['state'] = 0;
 		$List = $this->relation(['type','user'])->where($condition)->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->find($id);
 		$List = $this->GenerateNewsItem($List);
 		return $List;
@@ -203,6 +206,7 @@ class NewsModel extends RelationModel{
 		if($type!=0)
 			$condition['type'] = $type;
 		$condition['delete_tag'] = false;
+        $condition['state'] = 0;
 		$List = $this->relation(['type','user']) ->page($page,$count)->where($condition)->limit("$page,10")->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order('publish_time desc')->select();
 		$List = $this->GenerateNews($List);
 		return $List;
@@ -217,12 +221,13 @@ class NewsModel extends RelationModel{
 		}
 		$condition['contributor'] = $user_id;
 		$condition['delete_tag'] = false;
-		$List =  $this->relation(['type','user']) ->where($condition)->page($page,$count)->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order($order)->select();
+        $condition['state'] = 0;
+        $List =  $this->relation(['type','user']) ->where($condition)->page($page,$count)->field('id,title,publish_time,browse,type,image,image_thumb,sections,contributor,comment_count,content')->order($order)->select();
 		$List = $this->GenerateNews($List);
 		return $List;
 	}
 	public function getCountByUserId($user_id){
-		return $this->where(array('contributor'=>$user_id,'delete_tag'=>false))->count();
+		return $this->where(array('contributor'=>$user_id,'delete_tag'=>false,'state'=>0))->count();
 	}
 
 //	/**
@@ -254,7 +259,7 @@ class NewsModel extends RelationModel{
 
 
 	public function getDynamics4($id){
-		$result1 = $this->relation(['user'])->where(array('id'=>$id,'delete_tag'=>false))-> field('id,contributor,image,content,title')->select();
+		$result1 = $this->relation(['user'])->where(array('id'=>$id,'delete_tag'=>false,'state'=>0))-> field('id,contributor,image,content,title')->select();
 		$result = $result1[0];
 
 		if($result['image'] == '' || $result['image']== null){
@@ -378,6 +383,7 @@ class NewsModel extends RelationModel{
                             '_string' => "n.id = nkb.news_id and nkb.keyword_id in (select keyword_id from {$DB_PREFIX}news_keyword_belong where news_id = $news_id)",
                             'n.publish_time' => array('gt',$begin_time),
                             'n.delete_tag' => false,
+                            'n.state' => 0,
                             'n.id' => array('neq',$news_id)
                         ))->select();
 
@@ -392,7 +398,7 @@ class NewsModel extends RelationModel{
         }
         $this->table("{$DB_PREFIX}news n,{$DB_PREFIX}news_similarity ns")
                         ->field($field)
-                        ->where('n.id = ns.news_id2 and n.delete_tag = 0 and ns.news_id1 ='.$news_id)
+                        ->where('n.id = ns.news_id2 and n.delete_tag = 0 and n.state = 0 and ns.news_id1 ='.$news_id)
                         ->order('ns.similarity desc,n.publish_time desc');
         if( $show_content ) {
             $this->limit(8);

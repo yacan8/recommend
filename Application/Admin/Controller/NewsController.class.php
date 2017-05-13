@@ -81,6 +81,41 @@ class NewsController extends Controller{
 		$this->display();
 
 	}
+	//新闻审核界面view
+	public function check(){
+        $newsModel = D('News');
+        $page = I('get.p',1);
+        $count = 10;
+        $allCount = $newsModel->where("state = 1 and delete_tag=0")->count();
+        $List = $newsModel->where("state = 1 and delete_tag=0")
+            ->relation(true)
+            ->order('publish_time desc')
+            ->field('id,title,image,image_thumb,type,publish_time,contributor,sections')
+            ->page($page,$count)
+            ->select();
+        $Page       = new \Think\Page($allCount,10);// 实例化分页类 传入总记录数和每页显示的记录数
+        $show       = $Page->show();// 分页显示输出
+        $this->assign('page',$show);
+        $this->assign('List',$List);
+        $this->display();
+    }
+
+    public function checkAction(){
+        $operate = I('get.operate','pass');
+        $id = I('get.id',0);
+        $newsModel = M('News');
+        if( $operate == 'pass') {
+            $result = $newsModel->where(array('id'=>$id))->save(array('state'=>0));
+        } else {
+            $result = $newsModel->where(array('id'=>$id))->save(array('state'=>2));
+        }
+        $message = $operate == 'pass'?'审核通过成功':'拒绝通过成功';
+        if($result!== false){
+            $this->success($message);
+        } else{
+            $this->error('服务器错误');
+        }
+    }
 
 	//上下线切换
 	public function uplinetoggle(){

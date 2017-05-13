@@ -12,7 +12,7 @@ class UploadController extends Controller{
 		C('SHOW_PAGE_TRACE',false);
 		$config = array(
 				'maxSize' => 93145728,// 设置附件上传大小
-				'exts' => array('jpg', 'gif', 'png', 'jpeg'),// 设置附件上传类型
+				'exts' => array('jpg', 'png', 'jpeg'),// 设置附件上传类型
 				'savePath'=>'Upload/',// 设置附件上传目录
 				'rootPath'=> './Data/',
 				'autoSub'    =>    true,

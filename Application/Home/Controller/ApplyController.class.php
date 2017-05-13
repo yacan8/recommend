@@ -81,7 +81,7 @@ class ApplyController extends Controller{
 			}
 
 			$NewsModel->publish_time = date('y-m-d H:i:s',time());
-			$NewsModel->state = '0';
+			$NewsModel->state = '1';
 			$NewsModel->contributor = session('login');
 
 			$newResult = $NewsModel->add();
@@ -119,7 +119,7 @@ class ApplyController extends Controller{
 			}
 			if( $keywordBelongSign && $sign && $newResult!==false) {
 				$Model->commit();
-				$this->success('添加成功');
+				$this->success('提交成功,等待管理员审核');
 			}else{
 				$Model->rollback();
 				$this->error('添加失败');
