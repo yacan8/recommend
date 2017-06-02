@@ -17,7 +17,7 @@ return array(
 	//调试
 	'URL_PATHINFO_DEPR'     =>  '/',
 	'__DATA__' => __ROOT__.'/Data',
-	'SHOW_PAGE_TRACE' =>true,
+	'SHOW_PAGE_TRACE' =>false,
 	'MODULE_ALLOW_LIST' => array('Home','Admin'), // 配置你原来的分组列表
 	'DEFAULT_MODULE' => 'Home', // 配置你原来的默认分组
 	// 'HTML_CACHE_ON'=>true,

@@ -83,15 +83,39 @@ class CommentController extends Controller{
 
                 $newsResult = M('News')->where(array('id'=>$news_id))->setInc('comment_count',1);
 
-                if ( $newsResult !== false && $dynamicsResult !== false && $replyMessageResult !== false && $authorMessageResult !== false && $commentResult !== false ) {
-                    $newsModel = M('News');
-                    $cookieData = array(
-                        'news_id' => $news_id,
-                        'date' => $time,
-                        'type' => $newsModel->where(array('id'=>$news_id))->getField('type')
-                    );
-                    $recommendController = A('Recommend');
-                    $recommendController->setRecommendCookie($cookieData,'commentInfo');
+
+
+                $newsModel = M('News');
+                $commentPortrayalData = array(
+                    'news_id' => $news_id,
+                    'date' => $time,
+                    'type' => $newsModel->where(array('id'=>$news_id))->getField('type')
+                );
+
+                //修改用户画像
+                $portrayalModel = M('Portrayal');
+                $portrayalData = A('Recommend')->getPortrayal($user_id);
+
+                $portrayal = $portrayalData['data'];
+                $commentInfo = $portrayal['commentInfo'];
+
+
+
+                $keywordBelongModel = D('NewsKeywordBelong');
+                $commentPortrayalData['keywords'] = $keywordBelongModel->getKeywordByNewsId($commentInfo['news_id']);
+                array_push($portrayal['zanInfo'],$commentPortrayalData);
+                $commentPortrayalResult = $portrayalModel->where(array('user_id'=>$user_id))->save(array(
+                    'portrayal' => json_encode($portrayal),
+                    'last_modify_time' => $time
+                ));
+
+
+
+
+
+                if ( $newsResult !== false && $dynamicsResult !== false && $replyMessageResult !== false && $authorMessageResult !== false && $commentResult !== false  && $commentPortrayalResult !== false) {
+
+
                     $model->commit();
                     $json['code'] = 200;
                     $json['message'] = '评论成功';

@@ -52,15 +52,41 @@ class ZanController extends Controller{
                 );
                 $dynamicsResult = $dynamicsModel->add($dynamicsData);
 
+                $newsModel = M('News');
+                $zanPortrayalData = $zanModel->relation('commentNewsIdAndType')->where(array( 'id' => $zan_id)) ->find();
+                $zanPortrayalData['type'] = $newsModel->where(array('id'=>$zanPortrayalData['news_id']))->getField('type');
+                //修改用户画像
 
-                if ( $dynamicsResult !== false && $messageResult !== false && $zanResult !== false && $zanCountResult !== false){
+                $portrayalModel = M('Portrayal');
+                $portrayalData = A('Recommend')->getPortrayal($user_id);
+
+                $portrayal = $portrayalData['data'];
+                $zanInfo = $portrayal['zanInfo'];
+
+                $sign = true;
+                $date = date('Y-m-d',time());
+                foreach ($zanInfo as $item) {
+                    if( substr($item['time'],0,9) == $date && $item['comment_id'] == $comment_id) {
+                        $sign = false;
+                        break;
+                    }
+                }
+                if( $sign ) {
+                    $keywordBelongModel = D('NewsKeywordBelong');
+                    $zanPortrayalData['keywords'] = $keywordBelongModel->getKeywordByNewsId($zanPortrayalData['news_id']);
+                    array_push($portrayal['zanInfo'],$zanPortrayalData);
+                    $zanPortrayalResult = $portrayalModel->where(array('user_id'=>$user_id))->save(array(
+                        'portrayal' => json_encode($portrayal),
+                        'last_modify_time' => $time
+                    ));
+
+                } else {
+                    $zanPortrayalResult = true;
+                }
+
+
+                if ( $dynamicsResult !== false && $messageResult !== false && $zanResult !== false && $zanCountResult !== false && $zanPortrayalResult !== false){
                     //执行写cookie操作
-                    $newsModel = M('News');
-                    $cookieData = $zanModel->relation('commentNewsIdAndType')->where(array( 'id' => $zan_id)) ->find();
-                    $cookieData['type'] = $newsModel->where(array('id'=>$cookieData['news_id']))->getField('type');
-                    $recommendController = A('Recommend');
-                    $recommendController->setRecommendCookie($cookieData,'zanInfo');
-
 
                     $model -> commit();
                     $json['success'] = true;

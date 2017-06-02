@@ -202,7 +202,21 @@ $(function() {
 				}else{
 					$("#"+obj).html("");
 					var result = $.parseJSON(data);
-					$.plot($("#"+obj), result,{
+					var plotData = [];
+					var other = {label:'其他内容',data:0};
+					var sum = 0 ;
+					result.forEach(function(item){ item.data = Number(item.data); sum += item.data;});
+					result.forEach(function(item){
+						var percent = item.data/sum;
+						if (percent<0.01){
+							other.data+=item.data;
+						} else {
+							plotData.push(item);
+						}
+					});
+					if(other.data != 0)
+						plotData.push(other);
+					$.plot($("#"+obj), plotData,{
 				        series: {pie: {show: true}},
 				        grid: {hoverable: true},
 				        tooltip: true,

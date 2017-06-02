@@ -58,36 +58,33 @@ class VisitorController extends Controller{
         if( session('?login')) {
             $user_id = session('login');
             $portrayalModel = M('Portrayal');
-            $portrayalInfoString = $portrayalModel->where(array('user_id'=>$user_id))->find();
-            if ($portrayalInfoString) {
-                $portrayal = json_decode($portrayalInfoString['portrayal'],true);
-                $browseInfo = $portrayal['browseInfo'];
-                $browseItem = array(
-                    'news_id' => $id,
-                    'date' => $time
-                );
-                if( count($browseInfo) > 6){
-                    $sign = true;
-                    $date = date('Y-m-d',time());
-                    foreach ($browseInfo as $item) {
-                        if( substr($item['date'],0,9) == $date && $item['news_id'] == $id) {
-                            $sign = false;
-                            break;
-                        }
-                    }
-                    if( $sign ) {
-                        $keywordBelongModel = D('NewsKeywordBelong');
-                        $browseItem['type'] = M('News')->where(array('id'=>$id))->getField('type');
-                        $browseItem['keywords'] = $keywordBelongModel->getKeywordByNewsId($id);
-                        array_push($portrayal['browseInfo'],$browseItem);
-                        $portrayalModel->where(array('user_id'=>$user_id))->save(array(
-                            'portrayal' => json_encode($portrayal),
-                            'last_modify_time' => $time
-                        ));
-                    }
-                }
+            $portrayalData = A('Recommend')->getPortrayal($user_id);
 
+            $portrayal = $portrayalData['data'];
+            $browseInfo = $portrayal['browseInfo'];
+            $browseItem = array(
+                'news_id' => $id,
+                'date' => $time
+            );
+            $sign = true;
+            $date = date('Y-m-d',time());
+            foreach ($browseInfo as $item) {
+                if( substr($item['date'],0,9) == $date && $item['news_id'] == $id) {
+                    $sign = false;
+                    break;
+                }
             }
+            if( $sign ) {
+                $keywordBelongModel = D('NewsKeywordBelong');
+                $browseItem['type'] = M('News')->where(array('id'=>$id))->getField('type');
+                $browseItem['keywords'] = $keywordBelongModel->getKeywordByNewsId($id);
+                array_push($portrayal['browseInfo'],$browseItem);
+                $portrayalModel->where(array('user_id'=>$user_id))->save(array(
+                    'portrayal' => json_encode($portrayal),
+                    'last_modify_time' => $time
+                ));
+            }
+
 
         }
     }

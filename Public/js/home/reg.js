@@ -1,7 +1,7 @@
 // 注册JS
 ;$(function(){
 
-	昵称检查
+	//昵称检查
 	$("#nickname").blur(function(event) {
 		var _self = $(this);
 		var nickname = _self.val();

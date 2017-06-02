@@ -287,8 +287,7 @@ class NewsModel extends RelationModel{
 
 	public function getByKeywordId($keyword_id,$begin_time,$num,$not_in){
 		$DB_PREFIX = C('DB_PREFIX');
-        $condition['_string'] = ' n.id = nkb.news_id ';
-
+        $condition['_string'] = ' n.id = nkb.news_id and n.delete_tag = 0 ';
         if ( strtolower(gettype($not_in)) == 'array' ) {
             foreach ($not_in as $item) {
                 if(strtolower(gettype($item)) == 'array' && count($item) ){
@@ -323,7 +322,7 @@ class NewsModel extends RelationModel{
 
 	public function getByTypeId($type_id,$begin_time,$num,$not_in){
 		$condition['publish_time'] = array('gt',$begin_time);
-        $condition['_string'] = ' 1 = 1 ';
+        $condition['_string'] = ' 1 = 1 and delete_tag = 0 ';
         if ( strtolower(gettype($not_in)) == 'array' ) {
             foreach ($not_in as $item) {
                 if(strtolower(gettype($item)) == 'array' && count($item) ){
@@ -356,6 +355,7 @@ class NewsModel extends RelationModel{
 
 	public function getByBeginTimeAndNum($begin_time,$num,$not_in){
         $condition['_string'] = ' 1 = 1 ';
+        $condition['delete_tag'] = false;
 	    foreach ($not_in as $item) {
 	        if ( $item ){
                 $condition['_string'] .= ' and id not in ('.$item.')';

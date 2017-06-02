@@ -262,6 +262,7 @@ to{-o-transform:rotate(360deg)}
 	width:250px;
 	height: 60px;
 	padding:5px;
+	margin-bottom: 10px;
 	border:1px solid #eee;
 	border-radius: 3px;
 	overflow: hidden;
@@ -269,4 +270,11 @@ to{-o-transform:rotate(360deg)}
 }
 .user-similarity-item.active{
 	border-color: #ce797b;
+}
+.boder-b-dashed{
+	border-bottom: 1px dashed #eee;
+	padding-bottom: 15px;
+}
+.boder-b-dashed a{
+	color: #ce563f!important;
 }

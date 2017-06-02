@@ -25,6 +25,7 @@ class SimilarityController extends Controller{
             $show       = $Page->show();// 分页显示输出
             $this->assign('page',$show);
         }
+        $this->assign('key',$key);
         $this->assign('list',$list);
         $this->assign('title','用户相似度可视化查询');
         $this->display();

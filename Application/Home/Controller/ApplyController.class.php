@@ -19,8 +19,20 @@ class ApplyController extends Controller{
 	}
 
 	public function apply(){
-		$this->assign('IssueContent','IssueContent/apply');
-		$this->display('Issue/index');
+        if(session('?login')){
+            $applyModel = M('Apply');
+            $user_id = session('login');
+            $apply = $applyModel->where(array('user_id'=>$user_id,'state'=>0))->find();
+            if($apply){
+                $this->success('您的申请以提交，请耐心等待审核。',U('Index/index'),5);
+            }else{
+                $this->assign('IssueContent','IssueContent/apply');
+                $this->display('Issue/index');
+            }
+        }
+
+
+
 	}
 
 
@@ -110,8 +122,8 @@ class ApplyController extends Controller{
 			$keywordBelongSign = true;
 			if($sign){
 				$keywordBelongModel = M('NewsKeywordBelong');
-				foreach ($KeywordArr as $item) {
-					$keywordBelongResult = $keywordBelongModel->add(array('keyword_id'=>$item['id'],'news_id' => $newsId));
+				foreach ($KeywordArr as $keywordItem) {
+					$keywordBelongResult = $keywordBelongModel->add(array('keyword_id'=>$keywordItem['id'],'news_id' => $newsId));
 					if( $keywordBelongResult === false ){
 						$keywordBelongSign = false;
 					}

@@ -62,12 +62,12 @@
                         <a class="jiathis_button_cqq share-btn bg-qq">
                             <i class="iconfont icon-qq"></i>
                         </a>
-                        <a class="jiathis_button_qzone share-btn bg-qq">
-                            <i class="iconfont icon-qzone"></i>
-                        </a>
-                        <a class="jiathis_button_tsina share-btn bg-weibo">
-                            <i class="iconfont icon-weibo"></i>
-                        </a>
+                        <!--<a class="jiathis_button_qzone share-btn bg-qq">-->
+                            <!--<i class="iconfont icon-qzone"></i>-->
+                        <!--</a>-->
+                        <!--<a class="jiathis_button_tsina share-btn bg-weibo">-->
+                            <!--<i class="iconfont icon-weibo"></i>-->
+                        <!--</a>-->
                         <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1" charset="utf-8"></script>
                         {:W('Collection/collection',array('collection_id'=>$id))}
                     </div>
@@ -125,7 +125,8 @@
                                     </div>
                                     <if condition="session('?login')">
                                         <div class="m-t-xs" style="font-size:12px;">
-                                            <a href="javascript:void(0)" class="font-smoothing"><span class="m-r-sm reply" data-sender="{$vo.id}">回复</a>
+                                            <a href="javascript:void(0)" class="font-smoothing">
+                                                <if condition="session('login') neq $vo['user_id']"><span class="m-r-sm reply" data-sender="{$vo.id}">回复</a></if>
                                             {:W('Zan/zan',array('comment_id'=>$vo['id'],'zan_count'=>$vo['zan_count']))}
                                         </div>
                                     </if>

@@ -17,19 +17,19 @@
                     <legend class="login_header">注册CL<i></i><a href="{:U('Login/index')}" class="pull-right header-right m-t-sm">使用已有账号登录</a></legend>
                     <div class="input-g">
                         <span class="input-icon glyphicon glyphicon-earphone"></span>
-                        <input class="from-input" type="text" name="tel" id="tel" placeholder="手机号" maxlength="11" title="请输入手机号码" required/>
+                        <input class="from-input" type="text" name="tel" id="tel" autocomplete="off" placeholder="手机号" maxlength="11" title="请输入手机号码" required/>
                         <img id="username_check" src="__PUBLIC__/img/loading.gif">
                         <span class="help-block m-t-sm"></span>
                     </div>
                     <div class="input-g">
                         <span class="input-icon glyphicon glyphicon-user"></span>
-                        <input class="from-input" type="text" name="nickname" id="nickname" placeholder="昵称" maxlength="15" title="请输入昵称" required/>
+                        <input class="from-input" type="text" name="nickname" id="nickname"  autocomplete="off" placeholder="昵称" maxlength="15" title="请输入昵称" required/>
                         <span class="help-block m-t-sm"></span>
                     </div>
 
                     <div class="input-g">
                         <span class="input-icon glyphicon glyphicon-ice-lolly"></span>
-                        <input class="from-input" id="password" type="password" name="password" placeholder="密码" title="请输入密码" required/>
+                        <input class="from-input" id="password" type="password" name="password"  placeholder="密码" title="请输入密码" required/>
                         <span class="help-block m-t-sm"></span>
                     </div>
 
@@ -41,14 +41,14 @@
                     
                     <div class="input-g m-r-110">
                         <span class="input-icon glyphicon glyphicon-check"></span>
-                        <input id="verify" class="from-input" type="text" placeholder="图形验证码" title="图形验证码" required/>
+                        <input id="verify" class="from-input" type="text" placeholder="图形验证码" autocomplete="off" title="图形验证码" required/>
                         <img class="verify" src="{:U('Index/verify')}" title="看不清？点击刷新验证码">
                         <span class="help-block m-t-sm"></span>
                     </div>
 
                     <div class="input-g m-r-130">
                         <span class="input-icon glyphicon glyphicon-eye-open"></span>
-                        <input id="SMS" class="from-input" name="SMS" type="text" placeholder="短信验证码" title="短信验证码" required/>
+                        <input id="SMS" class="from-input" name="SMS" type="text" placeholder="短信验证码" autocomplete="off" title="短信验证码" required/>
                         <a title="点击获取短信验证码" id="send" href="javascript:void(0)" class="btn" >点击发送短信</a>
                         <span class="help-block m-t-sm"></span>
                     </div>

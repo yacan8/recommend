@@ -13,16 +13,19 @@
         <div class="font-smoothing m-t-sm">
           <span class="tc-gray9">邮箱：</span> <span class="tc-black">{{email || '未填写'}}</span>
         </div>
-        {{ if sex != '3'}}
+        {{ if userinfo }}
+        {{ if userinfo.sex != '3'}}
         <div class="font-smoothing m-t-sm">
           <span class="tc-gray9">性别：</span>
-          {{if sex == '0' }}
+          {{if userinfo.sex == '0' }}
           <i class="fa fa-mars font-12 font-bold" style="color:#5FC1FA"></i>
-          {{ else }}
+          {{ else if userinfo.sex == '1' }}
           <i class="fa fa-venus font-12 font-bold" style="color:#F47BAD"></i>
+          {{ else }}
           {{/if}}
         </div>
         {{ /if }}
+        {{ /if}}
         {{if userinfo }}
         <div class="font-smoothing m-t-sm">
            <span class="tc-gray9">生日：</span> <span class="tc-black">{{userinfo.birthdate || '未填写' }}</span>

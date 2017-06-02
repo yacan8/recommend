@@ -6,11 +6,11 @@
 
 <div class="row">
     <div class="col-xs-12 m-b-sm">
-        <form class="form-inline">
+        <form class="form-inline" method="get" action="{:U('Similarity/userSimilarity')}">
             <div class="form-group">
-                <input type="text" class="form-control input-sm" placeholder="请输入昵称或者手机号码" style="width: 200px;" />
+                <input type="text" name="key" class="form-control input-sm" placeholder="请输入昵称或者手机号码" style="width: 200px;" value="{$key}" />
             </div>
-            <button type="button" class='btn btn-sm btn-info'>搜索</button>
+            <button type="submit" class='btn btn-sm btn-info'>搜索</button>
         </form>
     </div>
     <div class="col-xs-12">

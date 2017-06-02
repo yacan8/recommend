@@ -199,8 +199,8 @@ class NewsController extends Controller{
 			$keywordBelongSign = true;
 			if($sign){
 				$keywordBelongModel = M('NewsKeywordBelong');
-				foreach ($KeywordArr as $item) {
-					$keywordBelongResult = $keywordBelongModel->add(array('keyword_id'=>$item['id'],'news_id' => $newsId));
+				foreach ($KeywordArr as $keywordItem) {
+					$keywordBelongResult = $keywordBelongModel->add(array('keyword_id'=>$keywordItem['id'],'news_id' => $newsId));
 					if( $keywordBelongResult === false ){
 						$keywordBelongSign = false;
 					}
@@ -265,8 +265,8 @@ class NewsController extends Controller{
 				$keywordBelongModel = M('NewsKeywordBelong');
 				$deleteResult = $keywordBelongModel ->where(array('news_id'=>$id))->delete();
 				if($deleteResult !== false){
-					foreach ($KeywordArr as $item) {
-						$keywordBelongResult = $keywordBelongModel->add(array('keyword_id'=>$item['id'],'news_id' => $id));
+					foreach ($KeywordArr as $keywordItem) {
+						$keywordBelongResult = $keywordBelongModel->add(array('keyword_id'=>$keywordItem['id'],'news_id' => $id));
 						if( $keywordBelongResult === false ){
 							$keywordBelongSign = false;
 						}

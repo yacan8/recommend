@@ -59,38 +59,42 @@ $(function(){
 	$('[data-role="dd-input"]').keyup(function (e) {
 		var _self = $(this);
 		var load_list =$(".dd-load-list");
-		lastTime = e.timeStamp;
-		setTimeout(function () {
-			if (lastTime - e.timeStamp == 0) {
-				if(e.keyCode != 40 && e.keyCode != 39 && e.keyCode != 13){
-					var value = $.trim(_self.val());
-					if(value!=''){
-						$.get(dd_load_url,{word:value},function(data) {
-							var result = $.parseJSON(data);
-							var str ='';
-							if(result.length>0){
-								var sign = false;
-								for(var i=0;i<result.length;i++){
-									str = str + '<li data-id="'+result[i].id+'"><a href="javascript:;"><span>'+result[i].name+'</span></a></li>';
-									if($.trim(result[i].name) == value){
-										sign = true;
+		var value = $.trim(_self.val());
+		if(value){
+			lastTime = e.timeStamp;
+			setTimeout(function () {
+				if (lastTime - e.timeStamp == 0) {
+					if(e.keyCode != 40 && e.keyCode != 39 && e.keyCode != 13){
+						if(value!=''){
+							$.get(dd_load_url,{word:value},function(data) {
+								var result = $.parseJSON(data);
+								var str ='';
+								if(result.length>0){
+									var sign = false;
+									for(var i=0;i<result.length;i++){
+										str = str + '<li data-id="'+result[i].id+'"><a href="javascript:;"><span>'+result[i].name+'</span></a></li>';
+										if($.trim(result[i].name) == value){
+											sign = true;
+										}
 									}
+									if(!sign)
+										str += '<li data-id="0"><a href="javascript:;">创建关键字 <span>'+value+'</span></a></li>';
+								}else{
+									str = '<li data-id="0"><a href="javascript:;">创建关键字 <span>'+value+'</span></a></li>';
 								}
-								if(!sign)
-									str += '<li data-id="0"><a href="javascript:;">创建关键字 <span>'+value+'</span></a></li>';
-							}else{
-								str = '<li data-id="0"><a href="javascript:;">创建关键字 <span>'+value+'</span></a></li>';
-							}
-							var con = _self.parents('.form-group');
-							var left = _self.offset().left-con.offset().left-5;
-							$('.dd-load-list').html(str);
-
-							load_list.css('left',left).show().children('li').first().addClass('active');
-						});
+								var con = _self.parents('.form-group');
+								var left = _self.offset().left-con.offset().left-5;
+								$('.dd-load-list').html(str);
+								if($.trim(_self.val()))
+									load_list.css('left',left).show().children('li').first().addClass('active');
+							});
+						}
 					}
 				}
-			}
-		}, 500);
+			}, 500);
+		}else{
+			load_list.hide()
+		}
 	})
 	$('[data-role="dd-input"]').keydown(function(e) {
 		var _self = $(this);

@@ -34,12 +34,12 @@
               </li>
             </ul>
           </li>
-          <li class="hidden-xs">
+          <!-- <li class="hidden-xs">
             <a href="{:U('User/message')}">
               <span class="glyphicon glyphicon-envelope"></span>
               <span class="badge icon-message-count pc-message"></span>
             </a>
-          </li>
+          </li> -->
           <li <if condition="CONTROLLER_NAME eq 'Index'">class="active"</if>><a href="{:U('Index/index')}">首页</a></li>
           <if condition="session('?login')">
           <li ><a href="{:U('Apply/content')}">发布者中心</a></li>
